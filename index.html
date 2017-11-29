@@ -8045,9 +8045,9 @@ event.target.buttonImportIcon();" />
 				}
 			} else if (classlevel === "Bard 1") {
 				if (charismaModifier < 1) {
-					bardmodifier = 1;
+					var bardmodifier = 1;
 				} else {
-					bardmodifier = charismaModifier;
+					var bardmodifier = charismaModifier;
 				}
 				features.push("Bardic Inspiration (" + bardmodifier + "/lr): Use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes.");
 				spellcastingSection.push("Bardic Inspiration (" + bardmodifier + "/lr): Use a bonus action to give another creature an inspiration die of 1d6.");
