@@ -6,6 +6,12 @@ var constitution = 0;
 var intelligence = 0;
 var wisdom = 0;
 var charisma = 0;
+var stat1 = stats[0];
+var stat2 = stats[1];
+var stat3 = stats[2];
+var stat4 = stats[3];
+var stat5 = stats[4];
+var stat6 = stats[5];
 
 // To determine which version is being used this variable will be assigned a value at the end of each version's function
 var version_for_checking = 0;
@@ -29,54 +35,22 @@ function show_function(){
 function standard_version() {
     // STANDARD ARRAY STAT BLOCK
 
-    // Function to shuffle the stats of the standard array
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle
-        while (0 !== currentIndex) {
-
-        // Pick a remaining element
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    }
-
     // Standard array used for stats
     var standard_array = [15,14,13,12,10,8];
 
-    // Function to shuffle the standard array and return it 
-    function random_array(){
-        var array = shuffle(standard_array);
-        return array
-    }
-
-    // Assign the shuffled standard array to a variable
-    var final_stat_array1 = random_array();
+    // Assign the standard array to a different variable
+    var final_stat_array1 = standard_array;
 
     // Assign the shuffled array into individual variables
-    strength = final_stat_array1[0];
-    dexterity = final_stat_array1[1];
-    constitution = final_stat_array1[2];
-    intelligence = final_stat_array1[3];
-    wisdom = final_stat_array1[4];
-    charisma = final_stat_array1[5];
+    stat1 = final_stat_array1[0];
+    stat2 = final_stat_array1[1];
+    stat3 = final_stat_array1[2];
+    stat4 = final_stat_array1[3];
+    stat5 = final_stat_array1[4];
+    stat6 = final_stat_array1[5];
 
     // Assign individual stats to an array named stats
-    stats = [strength, dexterity, constitution, intelligence, wisdom, charisma];
-
-    // All stats added together for the temp hit points section
-    var array_total1 = stats[0] + stats[1] + stats[2] +stats[3] + stats[4] + stats[5];
-
-    // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
-    document.getElementById("form98_1").value = "Stats(" + array_total1 + "): " + stats;
+    stats = [stat1, stat2, stat3, stat4, stat5, stat6];
 
     // 1 means standard
     version_for_checking = 1;
@@ -115,6 +89,12 @@ function roll_version() {
         return sum;
     };
 
+    // Function to organize numbers in ascending order
+    function order_stats(array) {
+        array.sort(function(a, b){return b-a});
+        return array;
+    }
+
     // Block of arrays that are assigned a random stat each
     var first = getRandomStat();
     var second = getRandomStat();
@@ -124,21 +104,18 @@ function roll_version() {
     var sixth = getRandomStat();
 
     // Block of variables that had arrays that were summed up to equal a single number
-    strength = getSum(first);
-    dexterity = getSum(second);
-    constitution = getSum(third);
-    intelligence = getSum(fourth);
-    wisdom = getSum(fifth);
-    charisma = getSum(sixth);
+    stat1 = getSum(first);
+    stat2 = getSum(second);
+    stat3 = getSum(third);
+    stat4 = getSum(fourth);
+    stat5 = getSum(fifth);
+    stat6 = getSum(sixth);
 
     // Assign individual stats to an array named stats
-    stats = [strength, dexterity, constitution, intelligence, wisdom, charisma];
+    statspt1 = [stat1, stat2, stat3, stat4, stat5, stat6];
 
-    // All stats added together for the temp hit points section
-    var array_total2 = stats[0] + stats[1] + stats[2] +stats[3] + stats[4] + stats[5];
-
-    // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
-    document.getElementById("form98_1").value = "Stats(" + array_total2 + "): " + stats;
+    // Assign the ordered stats array to a global variable
+    stats = order_stats(statspt1);
 
     // 2 means roll
     version_for_checking = 2;
@@ -217,30 +194,10 @@ function pointbuy_version(){
                                 [13, 13, 13, 13, 12, 11],
                                 [13, 13, 13, 12, 12, 12]];
 
-    // Function to shuffle all the numbers in an array into random order
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle
-        while (0 !== currentIndex) {
-
-        // Pick a remaining element
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    }
-
     // Function to shuffle all the numbers in a random point buy combination into random order and return it
     function random_array(){
         var number = Math.floor(Math.random() * 65);
-        var array = shuffle(array_of_stat_combos[number]);
+        var array = array_of_stat_combos[number];
         return array
     }
 
@@ -248,21 +205,15 @@ function pointbuy_version(){
     var final_stat_array2 = random_array();
 
     // Block of variables that are assigned a random stat each
-    strength = final_stat_array2[0];
-    dexterity = final_stat_array2[1];
-    constitution = final_stat_array2[2];
-    intelligence = final_stat_array2[3];
-    wisdom = final_stat_array2[4];
-    charisma = final_stat_array2[5];
+    stat1 = final_stat_array2[0];
+    stat2 = final_stat_array2[1];
+    stat3 = final_stat_array2[2];
+    stat4 = final_stat_array2[3];
+    stat5 = final_stat_array2[4];
+    stat6 = final_stat_array2[5];
 
     // Assign individual stats to an array named stats
-    stats = [strength, dexterity, constitution, intelligence, wisdom, charisma];
-
-    // All stats added together for the temp hit points section
-    var array_total3 = stats[0] + stats[1] + stats[2] +stats[3] + stats[4] + stats[5];
-
-    // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
-    document.getElementById("form98_1").value = "Stats(" + array_total3 + "): " + stats;
+    stats = [stat1, stat2, stat3, stat4, stat5, stat6];
 
     // 3 means pointbuy
     version_for_checking = 3;
@@ -445,6 +396,11 @@ function generate_character(version){
     // Function to get random number between 1-10
     function getRandom10() {
         return Math.ceil(Math.random() * 10);
+    }
+
+    // Function to get random number between 1-10
+    function getRandom12() {
+        return Math.ceil(Math.random() * 12);
     }
 
     // Function to get a random interger between a minimum value and a maximum value
@@ -1282,6 +1238,134 @@ function generate_character(version){
         generateMorality(.5, .3);
     };
 
+    // Block that chooses class - CLASS CHOOSER 2
+    var classlevel = '';
+    var random_class_variable = getRandom12();
+    var random_chance = Math.random();
+    var cleric_type = '';
+
+    function assign_stats(strength1, dexterity1, constitution1, intelligence1, wisdom1, charisma1, classtype) {
+        strength += strength1;
+        dexterity += dexterity1;
+        constitution += constitution1;
+        intelligence += intelligence1;
+        wisdom += wisdom1;
+        charisma += charisma1;
+        var stat_total = strength1 + dexterity1 + intelligence1 + constitution1 + wisdom1 + charisma1;
+         // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
+        document.getElementById("form98_1").value = classtype + "(" + stat_total + "): " + strength1 + ", " + dexterity1 + ", " + constitution1 + ", " + intelligence1 + ", " + wisdom1 + ", " + charisma1;
+    }
+
+    if (random_class_variable === 1) {
+        classlevel = "Barbarian 1";
+    } else if (random_class_variable === 2) {
+        classlevel = "Bard 1";
+    } else if (random_class_variable === 3) {
+        classlevel = "Cleric 1";
+    } else if (random_class_variable === 4) {
+        classlevel = "Druid 1";
+    } else if (random_class_variable === 5) {
+        classlevel = "Fighter 1";
+    } else if (random_class_variable === 6) {
+        classlevel = "Monk 1";
+    } else if (random_class_variable === 7) {
+        classlevel = "Paladin 1";
+    } else if (random_class_variable === 8) {
+        classlevel = "Ranger 1";
+    } else if (random_class_variable === 9) {
+        classlevel = "Rogue 1";
+    } else if (random_class_variable === 10) {
+        classlevel = "Sorcerer 1";
+    } else if (random_class_variable === 11) {
+        classlevel = "Warlock 1";
+    } else if (random_class_variable === 12) {
+        classlevel = "Wizard 1";
+    }
+
+
+    if (classlevel === "Barbarian 1"){
+        if (random_chance > .5){
+            assign_stats(stat1, stat3, stat2, stat6, stat4, stat5, "Barbarian");
+        } else {
+            assign_stats(stat3, stat2, stat1, stat6, stat4, stat5, "Barbarian");
+        }
+    } else if (classlevel === "Bard 1"){
+        if (random_chance > .5){
+            assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Bard");
+        } else {
+            assign_stats(stat2, stat4, stat3, stat5, stat6, stat1, "Bard");
+        }
+    } else if (classlevel === "Cleric 1"){
+        if (random_chance > .66){
+            assign_stats(stat4, stat2, stat3, stat5, stat1, stat6, "Cleric");
+            cleric_type = 'DEX';
+        } else if (random_chance > .33){
+            assign_stats(stat2, stat4, stat3, stat6, stat1, stat5, "Cleric");
+            cleric_type = 'STR';
+        } else {
+            assign_stats(stat5, stat3, stat2, stat4, stat1, stat6, "Cleric");
+            cleric_type = 'WIS';
+        }
+    } else if (classlevel === "Druid 1"){
+        if (random_chance > .5){
+            assign_stats(stat6, stat3, stat2, stat5, stat1, stat4, "Druid");
+        } else {
+            assign_stats(stat6, stat3, stat2, stat4, stat1, stat5, "Druid");
+        }
+    } else if (classlevel === "Fighter 1"){
+        if (random_chance > .66){
+            assign_stats(stat6, stat1, stat2, stat4, stat3, stat5, "Fighter");
+        } else if (random_chance > .33){
+            assign_stats(stat1, stat4, stat2, stat5, stat3, stat6, "Fighter");
+        } else {
+            assign_stats(stat1, stat4, stat3, stat2, stat5, stat6, "Fighter");
+        }
+    } else if (classlevel === "Monk 1"){
+        if (random_chance > .5){
+            assign_stats(stat4, stat1, stat3, stat6, stat2, stat5, "Monk");
+        } else {
+            assign_stats(stat5, stat1, stat3, stat6, stat2, stat4, "Monk");
+        }
+    } else if (classlevel === "Paladin 1"){
+        if (random_chance > .5){
+            assign_stats(stat5, stat1, stat3, stat6, stat4, stat2, "Paladin");
+        } else {
+            assign_stats(stat1, stat5, stat3, stat6, stat4, stat2, "Paladin");
+        }
+    } else if (classlevel === "Ranger 1"){
+        if (random_chance > .5){
+            assign_stats(stat5, stat1, stat2, stat4, stat3, stat6, "Ranger");
+        } else {
+            assign_stats(stat1, stat2, stat3, stat5, stat4, stat6, "Ranger");
+        }
+    } else if (classlevel === "Rogue 1"){
+        if (random_chance > .66){
+            assign_stats(stat6, stat1, stat2, stat5, stat3, stat4, "Rogue");
+        } else if (random_chance > .33){
+            assign_stats(stat6, stat1, stat2, stat5, stat4, stat3, "Rogue");
+        } else {
+            assign_stats(stat6, stat1, stat3, stat2, stat4, stat5, "Rogue");
+        }
+    } else if (classlevel === "Sorcerer 1"){
+        if (random_chance > .5){
+            assign_stats(stat6, stat3, stat2, stat5, stat4, stat1, "Sorcerer");
+        } else {
+            assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Sorcerer");
+        }
+    } else if (classlevel === "Warlock 1"){
+        if (random_chance > .5){
+            assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Warlock");
+        } else {
+            assign_stats(stat6, stat3, stat2, stat5, stat4, stat1, "Warlock");
+        }
+    } else if (classlevel === "Wizard 1"){
+        if (random_chance > .5){
+            assign_stats(stat6, stat2, stat3, stat1, stat4, stat5, "Wizard");
+        } else {
+            assign_stats(stat5, stat3, stat2, stat1, stat4, stat6, "Wizard");
+        }
+    }
+
     // Create stat modifiers for under the ability scores
     function statModifierGenerator(stat) {
         var statModifier = 0;
@@ -1338,165 +1422,8 @@ function generate_character(version){
     statChecker(dexterityModifier, "form32_1"); // stealth
     statChecker(wisdomModifier, "form47_1"); // survival
 
-    // Defining variables that may be helpful in narrowing down class
-    var classlevel = '';
-    var random_var_for_class = Math.random();
-
-    function if_higher(stat) {
-        if (stat >= strength && stat >= constitution && stat >= dexterity && stat >= intelligence && stat >= wisdom && stat >= charisma) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function if_higher_than_other_stats(stat1, stat2, stat3, stat4, stat5, stat6){
-        if (stat1  >= stat2 && stat2 >= stat3 && stat3 >= stat4 && stat4 >= stat5 && stat5 >= stat6) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function wizard_function(){
-        random_number = Math.random();
-        if (version_for_checking === 2){
-            if (random_number > .94){
-                if ((intelligence - 1) > strength && intelligence > constitution && intelligence > dexterity && (intelligence - 1) > wisdom && (intelligence - 1) > charisma) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                
-            }
-        } else if (version_for_checking === 1){
-            if (random_number > .92){
-                if ((intelligence - 1) > strength && intelligence > constitution && intelligence > dexterity && (intelligence - 1) > wisdom && (intelligence - 1) > charisma) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                
-            } 
-        } else if (version_for_checking === 3){
-            if (random_number > .875){
-                if ((intelligence - 1) > strength && intelligence > constitution && intelligence > dexterity && (intelligence - 1) > wisdom && (intelligence - 1) > charisma) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                
-            } 
-        }
-    }
-
-    // Block that chooses class - CLASS CHOOSER
-    if (wizard_function() === true) {
-        classlevel = 'Wizard 1';
-    } else if (if_higher(charisma) === true) {
-        if (if_higher_than_other_stats(charisma, dexterity, constitution, wisdom, intelligence, strength) === true) {
-            classlevel = 'Sorcerer 1';
-        } else if (if_higher_than_other_stats(charisma, constitution, dexterity, intelligence, wisdom, strength) === true) {
-            classlevel = 'Warlock 1';
-        } else if (if_higher_than_other_stats(charisma, dexterity, constitution, intelligence, wisdom, strength) === true) {
-            classlevel = 'Warlock 1';
-        } else if (if_higher_than_other_stats(charisma, constitution, dexterity, wisdom, intelligence, strength) === true) {
-            classlevel = 'Bard 1';
-        }  else if (if_higher_than_other_stats(charisma, strength, constitution, dexterity, wisdom, intelligence) === true) {
-            classlevel = 'Bard 1';
-        } else {
-            generate_new_character(version);
-            return;
-        }
-    } else if (if_higher(wisdom) === true) {
-        if (if_higher_than_other_stats(wisdom, constitution, dexterity, intelligence, charisma, strength) === true) {
-            classlevel = 'Druid 1';
-        } else if (if_higher_than_other_stats(wisdom, constitution, dexterity, charisma, intelligence, strength) === true) {
-            classlevel = 'Druid 1';
-        } else if (if_higher_than_other_stats(wisdom, strength, constitution, dexterity, charisma, intelligence) === true) {
-            classlevel = 'Cleric 1';
-        } else if (random_var_for_class > .55) {
-            if (if_higher_than_other_stats(wisdom, dexterity, constitution, strength, charisma, intelligence) === true) {
-                classlevel = 'Cleric 1';
-            } else {
-                generate_new_character(version);
-                return;
-            }
-        } else if (random_var_for_class > .1) {
-            if (if_higher_than_other_stats(wisdom, constitution, dexterity, intelligence, strength, charisma) === true) {
-                classlevel = 'Cleric 1';
-            } else {
-                generate_new_character(version);
-                return;
-            }
-        } else {
-            if ((dexterity + 1) >= wisdom){
-                if (if_higher_than_other_stats(dexterity, wisdom, constitution, strength, charisma, intelligence) === true) {
-                    classlevel = 'Monk 1';
-                } else if (if_higher_than_other_stats(dexterity, wisdom, constitution, charisma, strength, intelligence) === true) {
-                    classlevel = 'Monk 1';
-                } else if (if_higher_than_other_stats(dexterity, constitution, wisdom, intelligence, strength, charisma) === true) {
-                    classlevel = 'Ranger 1';
-                } else {
-                    generate_new_character(version);
-                    return;
-                }
-            } else {
-                generate_new_character(version);
-                return;
-            }
-        }
-    } else if (if_higher(dexterity) === true) {
-        if (if_higher_than_other_stats(dexterity, charisma, constitution, wisdom, strength, intelligence) === true) {
-            classlevel = 'Paladin 1';
-        } else if (if_higher_than_other_stats(dexterity, wisdom, constitution, strength, charisma, intelligence) === true) {
-            classlevel = 'Monk 1';
-        } else if (if_higher_than_other_stats(dexterity, constitution, wisdom, intelligence, strength, charisma) === true) {
-            classlevel = 'Ranger 1';
-        } else if (if_higher_than_other_stats(dexterity, wisdom, constitution, charisma, strength, intelligence) === true) {
-            classlevel = 'Monk 1';
-        } else if (if_higher_than_other_stats(dexterity, constitution, wisdom, charisma, intelligence, strength) === true) {
-            classlevel = 'Rogue 1';
-        } else if (if_higher_than_other_stats(dexterity, intelligence, constitution, wisdom, charisma, strength) === true) {
-            classlevel = 'Rogue 1';
-        } else if (if_higher_than_other_stats(dexterity, constitution, wisdom, intelligence, charisma, strength) === true) {
-            classlevel = 'Fighter 1';
-        } else if (if_higher_than_other_stats(dexterity, constitution, strength, wisdom, charisma, intelligence) === true) {
-            classlevel = 'Barbarian 1';
-        } else {
-            generate_new_character(version);
-            return;
-        }
-    } else if (if_higher(strength) === true) {
-        if (if_higher_than_other_stats(strength, dexterity, constitution, wisdom, intelligence, charisma) === true) {
-            classlevel = 'Ranger 1';
-        } else if (if_higher_than_other_stats(strength, charisma, constitution, wisdom, dexterity, intelligence) === true) {
-            classlevel = 'Paladin 1';
-        } else if (if_higher_than_other_stats(strength, constitution, wisdom, dexterity, intelligence, charisma) === true) {
-            classlevel = 'Fighter 1';
-        } else if (if_higher_than_other_stats(strength, constitution, dexterity, wisdom, charisma, intelligence) === true) {
-            classlevel = 'Barbarian 1';
-        } else {
-            if (random_var_for_class > .5){
-                if (if_higher_than_other_stats(strength, constitution, wisdom, dexterity, intelligence, charisma) === true) {
-                    classlevel = 'Fighter 1';
-                } else {
-                    generate_new_character(version);
-                    return;
-                }
-            } else {
-                generate_new_character(version);
-                return;
-            }
-        }
-    } else {
-        generate_new_character(version);
-        return;
-    }
     
+
 
     // Variable that holds the value of just the class, not the level
     var classs = classlevel.split(" ")[0];
@@ -1515,7 +1442,7 @@ function generate_character(version){
     } else {
         statChecker(strengthModifier, "form42_1");
     }
-    if (classlevel === "Bard 1" || classlevel === "Rogue 1" || classlevel === "Ranger 1") {
+    if (classlevel === "Bard 1" || classlevel === "Rogue 1" || classlevel === "Ranger 1" || classlevel === "Monk 1") {
         statChecker(dexterityModifier + 2, "form54_1");
         add_click(18);
     } else {
@@ -1701,12 +1628,12 @@ function generate_character(version){
             }
             equipment.push("Shield");
             equipment.push("A holy symbol");
-            if (strength >= 14) {
+            if (cleric_type === 'STR') {
                 equipment.push("Handaxe");
                 document.getElementById("form78_1").value = "Handaxe"; // 2nd weapon 1st section
                 statChecker(strengthModifier + 2, "form65_1"); // 2nd weapon 2nd section
                 statChecker3(strengthModifier, "form74_1", "1d6", "S"); // 2nd weapon 3rd section
-                if (random > .75) {
+                if (random > .66) {
                     equipment.push("Mace");
                     document.getElementById("form79_1").value = "Mace"; // 1st weapon 1st section
                     statChecker(strengthModifier + 2, "form64_1"); // 1st weapon 2nd section
@@ -1748,108 +1675,7 @@ function generate_character(version){
                     features.push("Disciple of Life: Whenever you use a spell of 1st level or higher to restore hit points, the target regains additional hit points equal to 2 + the spell's level.");
                     document.getElementById("form193_3").value = "Bless";
                     document.getElementById("form159_3").value = "Cure Wounds";
-                } else if (random > .5) {
-                    equipment.push("Mace");
-                    document.getElementById("form79_1").value = "Mace"; // 1st weapon 1st section
-                    statChecker(strengthModifier + 2, "form64_1"); // 1st weapon 2nd section
-                    statChecker3(strengthModifier, "form76_1", "1d6", "B"); // 1st weapon 3rd section
-                    features.push("Cleric Domain: Nature.");
-                    if (wisdomModifier === 0) {
-                        document.getElementById("form137_3").value = "Bless";
-                    } else if (wisdomModifier === 1) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                    } else if (wisdomModifier === 2) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                    } else if (wisdomModifier === 3) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                        document.getElementById("form133_3").value = "Bane";
-                    } else if (wisdomModifier === 4) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                        document.getElementById("form133_3").value = "Bane";
-                        document.getElementById("form131_3").value = "Cure Wounds";
-                    } else if (wisdomModifier === 5) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                        document.getElementById("form133_3").value = "Bane";
-                        document.getElementById("form131_3").value = "Cure Wounds";
-                        document.getElementById("form129_3").value = "Sanctuary";
-                    }
-                    document.getElementById("form213_3").value = "Guidance";
-                    document.getElementById("form204_3").value = "Sacred Flame";
-                    document.getElementById("form203_3").value = "Mending";
-                    document.getElementById("form202_3").value = "Thorn Whip";
-                    armorAdder2(armorAdder("heavy armor"));
-                    equipment.push("Chain mail");
-                    document.getElementById("form193_3").value = "Animal Friendship";
-                    document.getElementById("form159_3").value = "Speak with Animals";
-                    if (random === 1 && document.getElementById("form8_1").checked === undefined) {
-                        add_click(8);
-                        statChecker(wisdomModifier + 2, "form50_1"); // animal handling
-                    } else if (random === 10 && document.getElementById("form11_1").checked === undefined) {
-                        add_click(11);
-                        statChecker(intelligenceModifier + 2, "form37_1"); // nature
-                    } else if (random === 16 && document.getElementById("form12_1").checked === undefined) {
-                        add_click(12);
-                        statChecker(wisdomModifier + 2, "form47_1"); // survival
-                    }
-                } else if (random > .25) {
-                    features.push("Cleric Domain: Tempest.");
-                    armorAdder2(armorAdder("heavy armor"));
-                    equipment.push("Chain mail");
-                    weaponAdder2(weaponAdder("martial weapons"));
-                    equipment.push("Warhammer");
-                    document.getElementById("form213_3").value = "Guidance";
-                    document.getElementById("form204_3").value = "Sacred Flame";
-                    document.getElementById("form203_3").value = "Thaumaturgy";
-                    if (wisdomModifier === 0) {
-                        document.getElementById("form137_3").value = "Bless";
-                    } else if (wisdomModifier === 1) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                    } else if (wisdomModifier === 2) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                    } else if (wisdomModifier === 3) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                        document.getElementById("form133_3").value = "Bane";
-                    } else if (wisdomModifier === 4) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                        document.getElementById("form133_3").value = "Bane";
-                        document.getElementById("form131_3").value = "Cure Wounds";
-                    } else if (wisdomModifier === 5) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                        document.getElementById("form133_3").value = "Bane";
-                        document.getElementById("form131_3").value = "Cure Wounds";
-                        document.getElementById("form129_3").value = "Detect Magic";
-                    }
-                    document.getElementById("form79_1").value = "Warhammer"; // 1st weapon 1st section
-                    statChecker(strengthModifier + 2, "form64_1"); // 1st weapon 2nd section
-                    statChecker3(strengthModifier, "form76_1", "1d8", "B"); // 1st weapon 3rd section
-                    document.getElementById("form193_3").value = "Fog Cloud";
-                    document.getElementById("form159_3").value = "Thunderwave";
-                    var lightGo = 0;
-                    if (wisdomModifier <= 0) {
-                        lightGo = 1;
-                    } else {
-                        lightGo = wisdomModifier;
-                    }
-                    features.push("Wrath of the Storm (" + lightGo + "/lr): When a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to cause the creature to make a DEX saving throw. The creature takes 2d8 lightning or thunder damage (your choice) on a failed saving throw, and half as much damage on a successful one. Can be used = to WIS modifier (minimum of once) per long rest.");
-                } else {
+                } else if (random > .33){
                     features.push("Cleric Domain: War.");
                     armorAdder2(armorAdder("heavy armor"));
                     equipment.push("Chain mail");
@@ -1898,17 +1724,18 @@ function generate_character(version){
                         lightGo = wisdomModifier;
                     }
                     features.push("War Priest (" + lightGo + "/lr): When you use the Attack action, you can make one weapon attack as a bonus action. Can be used = to WIS modifier (minimum of once) per long rest.");
-                }
-            } else if (dexterity >= 14) {
-                equipment.push("Light crossbow w/ 20 bolts");
-                document.getElementById("form78_1").value = "L Crossbow"; // 2nd weapon 1st section
-                statChecker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
-                statChecker3(dexterityModifier, "form74_1", "1d8", "P"); // 2nd weapon 3rd section
-                if (random > .75) {
-                    features.push("Cleric Domain: Tempest.");
+                } else {
+                    features.push("Cleric Domain: Nature.");
+                    armorAdder2(armorAdder("heavy armor"));
+                    equipment.push("Mace");
+                    document.getElementById("form79_1").value = "Mace"; // 1st weapon 1st section
+                    statChecker(strengthModifier + 2, "form64_1"); // 1st weapon 2nd section
+                    statChecker3(strengthModifier, "form76_1", "1d6", "B"); // 1st weapon 3rd section
                     document.getElementById("form213_3").value = "Guidance";
                     document.getElementById("form204_3").value = "Sacred Flame";
-                    document.getElementById("form203_3").value = "Thaumaturgy";
+                    document.getElementById("form203_3").value = "Mending";
+                    document.getElementById("form202_3").value = "Shilelagh";
+                    equipment.push("Chain mail");
                     if (wisdomModifier === 0) {
                         document.getElementById("form137_3").value = "Bless";
                     } else if (wisdomModifier === 1) {
@@ -1935,25 +1762,30 @@ function generate_character(version){
                         document.getElementById("form135_3").value = "Guiding Bolt";
                         document.getElementById("form133_3").value = "Bane";
                         document.getElementById("form131_3").value = "Cure Wounds";
-                        document.getElementById("form129_3").value = "Detect Magic";
+                        document.getElementById("form129_3").value = "Sanctuary";
                     }
-                    armorAdder2(armorAdder("heavy armor"));
-                    equipment.push("Scale mail");
-                    weaponAdder2(weaponAdder("martial weapons"));
-                    equipment.push("Warhammer");
-                    document.getElementById("form79_1").value = "Warhammer"; // 1st weapon 1st section
-                    statChecker(strengthModifier + 2, "form64_1"); // 1st weapon 2nd section
-                    statChecker3(strengthModifier, "form76_1", "1d8", "B"); // 1st weapon 3rd section
-                    document.getElementById("form193_3").value = "Fog Cloud";
-                    document.getElementById("form159_3").value = "Thunderwave";
-                    var lightGo = 0;
-                    if (wisdomModifier <= 0) {
-                        lightGo = 1;
+                    document.getElementById("form193_3").value = "Animal Friendship";
+                    document.getElementById("form159_3").value = "Speak with Animals";
+                    if (random === 1 && document.getElementById("form8_1").checked === undefined) {
+                        add_click(8);
+                        statChecker(wisdomModifier + 2, "form50_1"); // animal handling
+                    } else if (random === 10 && document.getElementById("form11_1").checked === undefined) {
+                        add_click(11);
+                        statChecker(intelligenceModifier + 2, "form37_1"); // nature
+                    } else if (random === 16 && document.getElementById("form12_1").checked === undefined) {
+                        add_click(12);
+                        statChecker(wisdomModifier + 2, "form47_1"); // survival
                     } else {
-                        lightGo = wisdomModifier;
+                        add_click(11);
+                        statChecker(intelligenceModifier + 2, "form37_1"); // nature
                     }
-                    features.push("Wrath of the Storm (" + lightGo + "/lr): When a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to cause the creature to make a DEX saving throw. The creature takes 2d8 lightning or thunder damage (your choice) on a failed saving throw, and half as much damage on a successful one. Can be used = to WIS modifier (minimum of once) per long rest.");
-                } else if (random > .5) {
+                }
+            } else if (cleric_type === 'DEX') {
+                equipment.push("Light crossbow w/ 20 bolts");
+                document.getElementById("form78_1").value = "L Crossbow"; // 2nd weapon 1st section
+                statChecker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
+                statChecker3(dexterityModifier, "form74_1", "1d8", "P"); // 2nd weapon 3rd section
+                if (random > .66) {
                     features.push("Cleric Domain: Trickery.");
                     document.getElementById("form213_3").value = "Guidance";
                     document.getElementById("form204_3").value = "Mending";
@@ -1994,10 +1826,10 @@ function generate_character(version){
                     document.getElementById("form79_1").value = "Mace"; // 1st weapon 1st section
                     statChecker(strengthModifier + 2, "form64_1"); // 1st weapon 2nd section
                     statChecker3(strengthModifier, "form76_1", "1d6", "B"); // 1st weapon 3rd section
-                } else if (random > .25) {
-                    features.push("Cleric Domain: War.");
+                } else if (random > .33) {
+                    features.push("Cleric Domain: Tempest.");
                     armorAdder2(armorAdder("heavy armor"));
-                    equipment.push("Scale mail");
+                    equipment.push("Chain mail");
                     weaponAdder2(weaponAdder("martial weapons"));
                     equipment.push("Warhammer");
                     document.getElementById("form213_3").value = "Guidance";
@@ -2029,20 +1861,20 @@ function generate_character(version){
                         document.getElementById("form135_3").value = "Guiding Bolt";
                         document.getElementById("form133_3").value = "Bane";
                         document.getElementById("form131_3").value = "Cure Wounds";
-                        document.getElementById("form129_3").value = "Command";
+                        document.getElementById("form129_3").value = "Detect Magic";
                     }
                     document.getElementById("form79_1").value = "Warhammer"; // 1st weapon 1st section
                     statChecker(strengthModifier + 2, "form64_1"); // 1st weapon 2nd section
                     statChecker3(strengthModifier, "form76_1", "1d8", "B"); // 1st weapon 3rd section
-                    document.getElementById("form193_3").value = "Divine Favor";
-                    document.getElementById("form159_3").value = "Shield of Faith";
+                    document.getElementById("form193_3").value = "Fog Cloud";
+                    document.getElementById("form159_3").value = "Thunderwave";
                     var lightGo = 0;
                     if (wisdomModifier <= 0) {
                         lightGo = 1;
                     } else {
                         lightGo = wisdomModifier;
                     }
-                    features.push("War Priest (" + lightGo + "/lr): When you use the Attack action, you can make one weapon attack as a bonus action. Can be used = to WIS modifier (minimum of once) per long rest.");
+                    features.push("Wrath of the Storm (" + lightGo + "/lr): When a creature within 5 feet of you that you can see hits you with an attack, you can use your reaction to cause the creature to make a DEX saving throw. The creature takes 2d8 lightning or thunder damage (your choice) on a failed saving throw, and half as much damage on a successful one. Can be used = to WIS modifier (minimum of once) per long rest.");
                 } else {
                     features.push("Cleric Domain: Death.");
                     weaponAdder2(weaponAdder("martial weapons"));
@@ -2087,7 +1919,7 @@ function generate_character(version){
                     document.getElementById("form159_3").value = "Ray of Sickness";
                     features.push("Reaper: You learn one neromancy cantrip, and when you cast a necromancy cantrip that normally targets only one creature, the spell instead targets two creatures within range and within 5 feet of each other.");
                 }
-            } else {
+            } else if (cleric_type === 'WIS') {
                 equipment.push("Mace");
                 document.getElementById("form79_1").value = "Mace"; // 1st weapon 1st section
                 statChecker(strengthModifier + 2, "form64_1"); // 1st weapon 2nd section
@@ -2096,7 +1928,7 @@ function generate_character(version){
                 document.getElementById("form78_1").value = "L Crossbow"; // 2nd weapon 1st section
                 statChecker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
                 statChecker3(dexterityModifier, "form74_1", "1d8", "P"); // 2nd weapon 3rd section
-                if (random > .6) {
+                if (random > .66) {
                     features.push("Cleric Domain: Knowledge.");
                     document.getElementById("form213_3").value = "Guidance";
                     document.getElementById("form204_3").value = "Sacred Flame";
@@ -2157,7 +1989,8 @@ function generate_character(version){
                             features.push("Knowledge Double Proficiency: Nature.");
                         }
                     }
-                } else if (random > .2) {
+                
+                } else if (random > .33) {
                     features.push("Cleric Domain: Light.");
                     document.getElementById("form213_3").value = "Guidance";
                     document.getElementById("form204_3").value = "Sacred Flame";
@@ -2202,55 +2035,47 @@ function generate_character(version){
                     }
                     features.push("Warding Flare (" + lightGo + "/lr): When you are attacked by a creature within 30 feet of you that you can see, you can use your reaction to impose disadvantage on the attack roll causing light to flare before the attacker before it hits or misses. An attacker can't be blinded is immune to this feature. You can use this equal to your WIS modifier (minimum of once) per long rest.");
                 } else {
-                    features.push("Cleric Domain: Nature.");
-                    armorAdder2(armorAdder("heavy armor"));
-                    document.getElementById("form213_3").value = "Guidance";
-                    document.getElementById("form204_3").value = "Sacred Flame";
-                    document.getElementById("form203_3").value = "Mending";
-                    document.getElementById("form202_3").value = "Shilelagh";
-                    equipment.push("Chain mail");
-                    if (wisdomModifier === 0) {
-                        document.getElementById("form137_3").value = "Bless";
-                    } else if (wisdomModifier === 1) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                    } else if (wisdomModifier === 2) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                    } else if (wisdomModifier === 3) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                        document.getElementById("form133_3").value = "Bane";
-                    } else if (wisdomModifier === 4) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                        document.getElementById("form133_3").value = "Bane";
-                        document.getElementById("form131_3").value = "Cure Wounds";
-                    } else if (wisdomModifier === 5) {
-                        document.getElementById("form137_3").value = "Bless";
-                        document.getElementById("form136_3").value = "Healing Word";
-                        document.getElementById("form135_3").value = "Guiding Bolt";
-                        document.getElementById("form133_3").value = "Bane";
-                        document.getElementById("form131_3").value = "Cure Wounds";
-                        document.getElementById("form129_3").value = "Sanctuary";
-                    }
-                    document.getElementById("form193_3").value = "Animal Friendship";
-                    document.getElementById("form159_3").value = "Speak with Animals";
-                    if (random === 1 && document.getElementById("form8_1").checked === undefined) {
-                        add_click(8);
-                        statChecker(wisdomModifier + 2, "form50_1"); // animal handling
-                    } else if (random === 10 && document.getElementById("form11_1").checked === undefined) {
-                        add_click(11);
-                        statChecker(intelligenceModifier + 2, "form37_1"); // nature
-                    } else if (random === 16 && document.getElementById("form12_1").checked === undefined) {
-                        add_click(12);
-                        statChecker(wisdomModifier + 2, "form47_1"); // survival
-                    }
+                features.push("Cleric Domain: Arcana.");
+                document.getElementById("form213_3").value = "Guidance";
+                document.getElementById("form204_3").value = "Sacred Flame";
+                document.getElementById("form203_3").value = "Thaumaturgy";
+                document.getElementById("form202_3").value = "Acid Splash";
+                document.getElementById("form201_3").value = "Frostbite";
+                if (wisdomModifier === 0) {
+                    document.getElementById("form137_3").value = "Bless";
+                } else if (wisdomModifier === 1) {
+                    document.getElementById("form137_3").value = "Bless";
+                    document.getElementById("form136_3").value = "Healing Word";
+                } else if (wisdomModifier === 2) {
+                    document.getElementById("form137_3").value = "Bless";
+                    document.getElementById("form136_3").value = "Healing Word";
+                    document.getElementById("form135_3").value = "Guiding Bolt";
+                } else if (wisdomModifier === 3) {
+                    document.getElementById("form137_3").value = "Bless";
+                    document.getElementById("form136_3").value = "Healing Word";
+                    document.getElementById("form135_3").value = "Guiding Bolt";
+                    document.getElementById("form133_3").value = "Bane";
+                } else if (wisdomModifier === 4) {
+                    document.getElementById("form137_3").value = "Bless";
+                    document.getElementById("form136_3").value = "Healing Word";
+                    document.getElementById("form135_3").value = "Guiding Bolt";
+                    document.getElementById("form133_3").value = "Bane";
+                    document.getElementById("form131_3").value = "Cure Wounds";
+                } else if (wisdomModifier === 5) {
+                    document.getElementById("form137_3").value = "Bless";
+                    document.getElementById("form136_3").value = "Healing Word";
+                    document.getElementById("form135_3").value = "Guiding Bolt";
+                    document.getElementById("form133_3").value = "Bane";
+                    document.getElementById("form131_3").value = "Cure Wounds";
+                    document.getElementById("form129_3").value = "Sanctuary";
                 }
+                equipment.push("Scale mail");
+                document.getElementById("form193_3").value = "Detect Magic";
+                document.getElementById("form159_3").value = "Magic Missile";
+                add_click(21);
+                statChecker(intelligenceModifier + 4, "form40_1"); // arcana
             }
+        }
         } else if (classlevel === "Druid 1") {
             toolAdder2(toolAdder("herbalism kit"));
             profsAndLangs.languages.push("Druidic");
@@ -4380,6 +4205,7 @@ function generate_character(version){
     if (document.getElementById("form92_1").value === "Neutral Neutral") {
         document.getElementById("form92_1").value = "True Neutral";
     };
+    console.log(classlevel);
 }
 // Call the character generator on page load
 generate_initial_character(standard_version);
@@ -4437,6 +4263,12 @@ function clear_All(){
         remove_click(j);
     }
     click_off(0);
+    strength = 0;
+    dexterity = 0;
+    constitution = 0;
+    intelligence = 0;
+    wisdom = 0;
+    charisma = 0;
 }
 
 // Function to generate a new character by clearing all forms and checkboxes and then generating a character again
@@ -4452,19 +4284,19 @@ function generate_new_character(version){
     generate_character(version);
 }
 
-/* Commented out while not testing
+
 // Function to generate 1000 characters to make sure there are no errors and classes are thoroughly tested
-function generate_1000_characters(version){
-    console.time('generate_1000_characters');
-    for (j=0; j < 1000; j++){
+function generate_10000_characters(version){
+    console.time('generate_10000_characters');
+    for (j=0; j < 10000; j++){
         clear_All();
         version();
         generate_character(version);
     }
     console.log(version_for_checking);
-    console.timeEnd('generate_1000_characters');
+    console.timeEnd('generate_10000_characters');
 }
-*/
+
 
 // Function to uncheck a checkbox
 function click_off(i) {
