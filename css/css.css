@@ -2643,6 +2643,21 @@ body {
     src: url("../fonts/ScalaSansOffc_9v.woff") format("woff");
 }
 
+@font-face {
+    font-family: Interstate-Light_9g;
+    src: url("../fonts/Interstate-Light_9g.woff") format("woff");
+}
+
+@font-face {
+    font-family: ScalaSansOffc_ew;
+    src: url("../fonts/ScalaSansOffc_ew.woff") format("woff");
+}
+
+@font-face {
+    font-family: ScalaSansOffc-Bold_ex;
+    src: url("../fonts/ScalaSansOffc-Bold_ex.woff") format("woff");
+}
+
 #t1_3 {
     left: 267px;
     top: 1183px;
@@ -5917,19 +5932,4 @@ body {
     background: transparent;
     border: none;
     font: normal 24px Arial, Helvetica, sans-serif;
-}
-
-@font-face {
-    font-family: Interstate-Light_9g;
-    src: url("../fonts/Interstate-Light_9g.woff") format("woff");
-}
-
-@font-face {
-    font-family: ScalaSansOffc_ew;
-    src: url("../fonts/ScalaSansOffc_ew.woff") format("woff");
-}
-
-@font-face {
-    font-family: ScalaSansOffc-Bold_ex;
-    src: url("../fonts/ScalaSansOffc-Bold_ex.woff") format("woff");
 }
