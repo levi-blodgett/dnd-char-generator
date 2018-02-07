@@ -931,31 +931,6 @@ function generate_character(version){
         document.getElementById(id).value = personalityVariable.join('\r\n');
     };
 
-    // Function for picking the first optimal half-elf stat
-    function findMax(array) {
-        var max = 0,
-                a = array.length,
-                counter;
-
-        for (counter = 0; counter < a; counter++) {
-            if (array[counter] > max) {
-                max = array[counter];
-            }
-        }
-        return max;
-    }
-
-    // Function for picking the second optimal half-elf stat
-    function findSecondMax(array) {
-        var max = Math.max.apply(null, array),
-                // get the max of the array
-        maxi = array.indexOf(max);
-        array[maxi] = -Infinity; // replace max in the array with -infinity
-        var secondMax = Math.max.apply(null, array); // get the new max
-        array[maxi] = max;
-        return secondMax;
-    };
-
     // Function for picking balance alignment
     function generateBalance(higherDecimal, lowerDecimal) {
         if (Math.random() >= higherDecimal) {
