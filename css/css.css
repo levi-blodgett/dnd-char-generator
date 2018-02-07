@@ -2620,27 +2620,27 @@ body {
 
 @font-face {
     font-family: ScalaSansOffc-Bold_1wk;
-    src: url("/../fonts/ScalaSansOffc-Bold_1wk.woff") format("woff");
+    src: url("../fonts/ScalaSansOffc-Bold_1wk.woff") format("woff");
 }
 
 @font-face {
     font-family: ScalaSansOffc_1wi;
-    src: url("/../fonts/ScalaSansOffc_1wi.woff") format("woff");
+    src: url("/../../fonts/ScalaSansOffc_1wi.woff") format("woff");
 }
 
 @font-face {
     font-family: Interstate-Light_1wn;
-    src: url("/../fonts/Interstate-Light_1wn.woff") format("woff");
+    src: url("/../../fonts/Interstate-Light_1wn.woff") format("woff");
 }
 
 @font-face {
     font-family: ScalaSansOffc-Bold_9u;
-    src: url("/../fonts/ScalaSansOffc-Bold_9u.woff") format("woff");
+    src: url("/../../fonts/ScalaSansOffc-Bold_9u.woff") format("woff");
 }
 
 @font-face {
     font-family: ScalaSansOffc_9v;
-    src: url("/../fonts/ScalaSansOffc_9v.woff") format("woff");
+    src: url("/../../fonts/ScalaSansOffc_9v.woff") format("woff");
 }
 
 #t1_3 {
