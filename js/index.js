@@ -3229,7 +3229,7 @@ function generate_character(version){
         weaponAdder2(weaponAdder("shortsword"));
         weaponAdder2(weaponAdder("hand crossbow"));
     } else if (race === "Lightfoot Halfling") {
-        document.getElementById("form5_2").value = getRandomInt(20, 200); // age
+        document.getElementById("form5_2").value = getRandomInt(20, 100); // age
         document.getElementById("form1_2").value = getRandomInt(32, 41); // height
         document.getElementById("form1_2").value = Math.floor(document.getElementById("form1_2").value / 12) + "'" + document.getElementById("form1_2").value % 12; //height converter
         skinRandomizer("Tan", "Light Tan", "Pale & Ruddy", "Light", "Fair"); // skin
@@ -3238,7 +3238,7 @@ function generate_character(version){
         eyeRandomizer("Brown", "Hazel", "Green", "Light Brown"); // eyes
         var size = "small";
     } else if (race === "Stout Halfling") {
-        document.getElementById("form5_2").value = getRandomInt(20, 200); // age
+        document.getElementById("form5_2").value = getRandomInt(20, 100); // age
         document.getElementById("form1_2").value = getRandomInt(34, 43); // height
         document.getElementById("form1_2").value = Math.floor(document.getElementById("form1_2").value / 12) + "'" + document.getElementById("form1_2").value % 12; //height converter
         skinRandomizer("Pale", "Light Tan", "Pale & Ruddy", "Light", "Fair & Ruddy"); // skin
