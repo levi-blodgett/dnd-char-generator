@@ -5921,15 +5921,15 @@ body {
 
 @font-face {
     font-family: Interstate-Light_9g;
-    src: url("/../fonts/Interstate-Light_9g.woff") format("woff");
+    src: url("../fonts/Interstate-Light_9g.woff") format("woff");
 }
 
 @font-face {
     font-family: ScalaSansOffc_ew;
-    src: url("/../fonts/ScalaSansOffc_ew.woff") format("woff");
+    src: url("../fonts/ScalaSansOffc_ew.woff") format("woff");
 }
 
 @font-face {
     font-family: ScalaSansOffc-Bold_ex;
-    src: url("/../fonts/ScalaSansOffc-Bold_ex.woff") format("woff");
+    src: url("../fonts/ScalaSansOffc-Bold_ex.woff") format("woff");
 }
