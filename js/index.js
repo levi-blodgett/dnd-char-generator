@@ -104,18 +104,26 @@ function roll_version() {
     var sixth = getRandomStat();
 
     // Block of variables that had arrays that were summed up to equal a single number
-    stat1 = getSum(first);
-    stat2 = getSum(second);
-    stat3 = getSum(third);
-    stat4 = getSum(fourth);
-    stat5 = getSum(fifth);
-    stat6 = getSum(sixth);
+    statt1 = getSum(first);
+    statt2 = getSum(second);
+    statt3 = getSum(third);
+    statt4 = getSum(fourth);
+    statt5 = getSum(fifth);
+    statt6 = getSum(sixth);
 
     // Assign individual stats to an array named stats
-    statspt1 = [stat1, stat2, stat3, stat4, stat5, stat6];
+    statspt1 = [statt1, statt2, statt3, statt4, statt5, statt6];
 
     // Assign the ordered stats array to a global variable
     stats = order_stats(statspt1);
+
+    // Stat array in right order
+    stat1 = stats[0];
+    stat2 = stats[1];
+    stat3 = stats[2];
+    stat4 = stats[3];
+    stat5 = stats[4];
+    stat6 = stats[5];
 
     // 2 means roll
     version_for_checking = 2;
