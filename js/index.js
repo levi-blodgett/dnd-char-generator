@@ -4284,7 +4284,7 @@ function generate_new_character(version){
     generate_character(version);
 }
 
-
+/*
 // Function to generate 1000 characters to make sure there are no errors and classes are thoroughly tested
 function generate_10000_characters(version){
     console.time('generate_10000_characters');
@@ -4296,7 +4296,7 @@ function generate_10000_characters(version){
     console.log(version_for_checking);
     console.timeEnd('generate_10000_characters');
 }
-
+*/
 
 // Function to uncheck a checkbox
 function click_off(i) {
