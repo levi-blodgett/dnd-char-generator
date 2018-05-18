@@ -93,6 +93,14 @@ p {
 #last_page {
   text-align: center;
   font-family: 'Lato', sans-serif;
+  display: none;
+}
+
+#footer {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    background: #fff;
+    color: #333;
 }
 
 #no-show {

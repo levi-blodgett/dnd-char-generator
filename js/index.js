@@ -16,20 +16,30 @@ var stat6 = stats[5];
 // To determine which version is being used this variable will be assigned a value at the end of each version's function
 var version_for_checking = 0;
 
-// Function that show the dnd section if it is hidden or hides it if it is visible
+// Function that shows/hides whichever section isn't active (either the character page or the information page)
 function show_hide_function() {
-  var x = document.getElementById("dnd");
+  var x = document.getElementById("last_page");
+  var y = document.getElementById("dnd");
   if (x.style.display === "none") {
     x.style.display = "block";
-  } else {
+    y.style.display = "none";
+    console.log("block");
+  } else if (x.style.display === "block") {
     x.style.display = "none";
+    y.style.display = "block";
+    console.log("block");
+  } else {
+    x.style.display = "block";
+    y.style.display = "none";
+    console.log("null");
   }
-}
-
-// Function that shows the dnd section if it is hidden
-function show_function() {
-  var x = document.getElementById("dnd");
-  x.style.display = "block";
+  if (document.getElementById("top_button").innerHTML === "Show Information Page") {
+    document.getElementById("top_button").innerHTML = "Show Character Page";
+    console.log("test worked");
+  } else {
+    document.getElementById("top_button").innerHTML = "Show Information Page";
+    console.log("test failed");
+  }
 }
 
 function standard_version() {
