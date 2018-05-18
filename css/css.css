@@ -18,6 +18,10 @@ a:active {
   color: #712AFF;
 }
 
+div.text_below {
+  overflow: scroll;
+}
+
 #top_button {
   margin-bottom: 0px;
 }
