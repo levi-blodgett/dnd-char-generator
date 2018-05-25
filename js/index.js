@@ -23,22 +23,29 @@ function show_hide_function() {
   if (x.style.display === "none") {
     x.style.display = "block";
     y.style.display = "none";
-    console.log("block");
   } else if (x.style.display === "block") {
     x.style.display = "none";
     y.style.display = "block";
-    console.log("block");
   } else {
     x.style.display = "block";
     y.style.display = "none";
-    console.log("null");
   }
   if (document.getElementById("top_button").innerHTML === "Show Information Page") {
     document.getElementById("top_button").innerHTML = "Show Character Page";
-    console.log("test worked");
   } else {
     document.getElementById("top_button").innerHTML = "Show Information Page";
-    console.log("test failed");
+  }
+}
+
+function show_function() {
+  var x = document.getElementById("last_page");
+  var y = document.getElementById("dnd");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+    y.style.display = "block";
+  }
+  if (document.getElementById("top_button").innerHTML === "Show Character Page") {
+    document.getElementById("top_button").innerHTML = "Show Information Page";
   }
 }
 
@@ -4227,7 +4234,7 @@ function generate_character(version) {
   if (document.getElementById("form92_1").value === "Neutral Neutral") {
     document.getElementById("form92_1").value = "True Neutral";
   };
-  console.log(classlevel);
+  // console.log(classlevel);
 }
 // Call the character generator on page load
 generate_initial_character(standard_version);
