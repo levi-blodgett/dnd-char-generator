@@ -30,6 +30,23 @@ div.text_below {
   margin: 10px;
 }
 
+#race_dropdown {
+  margin-top: 30px;
+}
+
+.dropdown_section {
+  position: absolute;
+  top: 0%;
+}
+
+#h2_dropdown {
+  margin-top: 0;
+}
+
+#background_dropdown {
+  position: absolute;
+}
+
 #center {
   text-align: center;
   margin: 0 auto;

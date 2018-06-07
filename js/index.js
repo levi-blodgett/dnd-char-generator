@@ -255,6 +255,9 @@ function pointbuy_version() {
 // Function used to generate a new character
 function generate_character(version) {
 
+
+
+
   // Name generator object that contains all names
   var Name_Generator = {
     _races: {
@@ -344,6 +347,9 @@ function generate_character(version) {
 
   // Initialize variables
   var knowledgelanguage = "";
+  var firstnombre = undefined;
+  var lastnombre = undefined;
+  var race = undefined;
   var gold = 0;
   var armorClass = 0;
   var i = undefined;
@@ -368,6 +374,137 @@ function generate_character(version) {
     toolproficiencies: []
   };
 
+  // Block that initializes class variables for the class section of code
+  var classlevel = '';
+  var random_class_variable = getRandom12();
+  var random_chance = Math.random();
+  var cleric_type = '';
+
+  // Function to assign stats based on the class that was rolled.
+  function assign_stats(strength1, dexterity1, constitution1, intelligence1, wisdom1, charisma1, classtype) {
+    strength += strength1;
+    dexterity += dexterity1;
+    constitution += constitution1;
+    intelligence += intelligence1;
+    wisdom += wisdom1;
+    charisma += charisma1;
+    var stat_total = strength1 + dexterity1 + intelligence1 + constitution1 + wisdom1 + charisma1;
+    // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
+    document.getElementById("form98_1").value = classtype + "(" + stat_total + "): " + strength1 + ", " + dexterity1 + ", " + constitution1 + ", " + intelligence1 + ", " + wisdom1 + ", " + charisma1;
+    console.log(stat_total);
+  }
+
+  // Block of code that chooses class
+  if (random_class_variable === 1) {
+    classlevel = "Barbarian 1";
+  } else if (random_class_variable === 2) {
+    classlevel = "Bard 1";
+  } else if (random_class_variable === 3) {
+    classlevel = "Cleric 1";
+  } else if (random_class_variable === 4) {
+    classlevel = "Druid 1";
+  } else if (random_class_variable === 5) {
+    classlevel = "Fighter 1";
+  } else if (random_class_variable === 6) {
+    classlevel = "Monk 1";
+  } else if (random_class_variable === 7) {
+    classlevel = "Paladin 1";
+  } else if (random_class_variable === 8) {
+    classlevel = "Ranger 1";
+  } else if (random_class_variable === 9) {
+    classlevel = "Rogue 1";
+  } else if (random_class_variable === 10) {
+    classlevel = "Sorcerer 1";
+  } else if (random_class_variable === 11) {
+    classlevel = "Warlock 1";
+  } else if (random_class_variable === 12) {
+    classlevel = "Wizard 1";
+  }
+
+  // Code block that assigns the stats to the class that was chosen
+  if (classlevel === "Barbarian 1") {
+    if (random_chance > .5) {
+      assign_stats(stat1, stat3, stat2, stat6, stat4, stat5, "Barbarian");
+    } else {
+      assign_stats(stat3, stat2, stat1, stat6, stat4, stat5, "Barbarian");
+    }
+  } else if (classlevel === "Bard 1") {
+    if (random_chance > .5) {
+      assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Bard");
+    } else {
+      assign_stats(stat2, stat4, stat3, stat5, stat6, stat1, "Bard");
+    }
+  } else if (classlevel === "Cleric 1") {
+    if (random_chance > .66) {
+      assign_stats(stat4, stat2, stat3, stat5, stat1, stat6, "Cleric");
+      cleric_type = 'DEX';
+    } else if (random_chance > .33) {
+      assign_stats(stat2, stat4, stat3, stat6, stat1, stat5, "Cleric");
+      cleric_type = 'STR';
+    } else {
+      assign_stats(stat5, stat3, stat2, stat4, stat1, stat6, "Cleric");
+      cleric_type = 'WIS';
+    }
+  } else if (classlevel === "Druid 1") {
+    if (random_chance > .5) {
+      assign_stats(stat6, stat3, stat2, stat5, stat1, stat4, "Druid");
+    } else {
+      assign_stats(stat6, stat3, stat2, stat4, stat1, stat5, "Druid");
+    }
+  } else if (classlevel === "Fighter 1") {
+    if (random_chance > .66) {
+      assign_stats(stat6, stat1, stat2, stat4, stat3, stat5, "Fighter");
+    } else if (random_chance > .33) {
+      assign_stats(stat1, stat4, stat2, stat5, stat3, stat6, "Fighter");
+    } else {
+      assign_stats(stat1, stat4, stat3, stat2, stat5, stat6, "Fighter");
+    }
+  } else if (classlevel === "Monk 1") {
+    if (random_chance > .5) {
+      assign_stats(stat4, stat1, stat3, stat6, stat2, stat5, "Monk");
+    } else {
+      assign_stats(stat5, stat1, stat3, stat6, stat2, stat4, "Monk");
+    }
+  } else if (classlevel === "Paladin 1") {
+    if (random_chance > .5) {
+      assign_stats(stat5, stat1, stat3, stat6, stat4, stat2, "Paladin");
+    } else {
+      assign_stats(stat1, stat5, stat3, stat6, stat4, stat2, "Paladin");
+    }
+  } else if (classlevel === "Ranger 1") {
+    if (random_chance > .5) {
+      assign_stats(stat5, stat1, stat2, stat4, stat3, stat6, "Ranger");
+    } else {
+      assign_stats(stat1, stat2, stat3, stat5, stat4, stat6, "Ranger");
+    }
+  } else if (classlevel === "Rogue 1") {
+    if (random_chance > .66) {
+      assign_stats(stat6, stat1, stat2, stat5, stat3, stat4, "Rogue");
+    } else if (random_chance > .33) {
+      assign_stats(stat6, stat1, stat2, stat5, stat4, stat3, "Rogue");
+    } else {
+      assign_stats(stat6, stat1, stat3, stat2, stat4, stat5, "Rogue");
+    }
+  } else if (classlevel === "Sorcerer 1") {
+    if (random_chance > .5) {
+      assign_stats(stat6, stat3, stat2, stat5, stat4, stat1, "Sorcerer");
+    } else {
+      assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Sorcerer");
+    }
+  } else if (classlevel === "Warlock 1") {
+    if (random_chance > .5) {
+      assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Warlock");
+    } else {
+      assign_stats(stat6, stat3, stat2, stat5, stat4, stat1, "Warlock");
+    }
+  } else if (classlevel === "Wizard 1") {
+    if (random_chance > .5) {
+      assign_stats(stat6, stat2, stat3, stat1, stat4, stat5, "Wizard");
+    } else {
+      assign_stats(stat5, stat3, stat2, stat1, stat4, stat6, "Wizard");
+    }
+  }
+
   // Create variables for the name generator to use
   var firstNameNumber = Math.floor(Math.random() * 20);
   var lastNameNumber = Math.floor(Math.random() * 20);
@@ -375,45 +512,46 @@ function generate_character(version) {
   // Random number generator assigned to a variable
   var number = Math.floor(Math.random() * 9);
 
-  // Start of if/else if statement that determines name, the name and race generator
-  if (number === 0) {
+  // Function to minimize code when assigning race based on user-choice
+  function RaceGenerator(racename){
+    var racenamelower = racename.toLowerCase();
+    var racenamelowerstring = '_' + racenamelower.toString();
+    firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
+    lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
+    if (racename === "HalfElf") {
+      race = "Half-Elf";
+    } else if (racename === "HalfOrc") {
+      race = "Half-Orc";
+    } else {
+      race = racename;
+    }
+  }
 
-    var firstnombre = Name_Generator._races._dragonborn.firstName[firstNameNumber];
-    var lastnombre = Name_Generator._races._dragonborn.lastName[lastNameNumber];
-    var race = "Dragonborn";
-  } else if (number === 1) {
-    var firstnombre = Name_Generator._races._dwarf.firstName[firstNameNumber];
-    var lastnombre = Name_Generator._races._dwarf.lastName[lastNameNumber];
-    var race = "Dwarf";
-  } else if (number === 2) {
-    var firstnombre = Name_Generator._races._elf.firstName[firstNameNumber];
-    var lastnombre = Name_Generator._races._elf.lastName[lastNameNumber];
-    var race = "Elf";
-  } else if (number === 3) {
-    var firstnombre = Name_Generator._races._gnome.firstName[firstNameNumber];
-    var lastnombre = Name_Generator._races._gnome.lastName[lastNameNumber];
-    var race = "Gnome";
-  } else if (number === 4) {
-    var firstnombre = Name_Generator._races._halfelf.firstName[firstNameNumber];
-    var lastnombre = Name_Generator._races._halfelf.lastName[lastNameNumber];
-    var race = "Half-Elf";
-  } else if (number === 5) {
-    var firstnombre = Name_Generator._races._halforc.firstName[firstNameNumber];
-    var lastnombre = Name_Generator._races._halforc.lastName[lastNameNumber];
-    var race = "Half-Orc";
-  } else if (number === 6) {
-    var firstnombre = Name_Generator._races._halfling.firstName[firstNameNumber];
-    var lastnombre = Name_Generator._races._halfling.lastName[lastNameNumber];
-    var race = "Halfling";
-  } else if (number === 7) {
-    var firstnombre = Name_Generator._races._human.firstName[firstNameNumber];
-    var lastnombre = Name_Generator._races._human.lastName[lastNameNumber];
-    var race = "Human";
-  } else if (number === 8) {
-    var firstnombre = Name_Generator._races._tiefling.firstName[firstNameNumber];
-    var lastnombre = Name_Generator._races._tiefling.lastName[lastNameNumber];
-    var race = "Tiefling";
-  };
+  // Code block to read what the user input for the race dropdown box
+  if (document.getElementById('race_dropdown').value === "Random") {
+      if (number === 0) {
+        RaceGenerator("Dragonborn");
+      } else if (number === 1) {
+        RaceGenerator("Dwarf");
+      } else if (number === 2) {
+        RaceGenerator("Elf");
+      } else if (number === 3) {
+        RaceGenerator("Gnome");
+      } else if (number === 4) {
+        RaceGenerator("HalfElf");
+      } else if (number === 5) {
+        RaceGenerator("HalfOrc");
+      } else if (number === 6) {
+        RaceGenerator("Halfling");
+      } else if (number === 7) {
+        RaceGenerator("Human");
+      } else if (number === 8) {
+        RaceGenerator("Tiefling");
+      };
+  } else {
+    RaceGenerator(document.getElementById('race_dropdown').value);
+  }
+
 
 
 
@@ -1266,134 +1404,6 @@ function generate_character(version) {
     generateBalance(.8, .6);
     generateMorality(.5, .3);
   };
-
-  // Block that chooses class - CLASS CHOOSER 2
-  var classlevel = '';
-  var random_class_variable = getRandom12();
-  var random_chance = Math.random();
-  var cleric_type = '';
-
-  function assign_stats(strength1, dexterity1, constitution1, intelligence1, wisdom1, charisma1, classtype) {
-    strength += strength1;
-    dexterity += dexterity1;
-    constitution += constitution1;
-    intelligence += intelligence1;
-    wisdom += wisdom1;
-    charisma += charisma1;
-    var stat_total = strength1 + dexterity1 + intelligence1 + constitution1 + wisdom1 + charisma1;
-    // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
-    document.getElementById("form98_1").value = classtype + "(" + stat_total + "): " + strength1 + ", " + dexterity1 + ", " + constitution1 + ", " + intelligence1 + ", " + wisdom1 + ", " + charisma1;
-  }
-
-  if (random_class_variable === 1) {
-    classlevel = "Barbarian 1";
-  } else if (random_class_variable === 2) {
-    classlevel = "Bard 1";
-  } else if (random_class_variable === 3) {
-    classlevel = "Cleric 1";
-  } else if (random_class_variable === 4) {
-    classlevel = "Druid 1";
-  } else if (random_class_variable === 5) {
-    classlevel = "Fighter 1";
-  } else if (random_class_variable === 6) {
-    classlevel = "Monk 1";
-  } else if (random_class_variable === 7) {
-    classlevel = "Paladin 1";
-  } else if (random_class_variable === 8) {
-    classlevel = "Ranger 1";
-  } else if (random_class_variable === 9) {
-    classlevel = "Rogue 1";
-  } else if (random_class_variable === 10) {
-    classlevel = "Sorcerer 1";
-  } else if (random_class_variable === 11) {
-    classlevel = "Warlock 1";
-  } else if (random_class_variable === 12) {
-    classlevel = "Wizard 1";
-  }
-
-
-  if (classlevel === "Barbarian 1") {
-    if (random_chance > .5) {
-      assign_stats(stat1, stat3, stat2, stat6, stat4, stat5, "Barbarian");
-    } else {
-      assign_stats(stat3, stat2, stat1, stat6, stat4, stat5, "Barbarian");
-    }
-  } else if (classlevel === "Bard 1") {
-    if (random_chance > .5) {
-      assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Bard");
-    } else {
-      assign_stats(stat2, stat4, stat3, stat5, stat6, stat1, "Bard");
-    }
-  } else if (classlevel === "Cleric 1") {
-    if (random_chance > .66) {
-      assign_stats(stat4, stat2, stat3, stat5, stat1, stat6, "Cleric");
-      cleric_type = 'DEX';
-    } else if (random_chance > .33) {
-      assign_stats(stat2, stat4, stat3, stat6, stat1, stat5, "Cleric");
-      cleric_type = 'STR';
-    } else {
-      assign_stats(stat5, stat3, stat2, stat4, stat1, stat6, "Cleric");
-      cleric_type = 'WIS';
-    }
-  } else if (classlevel === "Druid 1") {
-    if (random_chance > .5) {
-      assign_stats(stat6, stat3, stat2, stat5, stat1, stat4, "Druid");
-    } else {
-      assign_stats(stat6, stat3, stat2, stat4, stat1, stat5, "Druid");
-    }
-  } else if (classlevel === "Fighter 1") {
-    if (random_chance > .66) {
-      assign_stats(stat6, stat1, stat2, stat4, stat3, stat5, "Fighter");
-    } else if (random_chance > .33) {
-      assign_stats(stat1, stat4, stat2, stat5, stat3, stat6, "Fighter");
-    } else {
-      assign_stats(stat1, stat4, stat3, stat2, stat5, stat6, "Fighter");
-    }
-  } else if (classlevel === "Monk 1") {
-    if (random_chance > .5) {
-      assign_stats(stat4, stat1, stat3, stat6, stat2, stat5, "Monk");
-    } else {
-      assign_stats(stat5, stat1, stat3, stat6, stat2, stat4, "Monk");
-    }
-  } else if (classlevel === "Paladin 1") {
-    if (random_chance > .5) {
-      assign_stats(stat5, stat1, stat3, stat6, stat4, stat2, "Paladin");
-    } else {
-      assign_stats(stat1, stat5, stat3, stat6, stat4, stat2, "Paladin");
-    }
-  } else if (classlevel === "Ranger 1") {
-    if (random_chance > .5) {
-      assign_stats(stat5, stat1, stat2, stat4, stat3, stat6, "Ranger");
-    } else {
-      assign_stats(stat1, stat2, stat3, stat5, stat4, stat6, "Ranger");
-    }
-  } else if (classlevel === "Rogue 1") {
-    if (random_chance > .66) {
-      assign_stats(stat6, stat1, stat2, stat5, stat3, stat4, "Rogue");
-    } else if (random_chance > .33) {
-      assign_stats(stat6, stat1, stat2, stat5, stat4, stat3, "Rogue");
-    } else {
-      assign_stats(stat6, stat1, stat3, stat2, stat4, stat5, "Rogue");
-    }
-  } else if (classlevel === "Sorcerer 1") {
-    if (random_chance > .5) {
-      assign_stats(stat6, stat3, stat2, stat5, stat4, stat1, "Sorcerer");
-    } else {
-      assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Sorcerer");
-    }
-  } else if (classlevel === "Warlock 1") {
-    if (random_chance > .5) {
-      assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Warlock");
-    } else {
-      assign_stats(stat6, stat3, stat2, stat5, stat4, stat1, "Warlock");
-    }
-  } else if (classlevel === "Wizard 1") {
-    if (random_chance > .5) {
-      assign_stats(stat6, stat2, stat3, stat1, stat4, stat5, "Wizard");
-    } else {
-      assign_stats(stat5, stat3, stat2, stat1, stat4, stat6, "Wizard");
-    }
-  }
 
   // Create stat modifiers for under the ability scores
   function statModifierGenerator(stat) {
@@ -4313,7 +4323,7 @@ function generate_new_character(version) {
   generate_character(version);
 }
 
-/*
+/**
 // Function to generate 1000 characters to make sure there are no errors and classes are thoroughly tested
 function generate_10000_characters(version){
     console.time('generate_10000_characters');
@@ -4325,7 +4335,8 @@ function generate_10000_characters(version){
     console.log(version_for_checking);
     console.timeEnd('generate_10000_characters');
 }
-*/
+**/
+
 
 // Function to uncheck a checkbox
 function click_off(i) {
