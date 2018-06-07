@@ -24,44 +24,82 @@
 				</div>
 	</div>
 
-
-
 	<div id="dnd">
 
-		<div id="dropdowns">
-			<div>
-				<h2 id="h2_dropdown" class="dropdown_section">Race:</h2>
-				<select id="race_dropdown" class="dropdown_section">
-				  <option value="Random">Random</option>
+		<div id="center_dropdowns" class="no-print">
+			<div class="dropdowns">
+				<h2 class="dropdown_section">Race:</h2>
+				<select id="race_dropdown">
+					<option value="Random">Random</option>
 					<option value="Dwarf">Dwarf</option>
 					<option value="Elf">Elf</option>
 					<option value="Halfling">Halfling</option>
-				  <option value="Human">Human</option>
+					<option value="Human">Human</option>
 					<option value="Dragonborn">Dragonborn</option>
 					<option value="Gnome">Gnome</option>
 					<option value="HalfElf">Half-Elf</option>
-				  <option value="HalfOrc">Half-Orc</option>
+					<option value="HalfOrc">Half-Orc</option>
 					<option value="Tiefling">Tiefling</option>
 				</select>
 			</div>
-			<!--
-			<div>
+			<div class="dropdowns">
+				<h2 class="dropdown_section">Background:</h2>
 				<select id="background_dropdown">
-					<option value="random">Random</option>
-					<option value="dwarf">Dwarf</option>
-					<option value="elf">Elf</option>
-					<option value="halfling">Halfling</option>
-					<option value="human">Human</option>
-					<option value="dragonborn">Dragonborn</option>
-					<option value="gnome">Gnome</option>
-					<option value="half-elf">Half-Elf</option>
-					<option value="half-orc">Half-Orc</option>
-					<option value="tiefling">Tiefling</option>
+					<option value="Random">Random</option>
+					<option value="Guild Artisan">Guild Artisan</option>
+					<option value="Gladiator">Gladiator</option>
+					<option value="Entertainer">Entertainer</option>
+					<option value="Hermit">Hermit</option>
+					<option value="Guild Merchant">Guild Merchant</option>
+					<option value="Folk Hero">Folk Hero</option>
+					<option value="Acolyte">Acolyte</option>
+					<option value="Charlatan">Charlatan</option>
+					<option value="Criminal">Criminal</option>
+					<option value="Spy">Spy</option>
+					<option value="Outlander">Outlander</option>
+					<option value="Noble">Noble</option>
+					<option value="Knight">Knight</option>
+					<option value="Sage">Sage</option>
+					<option value="Soldier">Soldier</option>
+					<option value="Sailor">Sailor</option>
+					<option value="Pirate">Pirate</option>
+					<option value="Urchin">Urchin</option>
 				</select>
 			</div>
-			-->
+			<div class="dropdowns">
+				<h2 class="dropdown_section">Class:</h2>
+				<select id="class_dropdown">
+					<option value="Random">Random</option>
+					<option value="Barbarian">Barbarian</option>
+					<option value="Paladin">Paladin</option>
+					<option value="Rogue">Rogue</option>
+					<option value="Ranger">Ranger</option>
+					<option value="Druid">Druid</option>
+					<option value="Wizard">Wizard</option>
+					<option value="Sorcerer">Sorcerer</option>
+					<option value="Warlock">Warlock</option>
+					<option value="Fighter">Fighter</option>
+					<option value="Cleric">Cleric</option>
+					<option value="Monk">Monk</option>
+					<option value="Bard">Bard</option>
+				</select>
+			</div>
+			<div class="dropdowns">
+				<h2 class="dropdown_section">Alignment:</h2>
+				<select id="alignment_dropdown">
+					<option value="Random">Random</option>
+					<option value="Lawful Good">Lawful Good</option>
+					<option value="Neutral Good">Neutral Good</option>
+					<option value="Chaotic Good">Chaotic Good</option>
+					<option value="Lawful Neutral">Lawful Neutral</option>
+					<option value="Neutral Neutral">True Neutral</option>
+					<option value="Chaotic Neutral">Chaotic Neutral</option>
+					<option value="Lawful Evil">Lawful Evil</option>
+					<option value="Neutral Evil">Neutral Evil</option>
+					<option value="Chaotic Evil">Chaotic Evil</option>
+				</select>
+			</div>
 		</div>
-
 
 		<!--- Position background pg. 1 -->
 		<div id="p1" class="pageArea" style="overflow: hidden; position: relative; width: 935px; height: 1210px; margin-top:20px; margin-left:auto; margin-right:auto; ">
@@ -774,6 +812,9 @@
 				<br>
 				<h1>How does it work?</h1>
 				<br>
+				<h2>Options</h2>
+				<p>You are able to choose from various options like race, class, background, and alignment to accommodate any specific game setting, but I would suggest using all random for a truly random experience.</p>
+				<br>
 				<h2>Randomization</h2>
 				<p>Every stat and race is random from the beginning, and has no other factors weighing on it to decide what it gets.<br> There are also some other more minor factors that I had to make decisions with for odds, like alignment.<br> I had to decide whether
 					or not I wanted to make it an even 1/3 for each alignment, or sway it a little.<br> I went with the latter, I tried to make it individual to each subrace so as to make it as accurate as possible,<br> with more of a bias towards lawful and good than
@@ -783,10 +824,10 @@
 				<br>
 				<h2>Deciding what to pick</h2>
 				<p>After the stats and race are generated, the generator decides how to fill in the rest based on just those two at the start.<br> It goes down a flowchart of possible classes based on the stats, and picks the best one from the stats given, after racial
-					bonuses.<br> It shouldn't give you a class that doesn't fit a build, if a character doesn't have a clear build for a class, it gets replaced.<br> After that it is really just more of the same logic, it takes all the information given to it before
-					the present step and decides.<br>
+					bonuses.
+					<br> It shouldn't give you a class that doesn't fit a build, if a character doesn't have a clear build for a class, it gets replaced.<br> After that it is really just more of the same logic, it takes all the information given to it before the present
+					step and decides.<br>
 					<br> For example, if you have higher dexterity than strength, it'll give you a dextrous weapon if your class starting equipment allows it.<br>
-					<br> Another example, if you are a paladin of a certain alignment, it'll give you a deity of the same alignment and a matching symbol.
 				</p>
 				<br>
 				<h2>Bugs / Suggestions</h2>
@@ -804,7 +845,8 @@
 				<h2>All 3 versus one other</h2>
 				<p>
 					Here are the facts:<br> Statistically, rolling gives you an average of the highest stats, with the highest ceiling.<br> Standard array has the lowest risk and most consistency.<br> Point buy is the best for the consistent optimization some players
-					seek.<br> (Although this generator has 65 combinations for in random order, so not all combinations are necessarily optimal)<br>
+					seek.
+					<br> (Although this generator has 65 combinations for in random order, so not all combinations are necessarily optimal)<br>
 					<br> Stat total averages:<br> Rolling for stats total stats = 73.47 average<br> Standard array total stats = 72 average<br> Point buy total stats = 72.32 average<br>
 				</p>
 				<br>

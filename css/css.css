@@ -30,26 +30,23 @@ div.text_below {
   margin: 10px;
 }
 
-#race_dropdown {
-  margin-top: 30px;
-}
-
-.dropdown_section {
-  position: absolute;
-  top: 0%;
-}
-
-#h2_dropdown {
-  margin-top: 0;
-}
-
-#background_dropdown {
-  position: absolute;
-}
-
 #center {
   text-align: center;
   margin: 0 auto;
+}
+
+.dropdowns {
+  height: 40px;
+}
+
+.dropdown_section {
+  margin: 5px auto;
+}
+
+#center_dropdowns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
 }
 
 #last_button {
@@ -114,10 +111,10 @@ p {
 }
 
 #footer {
-    text-align: center;
-    font-family: 'Lato', sans-serif;
-    background: #fff;
-    color: #333;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  background: #fff;
+  color: #333;
 }
 
 #no-show {
