@@ -4265,7 +4265,7 @@ function generate_character(version) {
   document.getElementById("form94_1").value = classlevel; // class and level text field
   document.getElementById("form105_1").value = proficienciesAndLanguages.join('\r'); // proficiencies and languages
   document.getElementById("form106_1").value = features.join('\r\n'); // features & traits
-  document.getElementById("form16_2").value = additionalFeatures; // additional features, pg. 2
+  document.getElementById("form16_2").value = additionalFeatures.join('\r\n'); // additional features, pg. 2
   document.getElementById("form92_1").value = alignment.join(' '); // alignment text fielddice
   document.getElementById("form73_1").value = armorClass; // AC
   document.getElementById("form103_1").value = spellcastingSection.join('\r\n'); // adding spell descriptions to the spellcasting section
