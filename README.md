@@ -1,9 +1,6 @@
 5th Edition Random Dungeons and Dragons Character Generator
 ===
 
-By Levi Blodgett
-===
-
 **DESCRIPTION**
 
 A character generator for the 5th edition of Dungeons and Dragons.
