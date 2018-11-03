@@ -192,10 +192,12 @@ body {
 }
 
 .t {
+  transform-origin: top-left;
   -webkit-transform-origin: top left;
   -moz-transform-origin: top left;
   -o-transform-origin: top left;
   -ms-transform-origin: top left;
+  transform: scale(0, .25);
   -webkit-transform: scale(0.25);
   -moz-transform: scale(0.25);
   -o-transform: scale(0.25);
@@ -2888,6 +2890,7 @@ body {
 }
 
 .t.m1_3 {
+  transform: matrix(0, -1, 1, 0, 0, 0) scale(0.25);
   -webkit-transform: matrix(0, -1, 1, 0, 0, 0) scale(0.25);
   -ms-transform: matrix(0, -1, 1, 0, 0, 0) scale(0.25);
   -moz-transform: matrix(0, -1, 1, 0, 0, 0) scale(0.25);
@@ -2895,6 +2898,7 @@ body {
 }
 
 .t.m2_3 {
+  transform: matrix(-0.04, -1, 1, -0.04, 0, 0) scale(0.25);
   -webkit-transform: matrix(-0.04, -1, 1, -0.04, 0, 0) scale(0.25);
   -ms-transform: matrix(-0.04, -1, 1, -0.04, 0, 0) scale(0.25);
   -moz-transform: matrix(-0.04, -1, 1, -0.04, 0, 0) scale(0.25);
@@ -2902,6 +2906,7 @@ body {
 }
 
 .t.m3_3 {
+  transform: matrix(0.44, -0.9, 0.9, 0.44, 0, 0) scale(0.25);
   -webkit-transform: matrix(0.44, -0.9, 0.9, 0.44, 0, 0) scale(0.25);
   -ms-transform: matrix(0.44, -0.9, 0.9, 0.44, 0, 0) scale(0.25);
   -moz-transform: matrix(0.44, -0.9, 0.9, 0.44, 0, 0) scale(0.25);
@@ -2909,6 +2914,7 @@ body {
 }
 
 .t.m4_3 {
+  transform: matrix(0.76, -0.65, 0.65, 0.76, 0, 0) scale(0.25);
   -webkit-transform: matrix(0.76, -0.65, 0.65, 0.76, 0, 0) scale(0.25);
   -ms-transform: matrix(0.76, -0.65, 0.65, 0.76, 0, 0) scale(0.25);
   -moz-transform: matrix(0.76, -0.65, 0.65, 0.76, 0, 0) scale(0.25);
@@ -2916,6 +2922,7 @@ body {
 }
 
 .t.m5_3 {
+  transform: matrix(0.95, -0.32, 0.32, 0.95, 0, 0) scale(0.25);
   -webkit-transform: matrix(0.95, -0.32, 0.32, 0.95, 0, 0) scale(0.25);
   -ms-transform: matrix(0.95, -0.32, 0.32, 0.95, 0, 0) scale(0.25);
   -moz-transform: matrix(0.95, -0.32, 0.32, 0.95, 0, 0) scale(0.25);
@@ -2923,6 +2930,7 @@ body {
 }
 
 .t.m6_3 {
+  transform: matrix(0.99, 0.15, -0.15, 0.99, 0, 0) scale(0.25);
   -webkit-transform: matrix(0.99, 0.15, -0.15, 0.99, 0, 0) scale(0.25);
   -ms-transform: matrix(0.99, 0.15, -0.15, 0.99, 0, 0) scale(0.25);
   -moz-transform: matrix(0.99, 0.15, -0.15, 0.99, 0, 0) scale(0.25);
@@ -2930,6 +2938,7 @@ body {
 }
 
 .t.m7_3 {
+  transform: matrix(0.85, 0.53, -0.53, 0.85, 0, 0) scale(0.25);
   -webkit-transform: matrix(0.85, 0.53, -0.53, 0.85, 0, 0) scale(0.25);
   -ms-transform: matrix(0.85, 0.53, -0.53, 0.85, 0, 0) scale(0.25);
   -moz-transform: matrix(0.85, 0.53, -0.53, 0.85, 0, 0) scale(0.25);
@@ -2937,6 +2946,7 @@ body {
 }
 
 .t.m8_3 {
+  transform: matrix(0.58, 0.82, -0.82, 0.58, 0, 0) scale(0.25);
   -webkit-transform: matrix(0.58, 0.82, -0.82, 0.58, 0, 0) scale(0.25);
   -ms-transform: matrix(0.58, 0.82, -0.82, 0.58, 0, 0) scale(0.25);
   -moz-transform: matrix(0.58, 0.82, -0.82, 0.58, 0, 0) scale(0.25);
@@ -2944,6 +2954,7 @@ body {
 }
 
 .t.m9_3 {
+  transform: matrix(0.04, 1, -1, 0.04, 0, 0) scale(0.25);
   -webkit-transform: matrix(0.04, 1, -1, 0.04, 0, 0) scale(0.25);
   -ms-transform: matrix(0.04, 1, -1, 0.04, 0, 0) scale(0.25);
   -moz-transform: matrix(0.04, 1, -1, 0.04, 0, 0) scale(0.25);
