@@ -43,7 +43,7 @@ div.text_below {
   margin: 5px auto;
   color: #333;
   font-size: 24px;
-  font-weight: lighter
+  font-weight: lighter;
   text-decoration: none;
   font-family: 'Lato', sans-serif;
 }
@@ -164,8 +164,6 @@ button:focus {
     display: none !important;
   }
 }
-
-#buttons {}
 
 #last_p {
   margin-bottom: 0;

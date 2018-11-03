@@ -603,43 +603,43 @@ function generate_character(version) {
     RaceGenerator(document.getElementById('race_dropdown').value);
   }
 
-    // Generates background based on user input
-    if (document.getElementById('background_dropdown').value === "Random") {
-      var newbackground = Name_Generator.GetNewBackground();
-    } else {
-      var newbackground = document.getElementById('background_dropdown').value;
-    }
+  // Generates background based on user input
+  if (document.getElementById('background_dropdown').value === "Random") {
+    var newbackground = Name_Generator.GetNewBackground();
+  } else {
+    var newbackground = document.getElementById('background_dropdown').value;
+  }
 
-    // Function to help facilitate easier code for alignment picking
-    function alignment_helper(balance, morality) {
-        alignment_checker = true;
-        alignment.push(balance);
-        if (balance === "Lawful") {
-          randomByLength(lawfulFlaws, flaws, "form99_1");
-        } else if (balance === "Neutral") {
-          randomByLength(neutralFlaws, flaws, "form99_1");
-        } else if (balance === "Chaotic") {
-          randomByLength(chaoticFlaws, flaws, "form99_1");
-        }
-        alignment.push(morality);
-        if (morality === "Good") {
-          randomByLength(goodIdeals, ideals, "form100_1");
-        } else if (morality === "Neutral") {
-          randomByLength(neutralIdeals, ideals, "form100_1");
-        } else if (morality === "Evil") {
-          randomByLength(evilIdeals, ideals, "form100_1");
-        }
+  // Function to help facilitate easier code for alignment picking
+  function alignment_helper(balance, morality) {
+    alignment_checker = true;
+    alignment.push(balance);
+    if (balance === "Lawful") {
+      randomByLength(lawfulFlaws, flaws, "form99_1");
+    } else if (balance === "Neutral") {
+      randomByLength(neutralFlaws, flaws, "form99_1");
+    } else if (balance === "Chaotic") {
+      randomByLength(chaoticFlaws, flaws, "form99_1");
     }
-
-    // Generates alignment based on the users input
-    if (document.getElementById('alignment_dropdown').value === "Random") {
-
-    } else {
-      var bal = document.getElementById('alignment_dropdown').value.split(' ', 1).toString();
-      var mor1 = document.getElementById('alignment_dropdown').value.split(' ', 2);
-      var mor = mor1[1].toString();
-      alignment_helper(bal, mor);
+    alignment.push(morality);
+    if (morality === "Good") {
+      randomByLength(goodIdeals, ideals, "form100_1");
+    } else if (morality === "Neutral") {
+      randomByLength(neutralIdeals, ideals, "form100_1");
+    } else if (morality === "Evil") {
+      randomByLength(evilIdeals, ideals, "form100_1");
     }
+  }
+
+  // Generates alignment based on the users input
+  if (document.getElementById('alignment_dropdown').value === "Random") {
+
+  } else {
+    var bal = document.getElementById('alignment_dropdown').value.split(' ', 1).toString();
+    var mor1 = document.getElementById('alignment_dropdown').value.split(' ', 2);
+    var mor = mor1[1].toString();
+    alignment_helper(bal, mor);
+  }
 
   // Function to get random number between 1-9
   function getRandom9() {
@@ -1095,7 +1095,7 @@ function generate_character(version) {
 
   // Function for picking balance alignment
   function generateBalance(higherDecimal, lowerDecimal) {
-    if (alignment_checker === false){
+    if (alignment_checker === false) {
       if (Math.random() >= higherDecimal) {
         alignment.push("Lawful");
         randomByLength(lawfulFlaws, flaws, "form99_1");
@@ -1116,7 +1116,7 @@ function generate_character(version) {
 
   // Function for picking morality alignment
   function generateMorality(higherDecimal, lowerDecimal) {
-    if (alignment_checker === false){
+    if (alignment_checker === false) {
       if (Math.random() >= higherDecimal) {
         alignment.push("Good");
         randomByLength(goodIdeals, ideals, "form100_1");
@@ -4360,19 +4360,79 @@ function generate_new_character(version) {
   generate_character(version);
 }
 
-/**
-// Function to generate 1000 characters to make sure there are no errors and classes are thoroughly tested
-function generate_10000_characters(version){
-    console.time('generate_10000_characters');
-    for (j=0; j < 10000; j++){
-        clear_All();
-        version();
-        generate_character(version);
-    }
-    console.log(version_for_checking);
-    console.timeEnd('generate_10000_characters');
-}
-**/
+
+// // Initialize for 100000 character error checking
+// var cleric_counter = 0;
+// var barbarian_counter = 0;
+// var paladin_counter = 0;
+// var rogue_counter = 0;
+// var ranger_counter = 0;
+// var bard_counter = 0;
+// var monk_counter = 0;
+// var wizard_counter = 0;
+// var sorcerer_counter = 0;
+// var warlock_counter = 0;
+// var fighter_counter = 0;
+// var druid_counter = 0;
+
+// // Function to count each class for the characters generated
+// function generate_100000_characters_counter(classlevelvalue) {
+//   if (classlevelvalue === "Cleric 1") {
+//     cleric_counter++;
+//   } else if (classlevelvalue === "Barbarian 1") {
+//     barbarian_counter++;
+//   } else if (classlevelvalue === "Paladin 1") {
+//     paladin_counter++;
+//   } else if (classlevelvalue === "Rogue 1") {
+//     rogue_counter++;
+//   } else if (classlevelvalue === "Ranger 1") {
+//     ranger_counter++;
+//   } else if (classlevelvalue === "Druid 1") {
+//     druid_counter++;
+//   } else if (classlevelvalue === "Wizard 1") {
+//     wizard_counter++;
+//   } else if (classlevelvalue === "Sorcerer 1") {
+//     sorcerer_counter++;
+//   } else if (classlevelvalue === "Warlock 1") {
+//     warlock_counter++;
+//   } else if (classlevelvalue === "Fighter 1") {
+//     fighter_counter++;
+//   } else if (classlevelvalue === "Monk 1") {
+//     monk_counter++;
+//   } else if (classlevelvalue === "Bard 1") {
+//     bard_counter++;
+//   }
+// }
+
+// // Function to print for 100000_char_gen
+// function generate_100000_characters_printer(){
+//   console.log("Version ran through 100000 iterations: " + version_for_checking);
+//   console.log("Barbarian count: " + barbarian_counter);
+//   console.log("Rogue count: " + rogue_counter);
+//   console.log("Ranger count: " + ranger_counter);
+//   console.log("Cleric count: " + cleric_counter);
+//   console.log("Wizard count: " + wizard_counter);
+//   console.log("Sorcerer count: " + sorcerer_counter);
+//   console.log("Warlock count: " + warlock_counter);
+//   console.log("Bard count: " + bard_counter);
+//   console.log("Monk count: " + monk_counter);
+//   console.log("Fighter count: " + fighter_counter);
+//   console.log("Druid count: " + druid_counter);
+//   console.log("Paladin count: " + paladin_counter);
+// }
+
+// // Function to generate 100000 characters to make sure there are no errors and classes are thoroughly tested
+// function generate_100000_characters(version) {
+//   console.time('generate_100000_characters');
+//   for (j = 0; j < 100000; j++) {
+//     clear_All();
+//     version();
+//     generate_character(version);
+//     generate_100000_characters_counter(document.getElementById('form94_1').value);
+//   }
+//   generate_100000_characters_printer();
+//   console.timeEnd('generate_100000_characters');
+// }
 
 
 // Function to uncheck a checkbox
