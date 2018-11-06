@@ -13,6 +13,12 @@ var stat4 = stats[3];
 var stat5 = stats[4];
 var stat6 = stats[5];
 
+// Initialize length of all arrays
+let lengthOfCheckedRaceArray = 0;
+let lengthOfCheckedBackgroundArray = 0;
+let lengthOfCheckedClassArray = 0;
+let lengthOfCheckedAlignmentArray = 0;
+
 // To determine which version is being used this variable will be assigned a value at the end of each version's function
 var version_for_checking = 0;
 
@@ -255,8 +261,42 @@ function pointbuy_version() {
 // Function used to generate a new character
 function generate_character(version) {
 
-
-
+  let race_checked = document.getElementById('race_random').checked;
+  let background_checked = document.getElementById('background_random').checked;
+  let class_checked = document.getElementById('class_random').checked;
+  let alignment_checked = document.getElementById('alignment_random').checked;
+  
+  Main(race_checked, 'race_class', 'race_random');
+  Main(background_checked, 'background_class', 'background_random');
+  Main(class_checked, 'class_class', 'class_random');
+  Main(alignment_checked, 'alignment_class', 'alignment_random');
+  
+  
+  function Main(checker, classer, ID){
+    let lengthOfArray;
+    let arraything;
+    let checkerarray;
+    if (checker){
+      lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
+      arraything = document.querySelectorAll(`input.${classer}`);
+      for(i=0; i < lengthOfArray; i++){
+        arraything[i].checked = false;
+      }
+    } else if (checker === false){ 
+      lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
+      arraything = document.querySelectorAll(`input.${classer}`);
+      checkerarray= [];
+      for(i=0; i < lengthOfArray; i++){
+        if (arraything[i].checked === true) {
+          checkerarray.push(arraything[i]);
+        }
+      }
+      console.log(checkerarray);
+      if (checkerarray.length === 0){
+        document.getElementById(ID).checked = true;
+      }
+    }
+  }
 
   // Name generator object that contains all names
   var Name_Generator = {
@@ -441,8 +481,30 @@ function generate_character(version) {
     document.getElementById("form98_1").value = classtype + "(" + stat_total + "): " + strength1 + ", " + dexterity1 + ", " + constitution1 + ", " + intelligence1 + ", " + wisdom1 + ", " + charisma1;
   }
 
+  function ClassDropdownGenerator(){
+    // Needs:
+    // Function to determine which ones are checked and not
+    let arrayOfClass = document.querySelectorAll('input.class_class');
+    let arrayOfCheckedClass = [];
+    // Length of how many are checked
+    let lengthOfClassArray = arrayOfClass.length;
+    // If statement to choose based on the choices given
+    for(i=0; i < lengthOfClassArray; i++){
+      if (arrayOfClass[i].checked){
+        arrayOfCheckedClass.push(arrayOfClass[i].value);
+      }
+    }
+    // Length of how many are checked
+    lengthOfCheckedClassArray = arrayOfCheckedClass.length;
+    // Equation to randomize based on length
+    let ClassRandomizerNumber = Math.floor(Math.random() * lengthOfCheckedClassArray);
+    // Find Class value
+    let actualClass = arrayOfCheckedClass[ClassRandomizerNumber];
+    return actualClass;
+  }
+
   // Generates class based on user input
-  if (document.getElementById('class_dropdown').value === "Random") {
+  if (document.getElementById('class_random').checked) {
     if (random_class_variable === 1) {
       classlevel = "Barbarian 1";
     } else if (random_class_variable === 2) {
@@ -469,7 +531,7 @@ function generate_character(version) {
       classlevel = "Wizard 1";
     }
   } else {
-    classlevel = document.getElementById('class_dropdown').value + " 1";
+    classlevel = ClassDropdownGenerator() + " 1";
   }
 
   // Code block that assigns the stats to the class that was chosen
@@ -578,8 +640,42 @@ function generate_character(version) {
     }
   }
 
+
+  function RaceDropdownGenerator(){
+    // Needs:
+    // Function to determine which ones are checked and not
+    let arrayOfRaces = document.querySelectorAll('input.race_class');
+    let arrayOfCheckedRaces = [];
+    // Length of how many are checked
+    let lengthOfRaceArray = arrayOfRaces.length;
+    // If statement to choose based on the choices given
+    for(i=0; i < lengthOfRaceArray; i++){
+      if (arrayOfRaces[i].checked){
+        arrayOfCheckedRaces.push(arrayOfRaces[i].value);
+      }
+    }
+    // Length of how many are checked
+    lengthOfCheckedRaceArray = arrayOfCheckedRaces.length;
+    // Equation to randomize based on length
+    let RaceRandomizerNumber = Math.floor(Math.random() * lengthOfCheckedRaceArray);
+    
+    // Find race value
+    let actualRace = arrayOfCheckedRaces[RaceRandomizerNumber];
+    if (actualRace === "HalfElf") {
+      race = "Half-Elf";
+    } else if (actualRace === "HalfOrc") {
+      race = "Half-Orc";
+    } else {
+      race = actualRace;
+    }
+    var racenamelower = actualRace.toLowerCase();
+    var racenamelowerstring = '_' + racenamelower.toString();
+    firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
+    lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
+  }
+
   // Code block to read what the user input for the race dropdown box
-  if (document.getElementById('race_dropdown').value === "Random") {
+  if (document.getElementById('race_random').checked) {
     if (number === 0) {
       RaceGenerator("Dragonborn");
     } else if (number === 1) {
@@ -600,14 +696,38 @@ function generate_character(version) {
       RaceGenerator("Tiefling");
     };
   } else {
-    RaceGenerator(document.getElementById('race_dropdown').value);
+    RaceDropdownGenerator();
+  }
+
+  function BackgroundDropdownGenerator(){
+    // Needs:
+    // Function to determine which ones are checked and not
+    let arrayOfBackgrounds = document.querySelectorAll('input.background_class');
+    let arrayOfCheckedBackgrounds = [];
+    // Length of how many are checked
+    let lengthOfBackgroundArray = arrayOfBackgrounds.length;
+    // If statement to choose based on the choices given
+    for(i=0; i < lengthOfBackgroundArray; i++){
+      if (arrayOfBackgrounds[i].checked){
+        arrayOfCheckedBackgrounds.push(arrayOfBackgrounds[i].value);
+      }
+    }
+    // Length of how many are checked
+    lengthOfCheckedBackgroundArray = arrayOfCheckedBackgrounds.length;
+    // Equation to randomize based on length
+    let BackgroundRandomizerNumber = Math.floor(Math.random() * lengthOfCheckedBackgroundArray);
+    
+    // Find Background value
+    let actualBackground = arrayOfCheckedBackgrounds[BackgroundRandomizerNumber];
+    let newbackground = actualBackground;
+    return newbackground;
   }
 
   // Generates background based on user input
-  if (document.getElementById('background_dropdown').value === "Random") {
+  if (document.getElementById('background_random').checked) {
     var newbackground = Name_Generator.GetNewBackground();
   } else {
-    var newbackground = document.getElementById('background_dropdown').value;
+    var newbackground = BackgroundDropdownGenerator();
   }
 
   // Function to help facilitate easier code for alignment picking
@@ -630,13 +750,36 @@ function generate_character(version) {
       randomByLength(evilIdeals, ideals, "form100_1");
     }
   }
+  
+  function AlignmentDropdownGenerator(){
+    // Needs:
+    // Function to determine which ones are checked and not
+    let arrayOfAlignment = document.querySelectorAll('input.alignment_class');
+    let arrayOfCheckedAlignment = [];
+    // Length of how many are checked
+    let lengthOfAlignmentArray = arrayOfAlignment.length;
+    // If statement to choose based on the choices given
+    for(i=0; i < lengthOfAlignmentArray; i++){
+      if (arrayOfAlignment[i].checked){
+        arrayOfCheckedAlignment.push(arrayOfAlignment[i].value);
+      }
+    }
+    // Length of how many are checked
+    lengthOfCheckedAlignmentArray = arrayOfCheckedAlignment.length;
+    // Equation to randomize based on length
+    let AlignmentRandomizerNumber = Math.floor(Math.random() * lengthOfCheckedAlignmentArray);
+    // Find Alignment value
+    let actualAlignment = arrayOfCheckedAlignment[AlignmentRandomizerNumber];
+    return actualAlignment;
+  }
 
   // Generates alignment based on the users input
-  if (document.getElementById('alignment_dropdown').value === "Random") {
+  if (document.getElementById('alignment_random').checked) {
 
   } else {
-    var bal = document.getElementById('alignment_dropdown').value.split(' ', 1).toString();
-    var mor1 = document.getElementById('alignment_dropdown').value.split(' ', 2);
+    let BalMor = AlignmentDropdownGenerator();
+    var bal = BalMor.split(' ', 1).toString();
+    var mor1 = BalMor.split(' ', 2);
     var mor = mor1[1].toString();
     alignment_helper(bal, mor);
   }
@@ -4039,7 +4182,7 @@ function generate_character(version) {
   var charName = Name_Generator.CreateNewName(firstnombre, lastnombre);
 
   // Variable that holds my name
-  var name = "Levi";
+  var name = "Your name";
 
   // Pushes string to alliesAndOrganizations as a writing prompt
   alliesAndOrganizations.push("Friends? Family? Guild? Crew? Brothers in arms? Priests? Orphans? Good monsters? Lovers? Deities? Rivals? Enemies? Complicated relationships? Party members?");
@@ -4124,7 +4267,11 @@ function generate_character(version) {
     document.getElementById("form194_3").value = 10 + intelligenceModifier; // spell save dc
     statChecker(intelligenceModifier + 2, "form195_3"); // spell attack bonus
     document.getElementById("form213_3").value = "Prestidigitation";
-    document.getElementById("form204_3").value = "Minor Illusion";
+    if (document.getElementById("form198_3") === "Minor Illusion"){
+      document.getElementById("form204_3").value = "Mage Hand";
+    } else {
+      document.getElementById("form204_3").value = "Minor Illusion";
+    }
     document.getElementById("form203_3").value = "Fire Bolt";
     if (intelligenceModifier === 0) {
       document.getElementById("form193_3").value = "Magic Missile";

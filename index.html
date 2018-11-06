@@ -9,7 +9,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<title>LB | DnD Character Generator</title>
 </head>
-
 <body id="top">
 
 	<!--- This is the button section at the top, which has a class of no-print to not get printed-->
@@ -29,76 +28,88 @@
 
 		<div id="center_dropdowns" class="no-print">
 			<div class="dropdowns">
-				<h2 class="dropdown_section">Race:</h2>
-				<select id="race_dropdown">
-					<option value="Random">Random</option>
-					<option value="Dwarf">Dwarf</option>
-					<option value="Elf">Elf</option>
-					<option value="Halfling">Halfling</option>
-					<option value="Human">Human</option>
-					<option value="Dragonborn">Dragonborn</option>
-					<option value="Gnome">Gnome</option>
-					<option value="HalfElf">Half-Elf</option>
-					<option value="HalfOrc">Half-Orc</option>
-					<option value="Tiefling">Tiefling</option>
-				</select>
+				<div id="race_list" class="dropdown-check-list">
+					<h2 class="dropdown_section">Race:</h2>
+					<span id="Race_Text" class="anchor">Select Race</span>
+					<ul id="race_dropdown" class="items">
+							<label><li><input type="checkbox" value="Random" id="race_random" checked/>Random </li></label>
+							<label><li><input type="checkbox" value="Dragonborn" class="race_class"/>Dragonborn </li></label>
+							<label><li><input id="lolokay2" type="checkbox" value="Dwarf" class="race_class"/>Dwarf </li></label>
+							<label><li><input type="checkbox" value="Elf" class="race_class"/>Elf </li></label>
+							<label><li><input type="checkbox" value="Gnome" class="race_class"/>Gnome </li></label>
+							<label><li><input type="checkbox" value="HalfElf" class="race_class"/>Half-Elf </li></label>
+							<label><li><input type="checkbox" value="HalfOrc" class="race_class"/>Half-Orc </li></label>
+							<label><li><input type="checkbox" value="Halfling" class="race_class"/>Halfling </li></label>
+							<label><li><input type="checkbox" value="Human" class="race_class"/>Human </li></label>
+							<label><li><input type="checkbox" value="Tiefling" class="race_class"/>Tiefling </li></label>
+					</ul>
+				</div>
 			</div>
 			<div class="dropdowns">
-				<h2 class="dropdown_section">Background:</h2>
-				<select id="background_dropdown">
-					<option value="Random">Random</option>
-					<option value="Guild Artisan">Guild Artisan</option>
-					<option value="Gladiator">Gladiator</option>
-					<option value="Entertainer">Entertainer</option>
-					<option value="Hermit">Hermit</option>
-					<option value="Guild Merchant">Guild Merchant</option>
-					<option value="Folk Hero">Folk Hero</option>
-					<option value="Acolyte">Acolyte</option>
-					<option value="Charlatan">Charlatan</option>
-					<option value="Criminal">Criminal</option>
-					<option value="Spy">Spy</option>
-					<option value="Outlander">Outlander</option>
-					<option value="Noble">Noble</option>
-					<option value="Knight">Knight</option>
-					<option value="Sage">Sage</option>
-					<option value="Soldier">Soldier</option>
-					<option value="Sailor">Sailor</option>
-					<option value="Pirate">Pirate</option>
-					<option value="Urchin">Urchin</option>
-				</select>
+				<div id="background_list" class="dropdown-check-list">
+					<h2 class="dropdown_section">Background:</h2>
+					<span id="Background_Text" class="anchor">Select Background</span>
+					<ul id="background_dropdown" class="items">
+							<label><li><input type="checkbox" value="Random" id="background_random" checked>Random</li></label>
+							<label><li><input type="checkbox" value="Acolyte" class="background_class"/>Acolyte</li></label>
+							<label><li><input type="checkbox" value="Charlatan" class="background_class"/>Charlatan</li></label>
+							<label><li><input type="checkbox" value="Criminal" class="background_class"/>Criminal</li></label>
+							<label><li><input type="checkbox" value="Entertainer" class="background_class"/>Entertainer</li></label>
+							<label><li><input type="checkbox" value="Folk Hero" class="background_class"/>Folk Hero</li></label>
+							<label><li><input type="checkbox" value="Gladiator" class="background_class"/>Gladiator</li></label>
+							<label><li><input type="checkbox" value="Guild Artisan" class="background_class"/>Guild Artisan</li></label>
+							<label><li><input type="checkbox" value="Guild Merchant" class="background_class"/>Guild Merchant</li></label>
+							<label><li><input type="checkbox" value="Hermit" class="background_class"/>Hermit</li></label>
+							<label><li><input type="checkbox" value="Knight" class="background_class"/>Knight</li></label>
+							<label><li><input type="checkbox" value="Noble" class="background_class"/>Noble</li></label>
+							<label><li><input type="checkbox" value="Outlander" class="background_class"/>Outlander</li></label>
+							<label><li><input type="checkbox" value="Sage" class="background_class"/>Sage</li></label>
+							<label><li><input type="checkbox" value="Sailor" class="background_class"/>Sailor</li></label>
+							<label><li><input type="checkbox" value="Soldier" class="background_class"/>Soldier</li></label>
+							<label><li><input type="checkbox" value="Spy" class="background_class"/>Spy</li></label>
+							<label><li><input type="checkbox" value="Pirate" class="background_class"/>Pirate</li></label>
+							<label><li><input type="checkbox" value="Urchin" class="background_class"/>Urchin</li></label>
+					</ul>
+				</div>
 			</div>
 			<div class="dropdowns">
-				<h2 class="dropdown_section">Class:</h2>
-				<select id="class_dropdown">
-					<option value="Random">Random</option>
-					<option value="Barbarian">Barbarian</option>
-					<option value="Paladin">Paladin</option>
-					<option value="Rogue">Rogue</option>
-					<option value="Ranger">Ranger</option>
-					<option value="Druid">Druid</option>
-					<option value="Wizard">Wizard</option>
-					<option value="Sorcerer">Sorcerer</option>
-					<option value="Warlock">Warlock</option>
-					<option value="Fighter">Fighter</option>
-					<option value="Cleric">Cleric</option>
-					<option value="Monk">Monk</option>
-					<option value="Bard">Bard</option>
-				</select>
+				<div id="class_list" class="dropdown-check-list">
+					<h2 class="dropdown_section">Class:</h2>
+					<span id="Class_Text" class="anchor">Select Class</span>
+					<ul id="class_dropdown" class="items">
+							<label><li><input type="checkbox" value="Random" id="class_random" checked>Random</li></label>
+							<label><li><input type="checkbox" value="Barbarian" class="class_class"/>Barbarian</li></label>
+							<label><li><input type="checkbox" value="Paladin" class="class_class"/>Paladin</li></label>
+							<label><li><input type="checkbox" value="Rogue" class="class_class"/>Rogue</li></label>
+							<label><li><input type="checkbox" value="Ranger" class="class_class"/>Ranger</li></label>
+							<label><li><input type="checkbox" value="Druid" class="class_class"/>Druid</li></label>
+							<label><li><input type="checkbox" value="Wizard" class="class_class"/>Wizard</li></label>
+							<label><li><input type="checkbox" value="Sorcerer" class="class_class"/>Sorcerer</li></label>
+							<label><li><input type="checkbox" value="Warlock" class="class_class"/>Warlock</li></label>
+							<label><li><input type="checkbox" value="Fighter" class="class_class"/>Fighter</li></label>
+							<label><li><input type="checkbox" value="Cleric" class="class_class"/>Cleric</li></label>
+							<label><li><input type="checkbox" value="Monk" class="class_class"/>Monk</li></label>
+							<label><li><input type="checkbox" value="Bard" class="class_class"/>Bard</li></label>
+					</ul>
+				</div>
 			</div>
 			<div class="dropdowns">
-				<h2 class="dropdown_section">Alignment:</h2>
-				<select id="alignment_dropdown">
-					<option value="Random">Random</option>
-					<option value="Lawful Good">Lawful Good</option>
-					<option value="Neutral Good">Neutral Good</option>
-					<option value="Chaotic Good">Chaotic Good</option>
-					<option value="Lawful Neutral">Lawful Neutral</option>
-					<option value="Neutral Neutral">True Neutral</option>
-					<option value="Chaotic Neutral">Chaotic Neutral</option>
-					<option value="Lawful Evil">Lawful Evil</option>
-					<option value="Neutral Evil">Neutral Evil</option>
-					<option value="Chaotic Evil">Chaotic Evil</option>
-				</select>
+				<div id="alignment_list" class="dropdown-check-list">
+					<h2 class="dropdown_section">Alignment:</h2>
+					<span id="Alignment_Text" class="anchor">Select Alignment</span>
+					<ul id="alignment_dropdown" class="items">
+							<label><li><input type="checkbox" value="Random" id="alignment_random" checked>Random</li></label>
+							<label><li><input type="checkbox" value="Lawful Good" class="alignment_class"/>Lawful Good</li></label>
+							<label><li><input type="checkbox" value="Neutral Good" class="alignment_class"/>Neutral Good</li></label>
+							<label><li><input type="checkbox" value="Chaotic Good" class="alignment_class"/>Chaotic Good</li></label>
+							<label><li><input type="checkbox" value="Lawful Neutral" class="alignment_class"/>Lawful Neutral</li></label>
+							<label><li><input type="checkbox" value="Neutral Neutral" class="alignment_class"/>True Neutral</li></label>
+							<label><li><input type="checkbox" value="Chaotic Neutral" class="alignment_class"/>Chaotic Neutral</li></label>
+							<label><li><input type="checkbox" value="Lawful Evil" class="alignment_class"/>Lawful Evil</li></label>
+							<label><li><input type="checkbox" value="Neutral Evil" class="alignment_class"/>Neutral Evil</li></label>
+							<label><li><input type="checkbox" value="Chaotic Evil" class="alignment_class"/>Chaotic Evil</li></label>
+					</ul>
+				</div>
 			</div>
 		</div>
 
@@ -209,36 +220,36 @@
 
 			<!-- Begin Form Data -->
 			<form id="important_form">
-				<input id="form1_1" type="checkbox" tabindex="84" data-objref="2646 0 R" data-field-name="Check Box 36" imageName="1/form/2646 0 R" images="110100" />
-				<input id="form2_1" type="checkbox" tabindex="74" data-objref="2626 0 R" data-field-name="Check Box 26" imageName="1/form/2626 0 R" images="110100" />
-				<input id="form3_1" type="checkbox" tabindex="57" data-objref="2605 0 R" data-field-name="Check Box 22" imageName="1/form/2605 0 R" images="110100" />
-				<input id="form4_1" type="checkbox" tabindex="86" data-objref="2650 0 R" data-field-name="Check Box 38" imageName="1/form/2650 0 R" images="110100" />
-				<input id="form5_1" type="checkbox" tabindex="80" data-objref="2638 0 R" data-field-name="Check Box 32" imageName="1/form/2638 0 R" images="110100" />
-				<input id="form6_1" type="checkbox" tabindex="55" data-objref="2601 0 R" data-field-name="Check Box 20" imageName="1/form/2601 0 R" images="110100" />
-				<input id="form7_1" type="checkbox" tabindex="82" data-objref="2642 0 R" data-field-name="Check Box 34" imageName="1/form/2642 0 R" images="110100" />
-				<input id="form8_1" type="checkbox" tabindex="72" data-objref="2622 0 R" data-field-name="Check Box 24" imageName="1/form/2622 0 R" images="110100" />
-				<input id="form9_1" type="checkbox" tabindex="76" data-objref="2630 0 R" data-field-name="Check Box 28" imageName="1/form/2630 0 R" images="110100" />
-				<input id="form10_1" type="checkbox" tabindex="56" data-objref="2603 0 R" data-field-name="Check Box 21" imageName="1/form/2603 0 R" images="110100" />
-				<input id="form11_1" type="checkbox" tabindex="81" data-objref="2640 0 R" data-field-name="Check Box 33" imageName="1/form/2640 0 R" images="110100" />
-				<input id="form12_1" type="checkbox" tabindex="88" data-objref="2654 0 R" data-field-name="Check Box 40" imageName="1/form/2654 0 R" images="110100" />
-				<input id="form13_1" type="checkbox" tabindex="77" data-objref="2632 0 R" data-field-name="Check Box 29" imageName="1/form/2632 0 R" images="110100" />
-				<input id="form14_1" type="checkbox" tabindex="79" data-objref="2636 0 R" data-field-name="Check Box 31" imageName="1/form/2636 0 R" images="110100" />
-				<input id="form15_1" type="checkbox" tabindex="52" data-objref="2595 0 R" data-field-name="Check Box 11" imageName="1/form/2595 0 R" images="110100" />
-				<input id="form16_1" type="checkbox" tabindex="83" data-objref="2644 0 R" data-field-name="Check Box 35" imageName="1/form/2644 0 R" images="110100" />
-				<input id="form17_1" type="checkbox" tabindex="75" data-objref="2628 0 R" data-field-name="Check Box 27" imageName="1/form/2628 0 R" images="110100" />
-				<input id="form18_1" type="checkbox" tabindex="53" data-objref="2597 0 R" data-field-name="Check Box 18" imageName="1/form/2597 0 R" images="110100" />
-				<input id="form19_1" type="checkbox" tabindex="71" data-objref="2620 0 R" data-field-name="Check Box 23" imageName="1/form/2620 0 R" images="110100" />
-				<input id="form20_1" type="checkbox" tabindex="85" data-objref="2648 0 R" data-field-name="Check Box 37" imageName="1/form/2648 0 R" images="110100" />
-				<input id="form21_1" type="checkbox" tabindex="73" data-objref="2624 0 R" data-field-name="Check Box 25" imageName="1/form/2624 0 R" images="110100" />
-				<input id="form22_1" type="checkbox" tabindex="54" data-objref="2599 0 R" data-field-name="Check Box 19" imageName="1/form/2599 0 R" images="110100" />
-				<input id="form23_1" type="checkbox" tabindex="87" data-objref="2652 0 R" data-field-name="Check Box 39" imageName="1/form/2652 0 R" images="110100" />
-				<input id="form24_1" type="checkbox" tabindex="78" data-objref="2634 0 R" data-field-name="Check Box 30" imageName="1/form/2634 0 R" images="110100" />
-				<input id="form25_1" type="checkbox" tabindex="29" data-objref="2571 0 R" data-field-name="Check Box 17" imageName="1/form/2571 0 R" images="110100" />
-				<input id="form26_1" type="checkbox" tabindex="28" data-objref="2569 0 R" data-field-name="Check Box 16" imageName="1/form/2569 0 R" images="110100" />
-				<input id="form27_1" type="checkbox" tabindex="27" data-objref="2567 0 R" data-field-name="Check Box 15" imageName="1/form/2567 0 R" images="110100" />
-				<input id="form28_1" type="checkbox" tabindex="25" data-objref="2564 0 R" data-field-name="Check Box 14" imageName="1/form/2564 0 R" images="110100" />
-				<input id="form29_1" type="checkbox" tabindex="24" data-objref="2562 0 R" data-field-name="Check Box 13" imageName="1/form/2562 0 R" images="110100" />
-				<input id="form30_1" type="checkbox" tabindex="23" data-objref="2560 0 R" data-field-name="Check Box 12" imageName="1/form/2560 0 R" images="110100" />
+				<input class="i" id="form1_1" type="checkbox" tabindex="84" data-objref="2646 0 R" data-field-name="Check Box 36" imageName="1/form/2646 0 R" images="110100" />
+				<input class="i" id="form2_1" type="checkbox" tabindex="74" data-objref="2626 0 R" data-field-name="Check Box 26" imageName="1/form/2626 0 R" images="110100" />
+				<input class="i" id="form3_1" type="checkbox" tabindex="57" data-objref="2605 0 R" data-field-name="Check Box 22" imageName="1/form/2605 0 R" images="110100" />
+				<input class="i" id="form4_1" type="checkbox" tabindex="86" data-objref="2650 0 R" data-field-name="Check Box 38" imageName="1/form/2650 0 R" images="110100" />
+				<input class="i" id="form5_1" type="checkbox" tabindex="80" data-objref="2638 0 R" data-field-name="Check Box 32" imageName="1/form/2638 0 R" images="110100" />
+				<input class="i" id="form6_1" type="checkbox" tabindex="55" data-objref="2601 0 R" data-field-name="Check Box 20" imageName="1/form/2601 0 R" images="110100" />
+				<input class="i" id="form7_1" type="checkbox" tabindex="82" data-objref="2642 0 R" data-field-name="Check Box 34" imageName="1/form/2642 0 R" images="110100" />
+				<input class="i" id="form8_1" type="checkbox" tabindex="72" data-objref="2622 0 R" data-field-name="Check Box 24" imageName="1/form/2622 0 R" images="110100" />
+				<input class="i" id="form9_1" type="checkbox" tabindex="76" data-objref="2630 0 R" data-field-name="Check Box 28" imageName="1/form/2630 0 R" images="110100" />
+				<input class="i" id="form10_1" type="checkbox" tabindex="56" data-objref="2603 0 R" data-field-name="Check Box 21" imageName="1/form/2603 0 R" images="110100" />
+				<input class="i" id="form11_1" type="checkbox" tabindex="81" data-objref="2640 0 R" data-field-name="Check Box 33" imageName="1/form/2640 0 R" images="110100" />
+				<input class="i" id="form12_1" type="checkbox" tabindex="88" data-objref="2654 0 R" data-field-name="Check Box 40" imageName="1/form/2654 0 R" images="110100" />
+				<input class="i" id="form13_1" type="checkbox" tabindex="77" data-objref="2632 0 R" data-field-name="Check Box 29" imageName="1/form/2632 0 R" images="110100" />
+				<input class="i" id="form14_1" type="checkbox" tabindex="79" data-objref="2636 0 R" data-field-name="Check Box 31" imageName="1/form/2636 0 R" images="110100" />
+				<input class="i" id="form15_1" type="checkbox" tabindex="52" data-objref="2595 0 R" data-field-name="Check Box 11" imageName="1/form/2595 0 R" images="110100" />
+				<input class="i" id="form16_1" type="checkbox" tabindex="83" data-objref="2644 0 R" data-field-name="Check Box 35" imageName="1/form/2644 0 R" images="110100" />
+				<input class="i" id="form17_1" type="checkbox" tabindex="75" data-objref="2628 0 R" data-field-name="Check Box 27" imageName="1/form/2628 0 R" images="110100" />
+				<input class="i" id="form18_1" type="checkbox" tabindex="53" data-objref="2597 0 R" data-field-name="Check Box 18" imageName="1/form/2597 0 R" images="110100" />
+				<input class="i" id="form19_1" type="checkbox" tabindex="71" data-objref="2620 0 R" data-field-name="Check Box 23" imageName="1/form/2620 0 R" images="110100" />
+				<input class="i" id="form20_1" type="checkbox" tabindex="85" data-objref="2648 0 R" data-field-name="Check Box 37" imageName="1/form/2648 0 R" images="110100" />
+				<input class="i" id="form21_1" type="checkbox" tabindex="73" data-objref="2624 0 R" data-field-name="Check Box 25" imageName="1/form/2624 0 R" images="110100" />
+				<input class="i" id="form22_1" type="checkbox" tabindex="54" data-objref="2599 0 R" data-field-name="Check Box 19" imageName="1/form/2599 0 R" images="110100" />
+				<input class="i" id="form23_1" type="checkbox" tabindex="87" data-objref="2652 0 R" data-field-name="Check Box 39" imageName="1/form/2652 0 R" images="110100" />
+				<input class="i" id="form24_1" type="checkbox" tabindex="78" data-objref="2634 0 R" data-field-name="Check Box 30" imageName="1/form/2634 0 R" images="110100" />
+				<input class="i" id="form25_1" type="checkbox" tabindex="29" data-objref="2571 0 R" data-field-name="Check Box 17" imageName="1/form/2571 0 R" images="110100" />
+				<input class="i" id="form26_1" type="checkbox" tabindex="28" data-objref="2569 0 R" data-field-name="Check Box 16" imageName="1/form/2569 0 R" images="110100" />
+				<input class="i" id="form27_1" type="checkbox" tabindex="27" data-objref="2567 0 R" data-field-name="Check Box 15" imageName="1/form/2567 0 R" images="110100" />
+				<input class="i" id="form28_1" type="checkbox" tabindex="25" data-objref="2564 0 R" data-field-name="Check Box 14" imageName="1/form/2564 0 R" images="110100" />
+				<input class="i" id="form29_1" type="checkbox" tabindex="24" data-objref="2562 0 R" data-field-name="Check Box 13" imageName="1/form/2562 0 R" images="110100" />
+				<input class="i" id="form30_1" type="checkbox" tabindex="23" data-objref="2560 0 R" data-field-name="Check Box 12" imageName="1/form/2560 0 R" images="110100" />
 				<input id="form31_1" type="text" tabindex="60" value="" data-objref="2609 0 R" data-field-name="Investigation " />
 				<input id="form32_1" type="text" tabindex="70" value="" data-objref="2619 0 R" data-field-name="Stealth " />
 				<input id="form33_1" type="text" tabindex="69" value="" data-objref="2618 0 R" data-field-name="Religion" />
@@ -382,7 +393,7 @@
 			<script>
 				//global variables that can be used by ALL the function son this page.
 				var is64;
-				var inputs;
+				let inputs;
 				var states = ['On.png', 'Off.png', 'DownOn.png', 'DownOff.png', 'RollOn.png', 'RollOff.png'];
 				var states64 = ['imageOn', 'imageOff', 'imageDownOn', 'imageDownOff', 'imageRollOn', 'imageRollOff'];
 
@@ -406,9 +417,9 @@
 				function replaceChecks(isBase64) {
 
 					is64 = isBase64; //get all the input fields on the page
-					inputs = document.getElementsByTagName('input');
+					inputs = document.querySelectorAll('form input.i');
 
-					//cycle trough the input fields
+					//cycle through the input fields
 					for (var i = 0; i < inputs.length; i++) {
 						if (inputs[i].hasAttribute('images'))
 
@@ -545,98 +556,98 @@
 
 			<!-- Begin Form Data -->
 			<form>
-				<input id="form1_3" type="checkbox" tabindex="173" data-objref="688 0 R" data-field-name="Check Box 3077" imageName="3/form/688 0 R" images="110100" />
-				<input id="form2_3" type="checkbox" tabindex="170" data-objref="762 0 R" data-field-name="Check Box 3074" imageName="3/form/762 0 R" images="110100" />
-				<input id="form3_3" type="checkbox" tabindex="212" data-objref="658 0 R" data-field-name="Check Box 3082" imageName="3/form/658 0 R" images="110100" />
-				<input id="form4_3" type="checkbox" tabindex="210" data-objref="670 0 R" data-field-name="Check Box 3080" imageName="3/form/670 0 R" images="110100" />
-				<input id="form5_3" type="checkbox" tabindex="168" data-objref="752 0 R" data-field-name="Check Box 325" imageName="3/form/752 0 R" images="110100" />
-				<input id="form6_3" type="checkbox" tabindex="209" data-objref="674 0 R" data-field-name="Check Box 3079" imageName="3/form/674 0 R" images="110100" />
-				<input id="form7_3" type="checkbox" tabindex="214" data-objref="611 0 R" data-field-name="Check Box 3083" imageName="3/form/611 0 R" images="110100" />
-				<input id="form8_3" type="checkbox" tabindex="172" data-objref="700 0 R" data-field-name="Check Box 3076" imageName="3/form/700 0 R" images="110100" />
-				<input id="form9_3" type="checkbox" tabindex="169" data-objref="732 0 R" data-field-name="Check Box 324" imageName="3/form/732 0 R" images="110100" />
-				<input id="form10_3" type="checkbox" tabindex="207" data-objref="676 0 R" data-field-name="Check Box 327" imageName="3/form/676 0 R" images="110100" />
-				<input id="form11_3" type="checkbox" tabindex="176" data-objref="667 0 R" data-field-name="Check Box 3078" imageName="3/form/667 0 R" images="110100" />
-				<input id="form12_3" type="checkbox" tabindex="171" data-objref="763 0 R" data-field-name="Check Box 3075" imageName="3/form/763 0 R" images="110100" />
-				<input id="form13_3" type="checkbox" tabindex="211" data-objref="659 0 R" data-field-name="Check Box 3081" imageName="3/form/659 0 R" images="110100" />
-				<input id="form14_3" type="checkbox" tabindex="208" data-objref="675 0 R" data-field-name="Check Box 326" imageName="3/form/675 0 R" images="110100" />
-				<input id="form15_3" type="checkbox" tabindex="102" data-objref="815 0 R" data-field-name="Check Box 3069" imageName="3/form/815 0 R" images="110100" />
-				<input id="form16_3" type="checkbox" tabindex="35" data-objref="592 0 R" data-field-name="Check Box 3066" imageName="3/form/592 0 R" images="110100" />
-				<input id="form17_3" type="checkbox" tabindex="27" data-objref="696 0 R" data-field-name="Check Box 321" imageName="3/form/696 0 R" images="110100" />
-				<input id="form18_3" type="checkbox" tabindex="98" data-objref="733 0 R" data-field-name="Check Box 323" imageName="3/form/733 0 R" images="110100" />
-				<input id="form19_3" type="checkbox" tabindex="99" data-objref="734 0 R" data-field-name="Check Box 322" imageName="3/form/734 0 R" images="110100" />
-				<input id="form20_3" type="checkbox" tabindex="34" data-objref="609 0 R" data-field-name="Check Box 3065" imageName="3/form/609 0 R" images="110100" />
-				<input id="form21_3" type="checkbox" tabindex="28" data-objref="694 0 R" data-field-name="Check Box 320" imageName="3/form/694 0 R" images="110100" />
-				<input id="form22_3" type="checkbox" tabindex="106" data-objref="687 0 R" data-field-name="Check Box 3073" imageName="3/form/687 0 R" images="110100" />
-				<input id="form23_3" type="checkbox" tabindex="100" data-objref="797 0 R" data-field-name="Check Box 3067" imageName="3/form/797 0 R" images="110100" />
-				<input id="form24_3" type="checkbox" tabindex="31" data-objref="692 0 R" data-field-name="Check Box 3062" imageName="3/form/692 0 R" images="110100" />
-				<input id="form25_3" type="checkbox" tabindex="103" data-objref="720 0 R" data-field-name="Check Box 3070" imageName="3/form/720 0 R" images="110100" />
-				<input id="form26_3" type="checkbox" tabindex="30" data-objref="691 0 R" data-field-name="Check Box 3061" imageName="3/form/691 0 R" images="110100" />
-				<input id="form27_3" type="checkbox" tabindex="105" data-objref="702 0 R" data-field-name="Check Box 3072" imageName="3/form/702 0 R" images="110100" />
-				<input id="form28_3" type="checkbox" tabindex="32" data-objref="660 0 R" data-field-name="Check Box 3063" imageName="3/form/660 0 R" images="110100" />
-				<input id="form29_3" type="checkbox" tabindex="29" data-objref="693 0 R" data-field-name="Check Box 3060" imageName="3/form/693 0 R" images="110100" />
-				<input id="form30_3" type="checkbox" tabindex="101" data-objref="814 0 R" data-field-name="Check Box 3068" imageName="3/form/814 0 R" images="110100" />
-				<input id="form31_3" type="checkbox" tabindex="104" data-objref="701 0 R" data-field-name="Check Box 3071" imageName="3/form/701 0 R" images="110100" />
-				<input id="form32_3" type="checkbox" tabindex="33" data-objref="622 0 R" data-field-name="Check Box 3064" imageName="3/form/622 0 R" images="110100" />
-				<input id="form33_3" type="checkbox" tabindex="201" data-objref="750 0 R" data-field-name="Check Box 3054" imageName="3/form/750 0 R" images="110100" />
-				<input id="form34_3" type="checkbox" tabindex="206" data-objref="695 0 R" data-field-name="Check Box 3059" imageName="3/form/695 0 R" images="110100" />
-				<input id="form35_3" type="checkbox" tabindex="190" data-objref="455 0 R" data-field-name="Check Box 3029" imageName="3/form/455 0 R" images="110100" />
-				<input id="form36_3" type="checkbox" tabindex="184" data-objref="627 0 R" data-field-name="Check Box 3023" imageName="3/form/627 0 R" images="110100" />
-				<input id="form37_3" type="checkbox" tabindex="204" data-objref="813 0 R" data-field-name="Check Box 3057" imageName="3/form/813 0 R" images="110100" />
-				<input id="form38_3" type="checkbox" tabindex="182" data-objref="628 0 R" data-field-name="Check Box 3021" imageName="3/form/628 0 R" images="110100" />
-				<input id="form39_3" type="checkbox" tabindex="198" data-objref="405 0 R" data-field-name="Check Box 319" imageName="3/form/405 0 R" images="110100" />
-				<input id="form40_3" type="checkbox" tabindex="179" data-objref="652 0 R" data-field-name="Check Box 313" imageName="3/form/652 0 R" images="110100" />
-				<input id="form41_3" type="checkbox" tabindex="188" data-objref="478 0 R" data-field-name="Check Box 3027" imageName="3/form/478 0 R" images="110100" />
-				<input id="form42_3" type="checkbox" tabindex="203" data-objref="790 0 R" data-field-name="Check Box 3056" imageName="3/form/790 0 R" images="110100" />
-				<input id="form43_3" type="checkbox" tabindex="200" data-objref="749 0 R" data-field-name="Check Box 3053" imageName="3/form/749 0 R" images="110100" />
-				<input id="form44_3" type="checkbox" tabindex="183" data-objref="629 0 R" data-field-name="Check Box 3022" imageName="3/form/629 0 R" images="110100" />
-				<input id="form45_3" type="checkbox" tabindex="180" data-objref="653 0 R" data-field-name="Check Box 310" imageName="3/form/653 0 R" images="110100" />
-				<input id="form46_3" type="checkbox" tabindex="189" data-objref="479 0 R" data-field-name="Check Box 3028" imageName="3/form/479 0 R" images="110100" />
-				<input id="form47_3" type="checkbox" tabindex="166" data-objref="419 0 R" data-field-name="Check Box 3052" imageName="3/form/419 0 R" images="110100" />
-				<input id="form48_3" type="checkbox" tabindex="199" data-objref="400 0 R" data-field-name="Check Box 318" imageName="3/form/400 0 R" images="110100" />
-				<input id="form49_3" type="checkbox" tabindex="181" data-objref="647 0 R" data-field-name="Check Box 3020" imageName="3/form/647 0 R" images="110100" />
-				<input id="form50_3" type="checkbox" tabindex="185" data-objref="590 0 R" data-field-name="Check Box 3024" imageName="3/form/590 0 R" images="110100" />
-				<input id="form51_3" type="checkbox" tabindex="205" data-objref="703 0 R" data-field-name="Check Box 3058" imageName="3/form/703 0 R" images="110100" />
-				<input id="form52_3" type="checkbox" tabindex="191" data-objref="425 0 R" data-field-name="Check Box 3030" imageName="3/form/425 0 R" images="110100" />
-				<input id="form53_3" type="checkbox" tabindex="187" data-objref="546 0 R" data-field-name="Check Box 3026" imageName="3/form/546 0 R" images="110100" />
-				<input id="form54_3" type="checkbox" tabindex="186" data-objref="591 0 R" data-field-name="Check Box 3025" imageName="3/form/591 0 R" images="110100" />
-				<input id="form55_3" type="checkbox" tabindex="202" data-objref="764 0 R" data-field-name="Check Box 3055" imageName="3/form/764 0 R" images="110100" />
-				<input id="form56_3" type="checkbox" tabindex="114" data-objref="672 0 R" data-field-name="Check Box 317" imageName="3/form/672 0 R" images="110100" />
-				<input id="form57_3" type="checkbox" tabindex="26" data-objref="698 0 R" data-field-name="Check Box 3040" imageName="3/form/698 0 R" images="110100" />
-				<input id="form58_3" type="checkbox" tabindex="25" data-objref="697 0 R" data-field-name="Check Box 3039" imageName="3/form/697 0 R" images="110100" />
-				<input id="form59_3" type="checkbox" tabindex="50" data-objref="399 0 R" data-field-name="Check Box 3019" imageName="3/form/399 0 R" images="110100" />
-				<input id="form60_3" type="checkbox" tabindex="24" data-objref="699 0 R" data-field-name="Check Box 3038" imageName="3/form/699 0 R" images="110100" />
-				<input id="form61_3" type="checkbox" tabindex="47" data-objref="456 0 R" data-field-name="Check Box 3016" imageName="3/form/456 0 R" images="110100" />
-				<input id="form62_3" type="checkbox" tabindex="18" data-objref="759 0 R" data-field-name="Check Box 3032" imageName="3/form/759 0 R" images="110100" />
-				<input id="form63_3" type="checkbox" tabindex="23" data-objref="721 0 R" data-field-name="Check Box 3037" imageName="3/form/721 0 R" images="110100" />
-				<input id="form64_3" type="checkbox" tabindex="46" data-objref="476 0 R" data-field-name="Check Box 3015" imageName="3/form/476 0 R" images="110100" />
-				<input id="form65_3" type="checkbox" tabindex="45" data-objref="498 0 R" data-field-name="Check Box 3014" imageName="3/form/498 0 R" images="110100" />
-				<input id="form66_3" type="checkbox" tabindex="22" data-objref="709 0 R" data-field-name="Check Box 3036" imageName="3/form/709 0 R" images="110100" />
-				<input id="form67_3" type="checkbox" tabindex="43" data-objref="528 0 R" data-field-name="Check Box 3012" imageName="3/form/528 0 R" images="110100" />
-				<input id="form68_3" type="checkbox" tabindex="42" data-objref="527 0 R" data-field-name="Check Box 3011" imageName="3/form/527 0 R" images="110100" />
-				<input id="form69_3" type="checkbox" tabindex="156" data-objref="521 0 R" data-field-name="Check Box 3042" imageName="3/form/521 0 R" images="110100" />
-				<input id="form70_3" type="checkbox" tabindex="157" data-objref="522 0 R" data-field-name="Check Box 3043" imageName="3/form/522 0 R" images="110100" />
-				<input id="form71_3" type="checkbox" tabindex="20" data-objref="761 0 R" data-field-name="Check Box 3034" imageName="3/form/761 0 R" images="110100" />
-				<input id="form72_3" type="checkbox" tabindex="160" data-objref="467 0 R" data-field-name="Check Box 3046" imageName="3/form/467 0 R" images="110100" />
-				<input id="form73_3" type="checkbox" tabindex="40" data-objref="575 0 R" data-field-name="Check Box 309" imageName="3/form/575 0 R" images="110100" />
-				<input id="form74_3" type="checkbox" tabindex="161" data-objref="439 0 R" data-field-name="Check Box 3047" imageName="3/form/439 0 R" images="110100" />
-				<input id="form75_3" type="checkbox" tabindex="163" data-objref="434 0 R" data-field-name="Check Box 3049" imageName="3/form/434 0 R" images="110100" />
-				<input id="form76_3" type="checkbox" tabindex="39" data-objref="578 0 R" data-field-name="Check Box 251" imageName="3/form/578 0 R" images="110100" />
-				<input id="form77_3" type="checkbox" tabindex="162" data-objref="433 0 R" data-field-name="Check Box 3048" imageName="3/form/433 0 R" images="110100" />
-				<input id="form78_3" type="checkbox" tabindex="19" data-objref="722 0 R" data-field-name="Check Box 3033" imageName="3/form/722 0 R" images="110100" />
-				<input id="form79_3" type="checkbox" tabindex="159" data-objref="466 0 R" data-field-name="Check Box 3045" imageName="3/form/466 0 R" images="110100" />
-				<input id="form80_3" type="checkbox" tabindex="37" data-objref="589 0 R" data-field-name="Check Box 3041" imageName="3/form/589 0 R" images="110100" />
-				<input id="form81_3" type="checkbox" tabindex="41" data-objref="553 0 R" data-field-name="Check Box 3010" imageName="3/form/553 0 R" images="110100" />
-				<input id="form82_3" type="checkbox" tabindex="158" data-objref="477 0 R" data-field-name="Check Box 3044" imageName="3/form/477 0 R" images="110100" />
-				<input id="form83_3" type="checkbox" tabindex="165" data-objref="418 0 R" data-field-name="Check Box 3051" imageName="3/form/418 0 R" images="110100" />
-				<input id="form84_3" type="checkbox" tabindex="21" data-objref="719 0 R" data-field-name="Check Box 3035" imageName="3/form/719 0 R" images="110100" />
-				<input id="form85_3" type="checkbox" tabindex="164" data-objref="428 0 R" data-field-name="Check Box 3050" imageName="3/form/428 0 R" images="110100" />
-				<input id="form86_3" type="checkbox" tabindex="155" data-objref="557 0 R" data-field-name="Check Box 316" imageName="3/form/557 0 R" images="110100" />
-				<input id="form87_3" type="checkbox" tabindex="36" data-objref="593 0 R" data-field-name="Check Box 315" imageName="3/form/593 0 R" images="110100" />
-				<input id="form88_3" type="checkbox" tabindex="44" data-objref="499 0 R" data-field-name="Check Box 3013" imageName="3/form/499 0 R" images="110100" />
-				<input id="form89_3" type="checkbox" tabindex="17" data-objref="760 0 R" data-field-name="Check Box 3031" imageName="3/form/760 0 R" images="110100" />
-				<input id="form90_3" type="checkbox" tabindex="49" data-objref="440 0 R" data-field-name="Check Box 3018" imageName="3/form/440 0 R" images="110100" />
-				<input id="form91_3" type="checkbox" tabindex="16" data-objref="744 0 R" data-field-name="Check Box 314" imageName="3/form/744 0 R" images="110100" />
-				<input id="form92_3" type="checkbox" tabindex="48" data-objref="457 0 R" data-field-name="Check Box 3017" imageName="3/form/457 0 R" images="110100" />
+				<input class="i" id="form1_3" type="checkbox" tabindex="173" data-objref="688 0 R" data-field-name="Check Box 3077" imageName="3/form/688 0 R" images="110100" />
+				<input class="i" id="form2_3" type="checkbox" tabindex="170" data-objref="762 0 R" data-field-name="Check Box 3074" imageName="3/form/762 0 R" images="110100" />
+				<input class="i" id="form3_3" type="checkbox" tabindex="212" data-objref="658 0 R" data-field-name="Check Box 3082" imageName="3/form/658 0 R" images="110100" />
+				<input class="i" id="form4_3" type="checkbox" tabindex="210" data-objref="670 0 R" data-field-name="Check Box 3080" imageName="3/form/670 0 R" images="110100" />
+				<input class="i" id="form5_3" type="checkbox" tabindex="168" data-objref="752 0 R" data-field-name="Check Box 325" imageName="3/form/752 0 R" images="110100" />
+				<input class="i" id="form6_3" type="checkbox" tabindex="209" data-objref="674 0 R" data-field-name="Check Box 3079" imageName="3/form/674 0 R" images="110100" />
+				<input class="i" id="form7_3" type="checkbox" tabindex="214" data-objref="611 0 R" data-field-name="Check Box 3083" imageName="3/form/611 0 R" images="110100" />
+				<input class="i" id="form8_3" type="checkbox" tabindex="172" data-objref="700 0 R" data-field-name="Check Box 3076" imageName="3/form/700 0 R" images="110100" />
+				<input class="i" id="form9_3" type="checkbox" tabindex="169" data-objref="732 0 R" data-field-name="Check Box 324" imageName="3/form/732 0 R" images="110100" />
+				<input class="i" id="form10_3" type="checkbox" tabindex="207" data-objref="676 0 R" data-field-name="Check Box 327" imageName="3/form/676 0 R" images="110100" />
+				<input class="i" id="form11_3" type="checkbox" tabindex="176" data-objref="667 0 R" data-field-name="Check Box 3078" imageName="3/form/667 0 R" images="110100" />
+				<input class="i" id="form12_3" type="checkbox" tabindex="171" data-objref="763 0 R" data-field-name="Check Box 3075" imageName="3/form/763 0 R" images="110100" />
+				<input class="i" id="form13_3" type="checkbox" tabindex="211" data-objref="659 0 R" data-field-name="Check Box 3081" imageName="3/form/659 0 R" images="110100" />
+				<input class="i" id="form14_3" type="checkbox" tabindex="208" data-objref="675 0 R" data-field-name="Check Box 326" imageName="3/form/675 0 R" images="110100" />
+				<input class="i" id="form15_3" type="checkbox" tabindex="102" data-objref="815 0 R" data-field-name="Check Box 3069" imageName="3/form/815 0 R" images="110100" />
+				<input class="i" id="form16_3" type="checkbox" tabindex="35" data-objref="592 0 R" data-field-name="Check Box 3066" imageName="3/form/592 0 R" images="110100" />
+				<input class="i" id="form17_3" type="checkbox" tabindex="27" data-objref="696 0 R" data-field-name="Check Box 321" imageName="3/form/696 0 R" images="110100" />
+				<input class="i" id="form18_3" type="checkbox" tabindex="98" data-objref="733 0 R" data-field-name="Check Box 323" imageName="3/form/733 0 R" images="110100" />
+				<input class="i" id="form19_3" type="checkbox" tabindex="99" data-objref="734 0 R" data-field-name="Check Box 322" imageName="3/form/734 0 R" images="110100" />
+				<input class="i" id="form20_3" type="checkbox" tabindex="34" data-objref="609 0 R" data-field-name="Check Box 3065" imageName="3/form/609 0 R" images="110100" />
+				<input class="i" id="form21_3" type="checkbox" tabindex="28" data-objref="694 0 R" data-field-name="Check Box 320" imageName="3/form/694 0 R" images="110100" />
+				<input class="i" id="form22_3" type="checkbox" tabindex="106" data-objref="687 0 R" data-field-name="Check Box 3073" imageName="3/form/687 0 R" images="110100" />
+				<input class="i" id="form23_3" type="checkbox" tabindex="100" data-objref="797 0 R" data-field-name="Check Box 3067" imageName="3/form/797 0 R" images="110100" />
+				<input class="i" id="form24_3" type="checkbox" tabindex="31" data-objref="692 0 R" data-field-name="Check Box 3062" imageName="3/form/692 0 R" images="110100" />
+				<input class="i" id="form25_3" type="checkbox" tabindex="103" data-objref="720 0 R" data-field-name="Check Box 3070" imageName="3/form/720 0 R" images="110100" />
+				<input class="i" id="form26_3" type="checkbox" tabindex="30" data-objref="691 0 R" data-field-name="Check Box 3061" imageName="3/form/691 0 R" images="110100" />
+				<input class="i" id="form27_3" type="checkbox" tabindex="105" data-objref="702 0 R" data-field-name="Check Box 3072" imageName="3/form/702 0 R" images="110100" />
+				<input class="i" id="form28_3" type="checkbox" tabindex="32" data-objref="660 0 R" data-field-name="Check Box 3063" imageName="3/form/660 0 R" images="110100" />
+				<input class="i" id="form29_3" type="checkbox" tabindex="29" data-objref="693 0 R" data-field-name="Check Box 3060" imageName="3/form/693 0 R" images="110100" />
+				<input class="i" id="form30_3" type="checkbox" tabindex="101" data-objref="814 0 R" data-field-name="Check Box 3068" imageName="3/form/814 0 R" images="110100" />
+				<input class="i" id="form31_3" type="checkbox" tabindex="104" data-objref="701 0 R" data-field-name="Check Box 3071" imageName="3/form/701 0 R" images="110100" />
+				<input class="i" id="form32_3" type="checkbox" tabindex="33" data-objref="622 0 R" data-field-name="Check Box 3064" imageName="3/form/622 0 R" images="110100" />
+				<input class="i" id="form33_3" type="checkbox" tabindex="201" data-objref="750 0 R" data-field-name="Check Box 3054" imageName="3/form/750 0 R" images="110100" />
+				<input class="i" id="form34_3" type="checkbox" tabindex="206" data-objref="695 0 R" data-field-name="Check Box 3059" imageName="3/form/695 0 R" images="110100" />
+				<input class="i" id="form35_3" type="checkbox" tabindex="190" data-objref="455 0 R" data-field-name="Check Box 3029" imageName="3/form/455 0 R" images="110100" />
+				<input class="i" id="form36_3" type="checkbox" tabindex="184" data-objref="627 0 R" data-field-name="Check Box 3023" imageName="3/form/627 0 R" images="110100" />
+				<input class="i" id="form37_3" type="checkbox" tabindex="204" data-objref="813 0 R" data-field-name="Check Box 3057" imageName="3/form/813 0 R" images="110100" />
+				<input class="i" id="form38_3" type="checkbox" tabindex="182" data-objref="628 0 R" data-field-name="Check Box 3021" imageName="3/form/628 0 R" images="110100" />
+				<input class="i" id="form39_3" type="checkbox" tabindex="198" data-objref="405 0 R" data-field-name="Check Box 319" imageName="3/form/405 0 R" images="110100" />
+				<input class="i" id="form40_3" type="checkbox" tabindex="179" data-objref="652 0 R" data-field-name="Check Box 313" imageName="3/form/652 0 R" images="110100" />
+				<input class="i" id="form41_3" type="checkbox" tabindex="188" data-objref="478 0 R" data-field-name="Check Box 3027" imageName="3/form/478 0 R" images="110100" />
+				<input class="i" id="form42_3" type="checkbox" tabindex="203" data-objref="790 0 R" data-field-name="Check Box 3056" imageName="3/form/790 0 R" images="110100" />
+				<input class="i" id="form43_3" type="checkbox" tabindex="200" data-objref="749 0 R" data-field-name="Check Box 3053" imageName="3/form/749 0 R" images="110100" />
+				<input class="i" id="form44_3" type="checkbox" tabindex="183" data-objref="629 0 R" data-field-name="Check Box 3022" imageName="3/form/629 0 R" images="110100" />
+				<input class="i" id="form45_3" type="checkbox" tabindex="180" data-objref="653 0 R" data-field-name="Check Box 310" imageName="3/form/653 0 R" images="110100" />
+				<input class="i" id="form46_3" type="checkbox" tabindex="189" data-objref="479 0 R" data-field-name="Check Box 3028" imageName="3/form/479 0 R" images="110100" />
+				<input class="i" id="form47_3" type="checkbox" tabindex="166" data-objref="419 0 R" data-field-name="Check Box 3052" imageName="3/form/419 0 R" images="110100" />
+				<input class="i" id="form48_3" type="checkbox" tabindex="199" data-objref="400 0 R" data-field-name="Check Box 318" imageName="3/form/400 0 R" images="110100" />
+				<input class="i" id="form49_3" type="checkbox" tabindex="181" data-objref="647 0 R" data-field-name="Check Box 3020" imageName="3/form/647 0 R" images="110100" />
+				<input class="i" id="form50_3" type="checkbox" tabindex="185" data-objref="590 0 R" data-field-name="Check Box 3024" imageName="3/form/590 0 R" images="110100" />
+				<input class="i" id="form51_3" type="checkbox" tabindex="205" data-objref="703 0 R" data-field-name="Check Box 3058" imageName="3/form/703 0 R" images="110100" />
+				<input class="i" id="form52_3" type="checkbox" tabindex="191" data-objref="425 0 R" data-field-name="Check Box 3030" imageName="3/form/425 0 R" images="110100" />
+				<input class="i" id="form53_3" type="checkbox" tabindex="187" data-objref="546 0 R" data-field-name="Check Box 3026" imageName="3/form/546 0 R" images="110100" />
+				<input class="i" id="form54_3" type="checkbox" tabindex="186" data-objref="591 0 R" data-field-name="Check Box 3025" imageName="3/form/591 0 R" images="110100" />
+				<input class="i" id="form55_3" type="checkbox" tabindex="202" data-objref="764 0 R" data-field-name="Check Box 3055" imageName="3/form/764 0 R" images="110100" />
+				<input class="i" id="form56_3" type="checkbox" tabindex="114" data-objref="672 0 R" data-field-name="Check Box 317" imageName="3/form/672 0 R" images="110100" />
+				<input class="i" id="form57_3" type="checkbox" tabindex="26" data-objref="698 0 R" data-field-name="Check Box 3040" imageName="3/form/698 0 R" images="110100" />
+				<input class="i" id="form58_3" type="checkbox" tabindex="25" data-objref="697 0 R" data-field-name="Check Box 3039" imageName="3/form/697 0 R" images="110100" />
+				<input class="i" id="form59_3" type="checkbox" tabindex="50" data-objref="399 0 R" data-field-name="Check Box 3019" imageName="3/form/399 0 R" images="110100" />
+				<input class="i" id="form60_3" type="checkbox" tabindex="24" data-objref="699 0 R" data-field-name="Check Box 3038" imageName="3/form/699 0 R" images="110100" />
+				<input class="i" id="form61_3" type="checkbox" tabindex="47" data-objref="456 0 R" data-field-name="Check Box 3016" imageName="3/form/456 0 R" images="110100" />
+				<input class="i" id="form62_3" type="checkbox" tabindex="18" data-objref="759 0 R" data-field-name="Check Box 3032" imageName="3/form/759 0 R" images="110100" />
+				<input class="i" id="form63_3" type="checkbox" tabindex="23" data-objref="721 0 R" data-field-name="Check Box 3037" imageName="3/form/721 0 R" images="110100" />
+				<input class="i" id="form64_3" type="checkbox" tabindex="46" data-objref="476 0 R" data-field-name="Check Box 3015" imageName="3/form/476 0 R" images="110100" />
+				<input class="i" id="form65_3" type="checkbox" tabindex="45" data-objref="498 0 R" data-field-name="Check Box 3014" imageName="3/form/498 0 R" images="110100" />
+				<input class="i" id="form66_3" type="checkbox" tabindex="22" data-objref="709 0 R" data-field-name="Check Box 3036" imageName="3/form/709 0 R" images="110100" />
+				<input class="i" id="form67_3" type="checkbox" tabindex="43" data-objref="528 0 R" data-field-name="Check Box 3012" imageName="3/form/528 0 R" images="110100" />
+				<input class="i" id="form68_3" type="checkbox" tabindex="42" data-objref="527 0 R" data-field-name="Check Box 3011" imageName="3/form/527 0 R" images="110100" />
+				<input class="i" id="form69_3" type="checkbox" tabindex="156" data-objref="521 0 R" data-field-name="Check Box 3042" imageName="3/form/521 0 R" images="110100" />
+				<input class="i" id="form70_3" type="checkbox" tabindex="157" data-objref="522 0 R" data-field-name="Check Box 3043" imageName="3/form/522 0 R" images="110100" />
+				<input class="i" id="form71_3" type="checkbox" tabindex="20" data-objref="761 0 R" data-field-name="Check Box 3034" imageName="3/form/761 0 R" images="110100" />
+				<input class="i" id="form72_3" type="checkbox" tabindex="160" data-objref="467 0 R" data-field-name="Check Box 3046" imageName="3/form/467 0 R" images="110100" />
+				<input class="i" id="form73_3" type="checkbox" tabindex="40" data-objref="575 0 R" data-field-name="Check Box 309" imageName="3/form/575 0 R" images="110100" />
+				<input class="i" id="form74_3" type="checkbox" tabindex="161" data-objref="439 0 R" data-field-name="Check Box 3047" imageName="3/form/439 0 R" images="110100" />
+				<input class="i" id="form75_3" type="checkbox" tabindex="163" data-objref="434 0 R" data-field-name="Check Box 3049" imageName="3/form/434 0 R" images="110100" />
+				<input class="i" id="form76_3" type="checkbox" tabindex="39" data-objref="578 0 R" data-field-name="Check Box 251" imageName="3/form/578 0 R" images="110100" />
+				<input class="i" id="form77_3" type="checkbox" tabindex="162" data-objref="433 0 R" data-field-name="Check Box 3048" imageName="3/form/433 0 R" images="110100" />
+				<input class="i" id="form78_3" type="checkbox" tabindex="19" data-objref="722 0 R" data-field-name="Check Box 3033" imageName="3/form/722 0 R" images="110100" />
+				<input class="i" id="form79_3" type="checkbox" tabindex="159" data-objref="466 0 R" data-field-name="Check Box 3045" imageName="3/form/466 0 R" images="110100" />
+				<input class="i" id="form80_3" type="checkbox" tabindex="37" data-objref="589 0 R" data-field-name="Check Box 3041" imageName="3/form/589 0 R" images="110100" />
+				<input class="i" id="form81_3" type="checkbox" tabindex="41" data-objref="553 0 R" data-field-name="Check Box 3010" imageName="3/form/553 0 R" images="110100" />
+				<input class="i" id="form82_3" type="checkbox" tabindex="158" data-objref="477 0 R" data-field-name="Check Box 3044" imageName="3/form/477 0 R" images="110100" />
+				<input class="i" id="form83_3" type="checkbox" tabindex="165" data-objref="418 0 R" data-field-name="Check Box 3051" imageName="3/form/418 0 R" images="110100" />
+				<input class="i" id="form84_3" type="checkbox" tabindex="21" data-objref="719 0 R" data-field-name="Check Box 3035" imageName="3/form/719 0 R" images="110100" />
+				<input class="i" id="form85_3" type="checkbox" tabindex="164" data-objref="428 0 R" data-field-name="Check Box 3050" imageName="3/form/428 0 R" images="110100" />
+				<input class="i" id="form86_3" type="checkbox" tabindex="155" data-objref="557 0 R" data-field-name="Check Box 316" imageName="3/form/557 0 R" images="110100" />
+				<input class="i" id="form87_3" type="checkbox" tabindex="36" data-objref="593 0 R" data-field-name="Check Box 315" imageName="3/form/593 0 R" images="110100" />
+				<input class="i" id="form88_3" type="checkbox" tabindex="44" data-objref="499 0 R" data-field-name="Check Box 3013" imageName="3/form/499 0 R" images="110100" />
+				<input class="i" id="form89_3" type="checkbox" tabindex="17" data-objref="760 0 R" data-field-name="Check Box 3031" imageName="3/form/760 0 R" images="110100" />
+				<input class="i" id="form90_3" type="checkbox" tabindex="49" data-objref="440 0 R" data-field-name="Check Box 3018" imageName="3/form/440 0 R" images="110100" />
+				<input class="i" id="form91_3" type="checkbox" tabindex="16" data-objref="744 0 R" data-field-name="Check Box 314" imageName="3/form/744 0 R" images="110100" />
+				<input class="i" id="form92_3" type="checkbox" tabindex="48" data-objref="457 0 R" data-field-name="Check Box 3017" imageName="3/form/457 0 R" images="110100" />
 				<input id="form93_3" type="text" tabindex="91" value="" data-objref="773 0 R" data-field-name="SlotsTotal 22" />
 				<input id="form94_3" type="text" tabindex="61" value="" data-objref="779 0 R" data-field-name="SlotsTotal 20" />
 				<input id="form95_3" type="text" tabindex="116" value="" data-objref="661 0 R" data-field-name="SlotsTotal 23" />
@@ -772,6 +783,65 @@
 
 			<!--- Main script that edits the HTML data -->
 			<script src="js/index.js"></script>
+
+			<!--- Function and logic to properly format the checkboxes inside of the dropdowns --->
+			<script type="text/javascript">
+				function formatDropdowns(list, listItems, RandomID, RandomClass){
+					var checkList = document.getElementById(list);
+					var items = document.getElementById(listItems);
+					checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+							if (items.classList.contains('visible')){
+									items.classList.remove('visible');
+									items.style.display = "none";
+							}
+							
+							else{
+									items.classList.add('visible');
+									items.style.display = "block";
+							}
+							
+							
+					}
+
+					items.onblur = function(evt) {
+							items.classList.remove('visible');
+					}
+
+					let randomID = document.getElementById(RandomID);;
+				}
+				let checker = 0;
+				let raceRandom = document.getElementById('race_random').checked;
+				let backgroundRandom = document.getElementById('background_random').checked;
+				let classRandom = document.getElementById('class_random').checked;
+				let alignmentRandom = document.getElementById('alignment_random').checked;
+				let raceClass = document.querySelectorAll('input.race_class');
+				let backgroundClass = document.querySelectorAll('input.background_class').checked;
+				let classClass = document.querySelectorAll('input.class_class').checked;
+				let alignmentClass = document.querySelectorAll('input.alignment_class').checked;
+				if (raceRandom === '' || raceRandom === undefined){
+					for(i = 0; i < raceClass.length; i++){
+						if (raceClass[i].checked === 'checked'){
+							raceRandom = '';
+							checker = checker + 1;
+						}
+					}
+					if (checker > 0){
+							raceRandom = '';
+						} else {
+							raceRandom = 'checked';
+						}
+				} else if (backgroundRandom === '') {
+
+				} else if (classRandom === '') {
+					
+				} else if (alignmentRandom === '') {
+					
+				}
+				formatDropdowns('race_list', 'race_dropdown', 'race_random', 'race_class');
+				formatDropdowns('background_list', 'background_dropdown', 'background_random', 'background_class');
+				formatDropdowns('class_list', 'class_dropdown', 'class_random', 'class_class');
+				formatDropdowns('alignment_list', 'alignment_dropdown', 'alignment_random', 'alignment_class');
+    </script>
 
 		</div>
 	</div>
