@@ -1270,8 +1270,8 @@ function generate_character(version) {
         alignment.push("Neutral");
         randomByLength(neutralIdeals, ideals, "form100_1");
       } else {
-        alignment.push("Good");
-        randomByLength(goodIdeals, ideals, "form100_1");
+        alignment.push("Evil");
+        randomByLength(evilIdeals, ideals, "form100_1");
       }
     }
   }
@@ -1367,88 +1367,88 @@ function generate_character(version) {
     features.push("Draconic Ancestry: Black Dragons.");
     features.push("Damage Resistance: Acid.");
     generateBalance(.55, .4);
-    generateMorality(.7, .25);
+    generateMorality(.8, .55);
   } else if (race === "Blue Dragonborn") {
     features.push("Draconic Ancestry: Blue Dragons.");
     features.push("Damage Resistance: Lightning.");
     generateBalance(.55, .4);
-    generateMorality(.7, .25);
+    generateMorality(.8, .55);
   } else if (race === "Brass Dragonborn") {
     features.push("Draconic Ancestry: Brass Dragons.");
     features.push("Damage Resistance: Fire.");
     generateBalance(.55, .4);
-    generateMorality(.7, .25);
+    generateMorality(.6, .25);
   } else if (race === "Bronze Dragonborn") {
     features.push("Draconic Ancestry: Bronze Dragons.");
     features.push("Damage Resistance: Lightning.");
     generateBalance(.55, .4);
-    generateMorality(.7, .25);
+    generateMorality(.6, .25);
   } else if (race === "Copper Dragonborn") {
     features.push("Draconic Ancestry: Copper Dragons.");
     features.push("Damage Resistance: Acid.");
     generateBalance(.55, .4);
-    generateMorality(.7, .25);
+    generateMorality(.6, .25);
   } else if (race === "Gold Dragonborn") {
     features.push("Draconic Ancestry: Gold Dragons.");
     features.push("Damage Resistance: Fire.");
     generateBalance(.55, .4);
-    generateMorality(.7, .25);
+    generateMorality(.6, .25);
   } else if (race === "Green Dragonborn") {
     features.push("Draconic Ancestry: Green Dragons.");
     features.push("Damage Resistance: Poison.");
     generateBalance(.55, .4);
-    generateMorality(.7, .25);
+    generateMorality(.75, .4);
   } else if (race === "Red Dragonborn") {
     features.push("Draconic Ancestry: Red Dragons.");
     features.push("Damage Resistance: Fire.");
     generateBalance(.55, .4);
-    generateMorality(.7, .25);
+    generateMorality(.75, .4);
   } else if (race === "Silver Dragonborn") {
     features.push("Draconic Ancestry: Silver Dragons.");
     features.push("Damage Resistance: Cold.");
     generateBalance(.55, .4);
-    generateMorality(.7, .25);
+    generateMorality(.6, .25);
   } else if (race === "White Dragonborn") {
     features.push("Draconic Ancestry: White Dragons.");
     features.push("Damage Resistance: Cold.");
     generateBalance(.55, .4);
-    generateMorality(.7, .25);
+    generateMorality(.75, .4);
   } else if (race === "Hill Dwarf") {
     wisdom += 1;
     features.push("Dwarven Toughness: Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.");
     generateBalance(.3, .1);
-    generateMorality(.3, .2);
+    generateMorality(.5, .2);
   } else if (race === "Mountain Dwarf") {
     strength += 2;
     generateBalance(.3, .1);
-    generateMorality(.3, .2);
+    generateMorality(.5, .2);
   } else if (race === "Human (Calishite)") {
     generateBalance(.6, .2);
-    generateMorality(.6, .2);
+    generateMorality(.66, .3);
   } else if (race === "Human (Chondathan)") {
     generateBalance(.6, .2);
-    generateMorality(.6, .2);
+    generateMorality(.66, .3);
   } else if (race === "Human (Damaran)") {
     generateBalance(.6, .2);
-    generateMorality(.6, .2);
+    generateMorality(.66, .3);
   } else if (race === "Human (Illuskan)") {
     generateBalance(.6, .2);
-    generateMorality(.6, .2);
+    generateMorality(.66, .3);
   } else if (race === "Human (Mulan)") {
     generateBalance(.6, .2);
-    generateMorality(.6, .2);
+    generateMorality(.66, .3);
   } else if (race === "Human (Rashemi)") {
     generateBalance(.6, .2);
-    generateMorality(.6, .2);
+    generateMorality(.66, .3);
   } else if (race === "Human (Shou)") {
     generateBalance(.6, .2);
-    generateMorality(.6, .2);
+    generateMorality(.66, .3);
   } else if (race === "Human (Tethyrian)") {
     generateBalance(.6, .2);
-    generateMorality(.6, .2);
+    generateMorality(.66, .3);
   } else if (race === "Human (Turami)") {
     generateBalance(.6, .2);
-    generateMorality(.6, .2);
+    generateMorality(.66, .3);
   } else if (race === "High Elf") {
     features.push("Darkvision: 60 feet.");
     var raciallanguage1 = "Common";
@@ -1465,7 +1465,7 @@ function generate_character(version) {
     addRaceCantrip("Prestidigitation");
     intelligence += 1;
     generateBalance(.9, .7);
-    generateMorality(.4, .2);
+    generateMorality(.7, .2);
   } else if (race === "Wood Elf") {
     features.push("Darkvision: 60 feet.");
     var raciallanguage1 = "Common";
@@ -1480,7 +1480,7 @@ function generate_character(version) {
     document.getElementById("form87_1").value = "35";
     features.push("Mask of the Wild: You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.");
     generateBalance(.9, .7);
-    generateMorality(.4, .2);
+    generateMorality(.6, .2);
   } else if (race === "Dark Elf (Drow)") {
     var raciallanguage1 = "Common";
     var raciallanguage2 = "Elvish";
@@ -1495,31 +1495,31 @@ function generate_character(version) {
     features.push("Superior Darkvision: 120 feet.");
     additionalFeatures.push("Sunlight Sensitivity: You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.");
     generateBalance(.9, .7);
-    generateMorality(.6, .4);
+    generateMorality(.8, .4);
   } else if (race === "Lightfoot Halfling") {
     charisma += 1;
     features.push("Naturally Stealthy: You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.");
     generateBalance(.2, .1);
-    generateMorality(.2, .15);
+    generateMorality(.4, .2);
   } else if (race === "Stout Halfling") {
     constitution += 1;
     features.push("Stout Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.");
     generateBalance(.2, .1);
-    generateMorality(.2, .15);
+    generateMorality(.4, .2);
   } else if (race === "Forest Gnome") {
     constitution += 1;
     additionalFeatures.push("Speak with Small Beasts: Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts. Forest gnomes love animals and often keep squirrels, badgers, rabbits, moles, woodpeckers, and other creatures as beloved pets.");
     features.push("Natural Illusionist: You know the 'minor illusion' cantrip, intelligence is your spellcasting ability for it.");
     addRaceCantrip("Minor Illusion");
     generateBalance(.6, .4);
-    generateMorality(.3, .2);
+    generateMorality(.5, .2);
   } else if (race === "Rock Gnome") {
     constitution += 1;
     toolAdder2(toolAdder("tinker's tools"));
     features.push("Artificer’s Lore: Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply.");
     additionalFeatures.push("Tinker: Using tinker's tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time. When you create a device, choose one of the following options:\rClockwork Toy: This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction. It makes noises as appropriate to the creature it represents.\rFire Starter: The device produces a miniature flame, which you can use to light a Candle, torch, or campfire. Using the device requires your action.\rMusic Box: When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song’s end or when it is closed.");
     generateBalance(.6, .4);
-    generateMorality(.3, .2);
+    generateMorality(.5, .2);
   } else if (race === "Half-Elf") {
     var raciallanguage1 = "Common";
     var raciallanguage2 = "Elvish";
@@ -1561,7 +1561,7 @@ function generate_character(version) {
     features.push("Darkvision: 60 feet.");
     features.push("Fey Ancestry: You have advantage on saving throws against being charmed, and magic can’t put you to sleep.");;
     generateBalance(.8, .6);
-    generateMorality(.6, .2);
+    generateMorality(.6, .3);
   } else if (race === "Half-Orc") {
     var raciallanguage1 = "Common";
     var raciallanguage2 = "Orc";
@@ -1575,7 +1575,7 @@ function generate_character(version) {
     features.push("Relentless Endurance: When you are reduced to 0 hit points but not killed outright, you can drop to 1 hitpoint instead. You can't use this feature again until you finish a long rest.");
     additionalFeatures.push("Savage Attacks: When you score a critical hit with a melee weapon attack, you can roll one of the weapon’s damage dice one additional time and add it to the extra damage of the critical hit.");
     generateBalance(.8, .6);
-    generateMorality(.5, .3);
+    generateMorality(.7, .4);
   } else if (race === "Tiefling") {
     var raciallanguage1 = "Common";
     var raciallanguage2 = "Infernal";
@@ -1590,7 +1590,7 @@ function generate_character(version) {
     features.push("Darkvision: 60 feet.");
     features.push("Hellish Resistance. You have resistance to fire damage.");
     generateBalance(.8, .6);
-    generateMorality(.5, .3);
+    generateMorality(.7, .4);
   };
 
   // COME BACK TO HERE
@@ -4508,78 +4508,117 @@ function generate_new_character(version) {
 }
 
 
-// // Initialize for 100000 character error checking
-// var cleric_counter = 0;
-// var barbarian_counter = 0;
-// var paladin_counter = 0;
-// var rogue_counter = 0;
-// var ranger_counter = 0;
-// var bard_counter = 0;
-// var monk_counter = 0;
-// var wizard_counter = 0;
-// var sorcerer_counter = 0;
-// var warlock_counter = 0;
-// var fighter_counter = 0;
-// var druid_counter = 0;
+// Initialize for 100000 character error checking
+var cleric_counter = 0;
+var barbarian_counter = 0;
+var paladin_counter = 0;
+var rogue_counter = 0;
+var ranger_counter = 0;
+var bard_counter = 0;
+var monk_counter = 0;
+var wizard_counter = 0;
+var sorcerer_counter = 0;
+var warlock_counter = 0;
+var fighter_counter = 0;
+var druid_counter = 0;
 
-// // Function to count each class for the characters generated
-// function generate_100000_characters_counter(classlevelvalue) {
-//   if (classlevelvalue === "Cleric 1") {
-//     cleric_counter++;
-//   } else if (classlevelvalue === "Barbarian 1") {
-//     barbarian_counter++;
-//   } else if (classlevelvalue === "Paladin 1") {
-//     paladin_counter++;
-//   } else if (classlevelvalue === "Rogue 1") {
-//     rogue_counter++;
-//   } else if (classlevelvalue === "Ranger 1") {
-//     ranger_counter++;
-//   } else if (classlevelvalue === "Druid 1") {
-//     druid_counter++;
-//   } else if (classlevelvalue === "Wizard 1") {
-//     wizard_counter++;
-//   } else if (classlevelvalue === "Sorcerer 1") {
-//     sorcerer_counter++;
-//   } else if (classlevelvalue === "Warlock 1") {
-//     warlock_counter++;
-//   } else if (classlevelvalue === "Fighter 1") {
-//     fighter_counter++;
-//   } else if (classlevelvalue === "Monk 1") {
-//     monk_counter++;
-//   } else if (classlevelvalue === "Bard 1") {
-//     bard_counter++;
-//   }
-// }
+let lawful_good_counter = 0;
+let neutral_good_counter = 0;
+let chaotic_good_counter = 0;
+let lawful_neutral_counter = 0;
+let true_neutral_counter = 0;
+let chaotic_neutral_counter = 0;
+let lawful_evil_counter = 0;
+let neutral_evil_counter = 0;
+let chaotic_evil_counter = 0;
 
-// // Function to print for 100000_char_gen
-// function generate_100000_characters_printer(){
-//   console.log("Version ran through 100000 iterations: " + version_for_checking);
-//   console.log("Barbarian count: " + barbarian_counter);
-//   console.log("Rogue count: " + rogue_counter);
-//   console.log("Ranger count: " + ranger_counter);
-//   console.log("Cleric count: " + cleric_counter);
-//   console.log("Wizard count: " + wizard_counter);
-//   console.log("Sorcerer count: " + sorcerer_counter);
-//   console.log("Warlock count: " + warlock_counter);
-//   console.log("Bard count: " + bard_counter);
-//   console.log("Monk count: " + monk_counter);
-//   console.log("Fighter count: " + fighter_counter);
-//   console.log("Druid count: " + druid_counter);
-//   console.log("Paladin count: " + paladin_counter);
-// }
+// Function to count each class for the characters generated
+function generate_100000_characters_counter(classlevelvalue, alignmentvalue) {
+  if (classlevelvalue === "Cleric 1") {
+    cleric_counter++;
+  } else if (classlevelvalue === "Barbarian 1") {
+    barbarian_counter++;
+  } else if (classlevelvalue === "Paladin 1") {
+    paladin_counter++;
+  } else if (classlevelvalue === "Rogue 1") {
+    rogue_counter++;
+  } else if (classlevelvalue === "Ranger 1") {
+    ranger_counter++;
+  } else if (classlevelvalue === "Druid 1") {
+    druid_counter++;
+  } else if (classlevelvalue === "Wizard 1") {
+    wizard_counter++;
+  } else if (classlevelvalue === "Sorcerer 1") {
+    sorcerer_counter++;
+  } else if (classlevelvalue === "Warlock 1") {
+    warlock_counter++;
+  } else if (classlevelvalue === "Fighter 1") {
+    fighter_counter++;
+  } else if (classlevelvalue === "Monk 1") {
+    monk_counter++;
+  } else if (classlevelvalue === "Bard 1") {
+    bard_counter++;
+  }
+  if (alignmentvalue === "Lawful Good"){
+    lawful_good_counter++;
+  } else if (alignmentvalue === "Neutral Good"){
+    neutral_good_counter++;
+  } else if (alignmentvalue === "Chaotic Good"){
+    chaotic_good_counter++;
+  } else if (alignmentvalue === "Lawful Neutral"){
+    lawful_neutral_counter++;
+  } else if (alignmentvalue === "True Neutral"){
+    true_neutral_counter++;
+  } else if (alignmentvalue === "Chaotic Neutral"){
+    chaotic_neutral_counter++;
+  } else if (alignmentvalue === "Lawful Evil"){
+    lawful_evil_counter++;
+  } else if (alignmentvalue === "Neutral Evil"){
+    neutral_evil_counter++;
+  } else if (alignmentvalue === "Chaotic Evil"){
+    chaotic_evil_counter++;
+  }
+}
 
-// // Function to generate 100000 characters to make sure there are no errors and classes are thoroughly tested
-// function generate_100000_characters(version) {
-//   console.time('generate_100000_characters');
-//   for (j = 0; j < 100000; j++) {
-//     clear_All();
-//     version();
-//     generate_character(version);
-//     generate_100000_characters_counter(document.getElementById('form94_1').value);
-//   }
-//   generate_100000_characters_printer();
-//   console.timeEnd('generate_100000_characters');
-// }
+// Function to print for 100000_char_gen
+function generate_100000_characters_printer(){
+  console.log("Version ran through 100000 iterations: " + version_for_checking);
+  console.log("Barbarian count: " + barbarian_counter);
+  console.log("Rogue count: " + rogue_counter);
+  console.log("Ranger count: " + ranger_counter);
+  console.log("Cleric count: " + cleric_counter);
+  console.log("Wizard count: " + wizard_counter);
+  console.log("Sorcerer count: " + sorcerer_counter);
+  console.log("Warlock count: " + warlock_counter);
+  console.log("Bard count: " + bard_counter);
+  console.log("Monk count: " + monk_counter);
+  console.log("Fighter count: " + fighter_counter);
+  console.log("Druid count: " + druid_counter);
+  console.log("Paladin count: " + paladin_counter);
+  console.log();
+  console.log("Lawful Good count: " + lawful_good_counter);
+  console.log("Neutral Good count: " + neutral_good_counter);
+  console.log("Chaotic Good count: " + chaotic_good_counter);
+  console.log("Lawful Neutral count: " + lawful_neutral_counter);
+  console.log("True Neutral count: " + true_neutral_counter);
+  console.log("Chaotic Neutral count: " + chaotic_neutral_counter);
+  console.log("Lawful Evil count: " + lawful_evil_counter);
+  console.log("Neutral Evil count: " + neutral_evil_counter);
+  console.log("Chaotic Evil count: " + chaotic_evil_counter);
+}
+
+// Function to generate 100000 characters to make sure there are no errors and classes are thoroughly tested
+function generate_100000_characters(version) {
+  console.time('generate_100000_characters');
+  for (j = 0; j < 100000; j++) {
+    clear_All();
+    version();
+    generate_character(version);
+    generate_100000_characters_counter(document.getElementById('form94_1').value, document.getElementById('form92_1').value);
+  }
+  generate_100000_characters_printer();
+  console.timeEnd('generate_100000_characters');
+}
 
 
 // Function to uncheck a checkbox
