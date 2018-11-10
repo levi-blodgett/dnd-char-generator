@@ -270,6 +270,11 @@ function generate_character(version) {
   Main(background_checked, 'background_class', 'background_random');
   Main(class_checked, 'class_class', 'class_random');
   Main(alignment_checked, 'alignment_class', 'alignment_random');
+
+  function hideDropdowns(dropdownValue){
+    dropdownValue.classList.remove('visible');
+    dropdownValue.style.display = "none";
+  }
   
   
   function Main(checker, classer, ID){
@@ -282,6 +287,26 @@ function generate_character(version) {
       for(i=0; i < lengthOfArray; i++){
         arraything[i].checked = false;
       }
+      if (classer === 'race_class'){
+        let lengthOfArray2 = document.querySelectorAll(`input.${classer}_2`).length;
+        let arraything2 = document.querySelectorAll(`input.${classer}_2`);
+        let bonkers1 = document.getElementById('dragonborn_dropdown');
+        let bonkers2 = document.getElementById('dwarf_dropdown');
+        let bonkers3 = document.getElementById('elf_dropdown');
+        let bonkers4 = document.getElementById('gnome_dropdown');
+        let bonkers5 = document.getElementById('halfling_dropdown');
+        let bonkers6 = document.getElementById('human_dropdown');
+        let checkerarray2= [];
+        hideDropdowns(bonkers1);
+        hideDropdowns(bonkers2);
+        hideDropdowns(bonkers3);
+        hideDropdowns(bonkers4);
+        hideDropdowns(bonkers5);
+        hideDropdowns(bonkers6);
+        for(i=0; i < lengthOfArray2; i++){
+          arraything2[i].checked = false;
+        }
+      }
     } else if (checker === false){ 
       lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
       arraything = document.querySelectorAll(`input.${classer}`);
@@ -291,7 +316,6 @@ function generate_character(version) {
           checkerarray.push(arraything[i]);
         }
       }
-      console.log(checkerarray);
       if (checkerarray.length === 0){
         document.getElementById(ID).checked = true;
       }
@@ -390,6 +414,9 @@ function generate_character(version) {
   var firstnombre = undefined;
   var lastnombre = undefined;
   var race = undefined;
+  let excalibur1;
+  let excalibur2;
+  let excalibur3;
   var gold = 0;
   var armorClass = 0;
   var i = undefined;
@@ -625,6 +652,44 @@ function generate_character(version) {
   // Random number generator assigned to a variable
   var number = Math.floor(Math.random() * 9);
 
+  
+
+  // Code block to read what the user input for the race dropdown box
+  let race_checker = 0;
+  if (document.getElementById('race_random').checked) {
+    if (number === 0) {
+      race_checker = 0;
+      RaceGenerator("Dragonborn");
+    } else if (number === 1) {
+      race_checker = 0;
+      RaceGenerator("Dwarf");
+    } else if (number === 2) {
+      race_checker = 0;
+      RaceGenerator("Elf");
+    } else if (number === 3) {
+      race_checker = 0;
+      RaceGenerator("Gnome");
+    } else if (number === 4) {
+      race_checker = 0;
+      RaceGenerator("HalfElf");
+    } else if (number === 5) {
+      race_checker = 0;
+      RaceGenerator("HalfOrc");
+    } else if (number === 6) {
+      race_checker = 0;
+      RaceGenerator("Halfling");
+    } else if (number === 7) {
+      race_checker = 0;
+      RaceGenerator("Human");
+    } else if (number === 8) {
+      race_checker = 0;
+      RaceGenerator("Tiefling");
+    };
+  } else {
+    race_checker++;
+    RaceDropdownGenerator();
+  }
+
   // Function to minimize code when assigning race based on user-choice
   function RaceGenerator(racename) {
     var racenamelower = racename.toLowerCase();
@@ -640,6 +705,59 @@ function generate_character(version) {
     }
   }
 
+  function subSubracePicker(race, arrayYouWantToAddTo){
+    let randomValue;
+    randomValue = Math.floor(Math.random() * race.length);
+    if (race.length === 0){
+
+    } else {
+      arrayYouWantToAddTo.push(race[randomValue]);
+    }
+  }
+
+  function subracePicker(thearray){
+    let dwarves = [];
+    let dragonborn = [];
+    let elves = [];
+    let gnomes = [];
+    let halflings = [];
+    let humans = [];
+    let nightbringer;
+    let nightbringer1;
+    let nightbringer2;
+    let nightbringer3;
+    let leftoverArray = [];
+    for (i = 0; i < thearray.length; i++){
+      nightbringer = thearray[i];
+      if (nightbringer === "HalfElf" || nightbringer === "HalfOrc" || nightbringer === "Tiefling"){
+        leftoverArray.push(nightbringer);
+      } else {
+        nightbringer1 = nightbringer.split(' ', 1).toString();
+        nightbringer2 = nightbringer.split(' ', 2);
+        nightbringer3 = nightbringer2[1];
+      }
+      if (nightbringer3 === "Dragonborn"){
+        dragonborn.push(nightbringer);
+      } else if (nightbringer3 === "Dwarf"){
+        dwarves.push(nightbringer);
+      } else if (nightbringer3 === "Elf" || nightbringer === "Dark Elf (Drow)" ){
+        elves.push(nightbringer);
+      } else if (nightbringer3 === "Gnome"){
+        gnomes.push(nightbringer);
+      } else if (nightbringer3 === "Halfling"){
+        halflings.push(nightbringer);
+      } else if (nightbringer1 === "Human"){
+        humans.push(nightbringer);
+      }
+    }
+    subSubracePicker(dragonborn, leftoverArray);
+    subSubracePicker(dwarves, leftoverArray);
+    subSubracePicker(elves, leftoverArray);
+    subSubracePicker(gnomes, leftoverArray);
+    subSubracePicker(halflings, leftoverArray);
+    subSubracePicker(humans, leftoverArray);
+    return leftoverArray;
+  }
 
   function RaceDropdownGenerator(){
     // Needs:
@@ -654,6 +772,8 @@ function generate_character(version) {
         arrayOfCheckedRaces.push(arrayOfRaces[i].value);
       }
     }
+    arrayOfCheckedRaces = subracePicker(arrayOfCheckedRaces);
+    
     // Length of how many are checked
     lengthOfCheckedRaceArray = arrayOfCheckedRaces.length;
     // Equation to randomize based on length
@@ -668,35 +788,39 @@ function generate_character(version) {
     } else {
       race = actualRace;
     }
-    var racenamelower = actualRace.toLowerCase();
-    var racenamelowerstring = '_' + racenamelower.toString();
-    firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
-    lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
-  }
 
-  // Code block to read what the user input for the race dropdown box
-  if (document.getElementById('race_random').checked) {
-    if (number === 0) {
-      RaceGenerator("Dragonborn");
-    } else if (number === 1) {
-      RaceGenerator("Dwarf");
-    } else if (number === 2) {
-      RaceGenerator("Elf");
-    } else if (number === 3) {
-      RaceGenerator("Gnome");
-    } else if (number === 4) {
-      RaceGenerator("HalfElf");
-    } else if (number === 5) {
-      RaceGenerator("HalfOrc");
-    } else if (number === 6) {
-      RaceGenerator("Halfling");
-    } else if (number === 7) {
-      RaceGenerator("Human");
-    } else if (number === 8) {
-      RaceGenerator("Tiefling");
-    };
-  } else {
-    RaceDropdownGenerator();
+    let excalibur = race;
+  
+    if (excalibur === "HalfElf" || excalibur === "HalfOrc" || excalibur === "(Drow)"){
+
+    } else {
+      excalibur1 = excalibur.split(' ', 1).toString();
+      excalibur2 = excalibur.split(' ', 2);
+      excalibur3 = excalibur2[1];
+    }
+
+    if (excalibur3 === undefined){
+      var racenamelower = actualRace.toLowerCase();
+      var racenamelowerstring = '_' + racenamelower.toString();
+      firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
+      lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
+    } else if (excalibur1 === "Human") {
+      var racenamelower = excalibur1.toLowerCase();
+      var racenamelowerstring = '_' + racenamelower.toString();
+      firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
+      lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
+    } else if (excalibur3 === "(Drow)") {
+      var racenamelower = "Elf";
+      var racenamelowerstring = '_' + racenamelower.toString();
+      firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
+      lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
+    } else {
+      var racenamelower = excalibur3.toLowerCase();
+      var racenamelowerstring = '_' + racenamelower.toString();
+      firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
+      lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
+    }
+
   }
 
   function BackgroundDropdownGenerator(){
@@ -1087,7 +1211,7 @@ function generate_character(version) {
   }
 
   // Race and subrace decider
-  if (race === "Dragonborn") {
+  if (race === "Dragonborn" || excalibur3 === "Dragonborn") {
     var raciallanguage1 = "Common";
     var raciallanguage2 = "Draconic";
     profsAndLangs.languages.push(raciallanguage1);
@@ -1096,28 +1220,30 @@ function generate_character(version) {
     charisma += 1;
     document.getElementById("form87_1").value = "30";
     randomByLength(toughTraits, personalityTraits, "form102_1");
-    if (ancestry === 1) {
-      race = "Black Dragonborn";
-    } else if (ancestry === 2) {
-      race = "Blue Dragonborn";
-    } else if (ancestry === 3) {
-      race = "Brass Dragonborn";
-    } else if (ancestry === 4) {
-      race = "Bronze Dragonborn";
-    } else if (ancestry === 5) {
-      race = "Copper Dragonborn";
-    } else if (ancestry === 6) {
-      race = "Gold Dragonborn";
-    } else if (ancestry === 7) {
-      race = "Green Dragonborn";
-    } else if (ancestry === 8) {
-      race = "Red Dragonborn";
-    } else if (ancestry === 9) {
-      race = "Silver Dragonborn";
-    } else if (ancestry === 10) {
-      race = "White Dragonborn";
+    if (race_checker === 0){
+      if (ancestry === 1) {
+        race = "Black Dragonborn";
+      } else if (ancestry === 2) {
+        race = "Blue Dragonborn";
+      } else if (ancestry === 3) {
+        race = "Brass Dragonborn";
+      } else if (ancestry === 4) {
+        race = "Bronze Dragonborn";
+      } else if (ancestry === 5) {
+        race = "Copper Dragonborn";
+      } else if (ancestry === 6) {
+        race = "Gold Dragonborn";
+      } else if (ancestry === 7) {
+        race = "Green Dragonborn";
+      } else if (ancestry === 8) {
+        race = "Red Dragonborn";
+      } else if (ancestry === 9) {
+        race = "Silver Dragonborn";
+      } else if (ancestry === 10) {
+        race = "White Dragonborn";
+      }
     }
-  } else if (race === "Dwarf") {
+  } else if (race === "Dwarf" || excalibur3 === "Dwarf") {
     var raciallanguage1 = "Common";
     var raciallanguage2 = "Dwarvish";
     profsAndLangs.languages.push(raciallanguage1);
@@ -1127,37 +1253,41 @@ function generate_character(version) {
     features.push("Darkvision: 60 feet.");
     features.push("Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.");
     document.getElementById("form87_1").value = "25";
-    if (wisdom >= strength) {
-      race = "Hill Dwarf";
-    } else {
-      race = "Mountain Dwarf";
+    if (race_checker === 0){
+      if (wisdom >= strength) {
+        race = "Hill Dwarf";
+      } else {
+        race = "Mountain Dwarf";
+      }
     }
-  } else if (race === "Elf") {
+  } else if (race === "Elf" || excalibur3 === "Elf") {
     dexterity += 2;
     document.getElementById("form87_1").value = "30";
     randomByLength(softTraits, personalityTraits, "form102_1");
     additionalFeatures.push("Fey Ancestry: You have advantage on saving throws against being charmed, and magic can’t put you to sleep.");
     additionalFeatures.push("Trance: Elves don’t need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After Resting in this way, you gain the same benefit that a human does from 8 hours of sleep.");
-    if (intelligence >= wisdom && intelligence >= charisma) {
-      race = "High Elf";
-    } else if (wisdom >= intelligence && wisdom >= charisma) {
-      race = "Wood Elf";
-    } else if (charisma >= intelligence && charisma >= wisdom) {
-      race = "Dark Elf (Drow)";
-    } else if (intelligence > wisdom || intelligence > charisma) {
-      race = "High Elf";
-    } else if (wisdom > intelligence || wisdom > charisma) {
-      race = "Wood Elf";
-    } else if (charisma > intelligence || charisma > wisdom) {
-      race = "Dark Elf (Drow)";
-    } else if (intelligence >= wisdom || intelligence >= charisma) {
-      race = "High Elf";
-    } else if (wisdom >= intelligence || wisdom >= charisma) {
-      race = "Wood Elf";
-    } else if (charisma >= intelligence || charisma >= wisdom) {
-      race = "Dark Elf (Drow)";
+    if (race_checker === 0){
+      if (intelligence >= wisdom && intelligence >= charisma) {
+        race = "High Elf";
+      } else if (wisdom >= intelligence && wisdom >= charisma) {
+        race = "Wood Elf";
+      } else if (charisma >= intelligence && charisma >= wisdom) {
+        race = "Dark Elf (Drow)";
+      } else if (intelligence > wisdom || intelligence > charisma) {
+        race = "High Elf";
+      } else if (wisdom > intelligence || wisdom > charisma) {
+        race = "Wood Elf";
+      } else if (charisma > intelligence || charisma > wisdom) {
+        race = "Dark Elf (Drow)";
+      } else if (intelligence >= wisdom || intelligence >= charisma) {
+        race = "High Elf";
+      } else if (wisdom >= intelligence || wisdom >= charisma) {
+        race = "Wood Elf";
+      } else if (charisma >= intelligence || charisma >= wisdom) {
+        race = "Dark Elf (Drow)";
+      }
     }
-  } else if (race === "Halfling") {
+  } else if (race === "Halfling" || excalibur3 === "Halfling") {
     var raciallanguage1 = "Common";
     var raciallanguage2 = "Halfling";
     profsAndLangs.languages.push(raciallanguage1);
@@ -1168,12 +1298,14 @@ function generate_character(version) {
     additionalFeatures.push("Halfling Nimbleness: You can move through the space of any creature that is of a size larger than yours.");
     additionalFeatures.push("Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.");
     features.push("Brave: You have advantage on saving throws against being frightened.");
-    if (charisma >= constitution) {
-      race = "Lightfoot Halfling";
-    } else if (constitution > charisma) {
-      race = "Stout Halfling";
+    if (race_checker === 0){
+      if (charisma >= constitution) {
+        race = "Lightfoot Halfling";
+      } else if (constitution > charisma) {
+        race = "Stout Halfling";
+      }
     }
-  } else if (race === "Human") {
+  } else if (race === "Human" || excalibur1 === "Human") {
     var raciallanguage1 = "Common";
     var raciallanguage2 = randomLanguage();
     profsAndLangs.languages.push(raciallanguage1);
@@ -1185,35 +1317,37 @@ function generate_character(version) {
     wisdom += 1;
     charisma += 1;
     document.getElementById("form87_1").value = "30";
-    if (ancestryHuman === 1) {
-      race = "Human (Calishite)";
-      randomByLength(softTraits, personalityTraits, "form102_1");
-    } else if (ancestryHuman === 2) {
-      race = "Human (Chondathan)";
-      randomByLength(softTraits, personalityTraits, "form102_1");
-    } else if (ancestryHuman === 3) {
-      race = "Human (Damaran)";
-      randomByLength(softTraits, personalityTraits, "form102_1");
-    } else if (ancestryHuman === 4) {
-      race = "Human (Illuskan)";
-      randomByLength(softTraits, personalityTraits, "form102_1");
-    } else if (ancestryHuman === 5) {
-      race = "Human (Mulan)";
-      randomByLength(softTraits, personalityTraits, "form102_1");
-    } else if (ancestryHuman === 6) {
-      race = "Human (Rashemi)";
-      randomByLength(toughTraits, personalityTraits, "form102_1");
-    } else if (ancestryHuman === 7) {
-      race = "Human (Shou)";
-      randomByLength(toughTraits, personalityTraits, "form102_1");
-    } else if (ancestryHuman === 8) {
-      race = "Human (Tethyrian)";
-      randomByLength(toughTraits, personalityTraits, "form102_1");
-    } else if (ancestryHuman === 9) {
-      race = "Human (Turami)";
-      randomByLength(toughTraits, personalityTraits, "form102_1");
+    if (race_checker === 0){
+      if (ancestryHuman === 1) {
+        race = "Human (Calishite)";
+        randomByLength(softTraits, personalityTraits, "form102_1");
+      } else if (ancestryHuman === 2) {
+        race = "Human (Chondathan)";
+        randomByLength(softTraits, personalityTraits, "form102_1");
+      } else if (ancestryHuman === 3) {
+        race = "Human (Damaran)";
+        randomByLength(softTraits, personalityTraits, "form102_1");
+      } else if (ancestryHuman === 4) {
+        race = "Human (Illuskan)";
+        randomByLength(softTraits, personalityTraits, "form102_1");
+      } else if (ancestryHuman === 5) {
+        race = "Human (Mulan)";
+        randomByLength(softTraits, personalityTraits, "form102_1");
+      } else if (ancestryHuman === 6) {
+        race = "Human (Rashemi)";
+        randomByLength(toughTraits, personalityTraits, "form102_1");
+      } else if (ancestryHuman === 7) {
+        race = "Human (Shou)";
+        randomByLength(toughTraits, personalityTraits, "form102_1");
+      } else if (ancestryHuman === 8) {
+        race = "Human (Tethyrian)";
+        randomByLength(toughTraits, personalityTraits, "form102_1");
+      } else if (ancestryHuman === 9) {
+        race = "Human (Turami)";
+        randomByLength(toughTraits, personalityTraits, "form102_1");
+      }
     }
-  } else if (race === "Gnome") {
+  } else if (race === "Gnome" || excalibur3 === "Gnome") {
     var raciallanguage1 = "Common";
     var raciallanguage2 = "Gnomish";
     profsAndLangs.languages.push(raciallanguage1);
@@ -1223,11 +1357,13 @@ function generate_character(version) {
     randomByLength(softTraits, personalityTraits, "form102_1");
     features.push("Darkvision: 60 feet.");
     features.push("Gnome Cunning: You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.");
-    if (dexterity >= constitution) {
-      race = "Forest Gnome";
-    } else if (constitution > dexterity) {
-      race = "Rock Gnome";
-    }
+    if (race_checker === 0){
+      if (dexterity >= constitution) {
+        race = "Forest Gnome";
+      } else if (constitution > dexterity) {
+        race = "Rock Gnome";
+      }
+   }
   }
 
   // Function for trait randomization by length of the array
@@ -4632,3 +4768,92 @@ function click_on(i) {
   inputs[i].checked = 'checked';
   setImage(i, 0);
 }
+
+// Section to foramt the dropdowns
+function formatInitialDropdowns(list, listItems, RandomClass){
+  var checkList = document.getElementById(list);
+  var items = document.getElementById(listItems);
+  checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+      if (items.classList.contains('visible')){
+          items.classList.remove('visible');
+          items.style.display = "none";
+      }
+      
+      else{
+          items.classList.add('visible');
+          items.style.display = "block";
+      }
+      
+      
+  }
+
+  items.onblur = function(evt) {
+      items.classList.remove('visible');
+  }
+
+}
+let checker = 0;
+let raceRandom = document.getElementById('race_random').checked;
+let backgroundRandom = document.getElementById('background_random').checked;
+let classRandom = document.getElementById('class_random').checked;
+let alignmentRandom = document.getElementById('alignment_random').checked;
+let raceClass = document.querySelectorAll('input.race_class');
+let backgroundClass = document.querySelectorAll('input.background_class').checked;
+let classClass = document.querySelectorAll('input.class_class').checked;
+let alignmentClass = document.querySelectorAll('input.alignment_class').checked;
+if (raceRandom === '' || raceRandom === undefined){
+  for(i = 0; i < raceClass.length; i++){
+    if (raceClass[i].checked === 'checked'){
+      raceRandom = '';
+      checker = checker + 1;
+    }
+  }
+  if (checker > 0){
+      raceRandom = '';
+    } else {
+      raceRandom = 'checked';
+    }
+} else if (backgroundRandom === '') {
+
+} else if (classRandom === '') {
+  
+} else if (alignmentRandom === '') {
+  
+}
+formatInitialDropdowns('race_list', 'race_dropdown', 'race_class');
+formatInitialDropdowns('background_list', 'background_dropdown', 'background_class');
+formatInitialDropdowns('class_list', 'class_dropdown', 'class_class');
+formatInitialDropdowns('alignment_list', 'alignment_dropdown', 'alignment_class');
+
+function formatSecondaryDropdowns(list, listItems, checkbox){
+  var checkList = document.getElementById(list);
+  var items = document.getElementById(listItems);
+  let checkerino = document.getElementById(checkbox);
+  let the_checker = document.querySelectorAll(`ul#${listItems} input.race_class`);
+  checkList.getElementsByClassName('chain')[0].onclick = function (evt) {
+      if (items.classList.contains('visible')){
+          items.classList.remove('visible');
+          items.style.display = "none";
+          checkerino.checked = false;
+          for(i = 0; i < the_checker.length; i++){
+            the_checker[i].checked = false;
+          }
+      } else{
+          items.classList.add('visible');
+          items.style.display = "block";
+          checkerino.checked = true;
+          for(i = 0; i < the_checker.length; i++){
+            the_checker[i].checked = true;
+          }
+      }
+  }
+  items.onblur = function (evt) {
+      items.classList.remove('visible');
+  }
+}
+formatSecondaryDropdowns('dragonborn_list', 'dragonborn_dropdown', 'dragonborn_checkbox');
+formatSecondaryDropdowns('dwarf_list', 'dwarf_dropdown', 'dwarf_checkbox');
+formatSecondaryDropdowns('elf_list', 'elf_dropdown', 'elf_checkbox');
+formatSecondaryDropdowns('gnome_list', 'gnome_dropdown', 'gnome_checkbox');
+formatSecondaryDropdowns('halfling_list', 'halfling_dropdown', 'halfling_checkbox');
+formatSecondaryDropdowns('human_list', 'human_dropdown', 'human_checkbox');

@@ -30,17 +30,69 @@
 			<div class="dropdowns">
 				<div id="race_list" class="dropdown-check-list">
 					<h2 class="dropdown_section">Race:</h2>
-					<span id="Race_Text" class="anchor">Select Race</span>
+					<span id="Race_Text" class="anchor">Select Race:</span>
 					<ul id="race_dropdown" class="items">
-							<label><li><input type="checkbox" value="Random" id="race_random" checked/>Random </li></label>
-							<label><li><input type="checkbox" value="Dragonborn" class="race_class"/>Dragonborn </li></label>
-							<label><li><input id="lolokay2" type="checkbox" value="Dwarf" class="race_class"/>Dwarf </li></label>
-							<label><li><input type="checkbox" value="Elf" class="race_class"/>Elf </li></label>
-							<label><li><input type="checkbox" value="Gnome" class="race_class"/>Gnome </li></label>
-							<label><li><input type="checkbox" value="HalfElf" class="race_class"/>Half-Elf </li></label>
+							<label><li class="spacer"><input type="checkbox" value="Random" id="race_random" checked/>Random </li></label>
+							<div id="dragonborn_list">
+								<span class="chain"><li><input id="dragonborn_checkbox" type="checkbox" value="Dragonborn" class="race_class_2"/>Dragonborn </li></span>
+								<ul id="dragonborn_dropdown" class="huge_margins">
+									<label><li><input type="checkbox" value="Black Dragonborn" class="race_class"/>Black Dragonborn</li></label>
+									<label><li><input type="checkbox" value="Blue Dragonborn" class="race_class"/>Blue Dragonborn</li></label>
+									<label><li><input type="checkbox" value="Brass Dragonborn" class="race_class"/>Brass Dragonborn</li></label>
+									<label><li><input type="checkbox" value="Bronze Dragonborn" class="race_class"/>Bronze Dragonborn</li></label>
+									<label><li><input type="checkbox" value="Copper Dragonborn" class="race_class"/>Copper Dragonborn</li></label>
+									<label><li><input type="checkbox" value="Gold Dragonborn" class="race_class"/>Gold Dragonborn</li></label>
+									<label><li><input type="checkbox" value="Green Dragonborn" class="race_class"/>Green Dragonborn</li></label>
+									<label><li><input type="checkbox" value="Red Dragonborn" class="race_class"/>Red Dragonborn</li></label>
+									<label><li><input type="checkbox" value="Silver Dragonborn" class="race_class"/>Silver Dragonborn</li></label>
+									<label><li><input type="checkbox" value="White Dragonborn" class="race_class"/>White Dragonborn</li></label>
+								</ul>
+							</div>
+							<div id="dwarf_list">
+								<span class="chain"><li><input id="dwarf_checkbox"  type="checkbox" value="Dwarf" class="race_class_2"/>Dwarf </li></span>
+								<ul id="dwarf_dropdown" class="huge_margins">
+									<label><li><input type="checkbox" value="Hill Dwarf" class="race_class"/>Hill Dwarf</li></label>
+									<label><li><input type="checkbox" value="Mountain Dwarf" class="race_class"/>Mountain Dwarf</li></label>
+								</ul>
+							</div>
+							<div id="elf_list">
+								<span class="chain"><li><input id="elf_checkbox"  type="checkbox" value="Elf" class="race_class_2"/>Elf </li></span>
+								<ul id="elf_dropdown" class="huge_margins">
+										<label><li><input type="checkbox" value="Dark Elf (Drow)" class="race_class"/>Dark Elf (Drow)</li></label>
+										<label><li><input type="checkbox" value="High Elf" class="race_class"/>High Elf</li></label>
+										<label><li><input type="checkbox" value="Wood Elf" class="race_class"/>Wood Elf</li></label>
+								</ul>
+							</div>
+							<div id="gnome_list">
+								<span class="chain"><li><input id="gnome_checkbox"  type="checkbox" value="Gnome" class="race_class_2"/>Gnome </li></span>
+								<ul id="gnome_dropdown" class="huge_margins">
+										<label><li><input type="checkbox" value="Forest Gnome" class="race_class"/>Forest Gnome</li></label>
+										<label><li><input type="checkbox" value="Rock Gnome" class="race_class"/>Rock Gnome</li></label>
+								</ul>
+							</div>
+							<label><li class="spacer"><input type="checkbox" value="HalfElf" class="race_class"/>Half-Elf </li></label>
 							<label><li><input type="checkbox" value="HalfOrc" class="race_class"/>Half-Orc </li></label>
-							<label><li><input type="checkbox" value="Halfling" class="race_class"/>Halfling </li></label>
-							<label><li><input type="checkbox" value="Human" class="race_class"/>Human </li></label>
+							<div id="halfling_list">
+								<span class="chain"><li><input id="halfling_checkbox"  type="checkbox" value="Halfling" class="race_class_2"/>Halfling </li></span>
+								<ul id="halfling_dropdown" class="huge_margins">
+										<label><li><input type="checkbox" value="Lightfoot Halfling" class="race_class"/>Lightfoot Halfling</li></label>
+										<label><li><input type="checkbox" value="Stout Halfling" class="race_class"/>Stout Halfling</li></label>
+								</ul>
+							</div>
+							<div id="human_list">
+								<span class="chain"><li><input id="human_checkbox"  type="checkbox" value="Human" class="race_class_2"/>Human </li></span>
+								<ul id="human_dropdown" class="huge_margins">
+										<label><li><input type="checkbox" value="Human (Calishite)" class="race_class"/>Human (Calishite)</li></label>
+										<label><li><input type="checkbox" value="Human (Chondathan)" class="race_class"/>Human (Chondathan)</li></label>
+										<label><li><input type="checkbox" value="Human (Damaran)" class="race_class"/>Human (Damaran)</li></label>
+										<label><li><input type="checkbox" value="Human (Illuskan)" class="race_class"/>Human (Illuskan)</li></label>
+										<label><li><input type="checkbox" value="Human (Mulan)" class="race_class"/>Human (Mulan)</li></label>
+										<label><li><input type="checkbox" value="Human (Rashemi)" class="race_class"/>Human (Rashemi)</li></label>
+										<label><li><input type="checkbox" value="Human (Shou)" class="race_class"/>Human (Shou)</li></label>
+										<label><li><input type="checkbox" value="Human (Tethyrian)" class="race_class"/>Human (Tethyrian)</li></label>
+										<label><li><input type="checkbox" value="Human (Turami)" class="race_class"/>Human (Turami)</li></label>
+								</ul>
+							</div>
 							<label><li><input type="checkbox" value="Tiefling" class="race_class"/>Tiefling </li></label>
 					</ul>
 				</div>
@@ -48,7 +100,7 @@
 			<div class="dropdowns">
 				<div id="background_list" class="dropdown-check-list">
 					<h2 class="dropdown_section">Background:</h2>
-					<span id="Background_Text" class="anchor">Select Background</span>
+					<span id="Background_Text" class="anchor">Select Background:</span>
 					<ul id="background_dropdown" class="items">
 							<label><li><input type="checkbox" value="Random" id="background_random" checked>Random</li></label>
 							<label><li><input type="checkbox" value="Acolyte" class="background_class"/>Acolyte</li></label>
@@ -75,7 +127,7 @@
 			<div class="dropdowns">
 				<div id="class_list" class="dropdown-check-list">
 					<h2 class="dropdown_section">Class:</h2>
-					<span id="Class_Text" class="anchor">Select Class</span>
+					<span id="Class_Text" class="anchor">Select Class:</span>
 					<ul id="class_dropdown" class="items">
 							<label><li><input type="checkbox" value="Random" id="class_random" checked>Random</li></label>
 							<label><li><input type="checkbox" value="Barbarian" class="class_class"/>Barbarian</li></label>
@@ -96,7 +148,7 @@
 			<div class="dropdowns">
 				<div id="alignment_list" class="dropdown-check-list">
 					<h2 class="dropdown_section">Alignment:</h2>
-					<span id="Alignment_Text" class="anchor">Select Alignment</span>
+					<span id="Alignment_Text" class="anchor">Select Alignment:</span>
 					<ul id="alignment_dropdown" class="items">
 							<label><li><input type="checkbox" value="Random" id="alignment_random" checked>Random</li></label>
 							<label><li><input type="checkbox" value="Lawful Good" class="alignment_class"/>Lawful Good</li></label>
@@ -780,68 +832,8 @@
 				replaceChecks(false);
 			</script>
 
-
 			<!--- Main script that edits the HTML data -->
 			<script src="js/index.js"></script>
-
-			<!--- Function and logic to properly format the checkboxes inside of the dropdowns --->
-			<script type="text/javascript">
-				function formatDropdowns(list, listItems, RandomID, RandomClass){
-					var checkList = document.getElementById(list);
-					var items = document.getElementById(listItems);
-					checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
-							if (items.classList.contains('visible')){
-									items.classList.remove('visible');
-									items.style.display = "none";
-							}
-							
-							else{
-									items.classList.add('visible');
-									items.style.display = "block";
-							}
-							
-							
-					}
-
-					items.onblur = function(evt) {
-							items.classList.remove('visible');
-					}
-
-					let randomID = document.getElementById(RandomID);;
-				}
-				let checker = 0;
-				let raceRandom = document.getElementById('race_random').checked;
-				let backgroundRandom = document.getElementById('background_random').checked;
-				let classRandom = document.getElementById('class_random').checked;
-				let alignmentRandom = document.getElementById('alignment_random').checked;
-				let raceClass = document.querySelectorAll('input.race_class');
-				let backgroundClass = document.querySelectorAll('input.background_class').checked;
-				let classClass = document.querySelectorAll('input.class_class').checked;
-				let alignmentClass = document.querySelectorAll('input.alignment_class').checked;
-				if (raceRandom === '' || raceRandom === undefined){
-					for(i = 0; i < raceClass.length; i++){
-						if (raceClass[i].checked === 'checked'){
-							raceRandom = '';
-							checker = checker + 1;
-						}
-					}
-					if (checker > 0){
-							raceRandom = '';
-						} else {
-							raceRandom = 'checked';
-						}
-				} else if (backgroundRandom === '') {
-
-				} else if (classRandom === '') {
-					
-				} else if (alignmentRandom === '') {
-					
-				}
-				formatDropdowns('race_list', 'race_dropdown', 'race_random', 'race_class');
-				formatDropdowns('background_list', 'background_dropdown', 'background_random', 'background_class');
-				formatDropdowns('class_list', 'class_dropdown', 'class_random', 'class_class');
-				formatDropdowns('alignment_list', 'alignment_dropdown', 'alignment_random', 'alignment_class');
-    </script>
 
 		</div>
 	</div>

@@ -1,3 +1,11 @@
+.race_class, .race_class_2, #race_random {
+  margin: 1px 5px 0px 1px !important;
+}
+
+.spacer {
+  margin-bottom: 3px;
+}
+
 .dropdown-check-list {
   display: inline-block;
   -webkit-touch-callout: none;
@@ -13,9 +21,14 @@
   cursor: pointer;
   display: inline-block;
   padding: 5px 50px 5px 10px;
+  color: #333;
+}
+
+#Race_Text, #Background_Text, #Class_Text, #Alignment_Text {
   border: 2px solid #222;
   border-radius: 4px;
-  color: #333;
+  width: 98px;
+  text-align: left;
 }
 
 .dropdown-check-list li:hover {
@@ -49,6 +62,76 @@
   right: 8px;
   top: 21%;
 }
+
+.dropdown-check-list .chain {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  color: #333;
+}
+
+#dragonborn_list .chain{
+  padding: 0px 72.35px 0px 0px;
+}
+
+#dwarf_list .chain{
+  padding: 0px 99.679px 0px 0px;
+}
+
+#elf_list .chain{
+  padding: 0px 115.67px 0px 0px;
+}
+
+#gnome_list .chain{
+  padding: 0px 95px 0px 0px;
+}
+
+#halfling_list .chain{
+  padding: 0px 90.34px 0px 0px;
+}
+
+#human_list .chain{
+  padding: 0px 95px 0px 0px;
+}
+
+ul .huge_margins {
+  padding-left: 15px !important;
+  display: none;
+}
+
+.dropdown-check-list li:hover {
+  background: #e6e6e6;
+  cursor: pointer;
+}
+.dropdown-check-list .chain:hover {
+  background: #e6e6e6;
+  cursor: pointer;
+}
+
+.dropdown-check-list .chain:focus {
+  outline: none;
+}
+
+.dropdown-check-list .chain:after {
+  position: absolute;
+  content: "";
+  border-left: 2px solid #222;
+  border-top: 2px solid #222;
+  padding: 5px;
+  right: 10px;
+  top: 20%;
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+.dropdown-check-list .chain:active:after {
+  right: 8px;
+  top: 21%;
+}
+
+
 .dropdown-check-list ul.items {
   padding: 2px;
   background-color: white;
@@ -58,6 +141,7 @@
   border: 2px solid #222;
   border-top: none;
 }
+
 .dropdown-check-list ul.items li {
   list-style: none;
   text-align: left;
