@@ -3,7 +3,7 @@
 }
 
 .spacer {
-  margin-bottom: 3px;
+  margin-bottom: 6px;
 }
 
 .dropdown-check-list {
@@ -70,7 +70,11 @@
   color: #333;
 }
 
-.chain {
+#race_dropdown li {
+  width: 187px;
+}
+
+/* .chain {
   padding: 0px 85px 0px 0px;
 }
 
@@ -92,7 +96,7 @@
 
 #human_list .chain{
   padding: 0px 119px 0px 0px;
-} 
+}  */
 
 ul .huge_margins {
   padding-left: 15px !important;
@@ -327,6 +331,9 @@ body {
   margin: 0px;
   margin: 0;
   background-color: rgb(255, 255, 255);
+}
+
+body input {
   color: black;
 }
 
