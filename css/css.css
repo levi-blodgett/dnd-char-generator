@@ -71,27 +71,27 @@
 }
 
 .chain {
-  padding: 0px 82px 0px 0px;
+  padding: 0px 85px 0px 0px;
 }
 
 #dwarf_list .chain{
-  padding: 0px 122px 0px 0px;
+  padding: 0px 126px 0px 0px;
 }
 
 #elf_list .chain{
-  padding: 0px 147px 0px 0px;
+  padding: 0px 150px 0px 0px;
 }
 
 #gnome_list .chain{
-  padding: 0px 116px 0px 0px;
+  padding: 0px 119px 0px 0px;
 }
 
 #halfling_list .chain{
-  padding: 0px 112px 0px 0px;
+  padding: 0px 115px 0px 0px;
 }
 
 #human_list .chain{
-  padding: 0px 116px 0px 0px;
+  padding: 0px 119px 0px 0px;
 } 
 
 ul .huge_margins {
@@ -327,6 +327,7 @@ body {
   margin: 0px;
   margin: 0;
   background-color: rgb(255, 255, 255);
+  color: black;
 }
 
 #FDFXFA_Menu {
