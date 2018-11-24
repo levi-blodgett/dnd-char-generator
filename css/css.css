@@ -70,33 +70,9 @@
   color: #333;
 }
 
-#race_dropdown li {
-  width: 187px;
+#race_dropdown .race_grabber {
+  width: 186px;
 }
-
-/* .chain {
-  padding: 0px 85px 0px 0px;
-}
-
-#dwarf_list .chain{
-  padding: 0px 126px 0px 0px;
-}
-
-#elf_list .chain{
-  padding: 0px 150px 0px 0px;
-}
-
-#gnome_list .chain{
-  padding: 0px 119px 0px 0px;
-}
-
-#halfling_list .chain{
-  padding: 0px 115px 0px 0px;
-}
-
-#human_list .chain{
-  padding: 0px 119px 0px 0px;
-}  */
 
 ul .huge_margins {
   padding-left: 15px !important;
@@ -334,6 +310,10 @@ body {
 }
 
 body input {
+  color: black;
+}
+
+body form {
   color: black;
 }
 
