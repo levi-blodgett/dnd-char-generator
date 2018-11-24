@@ -27,7 +27,7 @@
 #Race_Text, #Background_Text, #Class_Text, #Alignment_Text {
   border: 2px solid #222;
   border-radius: 4px;
-  width: 98px;
+  width: 135px;
   text-align: left;
 }
 
@@ -70,29 +70,29 @@
   color: #333;
 }
 
-#dragonborn_list .chain{
-  padding: 0px 72.35px 0px 0px;
+.chain {
+  padding: 0px 82px 0px 0px;
 }
 
 #dwarf_list .chain{
-  padding: 0px 99.679px 0px 0px;
+  padding: 0px 122px 0px 0px;
 }
 
 #elf_list .chain{
-  padding: 0px 115.67px 0px 0px;
+  padding: 0px 147px 0px 0px;
 }
 
 #gnome_list .chain{
-  padding: 0px 95px 0px 0px;
+  padding: 0px 116px 0px 0px;
 }
 
 #halfling_list .chain{
-  padding: 0px 90.34px 0px 0px;
+  padding: 0px 112px 0px 0px;
 }
 
 #human_list .chain{
-  padding: 0px 95px 0px 0px;
-}
+  padding: 0px 116px 0px 0px;
+} 
 
 ul .huge_margins {
   padding-left: 15px !important;
