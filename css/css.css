@@ -3,7 +3,19 @@
 }
 
 .spacer {
-  margin-bottom: 6px;
+  margin-bottom: 3px;
+}
+
+#background_dropdown li {
+  margin-bottom: 3px;
+}
+
+#class_dropdown li {
+  margin-bottom: 3px;
+}
+
+#alignment_dropdown li {
+  margin-bottom: 3px;
 }
 
 .dropdown-check-list {
@@ -312,7 +324,7 @@ body {
 body input {
   color: black;
 }
-
+ 
 body textarea {
   color: black;
 }
