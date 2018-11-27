@@ -4801,11 +4801,9 @@ function onRaceDropdownOptionClick(){
     checkerarray= [];
     for(i=0; i < lengthOfArray; i++){
       if (arraything[i].checked === true) {
-        console.log(arraything[i].checked);
         checkerarray.push(arraything[i]);
       }
     }
-    console.log(checkerarray);
     if (checkerarray.length === 0){
       document.getElementById(ID_1).checked = true;
     }
