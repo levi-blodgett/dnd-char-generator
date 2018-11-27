@@ -34,7 +34,7 @@
 					<ul id="race_dropdown" class="items">
 							<label><li class="spacer"><input type="checkbox" value="Random" id="race_random" checked/>Random </li></label>
 							<div id="dragonborn_list">
-								<span class="chain"><li class="race_grabber"><input id="dragonborn_checkbox" type="checkbox" value="Dragonborn" class="race_class_2"/>Dragonborn </li></span>
+								<span class="chain"><li class="race_grabber race_dropdown_option_checker"><input id="dragonborn_checkbox" type="checkbox" value="Dragonborn" class="race_class_2"/>Dragonborn </li></span>
 								<ul id="dragonborn_dropdown" class="huge_margins">
 									<label><li><input type="checkbox" value="Black Dragonborn" class="race_class"/>Black Dragonborn</li></label>
 									<label><li><input type="checkbox" value="Blue Dragonborn" class="race_class"/>Blue Dragonborn</li></label>
@@ -49,14 +49,14 @@
 								</ul>
 							</div>
 							<div id="dwarf_list">
-								<span class="chain"><li class="race_grabber"><input id="dwarf_checkbox"  type="checkbox" value="Dwarf" class="race_class_2"/>Dwarf </li></span>
+								<span class="chain"><li class="race_grabber race_dropdown_option_checker"><input id="dwarf_checkbox"  type="checkbox" value="Dwarf" class="race_class_2"/>Dwarf </li></span>
 								<ul id="dwarf_dropdown" class="huge_margins">
 									<label><li><input type="checkbox" value="Hill Dwarf" class="race_class"/>Hill Dwarf</li></label>
 									<label><li><input type="checkbox" value="Mountain Dwarf" class="race_class"/>Mountain Dwarf</li></label>
 								</ul>
 							</div>
 							<div id="elf_list">
-								<span class="chain"><li class="race_grabber"><input id="elf_checkbox"  type="checkbox" value="Elf" class="race_class_2"/>Elf </li></span>
+								<span class="chain"><li class="race_grabber race_dropdown_option_checker"><input id="elf_checkbox"  type="checkbox" value="Elf" class="race_class_2"/>Elf </li></span>
 								<ul id="elf_dropdown" class="huge_margins">
 										<label><li><input type="checkbox" value="Dark Elf (Drow)" class="race_class"/>Dark Elf (Drow)</li></label>
 										<label><li><input type="checkbox" value="High Elf" class="race_class"/>High Elf</li></label>
@@ -64,23 +64,23 @@
 								</ul>
 							</div>
 							<div id="gnome_list">
-								<span class="chain"><li class="race_grabber"><input id="gnome_checkbox"  type="checkbox" value="Gnome" class="race_class_2"/>Gnome </li></span>
+								<span class="chain"><li class="race_grabber race_dropdown_option_checker"><input id="gnome_checkbox"  type="checkbox" value="Gnome" class="race_class_2"/>Gnome </li></span>
 								<ul id="gnome_dropdown" class="huge_margins">
 										<label><li><input type="checkbox" value="Forest Gnome" class="race_class"/>Forest Gnome</li></label>
 										<label><li><input type="checkbox" value="Rock Gnome" class="race_class"/>Rock Gnome</li></label>
 								</ul>
 							</div>
-							<label><li class="spacer race_grabber"><input type="checkbox" value="HalfElf" class="race_class"/>Half-Elf </li></label>
-							<label><li class="spacer race_grabber"><input type="checkbox" value="HalfOrc" class="race_class"/>Half-Orc </li></label>
+							<label><li class="spacer race_grabber race_dropdown_option_checker"><input type="checkbox" value="HalfElf" class="race_class race_class_2"/>Half-Elf </li></label>
+							<label><li class="spacer race_grabber race_dropdown_option_checker"><input type="checkbox" value="HalfOrc" class="race_class race_class_2"/>Half-Orc </li></label>
 							<div id="halfling_list">
-								<span class="chain"><li class="race_grabber"><input id="halfling_checkbox"  type="checkbox" value="Halfling" class="race_class_2"/>Halfling </li></span>
+								<span class="chain"><li class="race_grabber race_dropdown_option_checker"><input id="halfling_checkbox"  type="checkbox" value="Halfling" class="race_class_2"/>Halfling </li></span>
 								<ul id="halfling_dropdown" class="huge_margins">
 										<label><li><input type="checkbox" value="Lightfoot Halfling" class="race_class"/>Lightfoot Halfling</li></label>
 										<label><li><input type="checkbox" value="Stout Halfling" class="race_class"/>Stout Halfling</li></label>
 								</ul>
 							</div>
 							<div id="human_list">
-								<span class="chain"><li class="race_grabber"><input id="human_checkbox"  type="checkbox" value="Human" class="race_class_2"/>Human </li></span>
+								<span class="chain"><li class="race_grabber race_dropdown_option_checker"><input id="human_checkbox"  type="checkbox" value="Human" class="race_class_2"/>Human </li></span>
 								<ul id="human_dropdown" class="huge_margins">
 										<label><li><input type="checkbox" value="Human (Calishite)" class="race_class"/>Human (Calishite)</li></label>
 										<label><li><input type="checkbox" value="Human (Chondathan)" class="race_class"/>Human (Chondathan)</li></label>
@@ -93,7 +93,7 @@
 										<label><li><input type="checkbox" value="Human (Turami)" class="race_class"/>Human (Turami)</li></label>
 								</ul>
 							</div>
-							<label><li class="race_grabber"><input type="checkbox" value="Tiefling" class="race_class"/>Tiefling </li></label>
+							<label><li class="race_grabber race_dropdown_option_checker"><input type="checkbox" value="Tiefling" class="race_class race_class_2"/>Tiefling </li></label>
 					</ul>
 				</div>
 			</div>
@@ -103,24 +103,24 @@
 					<span id="Background_Text" class="anchor">Select Background:</span>
 					<ul id="background_dropdown" class="items">
 							<label><li><input type="checkbox" value="Random" id="background_random" checked>Random</li></label>
-							<label><li><input type="checkbox" value="Acolyte" class="background_class"/>Acolyte</li></label>
-							<label><li><input type="checkbox" value="Charlatan" class="background_class"/>Charlatan</li></label>
-							<label><li><input type="checkbox" value="Criminal" class="background_class"/>Criminal</li></label>
-							<label><li><input type="checkbox" value="Entertainer" class="background_class"/>Entertainer</li></label>
-							<label><li><input type="checkbox" value="Folk Hero" class="background_class"/>Folk Hero</li></label>
-							<label><li><input type="checkbox" value="Gladiator" class="background_class"/>Gladiator</li></label>
-							<label><li><input type="checkbox" value="Guild Artisan" class="background_class"/>Guild Artisan</li></label>
-							<label><li><input type="checkbox" value="Guild Merchant" class="background_class"/>Guild Merchant</li></label>
-							<label><li><input type="checkbox" value="Hermit" class="background_class"/>Hermit</li></label>
-							<label><li><input type="checkbox" value="Knight" class="background_class"/>Knight</li></label>
-							<label><li><input type="checkbox" value="Noble" class="background_class"/>Noble</li></label>
-							<label><li><input type="checkbox" value="Outlander" class="background_class"/>Outlander</li></label>
-							<label><li><input type="checkbox" value="Sage" class="background_class"/>Sage</li></label>
-							<label><li><input type="checkbox" value="Sailor" class="background_class"/>Sailor</li></label>
-							<label><li><input type="checkbox" value="Soldier" class="background_class"/>Soldier</li></label>
-							<label><li><input type="checkbox" value="Spy" class="background_class"/>Spy</li></label>
-							<label><li><input type="checkbox" value="Pirate" class="background_class"/>Pirate</li></label>
-							<label><li><input type="checkbox" value="Urchin" class="background_class"/>Urchin</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Acolyte" class="background_class"/>Acolyte</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Charlatan" class="background_class"/>Charlatan</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Criminal" class="background_class"/>Criminal</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Entertainer" class="background_class"/>Entertainer</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Folk Hero" class="background_class"/>Folk Hero</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Gladiator" class="background_class"/>Gladiator</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Guild Artisan" class="background_class"/>Guild Artisan</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Guild Merchant" class="background_class"/>Guild Merchant</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Hermit" class="background_class"/>Hermit</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Knight" class="background_class"/>Knight</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Noble" class="background_class"/>Noble</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Outlander" class="background_class"/>Outlander</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Sage" class="background_class"/>Sage</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Sailor" class="background_class"/>Sailor</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Soldier" class="background_class"/>Soldier</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Spy" class="background_class"/>Spy</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Pirate" class="background_class"/>Pirate</li></label>
+							<label><li class="background_dropdown_option_checker"><input type="checkbox" value="Urchin" class="background_class"/>Urchin</li></label>
 					</ul>
 				</div>
 			</div>
@@ -130,18 +130,18 @@
 					<span id="Class_Text" class="anchor">Select Class:</span>
 					<ul id="class_dropdown" class="items">
 							<label><li><input type="checkbox" value="Random" id="class_random" checked>Random</li></label>
-							<label><li><input type="checkbox" value="Barbarian" class="class_class"/>Barbarian</li></label>
-							<label><li><input type="checkbox" value="Bard" class="class_class"/>Bard</li></label>
-							<label><li><input type="checkbox" value="Cleric" class="class_class"/>Cleric</li></label>
-							<label><li><input type="checkbox" value="Druid" class="class_class"/>Druid</li></label>
-							<label><li><input type="checkbox" value="Fighter" class="class_class"/>Fighter</li></label>
-							<label><li><input type="checkbox" value="Monk" class="class_class"/>Monk</li></label>
-							<label><li><input type="checkbox" value="Paladin" class="class_class"/>Paladin</li></label>
-							<label><li><input type="checkbox" value="Ranger" class="class_class"/>Ranger</li></label>
-							<label><li><input type="checkbox" value="Rogue" class="class_class"/>Rogue</li></label>
-							<label><li><input type="checkbox" value="Sorcerer" class="class_class"/>Sorcerer</li></label>
-							<label><li><input type="checkbox" value="Warlock" class="class_class"/>Warlock</li></label>
-							<label><li><input type="checkbox" value="Wizard" class="class_class"/>Wizard</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Barbarian" class="class_class"/>Barbarian</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Bard" class="class_class"/>Bard</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Cleric" class="class_class"/>Cleric</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Druid" class="class_class"/>Druid</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Fighter" class="class_class"/>Fighter</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Monk" class="class_class"/>Monk</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Paladin" class="class_class"/>Paladin</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Ranger" class="class_class"/>Ranger</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Rogue" class="class_class"/>Rogue</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Sorcerer" class="class_class"/>Sorcerer</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Warlock" class="class_class"/>Warlock</li></label>
+							<label><li class="class_dropdown_option_checker"><input type="checkbox" value="Wizard" class="class_class"/>Wizard</li></label>
 					</ul>
 				</div>
 			</div>
@@ -151,15 +151,15 @@
 					<span id="Alignment_Text" class="anchor">Select Alignment:</span>
 					<ul id="alignment_dropdown" class="items">
 							<label><li><input type="checkbox" value="Random" id="alignment_random" checked>Random</li></label>
-							<label><li><input type="checkbox" value="Lawful Good" class="alignment_class"/>Lawful Good</li></label>
-							<label><li><input type="checkbox" value="Neutral Good" class="alignment_class"/>Neutral Good</li></label>
-							<label><li><input type="checkbox" value="Chaotic Good" class="alignment_class"/>Chaotic Good</li></label>
-							<label><li><input type="checkbox" value="Lawful Neutral" class="alignment_class"/>Lawful Neutral</li></label>
-							<label><li><input type="checkbox" value="Neutral Neutral" class="alignment_class"/>True Neutral</li></label>
-							<label><li><input type="checkbox" value="Chaotic Neutral" class="alignment_class"/>Chaotic Neutral</li></label>
-							<label><li><input type="checkbox" value="Lawful Evil" class="alignment_class"/>Lawful Evil</li></label>
-							<label><li><input type="checkbox" value="Neutral Evil" class="alignment_class"/>Neutral Evil</li></label>
-							<label><li><input type="checkbox" value="Chaotic Evil" class="alignment_class"/>Chaotic Evil</li></label>
+							<label><li class="alignment_dropdown_option_checker"><input type="checkbox" value="Lawful Good" class="alignment_class"/>Lawful Good</li></label>
+							<label><li class="alignment_dropdown_option_checker"><input type="checkbox" value="Neutral Good" class="alignment_class"/>Neutral Good</li></label>
+							<label><li class="alignment_dropdown_option_checker"><input type="checkbox" value="Chaotic Good" class="alignment_class"/>Chaotic Good</li></label>
+							<label><li class="alignment_dropdown_option_checker"><input type="checkbox" value="Lawful Neutral" class="alignment_class"/>Lawful Neutral</li></label>
+							<label><li class="alignment_dropdown_option_checker"><input type="checkbox" value="Neutral Neutral" class="alignment_class"/>True Neutral</li></label>
+							<label><li class="alignment_dropdown_option_checker"><input type="checkbox" value="Chaotic Neutral" class="alignment_class"/>Chaotic Neutral</li></label>
+							<label><li class="alignment_dropdown_option_checker"><input type="checkbox" value="Lawful Evil" class="alignment_class"/>Lawful Evil</li></label>
+							<label><li class="alignment_dropdown_option_checker"><input type="checkbox" value="Neutral Evil" class="alignment_class"/>Neutral Evil</li></label>
+							<label><li class="alignment_dropdown_option_checker"><input type="checkbox" value="Chaotic Evil" class="alignment_class"/>Chaotic Evil</li></label>
 					</ul>
 				</div>
 			</div>
