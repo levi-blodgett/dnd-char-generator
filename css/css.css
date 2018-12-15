@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .race_class, .race_class_2, #race_random {
   margin: 1px 5px 0px 1px !important;
 }
@@ -216,6 +220,15 @@ div.text_below {
   z-index: 999;
 }
 
+.bottom_button, #arrow, .top_buttons, #copyright {
+  outline: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+   user-select: none;
+}
+
 #copyright {
   font-size: 16px;
 }
@@ -224,6 +237,17 @@ div.text_below {
   border: #222 solid 4px;
   border-right: none;
   margin-bottom: 20px;
+}
+
+@media (max-width: 1200px) {
+  #row {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+  .text_below {
+    border-right: #222 solid 4px;
+    margin-bottom: 0px;
+  }
 }
 
 #last_text {
