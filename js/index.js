@@ -1819,7 +1819,7 @@ function generate_character(version) {
     } else if (random === 8) {
       return "Shawm";
     } else if (random === 9) {
-      return "Viol";
+      return "Viola";
     }
   }
 
