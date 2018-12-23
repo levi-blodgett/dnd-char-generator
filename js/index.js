@@ -343,7 +343,8 @@ function generate_character(version) {
     },
     // Create a name pulling from the name object
     CreateNewName: function CreateNewName(firstName, lastName) {
-      if (isNaN(lastName)) {
+      // If they are a Half-orc without a last name, don't append a space.
+      if (lastName === "") {
         var currentName = firstName;
       } else {
         var currentName = firstName + " " + lastName;
@@ -354,18 +355,18 @@ function generate_character(version) {
 
   // Initialize variables
   var knowledgelanguage = "";
-  var firstnombre = undefined;
-  var lastnombre = undefined;
-  var race = undefined;
+  var firstnombre;
+  var lastnombre;
+  var race;
   let excalibur1;
   let excalibur2;
   let excalibur3;
   var gold = 0;
   var armorClass = 0;
-  var i = undefined;
-  var j = undefined;
-  var random = undefined;
-  var random2 = undefined;
+  var i;
+  var j;
+  var random;
+  var random2;
   var alignment_checker = false;
   var equipment = [];
   var spellcastingSection = [];
