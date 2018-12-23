@@ -277,7 +277,7 @@ div.text_below {
   background: white;
 }
 
-#center {
+.center {
   text-align: center;
   margin: 0 auto;
 }
