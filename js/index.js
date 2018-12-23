@@ -24,17 +24,17 @@ var version_for_checking = 0;
 
 // Function that shows/hides whichever section isn't active (either the character page or the information page)
 function show_hide_function() {
-  var x = document.getElementById("last_page");
-  var y = document.getElementById("dnd");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-    y.style.display = "none";
-  } else if (x.style.display === "block") {
-    x.style.display = "none";
-    y.style.display = "block";
+  var last_page = document.getElementById("last_page");
+  var dnd_page = document.getElementById("dnd");
+  if (last_page.style.display === "none") {
+    last_page.style.display = "block";
+    dnd_page.style.display = "none";
+  } else if (last_page.style.display === "block") {
+    last_page.style.display = "none";
+    dnd_page.style.display = "block";
   } else {
-    x.style.display = "block";
-    y.style.display = "none";
+    last_page.style.display = "block";
+    dnd_page.style.display = "none";
   }
   if (document.getElementById("top_button").innerHTML === "Show Information Page") {
     document.getElementById("top_button").innerHTML = "Show Character Page";
@@ -44,11 +44,11 @@ function show_hide_function() {
 }
 
 function show_function() {
-  var x = document.getElementById("last_page");
-  var y = document.getElementById("dnd");
-  if (x.style.display === "block" || null) {
-    x.style.display = "none";
-    y.style.display = "block";
+  var last_page = document.getElementById("last_page");
+  var dnd_page = document.getElementById("dnd");
+  if (last_page.style.display === "block" || null) {
+    last_page.style.display = "none";
+    dnd_page.style.display = "block";
   }
   if (document.getElementById("top_button").innerHTML === "Show Character Page") {
     document.getElementById("top_button").innerHTML = "Show Information Page";
@@ -98,12 +98,12 @@ function roll_version() {
 
   // Get a random stat for an ability score
   function getRandomStat() {
-    var worker = [];
+    var randomStatArray = [];
     for (i = 0; i < 4; i++) {
-      worker.push(getRandom6());
+      randomStatArray.push(getRandom6());
     }
-    removeSmallestNumber(worker);
-    return worker;
+    removeSmallestNumber(randomStatArray);
+    return randomStatArray;
   };
 
   // Function to get the sum of the 4d6 drop lowest that was rolled by getRandomStat()
@@ -233,7 +233,7 @@ function pointbuy_version() {
   function random_array() {
     var number = Math.floor(Math.random() * 65);
     var array = array_of_stat_combos[number];
-    return array
+    return array;
   }
 
   // Final array of the random point buy combination
@@ -343,7 +343,11 @@ function generate_character(version) {
     },
     // Create a name pulling from the name object
     CreateNewName: function CreateNewName(firstName, lastName) {
-      var currentName = firstName + " " + lastName;
+      if (isNaN(lastName)) {
+        var currentName = firstName;
+      } else {
+        var currentName = firstName + " " + lastName;
+      }
       return currentName;
     }
   };
