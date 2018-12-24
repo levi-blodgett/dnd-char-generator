@@ -1,6 +1,6 @@
 const UI_topButtons = document.querySelectorAll('.top_buttons');
 
-function giveStyling(list){
+function buttonStyling(list){
   for (let i = 0; i < list.length; i++) {
     list[i].addEventListener("mousedown", function(){
       list[i].style.background = "#c0c0c0";
@@ -17,4 +17,4 @@ function giveStyling(list){
   }
 }
 
-giveStyling(UI_topButtons);
+buttonStyling(UI_topButtons);
