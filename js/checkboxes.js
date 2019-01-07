@@ -115,3 +115,63 @@ function checkOver(i) {
 }
 
 replaceChecks(false);
+
+// Function to clear all checkboxes and all forms
+function clear_All() {
+  for (var i = 1; i < 250; i++) {
+    var j = i.toString();
+    if (document.getElementById("form" + j + "_1") === null) {
+
+    } else {
+      if (document.getElementById("form" + j + "_1").checked === true) {
+
+      } else {
+        document.getElementById("form" + j + "_1").value = '';
+
+      }
+    }
+
+    if (document.getElementById("form" + j + "_2") === null) {
+
+    } else {
+      if (document.getElementById("form" + j + "_2").checked === true) {
+
+      } else {
+        document.getElementById("form" + j + "_2").value = '';
+      }
+    }
+
+    if (document.getElementById("form" + j + "_3") === null) {
+
+    } else {
+      if (document.getElementById("form" + j + "_3").checked === true) {
+
+      } else {
+        document.getElementById("form" + j + "_3").value = '';
+      }
+    }
+  }
+  for (var i = 1; i < 24; i++) {
+    var j = i.toString();
+    remove_click(j);
+  }
+  click_off(0);
+  strength = 0;
+  dexterity = 0;
+  constitution = 0;
+  intelligence = 0;
+  wisdom = 0;
+  charisma = 0;
+}
+
+// Function to uncheck a checkbox
+function click_off(i) {
+  inputs[i].checked = undefined;
+  setImage(i, 1);
+}
+
+// Function to check a checkbox
+function click_on(i) {
+  inputs[i].checked = 'checked';
+  setImage(i, 0);
+}
