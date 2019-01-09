@@ -1,10 +1,10 @@
-//global variables that can be used by ALL the function son this page.
-var is64;
+// Global letiables that can be used by ALL the function son this page.
+let is64;
 let inputs;
-var states = ['On.png', 'Off.png', 'DownOn.png', 'DownOff.png', 'RollOn.png', 'RollOff.png'];
-var states64 = ['imageOn', 'imageOff', 'imageDownOn', 'imageDownOff', 'imageRollOn', 'imageRollOff'];
+let states = ['On.png', 'Off.png', 'DownOn.png', 'DownOff.png', 'RollOn.png', 'RollOff.png'];
+let states64 = ['imageOn', 'imageOff', 'imageDownOn', 'imageDownOff', 'imageRollOn', 'imageRollOff'];
 
-// set the image, replacing the checkbox from HTML
+// Set the image, replacing the checkbox from HTML
 function setImage(input, state) {
   if (inputs[input].getAttribute('images').charAt(state) === '1') {
     document.getElementById(inputs[input].getAttribute('id')).src = getSrc(input, state);
@@ -12,7 +12,7 @@ function setImage(input, state) {
 }
 
 function getSrc(input, state) {
-  var src;
+  let src;
   if (is64) {
     src = inputs[input].getAttribute(states64[state]);
   } else {
@@ -23,21 +23,21 @@ function getSrc(input, state) {
 
 function replaceChecks(isBase64) {
 
-  is64 = isBase64; //get all the input fields on the page
+  is64 = isBase64; // Get all the input fields on the page
   inputs = document.querySelectorAll('form input.i');
 
-  //cycle through the input fields
-  for (var i = 0; i < inputs.length; i++) {
+  // Cycle through the input fields
+  for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].hasAttribute('images'))
 
-      //check if the input is a checkbox
+      // Check if the input is a checkbox
       if (inputs[i].getAttribute('class') != 'idr-hidden' && inputs[i].getAttribute('data-imageAdded') !== 'true' && (
           inputs[i].getAttribute('type') == 'checkbox' || inputs[i].getAttribute('type') == 'radio')) {
 
-        //create a new image
-        var img = document.createElement('img');
+        // Create a new image
+        let img = document.createElement('img');
 
-        //check if the checkbox is checked
+        // Check if the checkbox is checked
         if (inputs[i].checked) {
           if (inputs[i].getAttribute('images').charAt(0) == '1')
             img.src = getSrc(i, 0);
@@ -46,27 +46,27 @@ function replaceChecks(isBase64) {
             img.src = getSrc(i, 1);
         }
 
-        //set image ID
+        // Set image ID
         img.id = inputs[i].getAttribute('id');
 
-        //set action associations
+        // Set action associations
         img.onclick = new Function('checkClick(' + i + ')');
         img.onmousedown = new Function('checkDown(' + i + ')');
         img.onmouseover = new Function('checkOver(' + i + ')');
         img.onmouseup = new Function('checkRelease(' + i + ')');
         img.onmouseout = new Function('checkRelease(' + i + ')');
 
-        //place image in front of the checkbox
+        // Place image in front of the checkbox
         inputs[i].parentNode.insertBefore(img, inputs[i]);
         inputs[i].setAttribute('data-imageAdded', 'true');
 
-        //hide the checkbox
+        // Hide the checkbox
         inputs[i].style.display = 'none';
       }
   }
 }
 
-//change the checkbox status and the replacement image
+// Change the checkbox status and the replacement image
 function checkClick(i) {
   if (inputs[i].checked) {
     inputs[i].checked = '';
@@ -77,7 +77,7 @@ function checkClick(i) {
     setImage(i, 0);
 
     if (inputs[i].getAttribute('name') != null) {
-      for (var index = 0; index < inputs.length; index++) {
+      for (let index = 0; index < inputs.length; index++) {
         if (index != i && inputs[index].getAttribute('name') == inputs[i].getAttribute('name')) {
           inputs[index].checked = '';
           setImage(index, 1);
@@ -118,8 +118,8 @@ replaceChecks(false);
 
 // Function to clear all checkboxes and all forms
 function clear_All() {
-  for (var i = 1; i < 250; i++) {
-    var j = i.toString();
+  for (let i = 1; i < 250; i++) {
+    let j = i.toString();
     if (document.getElementById("form" + j + "_1") === null) {
 
     } else {
@@ -151,8 +151,8 @@ function clear_All() {
       }
     }
   }
-  for (var i = 1; i < 24; i++) {
-    var j = i.toString();
+  for (let i = 1; i < 24; i++) {
+    let j = i.toString();
     remove_click(j);
   }
   click_off(0);

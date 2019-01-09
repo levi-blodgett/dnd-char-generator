@@ -1,17 +1,51 @@
 // Initialize stats and stats array
-var stats = [];
-var strength = 0;
-var dexterity = 0;
-var constitution = 0;
-var intelligence = 0;
-var wisdom = 0;
-var charisma = 0;
-var stat1 = stats[0];
-var stat2 = stats[1];
-var stat3 = stats[2];
-var stat4 = stats[3];
-var stat5 = stats[4];
-var stat6 = stats[5];
+let stats = [];
+let strength = 0;
+let dexterity = 0;
+let constitution = 0;
+let intelligence = 0;
+let wisdom = 0;
+let charisma = 0;
+let min = 0;
+let max = 0;
+let raciallanguage1 = '';
+let raciallanguage2 = '';
+let stat1 = stats[0];
+let stat2 = stats[1];
+let stat3 = stats[2];
+let stat4 = stats[3];
+let stat5 = stats[4];
+let stat6 = stats[5];
+let newbackground = '';
+let currentName;
+let bardmodifier;
+
+// Create stat modifiers for under the ability scores
+  function statModifierGenerator(stat) {
+    let statModifier = 0;
+    if (3 >= stat) {
+      statModifier = -4;
+    } else if (5 >= stat) {
+      statModifier = -3;
+    } else if (7 >= stat) {
+      statModifier = -2;
+    } else if (9 >= stat) {
+      statModifier = -1;
+    } else if (11 >= stat) {
+      statModifier = 0;
+    } else if (13 >= stat) {
+      statModifier = 1;
+    } else if (15 >= stat) {
+      statModifier = 2;
+    } else if (17 >= stat) {
+      statModifier = 3;
+    } else if (19 >= stat) {
+      statModifier = 4;
+    } else if (20 >= stat) {
+      statModifier = 5;
+    }
+    return statModifier;
+  };
 
 // Initialize length of all arrays
 let lengthOfCheckedRaceArray = 0;
@@ -20,12 +54,12 @@ let lengthOfCheckedClassArray = 0;
 let lengthOfCheckedAlignmentArray = 0;
 
 // To determine which version is being used this variable will be assigned a value at the end of each version's function
-var version_for_checking = 0;
+let version_for_checking = 0;
 
 // Function that shows/hides whichever section isn't active (either the character page or the information page)
 function show_hide_function() {
-  var last_page = document.getElementById("last_page");
-  var dnd_page = document.getElementById("dnd");
+  let last_page = document.getElementById("last_page");
+  let dnd_page = document.getElementById("dnd");
   if (last_page.style.display === "none") {
     last_page.style.display = "block";
     dnd_page.style.display = "none";
@@ -44,8 +78,8 @@ function show_hide_function() {
 }
 
 function show_function() {
-  var last_page = document.getElementById("last_page");
-  var dnd_page = document.getElementById("dnd");
+  let last_page = document.getElementById("last_page");
+  let dnd_page = document.getElementById("dnd");
   if (last_page.style.display === "block" || null) {
     last_page.style.display = "none";
     dnd_page.style.display = "block";
@@ -59,10 +93,10 @@ function standard_version() {
   // STANDARD ARRAY STAT BLOCK
 
   // Standard array used for stats
-  var standard_array = [15, 14, 13, 12, 10, 8];
+  let standard_array = [15, 14, 13, 12, 10, 8];
 
   // Assign the standard array to a different variable
-  var final_stat_array1 = standard_array;
+  let final_stat_array1 = standard_array;
 
   // Assign the shuffled array into individual variables
   stat1 = final_stat_array1[0];
@@ -98,7 +132,7 @@ function roll_version() {
 
   // Get a random stat for an ability score
   function getRandomStat() {
-    var randomStatArray = [];
+    let randomStatArray = [];
     for (i = 0; i < 4; i++) {
       randomStatArray.push(getRandom6());
     }
@@ -108,7 +142,7 @@ function roll_version() {
 
   // Function to get the sum of the 4d6 drop lowest that was rolled by getRandomStat()
   function getSum(stat) {
-    for (var i = 0, sum = 0; i < stat.length; sum += stat[i++]) {}
+    for (let i = 0, sum = 0; i < stat.length; sum += stat[i++]) {}
     return sum;
   };
 
@@ -121,12 +155,12 @@ function roll_version() {
   }
 
   // Block of arrays that are assigned a random stat each
-  var first = getRandomStat();
-  var second = getRandomStat();
-  var third = getRandomStat();
-  var fourth = getRandomStat();
-  var fifth = getRandomStat();
-  var sixth = getRandomStat();
+  let first = getRandomStat();
+  let second = getRandomStat();
+  let third = getRandomStat();
+  let fourth = getRandomStat();
+  let fifth = getRandomStat();
+  let sixth = getRandomStat();
 
   // Block of variables that had arrays that were summed up to equal a single number
   statt1 = getSum(first);
@@ -161,7 +195,7 @@ function pointbuy_version() {
   // POINT BUY STAT BLOCK
 
   // Array of all possible combinations of the point buy system
-  var array_of_stat_combos = [
+  let array_of_stat_combos = [
     [15, 15, 15, 8, 8, 8],
     [15, 15, 14, 10, 8, 8],
     [15, 15, 14, 9, 9, 8],
@@ -231,13 +265,13 @@ function pointbuy_version() {
 
   // Function to shuffle all the numbers in a random point buy combination into random order and return it
   function random_array() {
-    var number = Math.floor(Math.random() * 65);
-    var array = array_of_stat_combos[number];
+    let number = Math.floor(Math.random() * 65);
+    let array = array_of_stat_combos[number];
     return array;
   }
 
   // Final array of the random point buy combination
-  var final_stat_array2 = random_array();
+  let final_stat_array2 = random_array();
 
   // Block of variables that are assigned a random stat each
   stat1 = final_stat_array2[0];
@@ -262,7 +296,7 @@ function pointbuy_version() {
 function generate_character(version) {
 
   // Name generator object that contains all names
-  var Name_Generator = {
+  let Name_Generator = {
     _races: {
       _dragonborn: { // 20 first, 20 last
         firstName: ["Arjhan", "Balasar", "Bharash", "Donaar", "Ghesh", "Heskan", "Kriv", "Medrash", "Mehen", "Nadarr", "Pandjed", "Patrin", "Rhogar", "Shamash", "Shedinn", "Tarhun", "Torinn", "Tever", "Arsiarth", "Griddry"],
@@ -315,7 +349,7 @@ function generate_character(version) {
 
     // Function to get a background that fits their stats
     GetNewBackground: function GetNewBackground() {
-      var newBackground = 0;
+      let newBackground = 0;
       if (strength > 11 && constitution > 9 && intelligence > 11 && dexterity > 11) {
         newBackground = this._backgroundsPhysicalMentalDexterous[Math.floor(Math.random() * 18)];
       } else if (strength > 11 && constitution > 9 && intelligence < 12 && dexterity < 12) {
@@ -345,41 +379,46 @@ function generate_character(version) {
     CreateNewName: function CreateNewName(firstName, lastName) {
       // If they are a Half-orc without a last name, don't append a space.
       if (lastName === "") {
-        var currentName = firstName;
+        currentName = firstName;
       } else {
-        var currentName = firstName + " " + lastName;
+        currentName = firstName + " " + lastName;
       }
       return currentName;
     }
   };
 
   // Initialize variables
-  var knowledgelanguage = "";
-  var firstnombre;
-  var lastnombre;
-  var race;
+  let knowledgelanguage;
+  let knowledgelanguage2;
+  let language;
+  let firstlanguage;
+  let extralanguage;
+  let firstnombre;
+  let lastnombre;
+  let race;
   let excalibur1;
   let excalibur2;
   let excalibur3;
-  var gold = 0;
-  var armorClass = 0;
-  var i;
-  var j;
-  var random;
-  var random2;
-  var alignment_checker = false;
-  var equipment = [];
-  var spellcastingSection = [];
-  var alliesAndOrganizations = [];
-  var features = [];
-  var additionalFeatures = [];
-  var personalityTraits = [];
-  var alignment = [];
-  var ideals = [];
-  var bonds = [];
-  var flaws = [];
-  var proficienciesAndLanguages = [];
-  var profsAndLangs = {
+  let hp = 0;
+  let gold = 0;
+  let armorClass = 0;
+  let i;
+  let j;
+  let random;
+  let random2;
+  let alignment_checker = false;
+  let equipment = [];
+  let spellcastingSection = [];
+  let alliesAndOrganizations = [];
+  let features = [];
+  let additionalFeatures = [];
+  let personalityTraits = [];
+  let alignment = [];
+  let ideals = [];
+  let bonds = [];
+  let flaws = [];
+  let proficienciesAndLanguages = [];
+  let profsAndLangs = {
     languages: [],
     armorproficiencies: [],
     weaponproficiencies: [],
@@ -387,57 +426,57 @@ function generate_character(version) {
   };
 
   // Personality is from race
-  var toughTraits = ["I bend the knee to no man who I deem unworthy.", "I walk my own path, regardless of how others criticize it.", "I love a good insult, even one directed at me.", "I was beaten when I was younger, so I act tough to hide that I'm hurting.", "I watch over those I care for as if they were pups.", "I will crush my enemies, with fury and power.", "I place no stock in wealthy or well-mannered folk.", "Money and manners won't save you from a hungry owlbear.", "I work hard so that I can play hard when the work is done.", "I have a crude sense of humor.", "I am confident and assertive."];
+  let toughTraits = ["I bend the knee to no man who I deem unworthy.", "I walk my own path, regardless of how others criticize it.", "I love a good insult, even one directed at me.", "I was beaten when I was younger, so I act tough to hide that I'm hurting.", "I watch over those I care for as if they were pups.", "I will crush my enemies, with fury and power.", "I place no stock in wealthy or well-mannered folk.", "Money and manners won't save you from a hungry owlbear.", "I work hard so that I can play hard when the work is done.", "I have a crude sense of humor.", "I am confident and assertive."];
 
-  var softTraits = ["There's nothing I like more than a good mystery.", "My friends know they can rely on me, no matter what.", "I face problems head-on. A simple, direct solution is the best path to success.", "I ask a lot of questions.", "I like to walk when I have to think and I HATE being tied up or restrained.", "I'm methodical, calculating, and exacting... unless I've had anything at all to drink.", "I take great pains to always look my best and follow the latest fashions.", "I like meeting new people, I will approach anyone, anytime, anywhere.", "I can find common ground between anyone, even the fiercest enemies", "I see omens in every event and action."];
+  let softTraits = ["There's nothing I like more than a good mystery.", "My friends know they can rely on me, no matter what.", "I face problems head-on. A simple, direct solution is the best path to success.", "I ask a lot of questions.", "I like to walk when I have to think and I HATE being tied up or restrained.", "I'm methodical, calculating, and exacting... unless I've had anything at all to drink.", "I take great pains to always look my best and follow the latest fashions.", "I like meeting new people, I will approach anyone, anytime, anywhere.", "I can find common ground between anyone, even the fiercest enemies", "I see omens in every event and action."];
 
 
   // Ideals are from good/neutral/chaotic
-  var goodIdeals = ["I always try to help those in need, no matter the personal cost.", "I believe beautiful things like art make the world a better place.", "I feel grateful for my life and need it to matter.", "The small and innocent must be cared for and protected.", "I try to help those in need regardless of the cost.", "I must make amends for what people assume I did.", "Every day is a new opportunity to do good in the world.", "Helping others is the most important thing in the world.", "My powers can protect us from all the evils in all the worlds.", "There are all sorts of beings around us; my duty is to prevent them harming good folk."];
+  let goodIdeals = ["I always try to help those in need, no matter the personal cost.", "I believe beautiful things like art make the world a better place.", "I feel grateful for my life and need it to matter.", "The small and innocent must be cared for and protected.", "I try to help those in need regardless of the cost.", "I must make amends for what people assume I did.", "Every day is a new opportunity to do good in the world.", "Helping others is the most important thing in the world.", "My powers can protect us from all the evils in all the worlds.", "There are all sorts of beings around us; my duty is to prevent them harming good folk."];
 
-  var neutralIdeals = ["Respect those that are different and let all be who they wish.", "There is so much to see and learn.", "All have burdens to bear.", "Everyone deserves to feel safe.", "Eat or be eaten.", "People deserve to be treated by their actions, not by someone else's.", "I must never lose control over myself again, not after last time.", "If I follow my own path I will become who I was meant to be.", "I am obsessively focused on uncovering my past.", "Bettering yourself is essential in life."];
+  let neutralIdeals = ["Respect those that are different and let all be who they wish.", "There is so much to see and learn.", "All have burdens to bear.", "Everyone deserves to feel safe.", "Eat or be eaten.", "People deserve to be treated by their actions, not by someone else's.", "I must never lose control over myself again, not after last time.", "If I follow my own path I will become who I was meant to be.", "I am obsessively focused on uncovering my past.", "Bettering yourself is essential in life."];
 
-  var evilIdeals = ["My opinion is the only one that matters and others should reinforce my importance", "The world owes me and I will take what I deserve.", "The only way to overcome adversity is to be powerful.", "I show no mercy to those who oppose me.", "I am a monster that kills monsters.", "I will take what I want or need.", "I will vindicate any wrongdoings against my party or myself.", "If you don't strike first, you die.", "I always have a plan to save myself or my group, regardless of collateral.", "My refined tastes deserve to be catered to."];
+  let evilIdeals = ["My opinion is the only one that matters and others should reinforce my importance", "The world owes me and I will take what I deserve.", "The only way to overcome adversity is to be powerful.", "I show no mercy to those who oppose me.", "I am a monster that kills monsters.", "I will take what I want or need.", "I will vindicate any wrongdoings against my party or myself.", "If you don't strike first, you die.", "I always have a plan to save myself or my group, regardless of collateral.", "My refined tastes deserve to be catered to."];
 
 
   // Bonds are from class
-  var rangerBonds = ["I owe my guild a great debt for forging me into the person I am today.", "My terrain is my home, and I'll fight to defend it.", "No one else should have to endure the hardships I’ve been through.", "My pipe is my favorite thing in the world. I'll pretty much smoke anything in it. It's so relaxing.", "Alcohol, I use it to numb the pain of my past sins that haunt my thoughts almost always.", "Twins? Pfft, I'm a quintuplet!", "My best friend will never walk again because of a battle I provoked. I choose my fights with much greater care now.", "I heard of a perfect place for me, but I seem to travel in the opposite direction.", "My weapon was given to me to protect my land, and I intend to do so, against any threat."];
+  let rangerBonds = ["I owe my guild a great debt for forging me into the person I am today.", "My terrain is my home, and I'll fight to defend it.", "No one else should have to endure the hardships I’ve been through.", "My pipe is my favorite thing in the world. I'll pretty much smoke anything in it. It's so relaxing.", "Alcohol, I use it to numb the pain of my past sins that haunt my thoughts almost always.", "Twins? Pfft, I'm a quintuplet!", "My best friend will never walk again because of a battle I provoked. I choose my fights with much greater care now.", "I heard of a perfect place for me, but I seem to travel in the opposite direction.", "My weapon was given to me to protect my land, and I intend to do so, against any threat."];
 
-  var rogueBonds = [" I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.", "I owe everything to my mentor—a horrible person who’s probably rotting in jail somewhere.", "A powerful person killed someone I love. Some day soon, I'll have my revenge.", "I will become the greatest thief that ever lived.", "I sponsor an orphanage to keep others from enduring what I was forced to endure.", "I escaped poverty once by robbing an important person, and I'm wanted for it.", "I was resurrected after I died, but whoever did the ritual remains a mystery to me.", "I killed a member of a powerful thieves' guild in a dispute over loot once, and now I'm hunted by them.", "I stole from an extremely powerful noble family and they seek to restore their precious heirloom no matter the cost.", "I did what I had to to get by. I hope to never speak of what I've done again."];
+  let rogueBonds = [" I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.", "I owe everything to my mentor—a horrible person who’s probably rotting in jail somewhere.", "A powerful person killed someone I love. Some day soon, I'll have my revenge.", "I will become the greatest thief that ever lived.", "I sponsor an orphanage to keep others from enduring what I was forced to endure.", "I escaped poverty once by robbing an important person, and I'm wanted for it.", "I was resurrected after I died, but whoever did the ritual remains a mystery to me.", "I killed a member of a powerful thieves' guild in a dispute over loot once, and now I'm hunted by them.", "I stole from an extremely powerful noble family and they seek to restore their precious heirloom no matter the cost.", "I did what I had to to get by. I hope to never speak of what I've done again."];
 
-  var barbarianBonds = ["I will do anything to prove myself superior to my hated rival.", "I worked the land, I love the land, and I will protect the land.", "My tools are symbols of my past life, and I carry them so that I will never forget my roots.", "I wish my childhood sweetheart had come with me to pursue my destiny.", "I will face any challenge to win the approval of my family.", "The common folk must see me as a hero of the people.", "It is my duty to provide children to sustain my tribe.", "Someone saved my life on the battlefield. To this day, I will never leave a friend behind.", "Those who fight beside me are those worth dying for.", "A loved one is a werewolf, and I will go to any lengths to protect them and their secret."];
+  let barbarianBonds = ["I will do anything to prove myself superior to my hated rival.", "I worked the land, I love the land, and I will protect the land.", "My tools are symbols of my past life, and I carry them so that I will never forget my roots.", "I wish my childhood sweetheart had come with me to pursue my destiny.", "I will face any challenge to win the approval of my family.", "The common folk must see me as a hero of the people.", "It is my duty to provide children to sustain my tribe.", "Someone saved my life on the battlefield. To this day, I will never leave a friend behind.", "Those who fight beside me are those worth dying for.", "A loved one is a werewolf, and I will go to any lengths to protect them and their secret."];
 
-  var wizardBonds = ["I'm trying to pay off an old debt I owe to a generous benefactor.", "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.", "I work to unearth a library that has been hidden for the past thousand years.", "My life's work is a series of tomes related to a specific field of lore.", "I owe a debt I can never repay to the person who took an interest in me, and more importantly, pity.", "I suffer from an exotic illness which forces me to eat or drink something unusual every day.", "I have been convicted of a crime I did not commit, and am a fugitive from my own land.", "By chance I managed to kill an assassin that targeted me. Now I'm always on the lookout for the next attack.", "I follow the lead of a great idol, whom I style myself and my work after.", "I believe that I may be able to unlock the secrets of magics long lost."];
+  let wizardBonds = ["I'm trying to pay off an old debt I owe to a generous benefactor.", "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.", "I work to unearth a library that has been hidden for the past thousand years.", "My life's work is a series of tomes related to a specific field of lore.", "I owe a debt I can never repay to the person who took an interest in me, and more importantly, pity.", "I suffer from an exotic illness which forces me to eat or drink something unusual every day.", "I have been convicted of a crime I did not commit, and am a fugitive from my own land.", "By chance I managed to kill an assassin that targeted me. Now I'm always on the lookout for the next attack.", "I follow the lead of a great idol, whom I style myself and my work after.", "I believe that I may be able to unlock the secrets of magics long lost."];
 
-  var warlockBonds = ["Something important was taken from me, and I aim to steal it back.", "Nothing is more important than the other members of my family.", "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.", "I sold my soul for power. I hope to do enough deeds to win it back.", "The statue at my home is actually my petrified sister who I've sworn to restore to flesh.", "My father sold his soul to some kind of devil in order to save me from a childhood illness or life threatening event.", "I hate someone, hate them so much it spreads to their family and friends.", "Very distinctive tattoos adorn my arms, and I must keep them covered and hidden lest their secret leads to my death.", "I have a personal vendetta against a very popular person. I only live to see their reputation and fortune torn apart.", "I gave up my most precious possession to secure a deal. I still seek for away to regain it."];
+  let warlockBonds = ["Something important was taken from me, and I aim to steal it back.", "Nothing is more important than the other members of my family.", "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.", "I sold my soul for power. I hope to do enough deeds to win it back.", "The statue at my home is actually my petrified sister who I've sworn to restore to flesh.", "My father sold his soul to some kind of devil in order to save me from a childhood illness or life threatening event.", "I hate someone, hate them so much it spreads to their family and friends.", "Very distinctive tattoos adorn my arms, and I must keep them covered and hidden lest their secret leads to my death.", "I have a personal vendetta against a very popular person. I only live to see their reputation and fortune torn apart.", "I gave up my most precious possession to secure a deal. I still seek for away to regain it."];
 
-  var clericBonds = ["I would die to recover an ancient relic of my faith that was lost long ago.", "I owe my life to the priest who took me in when my parents died.", "I will do anything to protect the temple where I served.", "I seek to preserve a sacred text that my enemies consider heretical and seek to destroy.", "I suffer awful visions of a coming disaster and will do anything to prevent it.", "My uncle is a high ranking member of an important temple, that isn't my deity.", "You may never have heard of my temple, but it is the most precious place on earth.", "My patron brought me from rags to this life, I owe them everything.", "My relic was given to me by a stranger at the lowest point in my life. I draw strength from it.", "My life is a series of signs from my deity."];
+  let clericBonds = ["I would die to recover an ancient relic of my faith that was lost long ago.", "I owe my life to the priest who took me in when my parents died.", "I will do anything to protect the temple where I served.", "I seek to preserve a sacred text that my enemies consider heretical and seek to destroy.", "I suffer awful visions of a coming disaster and will do anything to prevent it.", "My uncle is a high ranking member of an important temple, that isn't my deity.", "You may never have heard of my temple, but it is the most precious place on earth.", "My patron brought me from rags to this life, I owe them everything.", "My relic was given to me by a stranger at the lowest point in my life. I draw strength from it.", "My life is a series of signs from my deity."];
 
-  var bardBonds = ["Somewhere out there, I have a child who doesn't know me. I'm making the world better for him or her.", "My instrument is my most treasured possession, and it reminds me of someone I love.", "Someone stole my precious instrument, and someday I'll get it back.", "I want to be famous, whatever it takes.", "I would do anything for the other members of my old troupe.", "Something from my childhood made me afraid of the dark. To this day, I struggle to enter a cave or other dark, enclosed space.", "I have no memories beyond a few years ago. Flashes of my past sometimes come... I hunger to know who I was.", "When I go out, I'll never do it without the 'gang'. Together we are the life of the party and without them, everything is bleak.", "I have a responsible sibling, whom I love for getting me out of trouble and whom I hate for always showing me up.", "There was a story I read over and over and I model my entire life on it.", "I can't treat women the same as men, they are too beautiful."];
+  let bardBonds = ["Somewhere out there, I have a child who doesn't know me. I'm making the world better for him or her.", "My instrument is my most treasured possession, and it reminds me of someone I love.", "Someone stole my precious instrument, and someday I'll get it back.", "I want to be famous, whatever it takes.", "I would do anything for the other members of my old troupe.", "Something from my childhood made me afraid of the dark. To this day, I struggle to enter a cave or other dark, enclosed space.", "I have no memories beyond a few years ago. Flashes of my past sometimes come... I hunger to know who I was.", "When I go out, I'll never do it without the 'gang'. Together we are the life of the party and without them, everything is bleak.", "I have a responsible sibling, whom I love for getting me out of trouble and whom I hate for always showing me up.", "There was a story I read over and over and I model my entire life on it.", "I can't treat women the same as men, they are too beautiful."];
 
-  var paladinBonds = ["Everything I do is for the common people.", "I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me.", "A proud noble once gave me a horrible beating, and I will take my revenge on any bully I encounter.", "I protect those who cannot protect themselves.", "I fight for those who cannot fight for themselves.", "One day, I'll proudly wear the tabard of my order again.", "My tattoo signifies my membership in a secret fraternity of knights I presumed had all been killed off except for myself.", "When I nearly died, I had visions of the Nine Hells. Now I seek to atone for sins of my past.", "In his youth, my father ran from a great battle and has lived his life under the insult of 'coward'. I hope to prove this a lie.", "A scoundrel stole my family's most treasured heirloom, and I intend to take it back."];
+  let paladinBonds = ["Everything I do is for the common people.", "I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me.", "A proud noble once gave me a horrible beating, and I will take my revenge on any bully I encounter.", "I protect those who cannot protect themselves.", "I fight for those who cannot fight for themselves.", "One day, I'll proudly wear the tabard of my order again.", "My tattoo signifies my membership in a secret fraternity of knights I presumed had all been killed off except for myself.", "When I nearly died, I had visions of the Nine Hells. Now I seek to atone for sins of my past.", "In his youth, my father ran from a great battle and has lived his life under the insult of 'coward'. I hope to prove this a lie.", "A scoundrel stole my family's most treasured heirloom, and I intend to take it back."];
 
-  var sorcererBonds = ["I pursue wealth to secure someone's love.", "I've been searching my whole life for the answer to a certain question.", "In a harbor town, I have a paramour whose eyes nearly stole me from the world.", "I was cheated out of my fair share of the profits, and I want to get my due.", "I do not know my true name. I go by an alias, but seek to discover the secrets of my own past.", "The birthmark on my forehead marks me as the resolution of an ancient prophecy of my people.", "I am driven by nightly dreams about a mysterious figure who repeats an ominous phrase.", "As a child, my twin sacrificed himself to a devil so that I may live, and now haunts my dreams with a motive I've yet to discern.", "My mother is a witch, reviled and cast-out by our village. I have always felt it my duty to protect her.", "I seek to find my true heritage, ever since I learned of it."];
+  let sorcererBonds = ["I pursue wealth to secure someone's love.", "I've been searching my whole life for the answer to a certain question.", "In a harbor town, I have a paramour whose eyes nearly stole me from the world.", "I was cheated out of my fair share of the profits, and I want to get my due.", "I do not know my true name. I go by an alias, but seek to discover the secrets of my own past.", "The birthmark on my forehead marks me as the resolution of an ancient prophecy of my people.", "I am driven by nightly dreams about a mysterious figure who repeats an ominous phrase.", "As a child, my twin sacrificed himself to a devil so that I may live, and now haunts my dreams with a motive I've yet to discern.", "My mother is a witch, reviled and cast-out by our village. I have always felt it my duty to protect her.", "I seek to find my true heritage, ever since I learned of it."];
 
-  var monkBonds = ["Someone I loved died because of a mistake I made. That will never happen again.", "Nothing is more important than the other members of my order.", "I'm still seeking the enlightenment I pursued in my seclusion, and it still eludes me.", "I entered seclusion because I loved someone I could not have.", "Should my discovery come to light, it could bring ruin to the world.", "My isolation gave me great insight into a great evil that only I can destroy.", "I work to preserve a monastery.", "I have vivid, repeated visions of someone's death, and though I have never met this person, somehow I know I will.", "In the east, I see a golden light emerging from the heavens at uncertain intervals. No one else seems to be able to see this light.", "During my enlightenment I was told in a dream to find a particular group of people, and follow them to the ends of the world."];
+  let monkBonds = ["Someone I loved died because of a mistake I made. That will never happen again.", "Nothing is more important than the other members of my order.", "I'm still seeking the enlightenment I pursued in my seclusion, and it still eludes me.", "I entered seclusion because I loved someone I could not have.", "Should my discovery come to light, it could bring ruin to the world.", "My isolation gave me great insight into a great evil that only I can destroy.", "I work to preserve a monastery.", "I have vivid, repeated visions of someone's death, and though I have never met this person, somehow I know I will.", "In the east, I see a golden light emerging from the heavens at uncertain intervals. No one else seems to be able to see this light.", "During my enlightenment I was told in a dream to find a particular group of people, and follow them to the ends of the world."];
 
-  var druidBonds = ["I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.", "Should my discovery come to light, it could bring ruin to the world.", "An injury to the unspoiled wilderness of my home is an injury to me.", "I will bring terrible wrath down on the evildoers who destroyed my homeland.", "I am the last of my tribe, and it is up to me to ensure their names enter legend.", "His pet tarantula 'Karace' that lives in his hair and spins him silk that he uses for making dream catchers.", "My best friend was experimented on by a wizard, and still suffers to this day. I wish to find a way to cure them.", "There is a former friend whom I hurt terribly. I want to make it up , but I don't dare get close in fear of making it worse.", "When I was first learning my druidic powers, I crippled my clan's sacred tree that hosts our deity.", "My druidic focus has been passed down over ten generations, I must protect it, and with it, my people."];
+  let druidBonds = ["I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.", "Should my discovery come to light, it could bring ruin to the world.", "An injury to the unspoiled wilderness of my home is an injury to me.", "I will bring terrible wrath down on the evildoers who destroyed my homeland.", "I am the last of my tribe, and it is up to me to ensure their names enter legend.", "His pet tarantula 'Karace' that lives in his hair and spins him silk that he uses for making dream catchers.", "My best friend was experimented on by a wizard, and still suffers to this day. I wish to find a way to cure them.", "There is a former friend whom I hurt terribly. I want to make it up , but I don't dare get close in fear of making it worse.", "When I was first learning my druidic powers, I crippled my clan's sacred tree that hosts our deity.", "My druidic focus has been passed down over ten generations, I must protect it, and with it, my people."];
 
-  var fighterBonds = ["I idolize a hero of the old tales and measure my deeds against that person's.", "I have a family, but I have no idea where they are. One day, I hope to see them again.", "My tribe is the most important thing in my life, even when they are far from me.", "I would still lay down my life for the people I went to war beside.", "My honor is my life.", "I'll never forget the crushing defeat my tribe suffered or the enemies who dealt it.", "My weapon is a family heirloom, it's by far my most precious possession.", "I keep as many weapons on my as I can in case I drop one.", "My ancestor was quite famous, and I wish to overshadow their legacy with my own.", "I was raised as the hostage of an enemy clan, where I befriended the enemy clan's heir. "];
+  let fighterBonds = ["I idolize a hero of the old tales and measure my deeds against that person's.", "I have a family, but I have no idea where they are. One day, I hope to see them again.", "My tribe is the most important thing in my life, even when they are far from me.", "I would still lay down my life for the people I went to war beside.", "My honor is my life.", "I'll never forget the crushing defeat my tribe suffered or the enemies who dealt it.", "My weapon is a family heirloom, it's by far my most precious possession.", "I keep as many weapons on my as I can in case I drop one.", "My ancestor was quite famous, and I wish to overshadow their legacy with my own.", "I was raised as the hostage of an enemy clan, where I befriended the enemy clan's heir. "];
 
 
   // Flaws are from lawful/neutral/chaotic
-  var lawfulFlaws = ["I have a 'tell' that reveals when I'm lying.", "I have trouble keeping my true feelings hidden.", "I'm quick to assume that someone is trying to cheat me.", "No one must ever learn that I once stole money from my people.", "I would kill to acquire a noble title.", "I am slow to trust members of other races.", "I overlook obvious solutions in favor of complicated ones.", "I follow orders, even if I think they're wrong.", "Upon touching a new weapon for the first time, roll a d100. If 100, the weapon bursts into flames and turns to ash.", "Small bladder."];
+  let lawfulFlaws = ["I have a 'tell' that reveals when I'm lying.", "I have trouble keeping my true feelings hidden.", "I'm quick to assume that someone is trying to cheat me.", "No one must ever learn that I once stole money from my people.", "I would kill to acquire a noble title.", "I am slow to trust members of other races.", "I overlook obvious solutions in favor of complicated ones.", "I follow orders, even if I think they're wrong.", "Upon touching a new weapon for the first time, roll a d100. If 100, the weapon bursts into flames and turns to ash.", "Small bladder."];
 
-  var neutralFlaws = ["I'm a sucker for a pretty face.", "I let my need to win arguments overshadow friendships and harmony.", "I like keeping secrets and won't share them with anyone.", "I secretly believe that everyone is beneath me.", "I have an insatiable desire for carnal pleasures.", "I believe every villager and towns person is out to get me.", "I can't keep a secret to save my life, or anyone else's.", "My pride will probably lead to my destruction.", "Color blind.", "I am grandiose, I believe everything is about me in the end, no matter how unrelated."];
+  let neutralFlaws = ["I'm a sucker for a pretty face.", "I let my need to win arguments overshadow friendships and harmony.", "I like keeping secrets and won't share them with anyone.", "I secretly believe that everyone is beneath me.", "I have an insatiable desire for carnal pleasures.", "I believe every villager and towns person is out to get me.", "I can't keep a secret to save my life, or anyone else's.", "My pride will probably lead to my destruction.", "Color blind.", "I am grandiose, I believe everything is about me in the end, no matter how unrelated."];
 
-  var chaoticFlaws = ["I'd rather kill someone in their sleep then fight fair.", "I can't resist messing with people who are more powerful than me.", "If there's a plan, I'll forget it. If I don't forget it, I'll ignore it.", "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around.", "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat.", "Despite my best efforts, I am unreliable to my friends.", "The tyrant who rules my land will stop at nothing to see me killed.", "I too often hear veiled insults and threats in every word addressed to me, and I'm quick to anger.", "There's no room for caution in a life lived to the fullest.", "Narrates own thoughts."];
+  let chaoticFlaws = ["I'd rather kill someone in their sleep then fight fair.", "I can't resist messing with people who are more powerful than me.", "If there's a plan, I'll forget it. If I don't forget it, I'll ignore it.", "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around.", "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat.", "Despite my best efforts, I am unreliable to my friends.", "The tyrant who rules my land will stop at nothing to see me killed.", "I too often hear veiled insults and threats in every word addressed to me, and I'm quick to anger.", "There's no room for caution in a life lived to the fullest.", "Narrates own thoughts."];
 
   // Block that initializes class variables for the class section of code
-  var classlevel = '';
-  var random_class_variable = getRandom12();
-  var random_chance = Math.random();
-  var cleric_type = '';
+  let classlevel = '';
+  let random_class_variable = getRandom12();
+  let random_chance = Math.random();
+  let cleric_type = '';
 
   // Function to assign stats based on the class that was rolled.
   function assign_stats(strength1, dexterity1, constitution1, intelligence1, wisdom1, charisma1, classtype) {
@@ -447,7 +486,7 @@ function generate_character(version) {
     intelligence += intelligence1;
     wisdom += wisdom1;
     charisma += charisma1;
-    var stat_total = strength1 + dexterity1 + intelligence1 + constitution1 + wisdom1 + charisma1;
+    let stat_total = strength1 + dexterity1 + intelligence1 + constitution1 + wisdom1 + charisma1;
     // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
     document.getElementById("form98_1").value = classtype + "(" + stat_total + "): " + strength1 + ", " + dexterity1 + ", " + constitution1 + ", " + intelligence1 + ", " + wisdom1 + ", " + charisma1;
   }
@@ -589,12 +628,21 @@ function generate_character(version) {
     }
   }
 
+  // Creating modifiers for each stat
+  let strengthModifier = statModifierGenerator(strength);
+  let dexterityModifier = statModifierGenerator(dexterity);
+  let constitutionModifier = statModifierGenerator(constitution);
+  let intelligenceModifier = statModifierGenerator(intelligence);
+  let wisdomModifier = statModifierGenerator(wisdom);
+  let charismaModifier = statModifierGenerator(charisma);
+  let hitDiceModifier = statModifierGenerator(constitution);
+
   // Create variables for the name generator to use
-  var firstNameNumber = Math.floor(Math.random() * 20);
-  var lastNameNumber = Math.floor(Math.random() * 20);
+  let firstNameNumber = Math.floor(Math.random() * 20);
+  let lastNameNumber = Math.floor(Math.random() * 20);
 
   // Random number generator assigned to a variable
-  var number = Math.floor(Math.random() * 9);
+  let number = Math.floor(Math.random() * 9);
 
   
 
@@ -636,8 +684,8 @@ function generate_character(version) {
 
   // Function to minimize code when assigning race based on user-choice
   function RaceGenerator(racename) {
-    var racenamelower = racename.toLowerCase();
-    var racenamelowerstring = '_' + racenamelower.toString();
+    let racenamelower = racename.toLowerCase();
+    let racenamelowerstring = '_' + racenamelower.toString();
     firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
     lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
     if (racename === "HalfElf") {
@@ -744,23 +792,23 @@ function generate_character(version) {
     }
 
     if (excalibur3 === undefined){
-      var racenamelower = actualRace.toLowerCase();
-      var racenamelowerstring = '_' + racenamelower.toString();
+      let racenamelower = actualRace.toLowerCase();
+      let racenamelowerstring = '_' + racenamelower.toString();
       firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
       lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
     } else if (excalibur1 === "Human") {
-      var racenamelower = excalibur1.toLowerCase();
-      var racenamelowerstring = '_' + racenamelower.toString();
+      let racenamelower = excalibur1.toLowerCase();
+      let racenamelowerstring = '_' + racenamelower.toString();
       firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
       lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
     } else if (excalibur3 === "(Drow)") {
-      var racenamelower = "Elf";
-      var racenamelowerstring = '_' + racenamelower.toString();
+      let racenamelower = "Elf";
+      let racenamelowerstring = '_' + racenamelower.toString();
       firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
       lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
     } else {
-      var racenamelower = excalibur3.toLowerCase();
-      var racenamelowerstring = '_' + racenamelower.toString();
+      let racenamelower = excalibur3.toLowerCase();
+      let racenamelowerstring = '_' + racenamelower.toString();
       firstnombre = Name_Generator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
       lastnombre = Name_Generator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
     }
@@ -787,15 +835,15 @@ function generate_character(version) {
     
     // Find Background value
     let actualBackground = arrayOfCheckedBackgrounds[BackgroundRandomizerNumber];
-    let newbackground = actualBackground;
+    newbackground = actualBackground;
     return newbackground;
   }
 
   // Generates background based on user input
   if (document.getElementById('background_random').checked) {
-    var newbackground = Name_Generator.GetNewBackground();
+    newbackground = Name_Generator.GetNewBackground();
   } else {
-    var newbackground = BackgroundDropdownGenerator();
+    newbackground = BackgroundDropdownGenerator();
   }
 
   // Function to help facilitate easier code for alignment picking
@@ -846,9 +894,9 @@ function generate_character(version) {
 
   } else {
     let BalMor = AlignmentDropdownGenerator();
-    var bal = BalMor.split(' ', 1).toString();
-    var mor1 = BalMor.split(' ', 2);
-    var mor = mor1[1].toString();
+    let bal = BalMor.split(' ', 1).toString();
+    let mor1 = BalMor.split(' ', 2);
+    let mor = mor1[1].toString();
     alignment_helper(bal, mor);
   }
 
@@ -869,8 +917,8 @@ function generate_character(version) {
 
   // Function to get a random interger between a minimum value and a maximum value
   function getRandomInt(min, max) {
-    var min = Math.ceil(min);
-    var max = Math.floor(max);
+    min = Math.ceil(min);
+    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
 
@@ -915,23 +963,23 @@ function generate_character(version) {
   };
 
   // Array of standard languages
-  var listofstandardlanguages = ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc"];
+  let listofstandardlanguages = ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc"];
 
   // Array of exotic languages
-  var listofexoticlanguages = ["Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"];
+  let listofexoticlanguages = ["Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"];
 
   // Function to choose a random language, with a small chance for exotic languages
   function randomLanguage() {
-    var random = Math.random();
-    var randomStandardLanguageNumber = Math.floor(Math.random() * 7);
-    var randomExoticLanguageNumber = Math.floor(Math.random() * 8);
+    let random = Math.random();
+    let randomStandardLanguageNumber = Math.floor(Math.random() * 7);
+    let randomExoticLanguageNumber = Math.floor(Math.random() * 8);
     while (listofstandardlanguages[randomStandardLanguageNumber] === raciallanguage2) {
       randomStandardLanguageNumber = Math.floor(Math.random() * 7);
     }
     if (random >= .1) {
-      var language = listofstandardlanguages[randomStandardLanguageNumber];
+      let language = listofstandardlanguages[randomStandardLanguageNumber];
     } else {
-      var language = listofexoticlanguages[randomExoticLanguageNumber];
+      let language = listofexoticlanguages[randomExoticLanguageNumber];
     }
     return language;
   }
@@ -983,7 +1031,7 @@ function generate_character(version) {
   }
 
   // Object that contains armor names and their values
-  var armor = {
+  let armor = {
     lightArmor: {
       padded: {
         armorname: "Padded armor",
@@ -1045,16 +1093,16 @@ function generate_character(version) {
   };
 
   // Array that contains list of simple weapons
-  var simpleWeapons = ["club", "dagger", "greatclub", "handaxe", "light hammer", "dart", "light crossbow", "mace", "javelin", "quarterstaff", "shortbow", "sickle", "sling", "spear", "unarmed strike"];
+  let simpleWeapons = ["club", "dagger", "greatclub", "handaxe", "light hammer", "dart", "light crossbow", "mace", "javelin", "quarterstaff", "shortbow", "sickle", "sling", "spear", "unarmed strike"];
 
   // Array that contains list of martial weapons
-  var martialWeapons = ["battleaxe", "flail", "glaive", "greataxe", "greatsword", "halberd", "lance", "longsword", "maul", "morningstar", "pike", "rapier", "scimitar", "shortsword", "trident", "war pick", "warhammer", "whip", "blowgun", "hand crossbow", "heavy crossbow", "longbow"];
+  let martialWeapons = ["battleaxe", "flail", "glaive", "greataxe", "greatsword", "halberd", "lance", "longsword", "maul", "morningstar", "pike", "rapier", "scimitar", "shortsword", "trident", "war pick", "warhammer", "whip", "blowgun", "hand crossbow", "heavy crossbow", "longbow"];
 
   // Variables that contain strings of armor names
-  var lightArmor = "light armor";
-  var mediumArmor = "medium armor";
-  var heavyArmor = "heavy armor";
-  var shield = "shield";
+  let lightArmor = "light armor";
+  let mediumArmor = "medium armor";
+  let heavyArmor = "heavy armor";
+  let shield = "shield";
 
 
   // Function to add weapons to proficiencies section
@@ -1144,10 +1192,10 @@ function generate_character(version) {
 
 
   // Variable used to determine ancestry of the Dragonborn race
-  var ancestry = getRandom10();
+  let ancestry = getRandom10();
 
   // Variable used to determine ancestry of the Human race
-  var ancestryHuman = getRandom9();
+  let ancestryHuman = getRandom9();
 
   // Function to add a racial cantrip to the last form in the cantrip section
   function addRaceCantrip(cantrip) {
@@ -1156,8 +1204,8 @@ function generate_character(version) {
 
   // Race and subrace decider
   if (race === "Dragonborn" || excalibur3 === "Dragonborn") {
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = "Draconic";
+    raciallanguage1 = "Common";
+    raciallanguage2 = "Draconic";
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     strength += 2;
@@ -1188,8 +1236,8 @@ function generate_character(version) {
       }
     }
   } else if (race === "Dwarf" || excalibur3 === "Dwarf") {
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = "Dwarvish";
+    let raciallanguage1 = "Common";
+    let raciallanguage2 = "Dwarvish";
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     constitution += 2;
@@ -1232,8 +1280,8 @@ function generate_character(version) {
       }
     }
   } else if (race === "Halfling" || excalibur3 === "Halfling") {
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = "Halfling";
+    let raciallanguage1 = "Common";
+    let raciallanguage2 = "Halfling";
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     dexterity += 2;
@@ -1250,8 +1298,8 @@ function generate_character(version) {
       }
     }
   } else if (race === "Human" || excalibur1 === "Human") {
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = randomLanguage();
+    let raciallanguage1 = "Common";
+    let raciallanguage2 = randomLanguage();
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     strength += 1;
@@ -1292,8 +1340,8 @@ function generate_character(version) {
       }
     }
   } else if (race === "Gnome" || excalibur3 === "Gnome") {
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = "Gnomish";
+    let raciallanguage1 = "Common";
+    let raciallanguage2 = "Gnomish";
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     intelligence += 2;
@@ -1531,9 +1579,9 @@ function generate_character(version) {
     generateMorality(.66, .3);
   } else if (race === "High Elf") {
     features.push("Darkvision: 60 feet.");
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = "Elvish";
-    var extralanguage = randomLanguage();
+    let raciallanguage1 = "Common";
+    let raciallanguage2 = "Elvish";
+    extralanguage = randomLanguage();
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     profsAndLangs.languages.push(extralanguage);
@@ -1548,8 +1596,8 @@ function generate_character(version) {
     generateMorality(.7, .2);
   } else if (race === "Wood Elf") {
     features.push("Darkvision: 60 feet.");
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = "Elvish";
+    let raciallanguage1 = "Common";
+    let raciallanguage2 = "Elvish";
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     weaponAdder2(weaponAdder("longsword"));
@@ -1562,8 +1610,8 @@ function generate_character(version) {
     generateBalance(.9, .7);
     generateMorality(.6, .2);
   } else if (race === "Dark Elf (Drow)") {
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = "Elvish";
+    let raciallanguage1 = "Common";
+    let raciallanguage2 = "Elvish";
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     weaponAdder2(weaponAdder("rapier"));
@@ -1601,16 +1649,16 @@ function generate_character(version) {
     generateBalance(.6, .4);
     generateMorality(.5, .2);
   } else if (race === "Half-Elf") {
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = "Elvish";
-    var extralanguage = randomLanguage();
+    let raciallanguage1 = "Common";
+    let raciallanguage2 = "Elvish";
+    extralanguage = randomLanguage();
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     profsAndLangs.languages.push(extralanguage);
     charisma += 2;
     randomByLength(softTraits, personalityTraits, "form102_1");
-    var firstNumber = Math.floor(Math.random() * 4);
-    var secondNumber = Math.floor(Math.random() * 4);
+    let firstNumber = Math.floor(Math.random() * 4);
+    let secondNumber = Math.floor(Math.random() * 4);
     while (firstNumber === secondNumber) {
       firstNumber = Math.floor(Math.random() * 4);
       secondNumber = Math.floor(Math.random() * 4);
@@ -1643,8 +1691,8 @@ function generate_character(version) {
     generateBalance(.8, .6);
     generateMorality(.6, .3);
   } else if (race === "Half-Orc") {
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = "Orc";
+    let raciallanguage1 = "Common";
+    let raciallanguage2 = "Orc";
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     strength += 2;
@@ -1657,8 +1705,8 @@ function generate_character(version) {
     generateBalance(.8, .6);
     generateMorality(.7, .4);
   } else if (race === "Tiefling") {
-    var raciallanguage1 = "Common";
-    var raciallanguage2 = "Infernal";
+    let raciallanguage1 = "Common";
+    let raciallanguage2 = "Infernal";
     profsAndLangs.languages.push(raciallanguage1);
     profsAndLangs.languages.push(raciallanguage2);
     features.push("Infernal Legacy: You know the thaumaturgy cantrip, charisma is your spellcasting ability for it.");
@@ -1672,44 +1720,6 @@ function generate_character(version) {
     generateBalance(.8, .6);
     generateMorality(.7, .4);
   };
-
-  // COME BACK TO HERE
-
-  // Create stat modifiers for under the ability scores
-  function statModifierGenerator(stat) {
-    var statModifier = 0;
-    if (3 >= stat) {
-      statModifier = -4;
-    } else if (5 >= stat) {
-      statModifier = -3;
-    } else if (7 >= stat) {
-      statModifier = -2;
-    } else if (9 >= stat) {
-      statModifier = -1;
-    } else if (11 >= stat) {
-      statModifier = 0;
-    } else if (13 >= stat) {
-      statModifier = 1;
-    } else if (15 >= stat) {
-      statModifier = 2;
-    } else if (17 >= stat) {
-      statModifier = 3;
-    } else if (19 >= stat) {
-      statModifier = 4;
-    } else if (20 >= stat) {
-      statModifier = 5;
-    }
-    return statModifier;
-  };
-
-  // Creating modifiers for each stat
-  var strengthModifier = statModifierGenerator(strength);
-  var dexterityModifier = statModifierGenerator(dexterity);
-  var constitutionModifier = statModifierGenerator(constitution);
-  var intelligenceModifier = statModifierGenerator(intelligence);
-  var wisdomModifier = statModifierGenerator(wisdom);
-  var charismaModifier = statModifierGenerator(charisma);
-  var hitDiceModifier = statModifierGenerator(constitution);
 
   // Filling in all skills before proficiencies are put in
   statChecker(dexterityModifier, "form38_1"); // acrobatics
@@ -1731,11 +1741,8 @@ function generate_character(version) {
   statChecker(dexterityModifier, "form32_1"); // stealth
   statChecker(wisdomModifier, "form47_1"); // survival
 
-
-
-
   // Variable that holds the value of just the class, not the level
-  var classs = classlevel.split(" ")[0];
+  let classs = classlevel.split(" ")[0];
 
   // Block that determines the right saving throws by class
   if (classlevel === "Barbarian 1" || classlevel === "Fighter 1" || classlevel === "Monk 1" || classlevel === "Ranger 1") {
@@ -1778,16 +1785,16 @@ function generate_character(version) {
   // Block that determines the right hit die by class
   if (classlevel === "Barbarian 1") {
     statChecker2(constitutionModifier, "form89_1", "1d12");
-    var hp = 12 + constitutionModifier;
+    hp = 12 + constitutionModifier;
   } else if (classlevel === "Fighter 1" || classlevel === "Paladin 1" || classlevel === "Ranger 1") {
     statChecker2(constitutionModifier, "form89_1", "1d10");
-    var hp = 10 + constitutionModifier;
+    hp = 10 + constitutionModifier;
   } else if (classlevel === "Bard 1" || classlevel === "Cleric 1" || classlevel === "Druid 1" || classlevel === "Monk 1" || classlevel === "Rogue 1" || classlevel === "Warlock 1") {
     statChecker2(constitutionModifier, "form89_1", "1d8");
-    var hp = 8 + constitutionModifier;
+    hp = 8 + constitutionModifier;
   } else if (classlevel === "Wizard 1" || classlevel === "Sorcerer 1") {
     statChecker2(constitutionModifier, "form89_1", "1d6");
-    var hp = 6 + constitutionModifier;
+    hp = 6 + constitutionModifier;
   }
 
   // Block that adds proficiency in perception if you are an Elf
@@ -1830,8 +1837,8 @@ function generate_character(version) {
 
   // Function to determine what equipment/spells/features you should have based on your class
   function equipmentChooser(classlevel) {
-    var random = Math.random();
-    var random2 = Math.random();
+    let random = Math.random();
+    let random2 = Math.random();
     if (classlevel === "Barbarian 1") {
       features.push("Rage (2/lr): On your turn, you can enter a rage as a Bonus Action. While raging, you gain the following benefits if you aren't wearing heavy armor: You have advantage on Strength Checks and Strength saving throws. When you make a melee weapon Attack using Strength, you gain a +2 bonus to the damage roll. This bonus increases as you level. You have Resistance to bludgeoning, piercing, and slashing damage. If you are able to cast Spells, you can't cast them or concentrate on them while raging. See player's handbook for more details.");
       features.push("Unarmored Defense: While you are not wearing any armor, your armor class equals 10 + your dexterity modifier + your constitution modifier, usable with shield..");
@@ -1882,21 +1889,21 @@ function generate_character(version) {
       }
     } else if (classlevel === "Bard 1") {
       if (charismaModifier < 1) {
-        var bardmodifier = 1;
+        bardmodifier = 1;
       } else {
-        var bardmodifier = charismaModifier;
+        bardmodifier = charismaModifier;
       }
       features.push("Bardic Inspiration (" + bardmodifier + "/lr): Use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6. Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes.");
       spellcastingSection.push("Bardic Inspiration (" + bardmodifier + "/lr): Use a bonus action to give another creature an inspiration die of 1d6.");
-      var musicalinstrument = randomMusicalInstrument();
+      let musicalinstrument = randomMusicalInstrument();
       toolAdder2(toolAdder(musicalinstrument.toLowerCase()));
       equipment.push(musicalinstrument + " - Focus");
-      var musicalinstrument2 = randomMusicalInstrument();
+      let musicalinstrument2 = randomMusicalInstrument();
       toolAdder2(toolAdder(musicalinstrument2.toLowerCase()));
       if (random > .5) {
         toolAdder2(toolAdder("voice"));
       } else {
-        var musicalinstrument3 = randomMusicalInstrument();
+        let musicalinstrument3 = randomMusicalInstrument();
         toolAdder2(toolAdder(musicalinstrument3.toLowerCase()));
       }
       equipment.push("Leather armor");
@@ -2019,7 +2026,7 @@ function generate_character(version) {
           statChecker3(strengthModifier, "form76_1", "1d8", "B"); // 1st weapon 3rd section
           document.getElementById("form193_3").value = "Divine Favor";
           document.getElementById("form159_3").value = "Shield of Faith";
-          var lightGo = 0;
+          let lightGo = 0;
           if (wisdomModifier <= 0) {
             lightGo = 1;
           } else {
@@ -2170,7 +2177,7 @@ function generate_character(version) {
           statChecker3(strengthModifier, "form76_1", "1d8", "B"); // 1st weapon 3rd section
           document.getElementById("form193_3").value = "Fog Cloud";
           document.getElementById("form159_3").value = "Thunderwave";
-          var lightGo = 0;
+          let lightGo = 0;
           if (wisdomModifier <= 0) {
             lightGo = 1;
           } else {
@@ -2264,11 +2271,11 @@ function generate_character(version) {
             document.getElementById("form129_3").value = "Detect Magic";
           }
           equipment.push("Scale mail");
-          var knowledgelanguage = randomLanguage();
-          var knowledgelanguage = rightLanguage2(knowledgelanguage);
+          knowledgelanguage = randomLanguage();
+          knowledgelanguage = rightLanguage2(knowledgelanguage);
           profsAndLangs.languages.push(knowledgelanguage);
-          var knowledgelanguage2 = randomLanguage();
-          var knowledgelanguage2 = rightLanguage2(knowledgelanguage2);
+          knowledgelanguage2 = randomLanguage();
+          knowledgelanguage2 = rightLanguage2(knowledgelanguage2);
           profsAndLangs.languages.push(knowledgelanguage2);
           document.getElementById("form193_3").value = "Command";
           document.getElementById("form159_3").value = "Identify";
@@ -2329,7 +2336,7 @@ function generate_character(version) {
           }
           document.getElementById("form193_3").value = "Burning Hands";
           document.getElementById("form159_3").value = "Faerie Fire";
-          var lightGo = 0;
+          let lightGo = 0;
           if (wisdomModifier <= 0) {
             lightGo = 1;
           } else {
@@ -2534,9 +2541,9 @@ function generate_character(version) {
       features.push("Unarmored Defense: While you are not wearing any armor or shields, your armor class equals 10 + your dexterity modifier + your wisdom modifier.");
       features.push("Martial Arts: You gain the following benefits when you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:\rYou can use DEX instead of STR for atk and dmg rolls of your unarmed strikes or monk weapons.\rYou can roll a d4 in place of the normal dmg of your unarmed strike or monk weapon.\rWhenever you use the Attack action with an unarmed strike or monk weapon, you can use your bonus action to make an unarmed strike as well.");
       spellcastingSection.push("Martial Arts: When you attack with the above weapons, you can use your bonus action to make an unarmed strike.");
-      var musicalinstrument = randomMusicalInstrument();
+      let musicalinstrument = randomMusicalInstrument();
       toolAdder2(toolAdder(musicalinstrument));
-      var randoartisan = randomArtisanTool();
+      let randoartisan = randomArtisanTool();
       toolAdder2(toolAdder(randoartisan));
       document.getElementById("form78_1").value = "Unarmed"; // 2nd weapon 1st section
       statChecker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
@@ -3015,7 +3022,7 @@ function generate_character(version) {
 
   // Randomize skin based on parameters
   function skinRandomizer(skin1, skin2, skin3, skin4, skin5) {
-    var random = Math.floor(Math.random() * 5);
+    let random = Math.floor(Math.random() * 5);
     if (random === 0) {
       document.getElementById("form2_2").value = skin1;
     } else if (random === 1) {
@@ -3031,7 +3038,7 @@ function generate_character(version) {
 
   // Randomize eye color based on parameters
   function eyeRandomizer(eyecolor1, eyecolor2, eyecolor3, eyecolor4) {
-    var random = Math.floor(Math.random() * 4);
+    let random = Math.floor(Math.random() * 4);
     if (random === 0) {
       document.getElementById("form6_2").value = eyecolor1;
     } else if (random === 1) {
@@ -3045,7 +3052,7 @@ function generate_character(version) {
 
   // Randomize hair based on parameters
   function hairRandomizer(hair1, hair2, hair3, hair4) {
-    var random = Math.floor(Math.random() * 4);
+    let random = Math.floor(Math.random() * 4);
     if (random === 0) {
       document.getElementById("form3_2").value = hair1;
     } else if (random === 1) {
@@ -3059,9 +3066,9 @@ function generate_character(version) {
 
   // Randomize weight based on how strong and tough they are, as well as the races height and weight parameters
   function weightRandomizer(constitutionNumber, strengthNumber, lowestWeight, lowerWeight, mediumWeight, highWeight, higherWeight, highestWeight) {
-    var beefiness = constitutionNumber + strengthNumber;
-    var random = Math.floor(Math.random() * 3);
-    var individualDiscrepancy = 0;
+    let beefiness = constitutionNumber + strengthNumber;
+    let random = Math.floor(Math.random() * 3);
+    let individualDiscrepancy = 0;
     if (random === 0) {
       individualDiscrepancy = -getRandomInt(5, 15);
     } else if (random === 1) {
@@ -3086,9 +3093,9 @@ function generate_character(version) {
 
   // Randomize weight based on how strong and tough they are, as well as the races height and weight parameters, but for the small races
   function weightRandomizerSmall(constitutionNumber, strengthNumber, lowestWeight, lowerWeight, mediumWeight, highWeight, higherWeight, highestWeight) {
-    var beefiness = constitutionNumber + strengthNumber;
-    var random = Math.floor(Math.random() * 3);
-    var individualDiscrepancy = 0;
+    let beefiness = constitutionNumber + strengthNumber;
+    let random = Math.floor(Math.random() * 3);
+    let individualDiscrepancy = 0;
     if (random === 0) {
       individualDiscrepancy = -getRandomInt(1, 3);
     } else if (random === 1) {
@@ -3363,14 +3370,14 @@ function generate_character(version) {
     hairRandomizer("Brown", "Sandy Brown", "Dark Blond", "Auburn"); // hair
     weightRandomizerSmall(constitution, strength, 35, 39, 42, 44, 47, 50); // weight
     eyeRandomizer("Brown", "Hazel", "Green", "Light Brown"); // eyes
-    var size = "small";
+    let size = "small";
   } else if (race === "Stout Halfling") {
     document.getElementById("form5_2").value = getRandomInt(20, 100); // age
     document.getElementById("form1_2").value = getRandomInt(34, 43); // height
     document.getElementById("form1_2").value = Math.floor(document.getElementById("form1_2").value / 12) + "'" + document.getElementById("form1_2").value % 12; //height converter
     skinRandomizer("Pale", "Light Tan", "Pale & Ruddy", "Light", "Fair & Ruddy"); // skin
     hairRandomizer("Brown", "Sandy Brown", "Dark Brown", "Auburn"); // hair
-    var size = "small";
+    let size = "small";
     weightRandomizerSmall(constitution, strength, 37, 41, 44, 46, 49, 52); // weight
     eyeRandomizer("Brown", "Hazel", "Green", "Light Brown"); // eyes
   } else if (race === "Forest Gnome") {
@@ -3381,7 +3388,7 @@ function generate_character(version) {
     hairRandomizer("Blond", "Sandy Brown", "Dark Blond", "Light Brown"); // hair
     weightRandomizerSmall(constitution, strength, 35, 39, 42, 44, 47, 50); // weight
     eyeRandomizer("Icy Blue", "Navy", "Pale Blue", "Bright Blue"); // eyes
-    var size = "small";
+    let size = "small";
   } else if (race === "Rock Gnome") {
     document.getElementById("form5_2").value = getRandomInt(40, 250); // age
     document.getElementById("form1_2").value = getRandomInt(35, 45); // height
@@ -3390,7 +3397,7 @@ function generate_character(version) {
     hairRandomizer("Blond", "Sandy Brown", "Dark Blond", "Light Brown"); // hair
     weightRandomizerSmall(constitution, strength, 37, 41, 44, 46, 49, 52); // weight
     eyeRandomizer("Icy Blue", "Navy", "Pale Blue", "Bright Blue"); // eyes
-    var size = "small";
+    let size = "small";
   } else if (race === "Half-Elf") {
     document.getElementById("form5_2").value = getRandomInt(20, 120); // age
     document.getElementById("form1_2").value = getRandomInt(65, 74); // height
@@ -3638,11 +3645,11 @@ function generate_character(version) {
 
   // Block that determines what equipment/languages/proficiencies/features you get for your background, and adds writing prompts to pg. 2
   if (newbackground === "Acolyte") {
-    var firstlanguage = randomLanguage();
-    var firstlanguage = rightLanguage();
+    let firstlanguage = randomLanguage();
+    firstlanguage = rightLanguage();
     profsAndLangs.languages.push(firstlanguage);
-    var secondlanguage = randomLanguage();
-    var secondlanguage = rightLanguage2(secondlanguage);
+    let secondlanguage = randomLanguage();
+    secondlanguage = rightLanguage();
     profsAndLangs.languages.push(secondlanguage);
     add_click(13);
     statChecker(wisdomModifier + 2, "form35_1");
@@ -3685,7 +3692,7 @@ function generate_character(version) {
     features.push("Criminal Contact: You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances; specifically, you know the local messengers, corrupt caravan masters, and seedy sailors who can deliver messages for you.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become a criminal?\rWhat kind of criminal were you?\rDid you do anything terrible?\rWho is your criminal contact?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from criminal to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r" + "Are you still breaking the law, if not, why the change of heart?";
   } else if (newbackground === "Entertainer") {
-    var musicalinstrument = randomMusicalInstrument();
+    let musicalinstrument = randomMusicalInstrument();
     toolAdder2(toolAdder(musicalinstrument.toLowerCase()));
     toolAdder2(toolAdder("disguise kit"));
     add_click(19);
@@ -3700,7 +3707,7 @@ function generate_character(version) {
     features.push("By Popular Demand: You can always find a place to perform. At that place, you receive free lodging and food of a modest or comfortable standard, as long as you perform each night. Your performance also makes you something of a local figure, when recognized, they typically take a liking to you.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become an entertainer?\rHow did you entertain?\rDo you still have any contacts or people you know from performing?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from entertainer to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newbackground === "Folk Hero") {
-    var artisantool = randomArtisanTool();
+    let artisantool = randomArtisanTool();
     toolAdder2(toolAdder(artisantool.toLowerCase()));
     toolAdder2(toolAdder("land vehicles"));
     add_click(8);
@@ -3716,7 +3723,7 @@ function generate_character(version) {
     features.push("Rustic Hospitality: Since you come from the ranks of the common folk, you fit in among them with ease. You can find a place to hide, rest, or recuperate among other commoners, unless you have shown yourself to be a danger to them. They will shield you from the law or anyone else searching for you, though they will not risk their lives for you.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat made you famous to your people?\rWhy did you leave them?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from folk hero to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newbackground === "Gladiator") {
-    var flashyWeapon = randomFlashyWeapon();
+    let flashyWeapon = randomFlashyWeapon();
     randomFlashyWeaponChecker(flashyWeapon);
     toolAdder2(toolAdder("disguise kit"));
     add_click(19);
@@ -3729,10 +3736,10 @@ function generate_character(version) {
     features.push("By Popular Demand: Can always find a place to perform that is combat-centered. At that place, receive free lodging and food of a modest or comfortable standard, as long as you perform each night. Your performance makes you something of a local figure, when recognized, persons typically take a liking to you.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhy did you become a gladiator?\rWas it slavery?\rWas it money?\rWas it family?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from gladiator to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newbackground === "Guild Artisan") {
-    var firstlanguage = randomLanguage();
-    var firstlanguage = rightLanguage();
+    let firstlanguage = randomLanguage();
+    firstlanguage = rightLanguage();
     profsAndLangs.languages.push(firstlanguage);
-    var artisantool = randomArtisanTool();
+    let artisantool = randomArtisanTool();
     toolAdder2(toolAdder(artisantool.toLowerCase()));
     add_click(13);
     statChecker(wisdomModifier + 2, "form35_1");
@@ -3746,11 +3753,11 @@ function generate_character(version) {
     features.push("Guild Membership: Your fellow guild members will provide you with lodging and food if necessary, and pay for your funeral. If accused of a crime, your guild will support you if innocent or have just cause. 5Gp/month for membership, benefits only if you pay on time.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhy did you become an artisan?\rWhy did you choose your artistry?\rWhat's your guilds name?\rWas it money?\rWas it passion?\rWas it the family business?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from guild artisan to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newbackground === "Guild Merchant") {
-    var firstlanguage = randomLanguage();
-    var firstlanguage = rightLanguage();
+    let firstlanguage = randomLanguage();
+    firstlanguage = rightLanguage();
     profsAndLangs.languages.push(firstlanguage);
-    var secondlanguage = randomLanguage();
-    var secondlanguage = rightLanguage2(secondlanguage);
+    let secondlanguage = randomLanguage();
+    secondlanguage = rightLanguage();
     profsAndLangs.languages.push(secondlanguage);
     add_click(13);
     statChecker(wisdomModifier + 2, "form35_1");
@@ -3765,8 +3772,8 @@ function generate_character(version) {
     features.push("Guild Membership: Your fellow guild members will provide you with lodging and food if necessary, and pay for your funeral. If accused of a crime, your guild will support you if innocent or have just cause. 5Gp/month for membership, benefits only if you pay on time.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhy did you become a merchant?\rWhy did you choose your artistry?\rWhat's your guilds name?\rWas it money?\rWas it passion for trade or meeting new people?\rWas it the family business?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from guild merchant to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newbackground === "Hermit") {
-    var firstlanguage = randomLanguage();
-    var firstlanguage = rightLanguage();
+    let firstlanguage = randomLanguage();
+    firstlanguage = rightLanguage();
     profsAndLangs.languages.push(firstlanguage);
     toolAdder2(toolAdder("herbalism kit"));
     add_click(5);
@@ -3781,8 +3788,8 @@ function generate_character(version) {
     features.push("Discovery: The quiet seclusion of your extended hermitage gave you access to a unique and powerful discovery.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhere were you secluded at?\rDid you travel a lot?\rWhat's your big discovery? Talk it over with your DM as well.\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from hermit to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newbackground === "Knight") {
-    var firstlanguage = randomLanguage();
-    var firstlanguage = rightLanguage();
+    let firstlanguage = randomLanguage();
+    firstlanguage = rightLanguage();
     profsAndLangs.languages.push(firstlanguage);
     toolAdder2(toolAdder(randomGamingSetCapitalize().toLowerCase()));
     add_click(9);
@@ -3800,8 +3807,8 @@ function generate_character(version) {
     features.push("Retainer: You have three retainers loyal to your family. These retainers are a noble-born squire, a groom for your horse, and a servant for mundane tasks. Your retainers are people who can perform tasks for you, but they do not fight for you, will not follow you into dangerous areas, and will leave if they are frequently endangered or abused.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWho is your family?\rAre there any famous persons in it, or is your family famous for something in particular?\rWho is the woman you recieved the emblem of chivalry from?.\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from knight to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newbackground === "Noble") {
-    var firstlanguage = randomLanguage();
-    var firstlanguage = rightLanguage();
+    let firstlanguage = randomLanguage();
+    firstlanguage = rightLanguage();
     profsAndLangs.languages.push(firstlanguage);
     toolAdder2(toolAdder(randomGamingSetCapitalize().toLowerCase()));
     add_click(9);
@@ -3816,7 +3823,7 @@ function generate_character(version) {
     features.push("Position of Privilege: You are welcome in high society, and people assume you have the right to be wherever you are. The common folk and merchants make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWho is your family?\rAre there any famous persons in it, or is your family famous for something in particular?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from noble to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newbackground === "Outlander") {
-    var musicalinstrument = randomMusicalInstrument();
+    let musicalinstrument = randomMusicalInstrument();
     toolAdder2(toolAdder(musicalinstrument.toLowerCase()));
     add_click(2);
     statChecker(strengthModifier + 2, "form49_1");
@@ -3846,11 +3853,11 @@ function generate_character(version) {
     features.push("Bad Reputation: No matter where you go, people are afraid of you due to your reputation. When you are in a civilized settlement, you can get away with minor criminal offenses, such as refusing to pay for food at a tavern or breaking down doors at a local shop, since most people will not report your activity to the authorities.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rHow did you become a pirate?\rDid you have a seaport that was your home?\rDo you still keep in contact with your shipmates?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from pirate to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r" + "Why aren't you a pirate still?";
   } else if (newbackground === "Sage") {
-    var firstlanguage = randomLanguage();
-    var firstlanguage = rightLanguage();
+    let firstlanguage = randomLanguage();
+    firstlanguage = rightLanguage();
     profsAndLangs.languages.push(firstlanguage);
-    var secondlanguage = randomLanguage();
-    var secondlanguage = rightLanguage2(secondlanguage);
+    let secondlanguage = randomLanguage();
+    secondlanguage = rightLanguage();
     profsAndLangs.languages.push(secondlanguage);
     add_click(21);
     statChecker(intelligenceModifier + 2, "form40_1");
@@ -3881,7 +3888,7 @@ function generate_character(version) {
     features.push("Ship's Passage: You can secure free passage on a sailing ship for yourself and your adventuring companions. You might sail on the ship you served on, or another ship you have good relations with. In return for your free passage, you and your companions are expected to assist the crew during the voyage.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rHow did you become a sailor?\rDid you have a seaport that was your home?\rDo you still keep in contact with your shipmates?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from sailor to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r";
   } else if (newbackground === "Soldier") {
-    var soldierGamingSet = randomGamingSetSoldier();
+    let soldierGamingSet = randomGamingSetSoldier();
     toolAdder2(toolAdder(soldierGamingSet.toLowerCase()));
     toolAdder2(toolAdder("land vehicles"));
     add_click(2);
@@ -4259,25 +4266,25 @@ function generate_character(version) {
   };
 
   // Variable that holds your character name
-  var charName = Name_Generator.CreateNewName(firstnombre, lastnombre);
+  let charName = Name_Generator.CreateNewName(firstnombre, lastnombre);
 
   // Variable that holds my name
-  var name = "Your name";
+  let name = "Your name";
 
   // Pushes string to alliesAndOrganizations as a writing prompt
   alliesAndOrganizations.push("Friends? Family? Guild? Crew? Brothers in arms? Priests? Orphans? Good monsters? Lovers? Deities? Rivals? Enemies? Complicated relationships? Party members?");
 
   //Block of arrays that makes new arrays with commas between them
-  var newlangs = profsAndLangs.languages.join(', ');
-  var newweapprofs = profsAndLangs.weaponproficiencies.join(', ');
-  var newarmorprofs = profsAndLangs.armorproficiencies.join(', ');
-  var newtoolprofs = profsAndLangs.toolproficiencies.join(', ');
+  let newlangs = profsAndLangs.languages.join(', ');
+  let newweapprofs = profsAndLangs.weaponproficiencies.join(', ');
+  let newarmorprofs = profsAndLangs.armorproficiencies.join(', ');
+  let newtoolprofs = profsAndLangs.toolproficiencies.join(', ');
 
   //Block of arrays that makes new arrays with the sections at the start
-  var finalLanguages = "Languages: " + newlangs;
-  var finalWeaponProficiencies = "Weapon Proficiencies: " + newweapprofs;
-  var finalArmorProficiencies = "Armor Proficiencies: " + newarmorprofs;
-  var finalToolProficiencies = "Tool Proficiencies: " + newtoolprofs;
+  let finalLanguages = "Languages: " + newlangs;
+  let finalWeaponProficiencies = "Weapon Proficiencies: " + newweapprofs;
+  let finalArmorProficiencies = "Armor Proficiencies: " + newarmorprofs;
+  let finalToolProficiencies = "Tool Proficiencies: " + newtoolprofs;
 
 
   // Pushes arrays to proficienciesAndLanguages
@@ -4515,7 +4522,7 @@ generate_initial_character(standard_version);
 
 // Function to make a skill proficient and checked
 function add_click(j) {
-  var i = j.toString();
+  let i = j.toString();
   document.getElementById("form" + i + "_1").checked = 'checked';
   click_on(i - 1);
 }
@@ -4543,18 +4550,18 @@ function generate_new_character(version) {
 
 
 // // Initialize for 100000 character error checking
-// var cleric_counter = 0;
-// var barbarian_counter = 0;
-// var paladin_counter = 0;
-// var rogue_counter = 0;
-// var ranger_counter = 0;
-// var bard_counter = 0;
-// var monk_counter = 0;
-// var wizard_counter = 0;
-// var sorcerer_counter = 0;
-// var warlock_counter = 0;
-// var fighter_counter = 0;
-// var druid_counter = 0;
+// let cleric_counter = 0;
+// let barbarian_counter = 0;
+// let paladin_counter = 0;
+// let rogue_counter = 0;
+// let ranger_counter = 0;
+// let bard_counter = 0;
+// let monk_counter = 0;
+// let wizard_counter = 0;
+// let sorcerer_counter = 0;
+// let warlock_counter = 0;
+// let fighter_counter = 0;
+// let druid_counter = 0;
 
 // let lawful_good_counter = 0;
 // let neutral_good_counter = 0;

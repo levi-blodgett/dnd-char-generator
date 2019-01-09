@@ -1,7 +1,7 @@
 // Section to foramt the dropdowns
 function formatInitialDropdowns(list, listItems, RandomClass){
-  var checkList = document.getElementById(list);
-  var items = document.getElementById(listItems);
+  let checkList = document.getElementById(list);
+  let items = document.getElementById(listItems);
   checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
       if (items.classList.contains('visible')){
           items.classList.remove('visible');
@@ -50,8 +50,8 @@ formatInitialDropdowns('class_list', 'class_dropdown', 'class_class');
 formatInitialDropdowns('alignment_list', 'alignment_dropdown', 'alignment_class');
 
 function formatSecondaryDropdowns(list, listItems, checkbox){
-  var checkList = document.getElementById(list);
-  var items = document.getElementById(listItems);
+  let checkList = document.getElementById(list);
+  let items = document.getElementById(listItems);
   let checkerino = document.getElementById(checkbox);
   let the_checker = document.querySelectorAll(`ul#${listItems} input.race_class`);
   checkList.getElementsByClassName('chain')[0].addEventListener('click', function() {
