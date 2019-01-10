@@ -21,6 +21,34 @@ let newBackground = 0;
 let currentName;
 let bardmodifier;
 let charName;
+let statModifier;
+let Name_Generator = {};
+
+// Create stat modifiers for under the ability scores
+function statModifierGenerator(stat) {
+  if (3 >= stat) {
+    statModifier = -4;
+  } else if (5 >= stat) {
+    statModifier = -3;
+  } else if (7 >= stat) {
+    statModifier = -2;
+  } else if (9 >= stat) {
+    statModifier = -1;
+  } else if (11 >= stat) {
+    statModifier = 0;
+  } else if (13 >= stat) {
+    statModifier = 1;
+  } else if (15 >= stat) {
+    statModifier = 2;
+  } else if (17 >= stat) {
+    statModifier = 3;
+  } else if (19 >= stat) {
+    statModifier = 4;
+  } else if (20 >= stat) {
+    statModifier = 5;
+  }
+  return statModifier;
+};
 
 // Initialize length of all arrays
 let lengthOfCheckedRaceArray = 0;
@@ -30,196 +58,6 @@ let lengthOfCheckedAlignmentArray = 0;
 
 // To determine which version is being used this variable will be assigned a value at the end of each version's function
 let version_for_checking = 0;
-
-
-
-// Initialize variables
-let knowledgelanguage;
-let knowledgelanguage2;
-let language;
-let firstlanguage;
-let secondlanguage;
-let extralanguage;
-let musicalinstrument;
-let musicalinstrument2;
-let musicalinstrument3;
-let artisantool;
-let randoartisan;
-let soldierGamingSet;
-let flashyWeapon;
-let beefiness;
-let individualDiscrepancy;
-let randomValue;
-let lightGo;
-let firstnombre;
-let lastnombre;
-let race;
-let size;
-let ancestry;
-let ancestryHuman;
-let stat_total;
-let excalibur;
-let excalibur1;
-let excalibur2;
-let excalibur3;
-let nightbringer;
-let nightbringer1;
-let nightbringer2;
-let nightbringer3;
-let i;
-let j;
-let random;
-let random2;
-let classs;
-let classlevel;
-let random_class_variable;
-let random_chance;
-let cleric_type;
-let name;
-let newlangs;
-let newweapprofs;
-let newarmorprofs;
-let newtoolprofs;
-let firstNumber;
-let secondNumber;
-let finalLanguages;
-let finalWeaponProficiencies;
-let finalArmorProficiencies;
-let finalToolProficiencies;
-let array;
-let arrayOfAlignment;
-let lengthOfAlignmentArray;
-let AlignmentRandomizerNumber;
-let actualAlignment;
-let BalMor;
-let bal;
-let statModifier;
-let mor1;
-let mor;
-let arrayOfBackgrounds;
-let lengthOfBackgroundArray;
-let BackgroundRandomizerNumber;
-let actualBackground;
-let racenamelower;
-let racenamelowerstring;
-let arrayOfRaces;
-let lengthOfRaceArray;
-let RaceRandomizerNumber;
-let actualRace;
-let strengthModifier;
-let dexterityModifier;
-let constitutionModifier;
-let intelligenceModifier;
-let wisdomModifier;
-let charismaModifier;
-let hitDiceModifier;
-let firstNameNumber;
-let lastNameNumber;
-let number;
-let race_checker;
-let arrayOfClass;
-let lengthOfClassArray;
-let ClassRandomizerNumber;
-let actualClass;
-let final_stat_array2;
-let first;
-let second;
-let third;
-let fourth;
-let fifth;
-let sixth;
-let last_page;
-let dnd_page;
-let final_stat_array1;
-let alignment_checker = false;
-let hp = 0;
-let gold = 0;
-let armorClass = 0;
-let standard_array = [];
-let randomStatArray = [];
-let array_of_stat_combos = [];
-let arrayOfCheckedClass = [];
-let dwarves = [];
-let dragonborn = [];
-let elves = [];
-let gnomes = [];
-let halflings = [];
-let humans = [];
-let leftoverArray = [];
-let arrayOfCheckedRaces = [];
-let arrayOfCheckedAlignment = [];
-let arrayOfCheckedBackgrounds = [];
-let listofexoticlanguages = [];
-let listofstandardlanguages = [];
-let martialWeapons = [];
-let simpleWeapons = [];
-let equipment = [];
-let spellcastingSection = [];
-let alliesAndOrganizations = [];
-let features = [];
-let additionalFeatures = [];
-let personalityTraits = [];
-let alignment = [];
-let ideals = [];
-let bonds = [];
-let flaws = [];
-let proficienciesAndLanguages = [];
-let toughTraits = [];
-let softTraits = [];
-let goodIdeals = [];
-let neutralIdeals = [];
-let evilIdeals = [];
-let rangerBonds = [];
-let rogueBonds = [];
-let barbarianBonds = [];
-let wizardBonds = [];
-let warlockBonds = [];
-let clericBonds = [];
-let bardBonds = [];
-let paladinBonds = [];
-let sorcererBonds = [];
-let monkBonds = [];
-let druidBonds = [];
-let fighterBonds = [];
-let lawfulFlaws = [];
-let neutralFlaws = [];
-let chaoticFlaws = [];
-let profsAndLangs = {
-  languages: [],
-  armorproficiencies: [],
-  weaponproficiencies: [],
-  toolproficiencies: []
-};
-let armor = {};
-let Name_Generator = {};
-
-// Create stat modifiers for under the ability scores
-  function statModifierGenerator(stat) {
-    if (3 >= stat) {
-      statModifier = -4;
-    } else if (5 >= stat) {
-      statModifier = -3;
-    } else if (7 >= stat) {
-      statModifier = -2;
-    } else if (9 >= stat) {
-      statModifier = -1;
-    } else if (11 >= stat) {
-      statModifier = 0;
-    } else if (13 >= stat) {
-      statModifier = 1;
-    } else if (15 >= stat) {
-      statModifier = 2;
-    } else if (17 >= stat) {
-      statModifier = 3;
-    } else if (19 >= stat) {
-      statModifier = 4;
-    } else if (20 >= stat) {
-      statModifier = 5;
-    }
-    return statModifier;
-  };
-
-
 
 // Function that shows/hides whichever section isn't active (either the character page or the information page)
 function show_hide_function() {
@@ -550,7 +388,163 @@ function generate_character(version) {
     }
   };
 
-  
+  // Initialize variables
+  let knowledgelanguage;
+  let knowledgelanguage2;
+  let language;
+  let firstlanguage;
+  let secondlanguage;
+  let extralanguage;
+  let musicalinstrument;
+  let musicalinstrument2;
+  let musicalinstrument3;
+  let artisantool;
+  let randoartisan;
+  let soldierGamingSet;
+  let flashyWeapon;
+  let beefiness;
+  let individualDiscrepancy;
+  let randomValue;
+  let lightGo;
+  let firstnombre;
+  let lastnombre;
+  let race;
+  let size;
+  let ancestry;
+  let ancestryHuman;
+  let stat_total;
+  let excalibur;
+  let excalibur1;
+  let excalibur2;
+  let excalibur3;
+  let nightbringer;
+  let nightbringer1;
+  let nightbringer2;
+  let nightbringer3;
+  let i;
+  let j;
+  let random;
+  let random2;
+  let classs;
+  let classlevel;
+  let random_class_variable;
+  let random_chance;
+  let cleric_type;
+  let name;
+  let newlangs;
+  let newweapprofs;
+  let newarmorprofs;
+  let newtoolprofs;
+  let firstNumber;
+  let secondNumber;
+  let finalLanguages;
+  let finalWeaponProficiencies;
+  let finalArmorProficiencies;
+  let finalToolProficiencies;
+  let array;
+  let arrayOfAlignment;
+  let lengthOfAlignmentArray;
+  let AlignmentRandomizerNumber;
+  let actualAlignment;
+  let BalMor;
+  let bal;
+  let mor1;
+  let mor;
+  let arrayOfBackgrounds;
+  let lengthOfBackgroundArray;
+  let BackgroundRandomizerNumber;
+  let actualBackground;
+  let racenamelower;
+  let racenamelowerstring;
+  let arrayOfRaces;
+  let lengthOfRaceArray;
+  let RaceRandomizerNumber;
+  let actualRace;
+  let strengthModifier;
+  let dexterityModifier;
+  let constitutionModifier;
+  let intelligenceModifier;
+  let wisdomModifier;
+  let charismaModifier;
+  let hitDiceModifier;
+  let firstNameNumber;
+  let lastNameNumber;
+  let number;
+  let race_checker;
+  let arrayOfClass;
+  let lengthOfClassArray;
+  let ClassRandomizerNumber;
+  let actualClass;
+  let final_stat_array2;
+  let first;
+  let second;
+  let third;
+  let fourth;
+  let fifth;
+  let sixth;
+  let last_page;
+  let dnd_page;
+  let final_stat_array1;
+  let alignment_checker = false;
+  let hp = 0;
+  let gold = 0;
+  let armorClass = 0;
+  let standard_array = [];
+  let randomStatArray = [];
+  let array_of_stat_combos = [];
+  let arrayOfCheckedClass = [];
+  let dwarves = [];
+  let dragonborn = [];
+  let elves = [];
+  let gnomes = [];
+  let halflings = [];
+  let humans = [];
+  let leftoverArray = [];
+  let arrayOfCheckedRaces = [];
+  let arrayOfCheckedAlignment = [];
+  let arrayOfCheckedBackgrounds = [];
+  let listofexoticlanguages = [];
+  let listofstandardlanguages = [];
+  let martialWeapons = [];
+  let simpleWeapons = [];
+  let equipment = [];
+  let spellcastingSection = [];
+  let alliesAndOrganizations = [];
+  let features = [];
+  let additionalFeatures = [];
+  let personalityTraits = [];
+  let alignment = [];
+  let ideals = [];
+  let bonds = [];
+  let flaws = [];
+  let proficienciesAndLanguages = [];
+  let toughTraits = [];
+  let softTraits = [];
+  let goodIdeals = [];
+  let neutralIdeals = [];
+  let evilIdeals = [];
+  let rangerBonds = [];
+  let rogueBonds = [];
+  let barbarianBonds = [];
+  let wizardBonds = [];
+  let warlockBonds = [];
+  let clericBonds = [];
+  let bardBonds = [];
+  let paladinBonds = [];
+  let sorcererBonds = [];
+  let monkBonds = [];
+  let druidBonds = [];
+  let fighterBonds = [];
+  let lawfulFlaws = [];
+  let neutralFlaws = [];
+  let chaoticFlaws = [];
+  let profsAndLangs = {
+    languages: [],
+    armorproficiencies: [],
+    weaponproficiencies: [],
+    toolproficiencies: []
+  };
+  let armor = {};
 
   // Personality is from race
   toughTraits = ["I bend the knee to no man who I deem unworthy.", "I walk my own path, regardless of how others criticize it.", "I love a good insult, even one directed at me.", "I was beaten when I was younger, so I act tough to hide that I'm hurting.", "I watch over those I care for as if they were pups.", "I will crush my enemies, with fury and power.", "I place no stock in wealthy or well-mannered folk.", "Money and manners won't save you from a hungry owlbear.", "I work hard so that I can play hard when the work is done.", "I have a crude sense of humor.", "I am confident and assertive."];
