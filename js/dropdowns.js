@@ -83,8 +83,30 @@ function onRaceDropdownOptionClick(){
   let race_checked_1 = document.getElementById('race_random').checked;
   let racer_2 = 'race_class_2';
   let ID_1 = 'race_random';
-  if (document.getElementById("race_random").checked){
-    document.getElementById("race_random").checked = false;
+  if (document.getElementById(ID_1).checked){
+    document.getElementById(ID_1).checked = false;
+  } else if (race_checked_1 === false){ 
+    lengthOfArray = document.querySelectorAll(`input.${racer_2}`).length;
+    arraything = document.querySelectorAll(`input.${racer_2}`);
+    checkerarray= [];
+    for(i=0; i < lengthOfArray; i++){
+      if (arraything[i].checked === true) {
+        checkerarray.push(arraything[i]);
+      }
+    }
+    if (checkerarray.length === 0){
+      document.getElementById(ID_1).checked = true;
+    }
+  }
+}
+
+// Event listener function to check if the random race checkmark is checked
+function onSubraceDropdownOptionClick(){
+  let race_checked_1 = document.getElementById('race_random').checked;
+  let racer_2 = 'race_class';
+  let ID_1 = 'race_random';
+  if (document.getElementById(ID_1).checked){
+    document.getElementById(ID_1).checked = false;
   } else if (race_checked_1 === false){ 
     lengthOfArray = document.querySelectorAll(`input.${racer_2}`).length;
     arraything = document.querySelectorAll(`input.${racer_2}`);
@@ -169,6 +191,11 @@ function onAlignmentDropdownOptionClick(){
 let all_race_dropdowns = document.querySelectorAll('.race_dropdown_option_checker');
 for(i=0; i < all_race_dropdowns.length; i++){
   all_race_dropdowns[i].addEventListener('click', onRaceDropdownOptionClick, false);
+}
+
+let all_subrace_dropdowns = document.querySelectorAll('.subrace_dropdown_option_checker');
+for(i=0; i < all_subrace_dropdowns.length; i++){
+  all_subrace_dropdowns[i].addEventListener('click', onSubraceDropdownOptionClick, false);
 }
 
 let all_background_dropdowns = document.querySelectorAll('.background_dropdown_option_checker');
