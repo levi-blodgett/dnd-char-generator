@@ -17,13 +17,184 @@ let stat4 = stats[3];
 let stat5 = stats[4];
 let stat6 = stats[5];
 let newbackground = '';
+let newBackground = 0;
 let currentName;
 let bardmodifier;
 let charName;
 
+// Initialize length of all arrays
+let lengthOfCheckedRaceArray = 0;
+let lengthOfCheckedBackgroundArray = 0;
+let lengthOfCheckedClassArray = 0;
+let lengthOfCheckedAlignmentArray = 0;
+
+// To determine which version is being used this variable will be assigned a value at the end of each version's function
+let version_for_checking = 0;
+
+
+
+// Initialize variables
+let knowledgelanguage;
+let knowledgelanguage2;
+let language;
+let firstlanguage;
+let secondlanguage;
+let extralanguage;
+let musicalinstrument;
+let musicalinstrument2;
+let musicalinstrument3;
+let artisantool;
+let randoartisan;
+let soldierGamingSet;
+let flashyWeapon;
+let beefiness;
+let individualDiscrepancy;
+let randomValue;
+let lightGo;
+let firstnombre;
+let lastnombre;
+let race;
+let size;
+let ancestry;
+let ancestryHuman;
+let stat_total;
+let excalibur;
+let excalibur1;
+let excalibur2;
+let excalibur3;
+let nightbringer;
+let nightbringer1;
+let nightbringer2;
+let nightbringer3;
+let i;
+let j;
+let random;
+let random2;
+let classs;
+let classlevel;
+let random_class_variable;
+let random_chance;
+let cleric_type;
+let name;
+let newlangs;
+let newweapprofs;
+let newarmorprofs;
+let newtoolprofs;
+let firstNumber;
+let secondNumber;
+let finalLanguages;
+let finalWeaponProficiencies;
+let finalArmorProficiencies;
+let finalToolProficiencies;
+let array;
+let arrayOfAlignment;
+let lengthOfAlignmentArray;
+let AlignmentRandomizerNumber;
+let actualAlignment;
+let BalMor;
+let bal;
+let statModifier;
+let mor1;
+let mor;
+let arrayOfBackgrounds;
+let lengthOfBackgroundArray;
+let BackgroundRandomizerNumber;
+let actualBackground;
+let racenamelower;
+let racenamelowerstring;
+let arrayOfRaces;
+let lengthOfRaceArray;
+let RaceRandomizerNumber;
+let actualRace;
+let strengthModifier;
+let dexterityModifier;
+let constitutionModifier;
+let intelligenceModifier;
+let wisdomModifier;
+let charismaModifier;
+let hitDiceModifier;
+let firstNameNumber;
+let lastNameNumber;
+let number;
+let race_checker;
+let arrayOfClass;
+let lengthOfClassArray;
+let ClassRandomizerNumber;
+let actualClass;
+let final_stat_array2;
+let first;
+let second;
+let third;
+let fourth;
+let fifth;
+let sixth;
+let last_page;
+let dnd_page;
+let final_stat_array1;
+let alignment_checker = false;
+let hp = 0;
+let gold = 0;
+let armorClass = 0;
+let standard_array = [];
+let randomStatArray = [];
+let array_of_stat_combos = [];
+let arrayOfCheckedClass = [];
+let dwarves = [];
+let dragonborn = [];
+let elves = [];
+let gnomes = [];
+let halflings = [];
+let humans = [];
+let leftoverArray = [];
+let arrayOfCheckedRaces = [];
+let arrayOfCheckedAlignment = [];
+let arrayOfCheckedBackgrounds = [];
+let listofexoticlanguages = [];
+let listofstandardlanguages = [];
+let martialWeapons = [];
+let simpleWeapons = [];
+let equipment = [];
+let spellcastingSection = [];
+let alliesAndOrganizations = [];
+let features = [];
+let additionalFeatures = [];
+let personalityTraits = [];
+let alignment = [];
+let ideals = [];
+let bonds = [];
+let flaws = [];
+let proficienciesAndLanguages = [];
+let toughTraits = [];
+let softTraits = [];
+let goodIdeals = [];
+let neutralIdeals = [];
+let evilIdeals = [];
+let rangerBonds = [];
+let rogueBonds = [];
+let barbarianBonds = [];
+let wizardBonds = [];
+let warlockBonds = [];
+let clericBonds = [];
+let bardBonds = [];
+let paladinBonds = [];
+let sorcererBonds = [];
+let monkBonds = [];
+let druidBonds = [];
+let fighterBonds = [];
+let lawfulFlaws = [];
+let neutralFlaws = [];
+let chaoticFlaws = [];
+let profsAndLangs = {
+  languages: [],
+  armorproficiencies: [],
+  weaponproficiencies: [],
+  toolproficiencies: []
+};
+let armor = {};
+let Name_Generator = {};
+
 // Create stat modifiers for under the ability scores
   function statModifierGenerator(stat) {
-    console.log(stat);
     if (3 >= stat) {
       statModifier = -4;
     } else if (5 >= stat) {
@@ -45,23 +216,15 @@ let charName;
     } else if (20 >= stat) {
       statModifier = 5;
     }
-    console.log(statModifier);
     return statModifier;
   };
 
-// Initialize length of all arrays
-let lengthOfCheckedRaceArray = 0;
-let lengthOfCheckedBackgroundArray = 0;
-let lengthOfCheckedClassArray = 0;
-let lengthOfCheckedAlignmentArray = 0;
 
-// To determine which version is being used this variable will be assigned a value at the end of each version's function
-let version_for_checking = 0;
 
 // Function that shows/hides whichever section isn't active (either the character page or the information page)
 function show_hide_function() {
-  let last_page = document.getElementById("last_page");
-  let dnd_page = document.getElementById("dnd");
+  last_page = document.getElementById("last_page");
+  dnd_page = document.getElementById("dnd");
   if (last_page.style.display === "none") {
     last_page.style.display = "block";
     dnd_page.style.display = "none";
@@ -80,8 +243,8 @@ function show_hide_function() {
 }
 
 function show_function() {
-  let last_page = document.getElementById("last_page");
-  let dnd_page = document.getElementById("dnd");
+  last_page = document.getElementById("last_page");
+  dnd_page = document.getElementById("dnd");
   if (last_page.style.display === "block" || null) {
     last_page.style.display = "none";
     dnd_page.style.display = "block";
@@ -95,10 +258,10 @@ function standard_version() {
   // STANDARD ARRAY STAT BLOCK
 
   // Standard array used for stats
-  let standard_array = [15, 14, 13, 12, 10, 8];
+  standard_array = [15, 14, 13, 12, 10, 8];
 
   // Assign the standard array to a different variable
-  let final_stat_array1 = standard_array;
+  final_stat_array1 = standard_array;
 
   // Assign the shuffled array into individual variables
   stat1 = final_stat_array1[0];
@@ -134,7 +297,6 @@ function roll_version() {
 
   // Get a random stat for an ability score
   function getRandomStat() {
-    let randomStatArray = [];
     for (i = 0; i < 4; i++) {
       randomStatArray.push(getRandom6());
     }
@@ -157,12 +319,12 @@ function roll_version() {
   }
 
   // Block of arrays that are assigned a random stat each
-  let first = getRandomStat();
-  let second = getRandomStat();
-  let third = getRandomStat();
-  let fourth = getRandomStat();
-  let fifth = getRandomStat();
-  let sixth = getRandomStat();
+  first = getRandomStat();
+  second = getRandomStat();
+  third = getRandomStat();
+  fourth = getRandomStat();
+  fifth = getRandomStat();
+  sixth = getRandomStat();
 
   // Block of variables that had arrays that were summed up to equal a single number
   statt1 = getSum(first);
@@ -197,7 +359,7 @@ function pointbuy_version() {
   // POINT BUY STAT BLOCK
 
   // Array of all possible combinations of the point buy system
-  let array_of_stat_combos = [
+  array_of_stat_combos = [
     [15, 15, 15, 8, 8, 8],
     [15, 15, 14, 10, 8, 8],
     [15, 15, 14, 9, 9, 8],
@@ -267,13 +429,13 @@ function pointbuy_version() {
 
   // Function to shuffle all the numbers in a random point buy combination into random order and return it
   function random_array() {
-    let number = Math.floor(Math.random() * 65);
-    let array = array_of_stat_combos[number];
+    number = Math.floor(Math.random() * 65);
+    array = array_of_stat_combos[number];
     return array;
   }
 
   // Final array of the random point buy combination
-  let final_stat_array2 = random_array();
+  final_stat_array2 = random_array();
 
   // Block of variables that are assigned a random stat each
   stat1 = final_stat_array2[0];
@@ -298,7 +460,7 @@ function pointbuy_version() {
 function generate_character(version) {
 
   // Name generator object that contains all names
-  let Name_Generator = {
+  Name_Generator = {
     _races: {
       _dragonborn: { // 20 first, 20 last
         firstName: ["Arjhan", "Balasar", "Bharash", "Donaar", "Ghesh", "Heskan", "Kriv", "Medrash", "Mehen", "Nadarr", "Pandjed", "Patrin", "Rhogar", "Shamash", "Shedinn", "Tarhun", "Torinn", "Tever", "Arsiarth", "Griddry"],
@@ -351,7 +513,6 @@ function generate_character(version) {
 
     // Function to get a background that fits their stats
     GetNewBackground: function GetNewBackground() {
-      let newBackground = 0;
       if (strength > 11 && constitution > 9 && intelligence > 11 && dexterity > 11) {
         newBackground = this._backgroundsPhysicalMentalDexterous[Math.floor(Math.random() * 18)];
       } else if (strength > 11 && constitution > 9 && intelligence < 12 && dexterity < 12) {
@@ -389,173 +550,7 @@ function generate_character(version) {
     }
   };
 
-  // Initialize variables
-  let knowledgelanguage;
-  let knowledgelanguage2;
-  let language;
-  let firstlanguage;
-  let secondlanguage;
-  let extralanguage;
-  let musicalinstrument;
-  let musicalinstrument2;
-  let musicalinstrument3;
-  let artisantool;
-  let randoartisan;
-  let soldierGamingSet;
-  let flashyWeapon;
-  let beefiness;
-  let individualDiscrepancy;
-  let randomValue;
-  let lightGo;
-  let firstnombre;
-  let lastnombre;
-  let race;
-  let size;
-  let ancestry;
-  let ancestryHuman;
-  let stat_total;
-  let excalibur;
-  let excalibur1;
-  let excalibur2;
-  let excalibur3;
-  let nightbringer;
-  let nightbringer1;
-  let nightbringer2;
-  let nightbringer3;
-  let i;
-  let j;
-  let random;
-  let random2;
-  let classs;
-  let classlevel;
-  let random_class_variable;
-  let random_chance;
-  let cleric_type;
-  let name;
-  let newlangs;
-  let newweapprofs;
-  let newarmorprofs;
-  let newtoolprofs;
-  let firstNumber;
-  let secondNumber;
-  let finalLanguages;
-  let finalWeaponProficiencies;
-  let finalArmorProficiencies;
-  let finalToolProficiencies;
-  let arrayOfAlignment;
-  let lengthOfAlignmentArray;
-  let AlignmentRandomizerNumber;
-  let actualAlignment;
-  let BalMor;
-  let bal;
-  let statModifier;
-  let mor1;
-  let mor;
-  let arrayOfBackgrounds;
-  let lengthOfBackgroundArray;
-  let BackgroundRandomizerNumber;
-  let actualBackground;
-  let racenamelower;
-  let racenamelowerstring;
-  let arrayOfRaces;
-  let lengthOfRaceArray;
-  let RaceRandomizerNumber;
-  let actualRace;
-  let strengthModifier;
-  let dexterityModifier;
-  let constitutionModifier;
-  let intelligenceModifier;
-  let wisdomModifier;
-  let charismaModifier;
-  let hitDiceModifier;
-  let firstNameNumber;
-  let lastNameNumber;
-  let number;
-  let race_checker;
-  let arrayOfClass;
-  let lengthOfClassArray;
-  let ClassRandomizerNumber;
-  let actualClass;
-  let alignment_checker = false;
-  let hp = 0;
-  let gold = 0;
-  let armorClass = 0;
-  let arrayOfCheckedClass = [];
-  let dwarves = [];
-  let dragonborn = [];
-  let elves = [];
-  let gnomes = [];
-  let halflings = [];
-  let humans = [];
-  let leftoverArray = [];
-  let arrayOfCheckedRaces = [];
-  let arrayOfCheckedAlignment = [];
-  let arrayOfCheckedBackgrounds = [];
-  let listofexoticlanguages = [];
-  let listofstandardlanguages = [];
-  let martialWeapons = [];
-  let simpleWeapons = [];
-  let equipment = [];
-  let spellcastingSection = [];
-  let alliesAndOrganizations = [];
-  let features = [];
-  let additionalFeatures = [];
-  let personalityTraits = [];
-  let alignment = [];
-  let ideals = [];
-  let bonds = [];
-  let flaws = [];
-  let proficienciesAndLanguages = [];
-  let toughTraits = [];
-  let softTraits = [];
-  let goodIdeals = [];
-  let neutralIdeals = [];
-  let evilIdeals = [];
-  let rangerBonds = [];
-  let rogueBonds = [];
-  let barbarianBonds = [];
-  let wizardBonds = [];
-  let warlockBonds = [];
-  let clericBonds = [];
-  let bardBonds = [];
-  let paladinBonds = [];
-  let sorcererBonds = [];
-  let monkBonds = [];
-  let druidBonds = [];
-  let fighterBonds = [];
-  let lawfulFlaws = [];
-  let neutralFlaws = [];
-  let chaoticFlaws = [];
-  let profsAndLangs = {
-    languages: [],
-    armorproficiencies: [],
-    weaponproficiencies: [],
-    toolproficiencies: []
-  };
-  let armor = {};
-  // // Initialize for 100000 character error checking
-  // let cleric_counter = 0;
-  // let barbarian_counter = 0;
-  // let paladin_counter = 0;
-  // let rogue_counter = 0;
-  // let ranger_counter = 0;
-  // let bard_counter = 0;
-  // let monk_counter = 0;
-  // let wizard_counter = 0;
-  // let sorcerer_counter = 0;
-  // let warlock_counter = 0;
-  // let fighter_counter = 0;
-  // let druid_counter = 0;
-
-  // let lawful_good_counter = 0;
-  // let neutral_good_counter = 0;
-  // let chaotic_good_counter = 0;
-  // let lawful_neutral_counter = 0;
-  // let true_neutral_counter = 0;
-  // let chaotic_neutral_counter = 0;
-  // let lawful_evil_counter = 0;
-  // let neutral_evil_counter = 0;
-  // let chaotic_evil_counter = 0;
+  
 
   // Personality is from race
   toughTraits = ["I bend the knee to no man who I deem unworthy.", "I walk my own path, regardless of how others criticize it.", "I love a good insult, even one directed at me.", "I was beaten when I was younger, so I act tough to hide that I'm hurting.", "I watch over those I care for as if they were pups.", "I will crush my enemies, with fury and power.", "I place no stock in wealthy or well-mannered folk.", "Money and manners won't save you from a hungry owlbear.", "I work hard so that I can play hard when the work is done.", "I have a crude sense of humor.", "I am confident and assertive."];
@@ -4627,7 +4622,6 @@ function generate_character(version) {
   if (document.getElementById("form92_1").value === "Neutral Neutral") {
     document.getElementById("form92_1").value = "True Neutral";
   };
-  // console.log(classlevel);
 }
 // Call the character generator on page load
 generate_initial_character(standard_version);
@@ -4645,8 +4639,6 @@ function remove_click(j) {
   click_off(j);
 }
 
-
-
 // Function to generate a new character by clearing all forms and checkboxes and then generating a character again
 function generate_initial_character(version) {
   version();
@@ -4660,91 +4652,5 @@ function generate_new_character(version) {
   generate_character(version);
 }
 
-// // Function to count each class for the characters generated
-// function generate_100000_characters_counter(classlevelvalue, alignmentvalue) {
-//   if (classlevelvalue === "Cleric 1") {
-//     cleric_counter++;
-//   } else if (classlevelvalue === "Barbarian 1") {
-//     barbarian_counter++;
-//   } else if (classlevelvalue === "Paladin 1") {
-//     paladin_counter++;
-//   } else if (classlevelvalue === "Rogue 1") {
-//     rogue_counter++;
-//   } else if (classlevelvalue === "Ranger 1") {
-//     ranger_counter++;
-//   } else if (classlevelvalue === "Druid 1") {
-//     druid_counter++;
-//   } else if (classlevelvalue === "Wizard 1") {
-//     wizard_counter++;
-//   } else if (classlevelvalue === "Sorcerer 1") {
-//     sorcerer_counter++;
-//   } else if (classlevelvalue === "Warlock 1") {
-//     warlock_counter++;
-//   } else if (classlevelvalue === "Fighter 1") {
-//     fighter_counter++;
-//   } else if (classlevelvalue === "Monk 1") {
-//     monk_counter++;
-//   } else if (classlevelvalue === "Bard 1") {
-//     bard_counter++;
-//   }
-//   if (alignmentvalue === "Lawful Good"){
-//     lawful_good_counter++;
-//   } else if (alignmentvalue === "Neutral Good"){
-//     neutral_good_counter++;
-//   } else if (alignmentvalue === "Chaotic Good"){
-//     chaotic_good_counter++;
-//   } else if (alignmentvalue === "Lawful Neutral"){
-//     lawful_neutral_counter++;
-//   } else if (alignmentvalue === "True Neutral"){
-//     true_neutral_counter++;
-//   } else if (alignmentvalue === "Chaotic Neutral"){
-//     chaotic_neutral_counter++;
-//   } else if (alignmentvalue === "Lawful Evil"){
-//     lawful_evil_counter++;
-//   } else if (alignmentvalue === "Neutral Evil"){
-//     neutral_evil_counter++;
-//   } else if (alignmentvalue === "Chaotic Evil"){
-//     chaotic_evil_counter++;
-//   }
-// }
-
-// // Function to print for 100000_char_gen
-// function generate_100000_characters_printer(){
-//   console.log("Version ran through 100000 iterations: " + version_for_checking);
-//   console.log("Barbarian count: " + barbarian_counter);
-//   console.log("Rogue count: " + rogue_counter);
-//   console.log("Ranger count: " + ranger_counter);
-//   console.log("Cleric count: " + cleric_counter);
-//   console.log("Wizard count: " + wizard_counter);
-//   console.log("Sorcerer count: " + sorcerer_counter);
-//   console.log("Warlock count: " + warlock_counter);
-//   console.log("Bard count: " + bard_counter);
-//   console.log("Monk count: " + monk_counter);
-//   console.log("Fighter count: " + fighter_counter);
-//   console.log("Druid count: " + druid_counter);
-//   console.log("Paladin count: " + paladin_counter);
-//   console.log();
-//   console.log("Lawful Good count: " + lawful_good_counter);
-//   console.log("Neutral Good count: " + neutral_good_counter);
-//   console.log("Chaotic Good count: " + chaotic_good_counter);
-//   console.log("Lawful Neutral count: " + lawful_neutral_counter);
-//   console.log("True Neutral count: " + true_neutral_counter);
-//   console.log("Chaotic Neutral count: " + chaotic_neutral_counter);
-//   console.log("Lawful Evil count: " + lawful_evil_counter);
-//   console.log("Neutral Evil count: " + neutral_evil_counter);
-//   console.log("Chaotic Evil count: " + chaotic_evil_counter);
-// }
-
-// // Function to generate 100000 characters to make sure there are no errors and classes are thoroughly tested
-// function generate_100000_characters(version) {
-//   console.time('generate_100000_characters');
-//   for (j = 0; j < 100000; j++) {
-//     clear_All();
-//     version();
-//     generate_character(version);
-//     generate_100000_characters_counter(document.getElementById('form94_1').value, document.getElementById('form92_1').value);
-//   }
-//   generate_100000_characters_printer();
-//   console.timeEnd('generate_100000_characters');
-// }
-
+// import * as testing from 'testing.js';
+// testing.generate_100000_characters(version);
