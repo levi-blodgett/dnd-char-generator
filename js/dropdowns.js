@@ -101,15 +101,41 @@ function onRaceDropdownOptionClick(){
 }
 
 // Event listener function to check if the random race checkmark is checked
-function onSubraceDropdownOptionClick(){
+function onSubraceDropdownOptionClick_mousedown(e){
   let race_checked_1 = document.getElementById('race_random').checked;
-  let racer_2 = 'race_class';
-  let ID_1 = 'race_random';
-  if (document.getElementById(ID_1).checked){
-    document.getElementById(ID_1).checked = false;
-  } else if (race_checked_1 === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${racer_2}`).length;
-    arraything = document.querySelectorAll(`input.${racer_2}`);
+  let racer_1 = 'race_class'; //subrace
+  let racer_2 = 'race_class_2'; // race
+  let ID_1 = 'race_random'; // random button
+  let targets_ul = document.getElementById(e.target.parentElement.parentElement.id);
+  let targets_list = targets_ul.children;
+  let targets_list_array = Array.from(targets_list);
+  for (i = 0; i < targets_list.length; i++) {
+    let test = targets_list[i].childNodes[0].childNodes[0];
+    if (test.checked === false) {
+      targets_list_array.splice(i, i+1);
+      if (targets_list_array.length === 1) {
+        if (test = e.target) {
+          e.target.parentElement.parentElement.style.display = 'none';
+          e.target.parentElement.parentElement.classList.remove('visible');
+          e.target.parentElement.parentElement.previousElementSibling.childNodes[0].childNodes[0].checked = false;
+          checkRandom();
+        }
+      }
+    }
+  }
+}
+
+function checkRandom() {
+  let race_checked = document.getElementById('race_random').checked;
+  let classer = 'race_class_2';
+  let ID = 'race_random';
+  let lengthOfArray;
+  let arraything;
+  let checkerarray;
+
+  if (race_checked === false){
+    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
+    arraything = document.querySelectorAll(`input.${classer}`);
     checkerarray= [];
     for(i=0; i < lengthOfArray; i++){
       if (arraything[i].checked === true) {
@@ -117,7 +143,7 @@ function onSubraceDropdownOptionClick(){
       }
     }
     if (checkerarray.length === 0){
-      document.getElementById(ID_1).checked = true;
+      document.getElementById(ID).checked = true;
     }
   }
 }
@@ -193,9 +219,9 @@ for(i=0; i < all_race_dropdowns.length; i++){
   all_race_dropdowns[i].addEventListener('click', onRaceDropdownOptionClick, false);
 }
 
-let all_subrace_dropdowns = document.querySelectorAll('.subrace_dropdown_option_checker');
-for(i=0; i < all_subrace_dropdowns.length; i++){
-  all_subrace_dropdowns[i].addEventListener('click', onSubraceDropdownOptionClick, false);
+let all_subrace_dropdowns_down = document.querySelectorAll('.subrace_dropdown_option_checker');
+for(i=0; i < all_subrace_dropdowns_down.length; i++){
+  all_subrace_dropdowns_down[i].addEventListener('mousedown', onSubraceDropdownOptionClick_mousedown, false);
 }
 
 let all_background_dropdowns = document.querySelectorAll('.background_dropdown_option_checker');
@@ -225,7 +251,9 @@ function hideDropdowns(dropdownValue){
   dropdownValue.style.display = "none";
 }
   
-document.getElementById("race_random").addEventListener('click', function(){
+document.getElementById("race_random").addEventListener('click', randomButton);
+
+function randomButton(){
   let race_checked = document.getElementById('race_random').checked;
 
   let classer = 'race_class';
@@ -274,7 +302,7 @@ document.getElementById("race_random").addEventListener('click', function(){
       document.getElementById(ID).checked = true;
     }
   }
-});
+}
 
 document.getElementById("background_random").addEventListener('click', function(){
   let background_checked = document.getElementById('background_random').checked;
