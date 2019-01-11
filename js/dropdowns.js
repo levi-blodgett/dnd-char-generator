@@ -118,6 +118,7 @@ function onSubraceDropdownOptionClick_mousedown(e){
           e.target.parentElement.parentElement.style.display = 'none';
           e.target.parentElement.parentElement.classList.remove('visible');
           e.target.parentElement.parentElement.previousElementSibling.childNodes[0].childNodes[0].checked = false;
+          e.target.childNodes[0].checked = false;
           checkRandom();
         }
       }
