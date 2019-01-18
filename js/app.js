@@ -10,6 +10,7 @@ let min = 0;
 let max = 0;
 let raciallanguage1;
 let raciallanguage2;
+let randomStatArray = [];
 let stat1 = stats[0];
 let stat2 = stats[1];
 let stat3 = stats[2];
@@ -135,6 +136,7 @@ function roll_version() {
 
   // Get a random stat for an ability score
   function getRandomStat() {
+    randomStatArray = [];
     for (i = 0; i < 4; i++) {
       randomStatArray.push(getRandom6());
     }
@@ -490,7 +492,6 @@ function generate_character(version) {
   let gold = 0;
   let armorClass = 0;
   let standard_array = [];
-  let randomStatArray = [];
   let array_of_stat_combos = [];
   let arrayOfCheckedClass = [];
   let dwarves = [];
