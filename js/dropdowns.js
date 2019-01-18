@@ -1,30 +1,20 @@
-// Section to foramt the dropdowns
-function formatInitialDropdowns(list, listItems, RandomClass){
+// Section to format the dropdowns
+function formatInitialDropdowns(list, listItems) {
   let checkList = document.getElementById(list);
   let items = document.getElementById(listItems);
-  checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
-      if (items.classList.contains('visible')){
-          items.classList.remove('visible');
-          items.style.display = "none";
-      }
-      
-      else{
-          items.classList.add('visible');
-          items.style.display = "block";
-      }
-      
-      
+  checkList.getElementsByClassName('anchor')[0].onclick = () => {
+    if (items.classList.contains('visible')) {
+      items.classList.remove('visible');
+      items.style.display = "none";
+    }
+    else {
+      items.classList.add('visible');
+      items.style.display = "block";
+    }
   }
 }
 let checker = 0;
 let raceRandom = document.getElementById('race_random').checked;
-let backgroundRandom = document.getElementById('background_random').checked;
-let classRandom = document.getElementById('class_random').checked;
-let alignmentRandom = document.getElementById('alignment_random').checked;
-let raceClass = document.querySelectorAll('input.race_class');
-let backgroundClass = document.querySelectorAll('input.background_class').checked;
-let classClass = document.querySelectorAll('input.class_class').checked;
-let alignmentClass = document.querySelectorAll('input.alignment_class').checked;
 if (raceRandom === '' || raceRandom === undefined){
   for(i = 0; i < raceClass.length; i++){
     if (raceClass[i].checked === 'checked'){
@@ -37,17 +27,63 @@ if (raceRandom === '' || raceRandom === undefined){
     } else {
       raceRandom = 'checked';
     }
-} else if (backgroundRandom === '') {
-
-} else if (classRandom === '') {
-  
-} else if (alignmentRandom === '') {
-  
 }
-formatInitialDropdowns('race_list', 'race_dropdown', 'race_class');
-formatInitialDropdowns('background_list', 'background_dropdown', 'background_class');
-formatInitialDropdowns('class_list', 'class_dropdown', 'class_class');
-formatInitialDropdowns('alignment_list', 'alignment_dropdown', 'alignment_class');
+
+function hideDropdowns(dropdownValue){
+  dropdownValue.classList.remove('visible');
+  dropdownValue.style.display = "none";
+}
+
+function onClickDecider(_id, _class){
+  let checkbox_checked = document.getElementById(_id).checked;
+
+  let classer = _class;
+  let ID = _id;
+
+  let lengthOfArray;
+  let arraything;
+  
+  let checkerarray;
+  if (checkbox_checked){
+    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
+    arraything = document.querySelectorAll(`input.${classer}`);
+    for(i=0; i < lengthOfArray; i++){
+      arraything[i].checked = false;
+    }
+    if (classer === 'race_class'){
+      let lengthOfArray2 = document.querySelectorAll(`input.${classer}_2`).length;
+      let arraything2 = document.querySelectorAll(`input.${classer}_2`);
+      let dropdown1 = document.getElementById('dragonborn_dropdown');
+      let dropdown2 = document.getElementById('dwarf_dropdown');
+      let dropdown3 = document.getElementById('elf_dropdown');
+      let dropdown4 = document.getElementById('gnome_dropdown');
+      let dropdown5 = document.getElementById('halfling_dropdown');
+      let dropdown6 = document.getElementById('human_dropdown');
+      let checkerarray2= [];
+      hideDropdowns(dropdown1);
+      hideDropdowns(dropdown2);
+      hideDropdowns(dropdown3);
+      hideDropdowns(dropdown4);
+      hideDropdowns(dropdown5);
+      hideDropdowns(dropdown6);
+      for(i=0; i < lengthOfArray2; i++){
+        arraything2[i].checked = false;
+      }
+    }
+  } else if (checkbox_checked === false){ 
+    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
+    arraything = document.querySelectorAll(`input.${classer}`);
+    checkerarray= [];
+    for(i=0; i < lengthOfArray; i++){
+      if (arraything[i].checked === true) {
+        checkerarray.push(arraything[i]);
+      }
+    }
+    if (checkerarray.length === 0){
+      document.getElementById(ID).checked = true;
+    }
+  }
+}
 
 function formatSecondaryDropdowns(list, listItems, checkbox){
   let checkList = document.getElementById(list);
@@ -76,36 +112,8 @@ function formatSecondaryDropdowns(list, listItems, checkbox){
   });
 }
 
-////////////////////////////
-
-// Event listener function to check if the random race checkmark is checked
-function onRaceDropdownOptionClick(){
-  let race_checked_1 = document.getElementById('race_random').checked;
-  let racer_2 = 'race_class_2';
-  let ID_1 = 'race_random';
-  if (document.getElementById(ID_1).checked){
-    document.getElementById(ID_1).checked = false;
-  } else if (race_checked_1 === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${racer_2}`).length;
-    arraything = document.querySelectorAll(`input.${racer_2}`);
-    checkerarray= [];
-    for(i=0; i < lengthOfArray; i++){
-      if (arraything[i].checked === true) {
-        checkerarray.push(arraything[i]);
-      }
-    }
-    if (checkerarray.length === 0){
-      document.getElementById(ID_1).checked = true;
-    }
-  }
-}
-
 // Event listener function to check if the random race checkmark is checked
 function onSubraceDropdownOptionClick_mousedown(e){
-  let race_checked_1 = document.getElementById('race_random').checked;
-  let racer_1 = 'race_class'; //subrace
-  let racer_2 = 'race_class_2'; // race
-  let ID_1 = 'race_random'; // random button
   let targets_ul = document.getElementById(e.target.parentElement.parentElement.id);
   let targets_list = targets_ul.children;
   let targets_list_array = Array.from(targets_list);
@@ -126,15 +134,27 @@ function onSubraceDropdownOptionClick_mousedown(e){
   }
 }
 
+let all_subrace_dropdowns_down = document.querySelectorAll('.subrace_dropdown_option_checker');
+for(i=0; i < all_subrace_dropdowns_down.length; i++){
+  all_subrace_dropdowns_down[i].addEventListener('mousedown', onSubraceDropdownOptionClick_mousedown, false);
+}
+
+const dropdownArrayGetter = (dropdown_option_checker, _id, _class) => {
+  let all_dropdowns = document.querySelectorAll(dropdown_option_checker);
+  for(i=0; i < all_dropdowns.length; i++){
+    all_dropdowns[i].addEventListener('click', () => {onDropdownOptionClick(_id, _class)});
+  }
+}
+
 function checkRandom() {
-  let race_checked = document.getElementById('race_random').checked;
+  let checkbox_checked = document.getElementById('race_random').checked;
   let classer = 'race_class_2';
   let ID = 'race_random';
   let lengthOfArray;
   let arraything;
   let checkerarray;
 
-  if (race_checked === false){
+  if (checkbox_checked === false){
     lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
     arraything = document.querySelectorAll(`input.${classer}`);
     checkerarray= [];
@@ -149,16 +169,16 @@ function checkRandom() {
   }
 }
 
-// Event listener function to check if the random background checkmark is checked
-function onBackgroundDropdownOptionClick(){
-  let background_checked_1 = document.getElementById('background_random').checked;
-  let backgrounder_1 = 'background_class';
-  let ID_1 = 'background_random';
-  if (document.getElementById("background_random").checked){
-    document.getElementById("background_random").checked = false;
-  } else if (background_checked_1 === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${backgrounder_1}`).length;
-    arraything = document.querySelectorAll(`input.${backgrounder_1}`);
+// Event listener function to check if the random checkmark is checked
+function onDropdownOptionClick(_id, _class){
+  let checkbox_checked_1 = document.getElementById(_id).checked;
+  let racer_2 = _class;
+  let ID_1 = _id;
+  if (document.getElementById(ID_1).checked){
+    document.getElementById(ID_1).checked = false;
+  } else if (checkbox_checked_1 === false){ 
+    lengthOfArray = document.querySelectorAll(`input.${racer_2}`).length;
+    arraything = document.querySelectorAll(`input.${racer_2}`);
     checkerarray= [];
     for(i=0; i < lengthOfArray; i++){
       if (arraything[i].checked === true) {
@@ -171,74 +191,18 @@ function onBackgroundDropdownOptionClick(){
   }
 }
 
-// Event listener function to check if the random class checkmark is checked
-function onClassDropdownOptionClick(){
-  let class_checked_1 = document.getElementById('class_random').checked;
-  let classer_1 = 'class_class';
-  let ID_1 = 'class_random';
-  if (document.getElementById("class_random").checked){
-    document.getElementById("class_random").checked = false;
-  } else if (class_checked_1 === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${classer_1}`).length;
-    arraything = document.querySelectorAll(`input.${classer_1}`);
-    checkerarray= [];
-    for(i=0; i < lengthOfArray; i++){
-      if (arraything[i].checked === true) {
-        checkerarray.push(arraything[i]);
-      }
-    }
-    if (checkerarray.length === 0){
-      document.getElementById(ID_1).checked = true;
-    }
-  }
-}
+formatInitialDropdowns('race_list', 'race_dropdown');
+formatInitialDropdowns('background_list', 'background_dropdown');
+formatInitialDropdowns('class_list', 'class_dropdown', 'class_class');
+formatInitialDropdowns('alignment_list', 'alignment_dropdown');
 
-// Event listener function to check if the random alignment checkmark is checked
-function onAlignmentDropdownOptionClick(){
-  let alignment_checked_1 = document.getElementById('alignment_random').checked;
-  let alignmenter_1 = 'alignment_class';
-  let ID_1 = 'alignment_random';
-  if (document.getElementById("alignment_random").checked){
-    document.getElementById("alignment_random").checked = false;
-  } else if (alignment_checked_1 === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${alignmenter_1}`).length;
-    arraything = document.querySelectorAll(`input.${alignmenter_1}`);
-    checkerarray= [];
-    for(i=0; i < lengthOfArray; i++){
-      if (arraything[i].checked === true) {
-        checkerarray.push(arraything[i]);
-      }
-    }
-    if (checkerarray.length === 0){
-      document.getElementById(ID_1).checked = true;
-    }
-  }
-}
+let all_alignment_dropdowns = dropdownArrayGetter('.alignment_dropdown_option_checker', 'alignment_random', 'alignment_class');
 
-let all_race_dropdowns = document.querySelectorAll('.race_dropdown_option_checker');
-for(i=0; i < all_race_dropdowns.length; i++){
-  all_race_dropdowns[i].addEventListener('click', onRaceDropdownOptionClick, false);
-}
+let all_class_dropdowns = dropdownArrayGetter('.class_dropdown_option_checker', 'class_random', 'class_class');
 
-let all_subrace_dropdowns_down = document.querySelectorAll('.subrace_dropdown_option_checker');
-for(i=0; i < all_subrace_dropdowns_down.length; i++){
-  all_subrace_dropdowns_down[i].addEventListener('mousedown', onSubraceDropdownOptionClick_mousedown, false);
-}
+let all_background_dropdowns = dropdownArrayGetter('.background_dropdown_option_checker', 'background_random', 'background_class');
 
-let all_background_dropdowns = document.querySelectorAll('.background_dropdown_option_checker');
-for(i=0; i < all_background_dropdowns.length; i++){
-  all_background_dropdowns[i].addEventListener('click', onBackgroundDropdownOptionClick);
-}
-
-let all_class_dropdowns = document.querySelectorAll('.class_dropdown_option_checker');
-for(i=0; i < all_class_dropdowns.length; i++){
-  all_class_dropdowns[i].addEventListener('click', onClassDropdownOptionClick);
-}
-
-let all_alignment_dropdowns = document.querySelectorAll('.alignment_dropdown_option_checker');
-for(i=0; i < all_alignment_dropdowns.length; i++){
-  all_alignment_dropdowns[i].addEventListener('click', onAlignmentDropdownOptionClick);
-}
+let all_race_dropdowns = dropdownArrayGetter('.race_dropdown_option_checker', 'race_random', 'race_class');
 
 formatSecondaryDropdowns('dragonborn_list', 'dragonborn_dropdown', 'dragonborn_checkbox');
 formatSecondaryDropdowns('dwarf_list', 'dwarf_dropdown', 'dwarf_checkbox');
@@ -247,214 +211,18 @@ formatSecondaryDropdowns('gnome_list', 'gnome_dropdown', 'gnome_checkbox');
 formatSecondaryDropdowns('halfling_list', 'halfling_dropdown', 'halfling_checkbox');
 formatSecondaryDropdowns('human_list', 'human_dropdown', 'human_checkbox');
 
-function hideDropdowns(dropdownValue){
-  dropdownValue.classList.remove('visible');
-  dropdownValue.style.display = "none";
-}
-  
-document.getElementById("race_random").addEventListener('click', randomButton);
-
-function randomButton(){
-  let race_checked = document.getElementById('race_random').checked;
-
-  let classer = 'race_class';
-  let ID = 'race_random';
-
-  let lengthOfArray;
-  let arraything;
-  
-  let checkerarray;
-  if (race_checked){
-    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
-    arraything = document.querySelectorAll(`input.${classer}`);
-    for(i=0; i < lengthOfArray; i++){
-      arraything[i].checked = false;
-    }
-    if (classer === 'race_class'){
-      let lengthOfArray2 = document.querySelectorAll(`input.${classer}_2`).length;
-      let arraything2 = document.querySelectorAll(`input.${classer}_2`);
-      let bonkers1 = document.getElementById('dragonborn_dropdown');
-      let bonkers2 = document.getElementById('dwarf_dropdown');
-      let bonkers3 = document.getElementById('elf_dropdown');
-      let bonkers4 = document.getElementById('gnome_dropdown');
-      let bonkers5 = document.getElementById('halfling_dropdown');
-      let bonkers6 = document.getElementById('human_dropdown');
-      let checkerarray2= [];
-      hideDropdowns(bonkers1);
-      hideDropdowns(bonkers2);
-      hideDropdowns(bonkers3);
-      hideDropdowns(bonkers4);
-      hideDropdowns(bonkers5);
-      hideDropdowns(bonkers6);
-      for(i=0; i < lengthOfArray2; i++){
-        arraything2[i].checked = false;
-      }
-    }
-  } else if (race_checked === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
-    arraything = document.querySelectorAll(`input.${classer}`);
-    checkerarray= [];
-    for(i=0; i < lengthOfArray; i++){
-      if (arraything[i].checked === true) {
-        checkerarray.push(arraything[i]);
-      }
-    }
-    if (checkerarray.length === 0){
-      document.getElementById(ID).checked = true;
-    }
-  }
-}
+document.getElementById("race_random").addEventListener('click', function() {
+  onClickDecider('race_random', 'race_class');
+});
 
 document.getElementById("background_random").addEventListener('click', function(){
-  let background_checked = document.getElementById('background_random').checked;
-
-  let classer = 'background_class';
-  let ID = 'background_random';
-
-  let lengthOfArray;
-  let arraything;
-  
-  let checkerarray;
-  if (background_checked){
-    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
-    arraything = document.querySelectorAll(`input.${classer}`);
-    for(i=0; i < lengthOfArray; i++){
-      arraything[i].checked = false;
-    }
-    if (classer === 'race_class'){
-      let lengthOfArray2 = document.querySelectorAll(`input.${classer}_2`).length;
-      let arraything2 = document.querySelectorAll(`input.${classer}_2`);
-      let bonkers1 = document.getElementById('dragonborn_dropdown');
-      let bonkers2 = document.getElementById('dwarf_dropdown');
-      let bonkers3 = document.getElementById('elf_dropdown');
-      let bonkers4 = document.getElementById('gnome_dropdown');
-      let bonkers5 = document.getElementById('halfling_dropdown');
-      let bonkers6 = document.getElementById('human_dropdown');
-      let checkerarray2= [];
-      hideDropdowns(bonkers1);
-      hideDropdowns(bonkers2);
-      hideDropdowns(bonkers3);
-      hideDropdowns(bonkers4);
-      hideDropdowns(bonkers5);
-      hideDropdowns(bonkers6);
-      for(i=0; i < lengthOfArray2; i++){
-        arraything2[i].checked = false;
-      }
-    }
-  } else if (background_checked === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
-    arraything = document.querySelectorAll(`input.${classer}`);
-    checkerarray= [];
-    for(i=0; i < lengthOfArray; i++){
-      if (arraything[i].checked === true) {
-        checkerarray.push(arraything[i]);
-      }
-    }
-    if (checkerarray.length === 0){
-      document.getElementById(ID).checked = true;
-    }
-  }
+  onClickDecider('background_random', 'background_class');
 });
 
 document.getElementById("class_random").addEventListener('click', function(){
-  let class_checked = document.getElementById('class_random').checked;
-
-  let classer = 'class_class';
-  let ID = 'class_random';
-
-  let lengthOfArray;
-  let arraything;
-  
-  let checkerarray;
-  if (class_checked){
-    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
-    arraything = document.querySelectorAll(`input.${classer}`);
-    for(i=0; i < lengthOfArray; i++){
-      arraything[i].checked = false;
-    }
-    if (classer === 'race_class'){
-      let lengthOfArray2 = document.querySelectorAll(`input.${classer}_2`).length;
-      let arraything2 = document.querySelectorAll(`input.${classer}_2`);
-      let bonkers1 = document.getElementById('dragonborn_dropdown');
-      let bonkers2 = document.getElementById('dwarf_dropdown');
-      let bonkers3 = document.getElementById('elf_dropdown');
-      let bonkers4 = document.getElementById('gnome_dropdown');
-      let bonkers5 = document.getElementById('halfling_dropdown');
-      let bonkers6 = document.getElementById('human_dropdown');
-      let checkerarray2= [];
-      hideDropdowns(bonkers1);
-      hideDropdowns(bonkers2);
-      hideDropdowns(bonkers3);
-      hideDropdowns(bonkers4);
-      hideDropdowns(bonkers5);
-      hideDropdowns(bonkers6);
-      for(i=0; i < lengthOfArray2; i++){
-        arraything2[i].checked = false;
-      }
-    }
-  } else if (class_checked === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
-    arraything = document.querySelectorAll(`input.${classer}`);
-    checkerarray= [];
-    for(i=0; i < lengthOfArray; i++){
-      if (arraything[i].checked === true) {
-        checkerarray.push(arraything[i]);
-      }
-    }
-    if (checkerarray.length === 0){
-      document.getElementById(ID).checked = true;
-    }
-  }
+  onClickDecider('class_random', 'class_class');
 });
 
 document.getElementById("alignment_random").addEventListener('click', function(){
-
-  let alignment_checked = document.getElementById('alignment_random').checked;
-
-  let classer = 'alignment_class';
-  let ID = 'alignment_random';
-
-  let lengthOfArray;
-  let arraything;
-  
-  let checkerarray;
-  if (alignment_checked){
-    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
-    arraything = document.querySelectorAll(`input.${classer}`);
-    for(i=0; i < lengthOfArray; i++){
-      arraything[i].checked = false;
-    }
-    if (classer === 'race_class'){
-      let lengthOfArray2 = document.querySelectorAll(`input.${classer}_2`).length;
-      let arraything2 = document.querySelectorAll(`input.${classer}_2`);
-      let bonkers1 = document.getElementById('dragonborn_dropdown');
-      let bonkers2 = document.getElementById('dwarf_dropdown');
-      let bonkers3 = document.getElementById('elf_dropdown');
-      let bonkers4 = document.getElementById('gnome_dropdown');
-      let bonkers5 = document.getElementById('halfling_dropdown');
-      let bonkers6 = document.getElementById('human_dropdown');
-      let checkerarray2= [];
-      hideDropdowns(bonkers1);
-      hideDropdowns(bonkers2);
-      hideDropdowns(bonkers3);
-      hideDropdowns(bonkers4);
-      hideDropdowns(bonkers5);
-      hideDropdowns(bonkers6);
-      for(i=0; i < lengthOfArray2; i++){
-        arraything2[i].checked = false;
-      }
-    }
-  } else if (alignment_checked === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
-    arraything = document.querySelectorAll(`input.${classer}`);
-    checkerarray= [];
-    for(i=0; i < lengthOfArray; i++){
-      if (arraything[i].checked === true) {
-        checkerarray.push(arraything[i]);
-      }
-    }
-    if (checkerarray.length === 0){
-      document.getElementById(ID).checked = true;
-    }
-  }
+  onClickDecider('alignment_random', 'alignment_class');
 });
