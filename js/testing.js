@@ -108,3 +108,7 @@ function generate_100000_characters(version) {
   generate_100000_characters_printer();
   console.timeEnd('generate_100000_characters');
 }
+
+const testing = document.getElementById('testing');
+
+testing.innerHTML = `<button class="top_buttons" onclick="generate_100000_characters(roll_version)" id="top_buttoneroni">100000 CHARACTERS</button>`;

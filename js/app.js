@@ -4625,6 +4625,3 @@ function generate_new_character(version) {
   version();
   generate_character(version);
 }
-
-// import * as testing from 'testing.js';
-// testing.generate_100000_characters(version);
