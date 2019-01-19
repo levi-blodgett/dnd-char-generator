@@ -47,43 +47,43 @@ function hideDropdowns(dropdownValue){
 }
 
 function onClickDecider(_id, _class){
-  let checkbox_checked = document.getElementById(_id).checked;
+  let isCheckboxChecked = document.getElementById(_id).checked;
 
-  let classer = _class;
+  let input_class = _class;
   let ID = _id;
   let lengthOfArray;
   let arrayItself;
   
-  let checkerarray;
-  if (checkbox_checked){
-    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
-    arrayItself = document.querySelectorAll(`input.${classer}`);
+  let arrayOfCheckedCheckboxes;
+  if (isCheckboxChecked){
+    lengthOfArray = document.querySelectorAll(`input.${input_class}`).length;
+    arrayItself = document.querySelectorAll(`input.${input_class}`);
     for(i=0; i < lengthOfArray; i++){
       arrayItself[i].checked = false;
     }
-    if (classer === 'race_class'){
-      let lengthOfArray2 = document.querySelectorAll(`input.${classer}_2`).length;
-      let arrayItself2 = document.querySelectorAll(`input.${classer}_2`);
-      let dropdowns = ['dragonborn_dropdown', 'dwarf_dropdown', 'elf_dropdown', 'gnome_dropdown', 'halfling_dropdown', 'human_dropdown']
+    if (input_class === 'race_class'){
+      let lengthOfArray_2 = document.querySelectorAll(`input.${input_class}_2`).length;
+      let arrayItself_2 = document.querySelectorAll(`input.${input_class}_2`);
+      let dropdownIDs = ['dragonborn_dropdown', 'dwarf_dropdown', 'elf_dropdown', 'gnome_dropdown', 'halfling_dropdown', 'human_dropdown']
       let dropdown;
       for (i = 0; i < formatInitialDropdowns.length; i++) {
-        dropdown = document.getElementById(dropdowns[i]);
+        dropdown = document.getElementById(dropdownIDs[i]);
         hideDropdowns(dropdown);
       }
-      for(i=0; i < lengthOfArray2; i++){
-        arrayItself2[i].checked = false;
+      for(i=0; i < lengthOfArray_2; i++){
+        arrayItself_2[i].checked = false;
       }
     }
-  } else if (checkbox_checked === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
-    arrayItself = document.querySelectorAll(`input.${classer}`);
-    checkerarray= [];
+  } else if (isCheckboxChecked === false){ 
+    lengthOfArray = document.querySelectorAll(`input.${input_class}`).length;
+    arrayItself = document.querySelectorAll(`input.${input_class}`);
+    arrayOfCheckedCheckboxes= [];
     for(i=0; i < lengthOfArray; i++){
       if (arrayItself[i].checked === true) {
-        checkerarray.push(arrayItself[i]);
+        arrayOfCheckedCheckboxes.push(arrayItself[i]);
       }
     }
-    if (checkerarray.length === 0){
+    if (arrayOfCheckedCheckboxes.length === 0){
       document.getElementById(ID).checked = true;
     }
   }
@@ -125,23 +125,23 @@ const dropdownArrayGetter = (dropdown_option_checker, _id, _class, mouseAction, 
 }
 
 function checkRandom() {
-  let checkbox_checked = document.getElementById('race_random').checked;
-  let classer = 'race_class_2';
   let ID = 'race_random';
+  let isCheckboxChecked = document.getElementById(ID).checked;
+  let classer = 'race_class_2';
   let lengthOfArray;
   let arrayItself;
-  let checkerarray;
+  let arrayOfCheckedCheckboxes;
 
-  if (checkbox_checked === false){
+  if (isCheckboxChecked === false){
     lengthOfArray = document.querySelectorAll(`input.${classer}`).length;
     arrayItself = document.querySelectorAll(`input.${classer}`);
-    checkerarray= [];
+    arrayOfCheckedCheckboxes= [];
     for(i=0; i < lengthOfArray; i++){
       if (arrayItself[i].checked === true) {
-        checkerarray.push(arrayItself[i]);
+        arrayOfCheckedCheckboxes.push(arrayItself[i]);
       }
     }
-    if (checkerarray.length === 0){
+    if (arrayOfCheckedCheckboxes.length === 0){
       document.getElementById(ID).checked = true;
     }
   }
@@ -149,22 +149,22 @@ function checkRandom() {
 
 // Event listener function to check if the random checkmark is checked
 function onDropdownOptionClick(_id, _class){
-  let checkbox_checked_1 = document.getElementById(_id).checked;
-  let racer_2 = _class;
-  let ID_1 = _id;
-  if (document.getElementById(ID_1).checked){
-    document.getElementById(ID_1).checked = false;
-  } else if (checkbox_checked_1 === false){ 
-    lengthOfArray = document.querySelectorAll(`input.${racer_2}`).length;
-    arrayItself = document.querySelectorAll(`input.${racer_2}`);
-    checkerarray= [];
+  let ID = _id;
+  let input_class = _class;
+  let isCheckboxChecked_1 = document.getElementById(ID).checked;
+  if (document.getElementById(ID).checked){
+    document.getElementById(ID).checked = false;
+  } else if (isCheckboxChecked_1 === false){ 
+    lengthOfArray = document.querySelectorAll(`input.${input_class}`).length;
+    arrayItself = document.querySelectorAll(`input.${input_class}`);
+    arrayOfCheckedCheckboxes= [];
     for(i=0; i < lengthOfArray; i++){
       if (arrayItself[i].checked === true) {
-        checkerarray.push(arrayItself[i]);
+        arrayOfCheckedCheckboxes.push(arrayItself[i]);
       }
     }
-    if (checkerarray.length === 0){
-      document.getElementById(ID_1).checked = true;
+    if (arrayOfCheckedCheckboxes.length === 0){
+      document.getElementById(ID).checked = true;
     }
   }
 }
