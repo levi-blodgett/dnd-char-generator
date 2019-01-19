@@ -3,7 +3,7 @@
 
 **DESCRIPTION**
 
-A character generator for the 5th edition of Dungeons and Dragons.
+An unofficial character generator for the 5th edition of Dungeons and Dragons.
 
 It's supposed to create a random character for DnD, but with some logic behind it to make it all quite cohesive.
 
