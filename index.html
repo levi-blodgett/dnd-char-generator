@@ -11,20 +11,22 @@
 </head>
 <body id="top">
 
-	<!--- This is the button section at the top, which has a class of no-print to not get printed-->
+	<!-- Top button section, which is all centered and  not shown on print screen -->
 	<div class="no-print">
 		<textarea id="no-show"></textarea>
 			<div id="testing"></div>
 			<div class="center">
-				<button class="top_buttons" onclick="show_hide_function()" id="top_button">Show Information Page</button>
+				<button class="top_buttons" onclick="show_or_hide_pages()" id="top_button">Show Information Page</button>
 			</div>
 				<div class="center">
-					<button class="top_buttons" onclick="generate_new_character(roll_version), show_function()">New stat roller character</button>
-					<button class="top_buttons" onclick="generate_new_character(standard_version), show_function()">New standard array character</button><button class="top_buttons" id="last_button" onclick="generate_new_character(pointbuy_version), show_function()">New point buy character</button>
+					<button class="top_buttons" onclick="generate_new_character(roll_version), show_func()">New stat roller character</button>
+					<button class="top_buttons" onclick="generate_new_character(standard_version), show_func()">New standard array character</button><button class="top_buttons" id="last_button" onclick="generate_new_character(pointbuy_version), show_func()">New point buy character</button>
 				</div>
 	</div>
 
+	<!-- Start of dnd section, which would be hidden/shown upon showing information apge -->
 	<div id="dnd">
+		<!-- Start of dropdown section, allowing user to select individual or multiple options instead of all options -->
 		<div id="center_dropdowns" class="no-print">
 			<div class="dropdowns">
 				<div id="race_list" class="dropdown-check-list">
@@ -96,6 +98,7 @@
 					</ul>
 				</div>
 			</div>
+
 			<div class="dropdowns">
 				<div id="background_list" class="dropdown-check-list">
 					<h2 class="dropdown_section">Background:</h2>
@@ -723,7 +726,7 @@
 	</div>
 
 	<!-- HTML block for the last page -->
-	<div id="last_page" class="no-print">
+	<div id="lastPage" class="no-print">
 		<div id="row">
 			<div class="text_below">
 				<br>

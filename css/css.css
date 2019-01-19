@@ -380,12 +380,12 @@ p {
   font-size: 15px;
 }
 
-#last_page, .no-print {
+#lastPage, .no-print {
   background: #fff;
   color: #333;
 }
 
-#last_page {
+#lastPage {
   text-align: center;
   font-family: 'Lato', sans-serif;
   display: none;
