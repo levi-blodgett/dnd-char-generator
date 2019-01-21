@@ -401,7 +401,7 @@ function generate_character(version) {
   let musicalinstrument2;
   let musicalinstrument3;
   let artisantool;
-  let randoartisan;
+  let randomAritsanTool;
   let soldierGamingSet;
   let flashyWeapon;
   let beefiness;
@@ -2587,8 +2587,8 @@ function generate_character(version) {
       spellcastingSection.push("Martial Arts: When you attack with the above weapons, you can use your bonus action to make an unarmed strike.");
       musicalinstrument = random_musical_instrument();
       tool_adder_2(tool_adder(musicalinstrument));
-      randoartisan = random_artisan_tool();
-      tool_adder_2(tool_adder(randoartisan));
+      randomAritsanTool = random_artisan_tool();
+      tool_adder_2(tool_adder(randomAritsanTool));
       document.getElementById("form78_1").value = "Unarmed"; // 2nd weapon 1st section
       stat_checker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
       stat_checker_3(dexterityModifier, "form74_1", "1d4", "B"); // 2nd weapon 3rd section
