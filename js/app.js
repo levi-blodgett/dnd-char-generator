@@ -159,23 +159,23 @@ function roll_version() {
   }
 
   // Block of arrays that are assigned a random stat each
-  first = get_random_stat();
-  second = get_random_stat();
-  third = get_random_stat();
-  fourth = get_random_stat();
-  fifth = get_random_stat();
-  sixth = get_random_stat();
+  firstStat = get_random_stat();
+  secondStat = get_random_stat();
+  thirdStat = get_random_stat();
+  fourthStat = get_random_stat();
+  fifthStat = get_random_stat();
+  sixthStat = get_random_stat();
 
   // Block of variables that had arrays that were summed up to equal a single number
-  statt1 = get_sum(first);
-  statt2 = get_sum(second);
-  statt3 = get_sum(third);
-  statt4 = get_sum(fourth);
-  statt5 = get_sum(fifth);
-  statt6 = get_sum(sixth);
+  temporaryStatHolder1 = get_sum(firstStat);
+  temporaryStatHolder2 = get_sum(secondStat);
+  temporaryStatHolder3 = get_sum(thirdStat);
+  temporaryStatHolder4 = get_sum(fourthStat);
+  temporaryStatHolder5 = get_sum(fifthStat);
+  temporaryStatHolder6 = get_sum(sixthStat);
 
   // Assign individual stats to an array named stats
-  statspt1 = [statt1, statt2, statt3, statt4, statt5, statt6];
+  statspt1 = [temporaryStatHolder1, temporaryStatHolder2, temporaryStatHolder3, temporaryStatHolder4, temporaryStatHolder5, temporaryStatHolder6];
 
   // Assign the ordered stats array to a global variable
   stats = order_stats(statspt1);
@@ -414,14 +414,14 @@ function generate_character(version) {
   let ancestry;
   let ancestryHuman;
   let stat_total;
-  let excalibur;
-  let excalibur1;
-  let excalibur2;
-  let excalibur3;
-  let nightbringer;
-  let nightbringer1;
-  let nightbringer2;
-  let nightbringer3;
+  let raceSplitter;
+  let raceSplitter1;
+  let raceSplitter2;
+  let raceSplitter3;
+  let subraceSplitter;
+  let subraceSplitter1;
+  let subraceSplitter2;
+  let subraceSplitter3;
   let i;
   let j;
   let random;
@@ -781,26 +781,26 @@ function generate_character(version) {
 
   function subrace_picker(thearray){
     for (i = 0; i < thearray.length; i++){
-      nightbringer = thearray[i];
-      if (nightbringer === "HalfElf" || nightbringer === "HalfOrc" || nightbringer === "Tiefling"){
-        leftoverArray.push(nightbringer);
+      subraceSplitter = thearray[i];
+      if (subraceSplitter === "HalfElf" || subraceSplitter === "HalfOrc" || subraceSplitter === "Tiefling"){
+        leftoverArray.push(subraceSplitter);
       } else {
-        nightbringer1 = nightbringer.split(' ', 1).toString();
-        nightbringer2 = nightbringer.split(' ', 2);
-        nightbringer3 = nightbringer2[1];
+        subraceSplitter1 = subraceSplitter.split(' ', 1).toString();
+        subraceSplitter2 = subraceSplitter.split(' ', 2);
+        subraceSplitter3 = subraceSplitter2[1];
       }
-      if (nightbringer3 === "Dragonborn"){
-        dragonborn.push(nightbringer);
-      } else if (nightbringer3 === "Dwarf"){
-        dwarves.push(nightbringer);
-      } else if (nightbringer3 === "Elf" || nightbringer === "Dark Elf (Drow)" ){
-        elves.push(nightbringer);
-      } else if (nightbringer3 === "Gnome"){
-        gnomes.push(nightbringer);
-      } else if (nightbringer3 === "Halfling"){
-        halflings.push(nightbringer);
-      } else if (nightbringer1 === "Human"){
-        humans.push(nightbringer);
+      if (subraceSplitter3 === "Dragonborn"){
+        dragonborn.push(subraceSplitter);
+      } else if (subraceSplitter3 === "Dwarf"){
+        dwarves.push(subraceSplitter);
+      } else if (subraceSplitter3 === "Elf" || subraceSplitter === "Dark Elf (Drow)" ){
+        elves.push(subraceSplitter);
+      } else if (subraceSplitter3 === "Gnome"){
+        gnomes.push(subraceSplitter);
+      } else if (subraceSplitter3 === "Halfling"){
+        halflings.push(subraceSplitter);
+      } else if (subraceSplitter1 === "Human"){
+        humans.push(subraceSplitter);
       }
     }
     sub_subrace_picker(dragonborn, leftoverArray);
@@ -842,33 +842,33 @@ function generate_character(version) {
       race = actualRace;
     }
 
-    excalibur = race;
+    raceSplitter = race;
   
-    if (excalibur === "HalfElf" || excalibur === "HalfOrc" || excalibur === "(Drow)"){
+    if (raceSplitter === "HalfElf" || raceSplitter === "HalfOrc" || raceSplitter === "(Drow)"){
 
     } else {
-      excalibur1 = excalibur.split(' ', 1).toString();
-      excalibur2 = excalibur.split(' ', 2);
-      excalibur3 = excalibur2[1];
+      raceSplitter1 = raceSplitter.split(' ', 1).toString();
+      raceSplitter2 = raceSplitter.split(' ', 2);
+      raceSplitter3 = raceSplitter2[1];
     }
 
-    if (excalibur3 === undefined){
+    if (raceSplitter3 === undefined){
       racenamelower = actualRace.toLowerCase();
       racenamelowerstring = '_' + racenamelower.toString();
       finalFirstName = nameGenerator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
       finalLastName = nameGenerator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
-    } else if (excalibur1 === "Human") {
-      racenamelower = excalibur1.toLowerCase();
+    } else if (raceSplitter1 === "Human") {
+      racenamelower = raceSplitter1.toLowerCase();
       racenamelowerstring = '_' + racenamelower.toString();
       finalFirstName = nameGenerator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
       finalLastName = nameGenerator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
-    } else if (excalibur3 === "(Drow)") {
+    } else if (raceSplitter3 === "(Drow)") {
       racenamelower = "Elf";
       racenamelowerstring = '_' + racenamelower.toString();
       finalFirstName = nameGenerator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
       finalLastName = nameGenerator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
     } else {
-      racenamelower = excalibur3.toLowerCase();
+      racenamelower = raceSplitter3.toLowerCase();
       racenamelowerstring = '_' + racenamelower.toString();
       finalFirstName = nameGenerator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
       finalLastName = nameGenerator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
@@ -1241,7 +1241,7 @@ function generate_character(version) {
   }
 
   // Race and subrace decider
-  if (race === "Dragonborn" || excalibur3 === "Dragonborn") {
+  if (race === "Dragonborn" || raceSplitter3 === "Dragonborn") {
     racialLanguage1 = "Common";
     racialLanguage2 = "Draconic";
     profsAndLangs.languages.push(racialLanguage1);
@@ -1273,7 +1273,7 @@ function generate_character(version) {
         race = "White Dragonborn";
       }
     }
-  } else if (race === "Dwarf" || excalibur3 === "Dwarf") {
+  } else if (race === "Dwarf" || raceSplitter3 === "Dwarf") {
     racialLanguage1 = "Common";
     racialLanguage2 = "Dwarvish";
     profsAndLangs.languages.push(racialLanguage1);
@@ -1290,7 +1290,7 @@ function generate_character(version) {
         race = "Mountain Dwarf";
       }
     }
-  } else if (race === "Elf" || excalibur3 === "Elf") {
+  } else if (race === "Elf" || raceSplitter3 === "Elf") {
     dexterity += 2;
     document.getElementById("form87_1").value = "30";
     random_by_length(softTraits, personalityTraits, "form102_1");
@@ -1317,7 +1317,7 @@ function generate_character(version) {
         race = "Dark Elf (Drow)";
       }
     }
-  } else if (race === "Halfling" || excalibur3 === "Halfling") {
+  } else if (race === "Halfling" || raceSplitter3 === "Halfling") {
     racialLanguage1 = "Common";
     racialLanguage2 = "Halfling";
     profsAndLangs.languages.push(racialLanguage1);
@@ -1335,7 +1335,7 @@ function generate_character(version) {
         race = "Stout Halfling";
       }
     }
-  } else if (race === "Human" || excalibur1 === "Human") {
+  } else if (race === "Human" || raceSplitter1 === "Human") {
     racialLanguage1 = "Common";
     racialLanguage2 = random_language();
     profsAndLangs.languages.push(racialLanguage1);
@@ -1377,7 +1377,7 @@ function generate_character(version) {
         random_by_length(toughTraits, personalityTraits, "form102_1");
       }
     }
-  } else if (race === "Gnome" || excalibur3 === "Gnome") {
+  } else if (race === "Gnome" || raceSplitter3 === "Gnome") {
     racialLanguage1 = "Common";
     racialLanguage2 = "Gnomish";
     profsAndLangs.languages.push(racialLanguage1);
