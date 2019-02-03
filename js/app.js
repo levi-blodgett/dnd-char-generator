@@ -367,11 +367,11 @@ function generate_character(version) {
         newBackground2 = this._backgroundsDexterousMental[Math.floor(Math.random() * 14)];
       } else if (strength > 11 && constitution > 9 && intelligence > 11 && dexterity < 12) {
         newBackground2 = this._backgroundsPhysicalMental[Math.floor(Math.random() * 15)];
-      } else if (classlevel === "Cleric 1") {
+      } else if (classAndLevel === "Cleric 1") {
         newBackground2 = this._backgroundsCleric[Math.floor(Math.random() * 10)];
-      } else if (classlevel === "Druid 1") {
+      } else if (classAndLevel === "Druid 1") {
         newBackground2 = this._backgroundsDruid[Math.floor(Math.random() * 5)];
-      } else if (classlevel === "Warlock 1") {
+      } else if (classAndLevel === "Warlock 1") {
         newBackground2 = this._backgroundsWarlock[Math.floor(Math.random() * 9)];
       } else {
         newBackground2 = this._backgroundsNone[Math.floor(Math.random() * 6)];
@@ -403,7 +403,7 @@ function generate_character(version) {
   let artisantool;
   let randomAritsanTool;
   let soldierGamingSet;
-  let flashyWeapon;
+  let gladiatorWeapon;
   let beefiness;
   let individualDiscrepancy;
   let randomValue;
@@ -413,7 +413,7 @@ function generate_character(version) {
   let race;
   let ancestry;
   let ancestryHuman;
-  let stat_total;
+  let statTotal;
   let raceSplitter;
   let raceSplitter1;
   let raceSplitter2;
@@ -426,11 +426,11 @@ function generate_character(version) {
   let j;
   let random;
   let random2;
-  let classs;
-  let classlevel;
-  let random_class_variable;
-  let random_chance;
-  let cleric_type;
+  let className;
+  let classAndLevel;
+  let randomClassVariable;
+  let randomChance;
+  let clericBuild;
   let name;
   let newlangs;
   let newweapprofs;
@@ -469,12 +469,12 @@ function generate_character(version) {
   let firstNameNumber;
   let lastNameNumber;
   let number;
-  let race_checker;
+  let raceChecker;
   let arrayOfClass;
   let lengthOfClassArray;
   let ClassRandomizerNumber;
   let actualClass;
-  let alignment_checker = false;
+  let alignmentChecker = false;
   let hp = 0;
   let gold = 0;
   let armorClass = 0;
@@ -559,10 +559,10 @@ function generate_character(version) {
 
   const chaoticFlaws = ["I'd rather kill someone in their sleep then fight fair.", "I can't resist messing with people who are more powerful than me.", "If there's a plan, I'll forget it. If I don't forget it, I'll ignore it.", "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around.", "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat.", "Despite my best efforts, I am unreliable to my friends.", "The tyrant who rules my land will stop at nothing to see me killed.", "I too often hear veiled insults and threats in every word addressed to me, and I'm quick to anger.", "There's no room for caution in a life lived to the fullest.", "Narrates own thoughts."];
 
-  classlevel = '';
-  random_class_variable = get_random_number(12);
-  random_chance = Math.random();
-  cleric_type = '';
+  classAndLevel = '';
+  randomClassVariable = get_random_number(12);
+  randomChance = Math.random();
+  clericBuild = '';
 
   // Function to assign stats based on the class that was rolled.
   function assign_stats(strength1, dexterity1, constitution1, intelligence1, wisdom1, charisma1, classtype) {
@@ -572,9 +572,9 @@ function generate_character(version) {
     intelligence += intelligence1;
     wisdom += wisdom1;
     charisma += charisma1;
-    stat_total = strength1 + dexterity1 + intelligence1 + constitution1 + wisdom1 + charisma1;
+    statTotal = strength1 + dexterity1 + intelligence1 + constitution1 + wisdom1 + charisma1;
     // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
-    document.getElementById("form98_1").value = classtype + "(" + stat_total + "): " + strength1 + ", " + dexterity1 + ", " + constitution1 + ", " + intelligence1 + ", " + wisdom1 + ", " + charisma1;
+    document.getElementById("form98_1").value = classtype + "(" + statTotal + "): " + strength1 + ", " + dexterity1 + ", " + constitution1 + ", " + intelligence1 + ", " + wisdom1 + ", " + charisma1;
   }
 
   function class_dropdown_generator(){
@@ -601,113 +601,113 @@ function generate_character(version) {
 
   // Generates class based on user input
   if (document.getElementById('class_random').checked) {
-    if (random_class_variable === 1) {
-      classlevel = "Barbarian 1";
-    } else if (random_class_variable === 2) {
-      classlevel = "Bard 1";
-    } else if (random_class_variable === 3) {
-      classlevel = "Cleric 1";
-    } else if (random_class_variable === 4) {
-      classlevel = "Druid 1";
-    } else if (random_class_variable === 5) {
-      classlevel = "Fighter 1";
-    } else if (random_class_variable === 6) {
-      classlevel = "Monk 1";
-    } else if (random_class_variable === 7) {
-      classlevel = "Paladin 1";
-    } else if (random_class_variable === 8) {
-      classlevel = "Ranger 1";
-    } else if (random_class_variable === 9) {
-      classlevel = "Rogue 1";
-    } else if (random_class_variable === 10) {
-      classlevel = "Sorcerer 1";
-    } else if (random_class_variable === 11) {
-      classlevel = "Warlock 1";
-    } else if (random_class_variable === 12) {
-      classlevel = "Wizard 1";
+    if (randomClassVariable === 1) {
+      classAndLevel = "Barbarian 1";
+    } else if (randomClassVariable === 2) {
+      classAndLevel = "Bard 1";
+    } else if (randomClassVariable === 3) {
+      classAndLevel = "Cleric 1";
+    } else if (randomClassVariable === 4) {
+      classAndLevel = "Druid 1";
+    } else if (randomClassVariable === 5) {
+      classAndLevel = "Fighter 1";
+    } else if (randomClassVariable === 6) {
+      classAndLevel = "Monk 1";
+    } else if (randomClassVariable === 7) {
+      classAndLevel = "Paladin 1";
+    } else if (randomClassVariable === 8) {
+      classAndLevel = "Ranger 1";
+    } else if (randomClassVariable === 9) {
+      classAndLevel = "Rogue 1";
+    } else if (randomClassVariable === 10) {
+      classAndLevel = "Sorcerer 1";
+    } else if (randomClassVariable === 11) {
+      classAndLevel = "Warlock 1";
+    } else if (randomClassVariable === 12) {
+      classAndLevel = "Wizard 1";
     }
   } else {
-    classlevel = class_dropdown_generator() + " 1";
+    classAndLevel = class_dropdown_generator() + " 1";
   }
 
   // Code block that assigns the stats to the class that was chosen
-  if (classlevel === "Barbarian 1") {
-    if (random_chance > .5) {
+  if (classAndLevel === "Barbarian 1") {
+    if (randomChance > .5) {
       assign_stats(stat1, stat3, stat2, stat6, stat4, stat5, "Barbarian");
     } else {
       assign_stats(stat3, stat2, stat1, stat6, stat4, stat5, "Barbarian");
     }
-  } else if (classlevel === "Bard 1") {
-    if (random_chance > .5) {
+  } else if (classAndLevel === "Bard 1") {
+    if (randomChance > .5) {
       assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Bard");
     } else {
       assign_stats(stat2, stat4, stat3, stat5, stat6, stat1, "Bard");
     }
-  } else if (classlevel === "Cleric 1") {
-    if (random_chance > .66) {
+  } else if (classAndLevel === "Cleric 1") {
+    if (randomChance > .66) {
       assign_stats(stat4, stat2, stat3, stat5, stat1, stat6, "Cleric");
-      cleric_type = 'DEX';
-    } else if (random_chance > .33) {
+      clericBuild = 'DEX';
+    } else if (randomChance > .33) {
       assign_stats(stat2, stat4, stat3, stat6, stat1, stat5, "Cleric");
-      cleric_type = 'STR';
+      clericBuild = 'STR';
     } else {
       assign_stats(stat5, stat3, stat2, stat4, stat1, stat6, "Cleric");
-      cleric_type = 'WIS';
+      clericBuild = 'WIS';
     }
-  } else if (classlevel === "Druid 1") {
-    if (random_chance > .5) {
+  } else if (classAndLevel === "Druid 1") {
+    if (randomChance > .5) {
       assign_stats(stat6, stat3, stat2, stat5, stat1, stat4, "Druid");
     } else {
       assign_stats(stat6, stat3, stat2, stat4, stat1, stat5, "Druid");
     }
-  } else if (classlevel === "Fighter 1") {
-    if (random_chance > .66) {
+  } else if (classAndLevel === "Fighter 1") {
+    if (randomChance > .66) {
       assign_stats(stat6, stat1, stat2, stat4, stat3, stat5, "Fighter");
-    } else if (random_chance > .33) {
+    } else if (randomChance > .33) {
       assign_stats(stat1, stat4, stat2, stat5, stat3, stat6, "Fighter");
     } else {
       assign_stats(stat1, stat4, stat3, stat2, stat5, stat6, "Fighter");
     }
-  } else if (classlevel === "Monk 1") {
-    if (random_chance > .5) {
+  } else if (classAndLevel === "Monk 1") {
+    if (randomChance > .5) {
       assign_stats(stat4, stat1, stat3, stat6, stat2, stat5, "Monk");
     } else {
       assign_stats(stat5, stat1, stat3, stat6, stat2, stat4, "Monk");
     }
-  } else if (classlevel === "Paladin 1") {
-    if (random_chance > .5) {
+  } else if (classAndLevel === "Paladin 1") {
+    if (randomChance > .5) {
       assign_stats(stat5, stat1, stat3, stat6, stat4, stat2, "Paladin");
     } else {
       assign_stats(stat1, stat5, stat3, stat6, stat4, stat2, "Paladin");
     }
-  } else if (classlevel === "Ranger 1") {
-    if (random_chance > .5) {
+  } else if (classAndLevel === "Ranger 1") {
+    if (randomChance > .5) {
       assign_stats(stat5, stat1, stat2, stat4, stat3, stat6, "Ranger");
     } else {
       assign_stats(stat1, stat2, stat3, stat5, stat4, stat6, "Ranger");
     }
-  } else if (classlevel === "Rogue 1") {
-    if (random_chance > .66) {
+  } else if (classAndLevel === "Rogue 1") {
+    if (randomChance > .66) {
       assign_stats(stat6, stat1, stat2, stat5, stat3, stat4, "Rogue");
-    } else if (random_chance > .33) {
+    } else if (randomChance > .33) {
       assign_stats(stat6, stat1, stat2, stat5, stat4, stat3, "Rogue");
     } else {
       assign_stats(stat6, stat1, stat3, stat2, stat4, stat5, "Rogue");
     }
-  } else if (classlevel === "Sorcerer 1") {
-    if (random_chance > .5) {
+  } else if (classAndLevel === "Sorcerer 1") {
+    if (randomChance > .5) {
       assign_stats(stat6, stat3, stat2, stat5, stat4, stat1, "Sorcerer");
     } else {
       assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Sorcerer");
     }
-  } else if (classlevel === "Warlock 1") {
-    if (random_chance > .5) {
+  } else if (classAndLevel === "Warlock 1") {
+    if (randomChance > .5) {
       assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Warlock");
     } else {
       assign_stats(stat6, stat3, stat2, stat5, stat4, stat1, "Warlock");
     }
-  } else if (classlevel === "Wizard 1") {
-    if (random_chance > .5) {
+  } else if (classAndLevel === "Wizard 1") {
+    if (randomChance > .5) {
       assign_stats(stat6, stat2, stat3, stat1, stat4, stat5, "Wizard");
     } else {
       assign_stats(stat5, stat3, stat2, stat1, stat4, stat6, "Wizard");
@@ -723,35 +723,35 @@ function generate_character(version) {
   // Code block to read what the user input for the race dropdown box
   if (document.getElementById('race_random').checked) {
     if (number === 0) {
-      race_checker = 0;
+      raceChecker = 0;
       race_generator("Dragonborn");
     } else if (number === 1) {
-      race_checker = 0;
+      raceChecker = 0;
       race_generator("Dwarf");
     } else if (number === 2) {
-      race_checker = 0;
+      raceChecker = 0;
       race_generator("Elf");
     } else if (number === 3) {
-      race_checker = 0;
+      raceChecker = 0;
       race_generator("Gnome");
     } else if (number === 4) {
-      race_checker = 0;
+      raceChecker = 0;
       race_generator("HalfElf");
     } else if (number === 5) {
-      race_checker = 0;
+      raceChecker = 0;
       race_generator("HalfOrc");
     } else if (number === 6) {
-      race_checker = 0;
+      raceChecker = 0;
       race_generator("Halfling");
     } else if (number === 7) {
-      race_checker = 0;
+      raceChecker = 0;
       race_generator("Human");
     } else if (number === 8) {
-      race_checker = 0;
+      raceChecker = 0;
       race_generator("Tiefling");
     };
   } else {
-    race_checker++;
+    raceChecker++;
     race_dropdown_generator();
   }
 
@@ -908,7 +908,7 @@ function generate_character(version) {
 
   // Function to help facilitate easier code for alignment picking
   function alignment_helper(balance, morality) {
-    alignment_checker = true;
+    alignmentChecker = true;
     alignment.push(balance);
     if (balance === "Lawful") {
       random_by_length(lawfulFlaws, flaws, "form99_1");
@@ -1250,7 +1250,7 @@ function generate_character(version) {
     charisma += 1;
     document.getElementById("form87_1").value = "30";
     random_by_length(toughTraits, personalityTraits, "form102_1");
-    if (race_checker === 0){
+    if (raceChecker === 0){
       if (ancestry === 1) {
         race = "Black Dragonborn";
       } else if (ancestry === 2) {
@@ -1283,7 +1283,7 @@ function generate_character(version) {
     features.push("Darkvision: 60 feet.");
     features.push("Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.");
     document.getElementById("form87_1").value = "25";
-    if (race_checker === 0){
+    if (raceChecker === 0){
       if (wisdom >= strength) {
         race = "Hill Dwarf";
       } else {
@@ -1296,7 +1296,7 @@ function generate_character(version) {
     random_by_length(softTraits, personalityTraits, "form102_1");
     additionalFeatures.push("Fey Ancestry: You have advantage on saving throws against being charmed, and magic can’t put you to sleep.");
     additionalFeatures.push("Trance: Elves don’t need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After Resting in this way, you gain the same benefit that a human does from 8 hours of sleep.");
-    if (race_checker === 0){
+    if (raceChecker === 0){
       if (intelligence >= wisdom && intelligence >= charisma) {
         race = "High Elf";
       } else if (wisdom >= intelligence && wisdom >= charisma) {
@@ -1328,7 +1328,7 @@ function generate_character(version) {
     additionalFeatures.push("Halfling Nimbleness: You can move through the space of any creature that is of a size larger than yours.");
     additionalFeatures.push("Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.");
     features.push("Brave: You have advantage on saving throws against being frightened.");
-    if (race_checker === 0){
+    if (raceChecker === 0){
       if (charisma >= constitution) {
         race = "Lightfoot Halfling";
       } else if (constitution > charisma) {
@@ -1347,7 +1347,7 @@ function generate_character(version) {
     wisdom += 1;
     charisma += 1;
     document.getElementById("form87_1").value = "30";
-    if (race_checker === 0){
+    if (raceChecker === 0){
       if (ancestryHuman === 1) {
         race = "Human (Calishite)";
         random_by_length(softTraits, personalityTraits, "form102_1");
@@ -1387,7 +1387,7 @@ function generate_character(version) {
     random_by_length(softTraits, personalityTraits, "form102_1");
     features.push("Darkvision: 60 feet.");
     features.push("Gnome Cunning: You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.");
-    if (race_checker === 0){
+    if (raceChecker === 0){
       if (dexterity >= constitution) {
         race = "Forest Gnome";
       } else if (constitution > dexterity) {
@@ -1404,7 +1404,7 @@ function generate_character(version) {
 
   // Function for picking balance alignment
   function generate_balance(higherDecimal, lowerDecimal) {
-    if (alignment_checker === false) {
+    if (alignmentChecker === false) {
       if (Math.random() >= higherDecimal) {
         alignment.push("Lawful");
         random_by_length(lawfulFlaws, flaws, "form99_1");
@@ -1425,7 +1425,7 @@ function generate_character(version) {
 
   // Function for picking morality alignment
   function generate_morality(higherDecimal, lowerDecimal) {
-    if (alignment_checker === false) {
+    if (alignmentChecker === false) {
       if (Math.random() >= higherDecimal) {
         alignment.push("Good");
         random_by_length(goodIdeals, ideals, "form100_1");
@@ -1789,40 +1789,41 @@ function generate_character(version) {
   stat_checker(wisdomModifier, "form47_1"); // survival
 
   // Variable that holds the value of just the class, not the level
-  classs = classlevel.split(" ")[0];
+  className = classAndLevel.split(" ")[0];
+  
 
   // Block that determines the right saving throws by class
-  if (classlevel === "Barbarian 1" || classlevel === "Fighter 1" || classlevel === "Monk 1" || classlevel === "Ranger 1") {
+  if (classAndLevel === "Barbarian 1" || classAndLevel === "Fighter 1" || classAndLevel === "Monk 1" || classAndLevel === "Ranger 1") {
     stat_checker(strengthModifier + 2, "form42_1");
     add_click(15);
   } else {
     stat_checker(strengthModifier, "form42_1");
   }
-  if (classlevel === "Bard 1" || classlevel === "Rogue 1" || classlevel === "Ranger 1" || classlevel === "Monk 1") {
+  if (classAndLevel === "Bard 1" || classAndLevel === "Rogue 1" || classAndLevel === "Ranger 1" || classAndLevel === "Monk 1") {
     stat_checker(dexterityModifier + 2, "form54_1");
     add_click(18);
   } else {
     stat_checker(dexterityModifier, "form54_1");
   }
-  if (classlevel === "Barbarian 1" || classlevel === "Fighter 1" || classlevel === "Sorcerer 1") {
+  if (classAndLevel === "Barbarian 1" || classAndLevel === "Fighter 1" || classAndLevel === "Sorcerer 1") {
     stat_checker(constitutionModifier + 2, "form41_1");
     add_click(22);
   } else {
     stat_checker(constitutionModifier, "form41_1");
   }
-  if (classlevel === "Druid 1" || classlevel === "Rogue 1" || classlevel === "Wizard 1") {
+  if (classAndLevel === "Druid 1" || classAndLevel === "Rogue 1" || classAndLevel === "Wizard 1") {
     stat_checker(intelligenceModifier + 2, "form52_1");
     add_click(6);
   } else {
     stat_checker(intelligenceModifier, "form52_1");
   }
-  if (classlevel === "Druid 1" || classlevel === "Cleric 1" || classlevel === "Wizard 1" || classlevel === "Paladin 1" || classlevel === "Warlock 1") {
+  if (classAndLevel === "Druid 1" || classAndLevel === "Cleric 1" || classAndLevel === "Wizard 1" || classAndLevel === "Paladin 1" || classAndLevel === "Warlock 1") {
     stat_checker(wisdomModifier + 2, "form39_1");
     add_click(10);
   } else {
     stat_checker(wisdomModifier, "form39_1");
   }
-  if (classlevel === "Bard 1" || classlevel === "Cleric 1" || classlevel === "Sorcerer 1" || classlevel === "Paladin 1" || classlevel === "Warlock 1") {
+  if (classAndLevel === "Bard 1" || classAndLevel === "Cleric 1" || classAndLevel === "Sorcerer 1" || classAndLevel === "Paladin 1" || classAndLevel === "Warlock 1") {
     stat_checker(charismaModifier + 2, "form51_1");
     add_click(3);
   } else {
@@ -1830,16 +1831,16 @@ function generate_character(version) {
   }
 
   // Block that determines the right hit die by class
-  if (classlevel === "Barbarian 1") {
+  if (classAndLevel === "Barbarian 1") {
     stat_checker_2(constitutionModifier, "form89_1", "1d12");
     hp = 12 + constitutionModifier;
-  } else if (classlevel === "Fighter 1" || classlevel === "Paladin 1" || classlevel === "Ranger 1") {
+  } else if (classAndLevel === "Fighter 1" || classAndLevel === "Paladin 1" || classAndLevel === "Ranger 1") {
     stat_checker_2(constitutionModifier, "form89_1", "1d10");
     hp = 10 + constitutionModifier;
-  } else if (classlevel === "Bard 1" || classlevel === "Cleric 1" || classlevel === "Druid 1" || classlevel === "Monk 1" || classlevel === "Rogue 1" || classlevel === "Warlock 1") {
+  } else if (classAndLevel === "Bard 1" || classAndLevel === "Cleric 1" || classAndLevel === "Druid 1" || classAndLevel === "Monk 1" || classAndLevel === "Rogue 1" || classAndLevel === "Warlock 1") {
     stat_checker_2(constitutionModifier, "form89_1", "1d8");
     hp = 8 + constitutionModifier;
-  } else if (classlevel === "Wizard 1" || classlevel === "Sorcerer 1") {
+  } else if (classAndLevel === "Wizard 1" || classAndLevel === "Sorcerer 1") {
     stat_checker_2(constitutionModifier, "form89_1", "1d6");
     hp = 6 + constitutionModifier;
   }
@@ -1883,10 +1884,10 @@ function generate_character(version) {
   }
 
   // Function to determine what equipment/spells/features you should have based on your class
-  function equipment_chooser(classlevel) {
+  function equipment_chooser(classAndLevel) {
     random = Math.random();
     random2 = Math.random();
-    if (classlevel === "Barbarian 1") {
+    if (classAndLevel === "Barbarian 1") {
       features.push("Rage (2/lr): On your turn, you can enter a rage as a Bonus Action. While raging, you gain the following benefits if you aren't wearing heavy armor: You have advantage on Strength Checks and Strength saving throws. When you make a melee weapon Attack using Strength, you gain a +2 bonus to the damage roll. This bonus increases as you level. You have Resistance to bludgeoning, piercing, and slashing damage. If you are able to cast Spells, you can't cast them or concentrate on them while raging. See player's handbook for more details.");
       features.push("Unarmored Defense: While you are not wearing any armor, your armor class equals 10 + your dexterity modifier + your constitution modifier, usable with shield..");
       spellcastingSection.push("Rage (2/lr): Use your bonus action to rage and gain +2 to melee damage rolls using strength, and gain defensive benefits outlined in the features section.");
@@ -1934,7 +1935,7 @@ function generate_character(version) {
         stat_checker(strengthModifier + 2, "form65_1"); // 2nd weapon 2nd section
         stat_checker_3(strengthModifier, "form74_1", "1d6", "S"); // 2nd weapon 3rd section
       }
-    } else if (classlevel === "Bard 1") {
+    } else if (classAndLevel === "Bard 1") {
       if (charismaModifier < 1) {
         bardModifier = 1;
       } else {
@@ -1976,7 +1977,7 @@ function generate_character(version) {
       } else {
         equipment.push("Entertainer's pack");
       }
-    } else if (classlevel === "Cleric 1") {
+    } else if (classAndLevel === "Cleric 1") {
       if (random2 > .5) {
         equipment.push("Explorer's pack");
       } else {
@@ -1984,7 +1985,7 @@ function generate_character(version) {
       }
       equipment.push("Shield");
       equipment.push("A holy symbol");
-      if (cleric_type === 'STR') {
+      if (clericBuild === 'STR') {
         equipment.push("Handaxe");
         document.getElementById("form78_1").value = "Handaxe"; // 2nd weapon 1st section
         stat_checker(strengthModifier + 2, "form65_1"); // 2nd weapon 2nd section
@@ -2135,7 +2136,7 @@ function generate_character(version) {
             stat_checker(intelligenceModifier + 2, "form37_1"); // nature
           }
         }
-      } else if (cleric_type === 'DEX') {
+      } else if (clericBuild === 'DEX') {
         equipment.push("Light crossbow w/ 20 bolts");
         document.getElementById("form78_1").value = "L Crossbow"; // 2nd weapon 1st section
         stat_checker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
@@ -2273,7 +2274,7 @@ function generate_character(version) {
           document.getElementById("form159_3").value = "Ray of Sickness";
           features.push("Reaper: You learn one neromancy cantrip, and when you cast a necromancy cantrip that normally targets only one creature, the spell instead targets two creatures within range and within 5 feet of each other.");
         }
-      } else if (cleric_type === 'WIS') {
+      } else if (clericBuild === 'WIS') {
         equipment.push("Mace");
         document.getElementById("form79_1").value = "Mace"; // 1st weapon 1st section
         stat_checker(strengthModifier + 2, "form64_1"); // 1st weapon 2nd section
@@ -2429,7 +2430,7 @@ function generate_character(version) {
           stat_checker(intelligenceModifier + 4, "form40_1"); // arcana
         }
       }
-    } else if (classlevel === "Druid 1") {
+    } else if (classAndLevel === "Druid 1") {
       tool_adder_2(tool_adder("herbalism kit"));
       profsAndLangs.languages.push("Druidic");
       features.push("Druidic: You know the language Druidic, you can see hidden messages of druids and speak the language. Those who don't know Druidic can see the message with a succesful DC 15 Wisdom check, but cannot decipher it.");
@@ -2484,7 +2485,7 @@ function generate_character(version) {
         stat_checker_3(dexterityModifier, "form76_1", "1d6", "P"); // 1st weapon 3rd section
         equipment.push("Animal totem staff - Focus");
       }
-    } else if (classlevel === "Fighter 1") {
+    } else if (classAndLevel === "Fighter 1") {
       features.push("Second Wind (1/r): On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level.");
       spellcastingSection.push("Second Wind (1/r): Use a bonus action to gain 1d10 + 1 hp.");
       spellcastingSection.push(" ");
@@ -2581,7 +2582,7 @@ function generate_character(version) {
           stat_checker_3(dexterityModifier, "form74_1", "1d8", "P"); // 2nd weapon 3rd section
         }
       }
-    } else if (classlevel === "Monk 1") {
+    } else if (classAndLevel === "Monk 1") {
       features.push("Unarmored Defense: While you are not wearing any armor or shields, your armor class equals 10 + your dexterity modifier + your wisdom modifier.");
       features.push("Martial Arts: You gain the following benefits when you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:\rYou can use DEX instead of STR for atk and dmg rolls of your unarmed strikes or monk weapons.\rYou can roll a d4 in place of the normal dmg of your unarmed strike or monk weapon.\rWhenever you use the Attack action with an unarmed strike or monk weapon, you can use your bonus action to make an unarmed strike as well.");
       spellcastingSection.push("Martial Arts: When you attack with the above weapons, you can use your bonus action to make an unarmed strike.");
@@ -2617,7 +2618,7 @@ function generate_character(version) {
         stat_checker(dexterityModifier + 2, "form64_1"); // 1st weapon 2nd section
         stat_checker_3(dexterityModifier, "form76_1", "1d6", "B"); // 1st weapon 3rd section
       }
-    } else if (classlevel === "Paladin 1") {
+    } else if (classAndLevel === "Paladin 1") {
       equipment.push("Chain mail");
       features.push("Divine Sense (" + (charismaModifier + 1) + "/lr: As an action, until the end of your next turn, you know the location of any celestial, fiend, or Undead within 60 feet of you that is not behind total cover. You know the type of any being whose presence you sense, but not its identity. Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated.");
       features.push("Lay on Hands (5 hp/lr): You can restore a total number of hit points equal to your paladin level x 5. As an action, you can use your pool to heal a target. Alternatively, you can expend 5 hit points from your pool to cure the target of one disease or neutralize one poison affecting it. No effect on Undead and constructs.");
@@ -2720,7 +2721,7 @@ function generate_character(version) {
           stat_checker_3(strengthModifier, "form74_1", "1d6", "P"); // 2nd weapon 3rd section
         }
       }
-    } else if (classlevel === "Ranger 1") {
+    } else if (classAndLevel === "Ranger 1") {
       equipment.push("Two shortswords");
       document.getElementById("form78_1").value = "Shortsword"; // 2nd weapon 1st section
       stat_checker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
@@ -2777,7 +2778,7 @@ function generate_character(version) {
       } else {
         features.push("Natural Explorer: Favored terrain is the Swamp, when you make an INT or WIS check related to your favored terrain, your proficiency x2 if you are using a skill that you're proficient in. While traveling an hour or more in your favored terrain, you gain benefits: Difficult terrain doesn't slow your group's travel. Your group can't become lost except by magical means. When engaged in another activity while traveling you remain alert to danger. If alone, you can move stealthily at a normal pace. When you forage, find twice the food. While tracking other creatures, you learn their number, sizes, and how long it has been.");
       }
-    } else if (classlevel === "Rogue 1") {
+    } else if (classAndLevel === "Rogue 1") {
       tool_adder_2(tool_adder("thieves' tools"));
       equipment.push("Rapier");
       document.getElementById("form79_1").value = "Rapier"; // 1st weapon 1st section
@@ -2816,7 +2817,7 @@ function generate_character(version) {
         stat_checker(dexterityModifier + 4, "form32_1");
         equipment.push("Thieves' tools (+4)");
       } /* Levi N. Blodgett */
-    } else if (classlevel === "Sorcerer 1") {
+    } else if (classAndLevel === "Sorcerer 1") {
       equipment.push("Two daggers");
       document.getElementById("form79_1").value = "Dagger"; // 1st weapon 1st section
       stat_checker(dexterityModifier + 2, "form64_1"); // 1st weapon 2nd section
@@ -2885,7 +2886,7 @@ function generate_character(version) {
         features.push("Tides of Chaos (1/lr): You can gain advantage on one attack roll, ability check, or saving throw. Anytime you regain this feature, the DM can have you roll on the Wild Magic Surge table immediately after you cast a sorcerer spell of 1st level or higher. You then regain the use of this feature.");
         armorClass += 10 + dexterityModifier;
       }
-    } else if (classlevel === "Warlock 1") {
+    } else if (classAndLevel === "Warlock 1") {
       equipment.push("Two daggers");
       equipment.push("Component pouch");
       equipment.push("Leather armor");
@@ -2932,7 +2933,7 @@ function generate_character(version) {
         document.getElementById("form159_3").value = "Tasha's Hideous Laughter";
         features.push("Awakened Mind: You can communicate telepathically with any creature you can see within 30 feet of you. You don't need to share a language with the creature for it to understand your telepathic utterances, but the creature must be able to understand at least one language.");
       }
-    } else if (classlevel === "Wizard 1") {
+    } else if (classAndLevel === "Wizard 1") {
       armorClass += 10 + dexterityModifier;
       features.push("Arcane Recovery (1/d): When you finish a short rest once a day, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.");
       if (random > .5) {
@@ -2968,7 +2969,7 @@ function generate_character(version) {
   }
 
   // Block that adds weapon proficiencies by class
-  if (classlevel === "Barbarian 1") {
+  if (classAndLevel === "Barbarian 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     weapon_adder_2(weapon_adder("martial weapons"));
     armor_adder_2(armor_adder("light armor"));
@@ -2978,7 +2979,7 @@ function generate_character(version) {
     equipment.push("Four javelins");
     equipment.push("Explorer's pack");
     random_by_length(barbarianBonds, bonds, "form101_1");
-  } else if (classlevel === "Fighter 1") {
+  } else if (classAndLevel === "Fighter 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     weapon_adder_2(weapon_adder("martial weapons"));
     armor_adder_2(armor_adder("light armor"));
@@ -2986,7 +2987,7 @@ function generate_character(version) {
     armor_adder_2(armor_adder("heavy armor"));
     armor_adder_2(armor_adder("shield"));
     random_by_length(fighterBonds, bonds, "form101_1");
-  } else if (classlevel === "Bard 1") {
+  } else if (classAndLevel === "Bard 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     armor_adder_2(armor_adder("light armor"));
     weapon_adder_2(weapon_adder("hand crossbow"));
@@ -2994,27 +2995,27 @@ function generate_character(version) {
     weapon_adder_2(weapon_adder("rapier"));
     weapon_adder_2(weapon_adder("shortsword"));
     random_by_length(bardBonds, bonds, "form101_1");
-  } else if (classlevel === "Cleric 1") {
+  } else if (classAndLevel === "Cleric 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     armor_adder_2(armor_adder("light armor"));
     armor_adder_2(armor_adder("medium armor"));
     armor_adder_2(armor_adder("shield"));
     random_by_length(clericBonds, bonds, "form101_1");
-  } else if (classlevel === "Sorcerer 1") {
+  } else if (classAndLevel === "Sorcerer 1") {
     weapon_adder_2(weapon_adder("dagger"));
     weapon_adder_2(weapon_adder("dart"));
     weapon_adder_2(weapon_adder("quarterstaff"));
     weapon_adder_2(weapon_adder("sling"));
     weapon_adder_2(weapon_adder("light crossbow"));
     random_by_length(sorcererBonds, bonds, "form101_1");
-  } else if (classlevel === "Wizard 1") {
+  } else if (classAndLevel === "Wizard 1") {
     weapon_adder_2(weapon_adder("dagger"));
     weapon_adder_2(weapon_adder("dart"));
     weapon_adder_2(weapon_adder("quarterstaff"));
     weapon_adder_2(weapon_adder("sling"));
     weapon_adder_2(weapon_adder("light crossbow"));
     random_by_length(wizardBonds, bonds, "form101_1");
-  } else if (classlevel === "Druid 1") {
+  } else if (classAndLevel === "Druid 1") {
     armor_adder_2(armor_adder("light armor"));
     armor_adder_2(armor_adder("medium armor"));
     armor_adder_2(armor_adder("shield"));
@@ -3030,7 +3031,7 @@ function generate_character(version) {
     weapon_adder_2(weapon_adder("sling"));
     weapon_adder_2(weapon_adder("spear"));
     random_by_length(druidBonds, bonds, "form101_1");
-  } else if (classlevel === "Rogue 1") {
+  } else if (classAndLevel === "Rogue 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     armor_adder_2(armor_adder("light armor"));
     weapon_adder_2(weapon_adder("hand crossbow"));
@@ -3038,18 +3039,18 @@ function generate_character(version) {
     weapon_adder_2(weapon_adder("rapier"));
     weapon_adder_2(weapon_adder("shortsword"));
     random_by_length(rogueBonds, bonds, "form101_1");
-  } else if (classlevel === "Warlock 1") {
+  } else if (classAndLevel === "Warlock 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     armor_adder_2(armor_adder("light armor"));
     random_by_length(warlockBonds, bonds, "form101_1");
-  } else if (classlevel === "Ranger 1") {
+  } else if (classAndLevel === "Ranger 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     weapon_adder_2(weapon_adder("martial weapons"));
     armor_adder_2(armor_adder("light armor"));
     armor_adder_2(armor_adder("medium armor"));
     armor_adder_2(armor_adder("shield"));
     random_by_length(rangerBonds, bonds, "form101_1");
-  } else if (classlevel === "Paladin 1") {
+  } else if (classAndLevel === "Paladin 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     weapon_adder_2(weapon_adder("martial weapons"));
     armor_adder_2(armor_adder("light armor"));
@@ -3057,7 +3058,7 @@ function generate_character(version) {
     armor_adder_2(armor_adder("heavy armor"));
     armor_adder_2(armor_adder("shield"));
     random_by_length(paladinBonds, bonds, "form101_1");
-  } else if (classlevel === "Monk 1") {
+  } else if (classAndLevel === "Monk 1") {
     armorClass += 10 + dexterityModifier + wisdomModifier; // armor class
     weapon_adder_2(weapon_adder("simple weapons"));
     weapon_adder_2(weapon_adder("shortsword"));
@@ -3619,7 +3620,7 @@ function generate_character(version) {
   }
 
   // Function to determine a random flashy weapon for the gladiator background
-  function random_flashy_weapon() {
+  function random_gladiator_weapon() {
     random = Math.floor(Math.random() * 4);
     if (random === 0) {
       if (weapon_adder("trident") !== undefined) {
@@ -3652,8 +3653,8 @@ function generate_character(version) {
     }
   }
 
-  // Function to check random_flashy_weapon()
-  function random_flashy_weapon_checker(variable) {
+  // Function to check random_gladiator_weapon()
+  function random_gladiator_weapon_checker(variable) {
     if (variable === "Trident already added") {
       equipment.push("Trident");
     } else if (variable === "Net already added") {
@@ -3707,7 +3708,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 15;
     features.push("Shelter of the Faithful: Can perform the religious ceremonies of your deity. Your adventuring party can expect to receive free healing and care at an establishment of your faith, though you must provide any material components needed for spells. Those who share your religion will support you at a modest lifestyle. While near your home establishment, you can call upon the priests for assistance, provided it is not hazardous.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become an acolyte?\rWhat deity do you serve?\rWhere was your temple/monastery?\rWhy did you learn those languages?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from acolyte to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become an acolyte?\rWhat deity do you serve?\rWhere was your temple/monastery?\rWhy did you learn those languages?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from acolyte to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Charlatan") {
     tool_adder_2(tool_adder("disguise kit"));
     tool_adder_2(tool_adder("forgery kit"));
@@ -3721,7 +3722,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 15;
     features.push("False Identity: You have a second identity that includes documentation, established acquaintances, and disguises that allow you to assume that persona. Additionally, you can forge documents including official papers and personal letters, as long as you have seen an example of the kind of document or the handwriting you are trying to copy.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become a charlatan?\rWhat is your choice ploy?\rWhat was your biggest trick at?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from charlatan to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r" + "Are you still duping people, if not, why the change of heart?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become a charlatan?\rWhat is your choice ploy?\rWhat was your biggest trick at?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from charlatan to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r" + "Are you still duping people, if not, why the change of heart?";
   } else if (newBackground1 === "Criminal") {
     tool_adder_2(tool_adder("thieves' tools"));
     tool_adder_2(tool_adder(random_gaming_set_capitalize().toLowerCase()));
@@ -3734,7 +3735,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 15;
     features.push("Criminal Contact: You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances; specifically, you know the local messengers, corrupt caravan masters, and seedy sailors who can deliver messages for you.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become a criminal?\rWhat kind of criminal were you?\rDid you do anything terrible?\rWho is your criminal contact?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from criminal to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r" + "Are you still breaking the law, if not, why the change of heart?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become a criminal?\rWhat kind of criminal were you?\rDid you do anything terrible?\rWho is your criminal contact?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from criminal to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r" + "Are you still breaking the law, if not, why the change of heart?";
   } else if (newBackground1 === "Entertainer") {
     musicalinstrument = random_musical_instrument();
     tool_adder_2(tool_adder(musicalinstrument.toLowerCase()));
@@ -3749,7 +3750,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 15;
     features.push("By Popular Demand: You can always find a place to perform. At that place, you receive free lodging and food of a modest or comfortable standard, as long as you perform each night. Your performance also makes you something of a local figure, when recognized, they typically take a liking to you.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become an entertainer?\rHow did you entertain?\rDo you still have any contacts or people you know from performing?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from entertainer to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become an entertainer?\rHow did you entertain?\rDo you still have any contacts or people you know from performing?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from entertainer to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Folk Hero") {
     artisantool = random_artisan_tool();
     tool_adder_2(tool_adder(artisantool.toLowerCase()));
@@ -3765,10 +3766,10 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 10;
     features.push("Rustic Hospitality: Since you come from the ranks of the common folk, you fit in among them with ease. You can find a place to hide, rest, or recuperate among other commoners, unless you have shown yourself to be a danger to them. They will shield you from the law or anyone else searching for you, though they will not risk their lives for you.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat made you famous to your people?\rWhy did you leave them?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from folk hero to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat made you famous to your people?\rWhy did you leave them?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from folk hero to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Gladiator") {
-    flashyWeapon = random_flashy_weapon();
-    random_flashy_weapon_checker(flashyWeapon);
+    gladiatorWeapon = random_gladiator_weapon();
+    random_gladiator_weapon_checker(gladiatorWeapon);
     tool_adder_2(tool_adder("disguise kit"));
     add_click(19);
     stat_checker(dexterityModifier + 2, "form38_1");
@@ -3778,7 +3779,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 15;
     features.push("By Popular Demand: Can always find a place to perform that is combat-centered. At that place, receive free lodging and food of a modest or comfortable standard, as long as you perform each night. Your performance makes you something of a local figure, when recognized, persons typically take a liking to you.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhy did you become a gladiator?\rWas it slavery?\rWas it money?\rWas it family?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from gladiator to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhy did you become a gladiator?\rWas it slavery?\rWas it money?\rWas it family?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from gladiator to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Guild Artisan") {
     firstLanguage = random_language();
     firstLanguage = right_language();
@@ -3795,7 +3796,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 15;
     features.push("Guild Membership: Your fellow guild members will provide you with lodging and food if necessary, and pay for your funeral. If accused of a crime, your guild will support you if innocent or have just cause. 5Gp/month for membership, benefits only if you pay on time.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhy did you become an artisan?\rWhy did you choose your artistry?\rWhat's your guilds name?\rWas it money?\rWas it passion?\rWas it the family business?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from guild artisan to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhy did you become an artisan?\rWhy did you choose your artistry?\rWhat's your guilds name?\rWas it money?\rWas it passion?\rWas it the family business?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from guild artisan to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Guild Merchant") {
     firstLanguage = random_language();
     firstLanguage = right_language();
@@ -3814,7 +3815,7 @@ function generate_character(version) {
     equipment.push("Cart");
     gold += 15;
     features.push("Guild Membership: Your fellow guild members will provide you with lodging and food if necessary, and pay for your funeral. If accused of a crime, your guild will support you if innocent or have just cause. 5Gp/month for membership, benefits only if you pay on time.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhy did you become a merchant?\rWhy did you choose your artistry?\rWhat's your guilds name?\rWas it money?\rWas it passion for trade or meeting new people?\rWas it the family business?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from guild merchant to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhy did you become a merchant?\rWhy did you choose your artistry?\rWhat's your guilds name?\rWas it money?\rWas it passion for trade or meeting new people?\rWas it the family business?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from guild merchant to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Hermit") {
     firstLanguage = random_language();
     firstLanguage = right_language();
@@ -3830,7 +3831,7 @@ function generate_character(version) {
     equipment.push("Herbalism kit");
     gold += 5;
     features.push("Discovery: The quiet seclusion of your extended hermitage gave you access to a unique and powerful discovery.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhere were you secluded at?\rDid you travel a lot?\rWhat's your big discovery? Talk it over with your DM as well.\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from hermit to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhere were you secluded at?\rDid you travel a lot?\rWhat's your big discovery? Talk it over with your DM as well.\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from hermit to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Knight") {
     firstLanguage = random_language();
     firstLanguage = right_language();
@@ -3849,7 +3850,7 @@ function generate_character(version) {
     equipment.push("Purse");
     gold += 25;
     features.push("Retainer: You have three retainers loyal to your family. These retainers are a noble-born squire, a groom for your horse, and a servant for mundane tasks. Your retainers are people who can perform tasks for you, but they do not fight for you, will not follow you into dangerous areas, and will leave if they are frequently endangered or abused.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWho is your family?\rAre there any famous persons in it, or is your family famous for something in particular?\rWho is the woman you recieved the emblem of chivalry from?.\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from knight to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWho is your family?\rAre there any famous persons in it, or is your family famous for something in particular?\rWho is the woman you recieved the emblem of chivalry from?.\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from knight to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Noble") {
     firstLanguage = random_language();
     firstLanguage = right_language();
@@ -3865,7 +3866,7 @@ function generate_character(version) {
     equipment.push("Purse");
     gold += 25;
     features.push("Position of Privilege: You are welcome in high society, and people assume you have the right to be wherever you are. The common folk and merchants make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWho is your family?\rAre there any famous persons in it, or is your family famous for something in particular?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from noble to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWho is your family?\rAre there any famous persons in it, or is your family famous for something in particular?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from noble to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Outlander") {
     musicalinstrument = random_musical_instrument();
     tool_adder_2(tool_adder(musicalinstrument.toLowerCase()));
@@ -3880,7 +3881,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 10;
     features.push("Wanderer: You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features around you. In addition, you can find food and fresh water for yourself and up to five other people each day, provided that the land offers berries, small game, water, and so forth.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhere were you at?\rDid you travel a lot?\rWhat's the story behind your animal trophy?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from outlander to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhere were you at?\rDid you travel a lot?\rWhat's the story behind your animal trophy?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from outlander to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Pirate") {
     tool_adder_2(tool_adder("navigator's tools"));
     tool_adder_2(tool_adder("water vehicles"));
@@ -3895,7 +3896,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 10;
     features.push("Bad Reputation: No matter where you go, people are afraid of you due to your reputation. When you are in a civilized settlement, you can get away with minor criminal offenses, such as refusing to pay for food at a tavern or breaking down doors at a local shop, since most people will not report your activity to the authorities.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rHow did you become a pirate?\rDid you have a seaport that was your home?\rDo you still keep in contact with your shipmates?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from pirate to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r" + "Why aren't you a pirate still?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rHow did you become a pirate?\rDid you have a seaport that was your home?\rDo you still keep in contact with your shipmates?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from pirate to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r" + "Why aren't you a pirate still?";
   } else if (newBackground1 === "Sage") {
     firstLanguage = random_language();
     firstLanguage = right_language();
@@ -3915,7 +3916,7 @@ function generate_character(version) {
     equipment.push("Belt pouch");
     gold += 10;
     features.push("Researcher: When you attempt to learn or recall a piece of lore, if you do not know that information, you often know where and from whom you can obtain it. Usually, this information comes from a library, scriptorium, university, or a sage or other learned person or creature.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat were you spending all that time studying?\rWhat does the letter from your dead colleague say?\rWhy did you learn those languages?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from sage to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat were you spending all that time studying?\rWhat does the letter from your dead colleague say?\rWhy did you learn those languages?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from sage to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?";
   } else if (newBackground1 === "Sailor") {
     tool_adder_2(tool_adder("navigator's tools"));
     tool_adder_2(tool_adder("water vehicles"));
@@ -3930,7 +3931,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 10;
     features.push("Ship's Passage: You can secure free passage on a sailing ship for yourself and your adventuring companions. You might sail on the ship you served on, or another ship you have good relations with. In return for your free passage, you and your companions are expected to assist the crew during the voyage.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rHow did you become a sailor?\rDid you have a seaport that was your home?\rDo you still keep in contact with your shipmates?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from sailor to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rHow did you become a sailor?\rDid you have a seaport that was your home?\rDo you still keep in contact with your shipmates?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from sailor to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r";
   } else if (newBackground1 === "Soldier") {
     soldierGamingSet = random_gaming_set_soldier();
     tool_adder_2(tool_adder(soldierGamingSet.toLowerCase()));
@@ -3950,7 +3951,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 10;
     features.push("Military Rank: Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment or horses for temporary use. Can gain access to friendly military encampments and fortresses where your rank is recognized.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rHow did you become a soldier?\rWhat rank were you?\rDo you still keep in contact with any of your brothers and sisters in arms?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from soldier to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rHow did you become a soldier?\rWhat rank were you?\rDo you still keep in contact with any of your brothers and sisters in arms?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from soldier to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r";
   } else if (newBackground1 === "Spy") {
     tool_adder_2(tool_adder("thieves' tools"));
     tool_adder_2(tool_adder(random_gaming_set_capitalize().toLowerCase()));
@@ -3963,7 +3964,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 15;
     features.push("Spy Contact: You have a reliable and trustworthy contact who acts as your liaison to a network of other spies or criminals. You know how to get messages to and from your contact, even over great distances; specifically, you know the local messengers, corrupt caravan masters, and seedy sailors who can deliver messages for you.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become a spy?\rDid you do anything terrible?\rWho is your spy contact?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from spy to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r" + "Who did you work for when you were a spy?";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become a spy?\rDid you do anything terrible?\rWho is your spy contact?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from spy to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r" + "Who did you work for when you were a spy?";
   } else if (newBackground1 === "Urchin") {
     tool_adder_2(tool_adder("disguise kit"));
     tool_adder_2(tool_adder("thieves' tools"));
@@ -3979,7 +3980,7 @@ function generate_character(version) {
     equipment.push("Belt Pouch");
     gold += 10;
     features.push("City Secrets: You know the secret patterns and flow to cities and can find passages through the urban sprawl that others would miss. When you are not in combat, you (and companions you lead) can travel between any two locations in the city twice as fast as your speed would normally allow.");
-    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become an urchin?\rDid someone wrong you?\rAre you an orphan?\rDid your family's jobs fall through?\rWhy are you a " + classs.toLowerCase() + "?\r" + "How did you go from urchin to " + classs.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r";
+    document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become an urchin?\rDid someone wrong you?\rAre you an orphan?\rDid your family's jobs fall through?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from urchin to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r";
   }
 
   // Block to give a Half-Elf two random skills based on the most useful
@@ -3990,7 +3991,7 @@ function generate_character(version) {
 
   // Function to determine what proficiencies a character gets based on their class and their proficiencies they already have
   function class_proficiencies() {
-    if (classlevel === "Barbarian 1") {
+    if (classAndLevel === "Barbarian 1") {
       for (i = 0; i < 2; i++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
@@ -4012,7 +4013,7 @@ function generate_character(version) {
           stat_checker(intelligenceModifier + 2, "form37_1"); // nature
         }
       }
-    } else if (classlevel === "Fighter 1") {
+    } else if (classAndLevel === "Fighter 1") {
       for (i = 0; i < 2; i++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
@@ -4040,7 +4041,7 @@ function generate_character(version) {
           stat_checker(wisdomModifier + 2, "form50_1"); // animal handling
         }
       }
-    } else if (classlevel === "Bard 1") {
+    } else if (classAndLevel === "Bard 1") {
       if (document.getElementById("form1_1").checked === undefined) {
         add_click(1);
         stat_checker(charismaModifier + 2, "form45_1"); // persuasion
@@ -4054,7 +4055,7 @@ function generate_character(version) {
         skill_adder();
       }
       skill_adder();
-    } else if (classlevel === "Cleric 1") {
+    } else if (classAndLevel === "Cleric 1") {
       for (i = 0; i < 2; i++) {
         if (document.getElementById("form13_1").checked === undefined) {
           add_click(13);
@@ -4073,7 +4074,7 @@ function generate_character(version) {
           stat_checker(wisdomModifier + 2, "form53_1"); // medicine
         }
       }
-    } else if (classlevel === "Sorcerer 1") {
+    } else if (classAndLevel === "Sorcerer 1") {
       for (i = 0; i < 2; i++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
@@ -4095,7 +4096,7 @@ function generate_character(version) {
           stat_checker(charismaModifier + 2, "form36_1"); // deception
         }
       }
-    } else if (classlevel === "Wizard 1") {
+    } else if (classAndLevel === "Wizard 1") {
       for (i = 0; i < 2; i++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
@@ -4117,7 +4118,7 @@ function generate_character(version) {
           stat_checker(wisdomModifier + 2, "form53_1"); // medicine
         }
       }
-    } else if (classlevel === "Druid 1") {
+    } else if (classAndLevel === "Druid 1") {
       for (i = 0; i < 2; i++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
@@ -4145,7 +4146,7 @@ function generate_character(version) {
           stat_checker(wisdomModifier + 2, "form53_1"); // medicine
         }
       }
-    } else if (classlevel === "Rogue 1") {
+    } else if (classAndLevel === "Rogue 1") {
       for (i = 0; i < 4; i++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
@@ -4182,7 +4183,7 @@ function generate_character(version) {
           stat_checker(wisdomModifier + 2, "form35_1"); // insight
         }
       }
-    } else if (classlevel === "Warlock 1") {
+    } else if (classAndLevel === "Warlock 1") {
       for (i = 0; i < 2; i++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
@@ -4207,7 +4208,7 @@ function generate_character(version) {
           stat_checker(intelligenceModifier + 2, "form48_1"); // history
         }
       }
-    } else if (classlevel === "Ranger 1") {
+    } else if (classAndLevel === "Ranger 1") {
       for (i = 0; i < 3; i++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
@@ -4235,7 +4236,7 @@ function generate_character(version) {
           stat_checker(wisdomModifier + 2, "form35_1"); // insight
         }
       }
-    } else if (classlevel === "Paladin 1") {
+    } else if (classAndLevel === "Paladin 1") {
       for (i = 0; i < 2; i++) {
         if (document.getElementById("form20_1").checked === undefined) {
           add_click(20);
@@ -4257,7 +4258,7 @@ function generate_character(version) {
           stat_checker(wisdomModifier + 2, "form53_1"); // medicine
         }
       }
-    } else if (classlevel === "Monk 1") {
+    } else if (classAndLevel === "Monk 1") {
       for (i = 0; i < 2; i++) {
         if (document.getElementById("form20_1").checked === undefined) {
           add_click(20);
@@ -4283,30 +4284,30 @@ function generate_character(version) {
   };
 
   // Block that determines what equipment you get based on class
-  if (classlevel === "Barbarian 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Fighter 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Bard 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Cleric 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Sorcerer 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Wizard 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Druid 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Rogue 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Warlock 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Ranger 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Paladin 1") {
-    equipment_chooser(classlevel);
-  } else if (classlevel === "Monk 1") {
-    equipment_chooser(classlevel);
+  if (classAndLevel === "Barbarian 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Fighter 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Bard 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Cleric 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Sorcerer 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Wizard 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Druid 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Rogue 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Warlock 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Ranger 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Paladin 1") {
+    equipment_chooser(classAndLevel);
+  } else if (classAndLevel === "Monk 1") {
+    equipment_chooser(classAndLevel);
   };
 
   // Variable that holds your character name
@@ -4346,8 +4347,8 @@ function generate_character(version) {
   proficienciesAndLanguages.push(finalToolProficiencies);
 
   // Determines spells based on class and stats
-  if (classlevel === "Bard 1") {
-    document.getElementById("form214_3").value = classs; // spellcasting class
+  if (classAndLevel === "Bard 1") {
+    document.getElementById("form214_3").value = className; // spellcasting class
     document.getElementById("form196_3").value = "CHA"; // spellcasting ability
     document.getElementById("form194_3").value = 10 + charismaModifier; // spell save dc
     stat_checker(charismaModifier + 2, "form195_3"); // spell attack bonus
@@ -4378,8 +4379,8 @@ function generate_character(version) {
       document.getElementById("form204_3").value = "Prestidigitation";
     }
     document.getElementById("form62_1").value = "d6";
-  } else if (classlevel === "Sorcerer 1") {
-    document.getElementById("form214_3").value = classs; // spellcasting class
+  } else if (classAndLevel === "Sorcerer 1") {
+    document.getElementById("form214_3").value = className; // spellcasting class
     document.getElementById("form196_3").value = "CHA"; // spellcasting ability
     document.getElementById("form194_3").value = 10 + charismaModifier; // spell save dc
     stat_checker(charismaModifier + 2, "form195_3"); // spell attack bonus
@@ -4390,8 +4391,8 @@ function generate_character(version) {
     document.getElementById("form202_3").value = "Fire Bolt";
     document.getElementById("form193_3").value = "Charm Person";
     document.getElementById("form159_3").value = "Burning Hands";
-  } else if (classlevel === "Warlock 1") {
-    document.getElementById("form214_3").value = classs; // spellcasting class
+  } else if (classAndLevel === "Warlock 1") {
+    document.getElementById("form214_3").value = className; // spellcasting class
     document.getElementById("form196_3").value = "CHA"; // spellcasting ability
     document.getElementById("form194_3").value = 10 + charismaModifier; // spell save dc
     stat_checker(charismaModifier + 2, "form195_3"); // spell attack bonus
@@ -4400,8 +4401,8 @@ function generate_character(version) {
     document.getElementById("form137_3").value = "Hex";
     document.getElementById("form136_3").value = "Witch Bolt";
     document.getElementById("form97_3").value = 1;
-  } else if (classlevel === "Wizard 1") {
-    document.getElementById("form214_3").value = classs; // spellcasting class
+  } else if (classAndLevel === "Wizard 1") {
+    document.getElementById("form214_3").value = className; // spellcasting class
     document.getElementById("form196_3").value = "INT"; // spellcasting ability
     document.getElementById("form194_3").value = 10 + intelligenceModifier; // spell save dc
     stat_checker(intelligenceModifier + 2, "form195_3"); // spell attack bonus
@@ -4441,14 +4442,14 @@ function generate_character(version) {
       document.getElementById("form133_3").value = "Unseen Servant";
     }
     document.getElementById("form97_3").value = 2;
-  } else if (classlevel === "Cleric 1") {
-    document.getElementById("form214_3").value = classs; // spellcasting class
+  } else if (classAndLevel === "Cleric 1") {
+    document.getElementById("form214_3").value = className; // spellcasting class
     document.getElementById("form196_3").value = "WIS"; // spellcasting ability
     document.getElementById("form194_3").value = 10 + wisdomModifier; // spell save dc
     stat_checker(wisdomModifier + 2, "form195_3"); // spell attack bonus
     document.getElementById("form97_3").value = 2;
-  } else if (classlevel === "Druid 1") {
-    document.getElementById("form214_3").value = classs; // spellcasting class
+  } else if (classAndLevel === "Druid 1") {
+    document.getElementById("form214_3").value = className; // spellcasting class
     document.getElementById("form196_3").value = "WIS"; // spellcasting ability
     document.getElementById("form194_3").value = 10 + wisdomModifier; // spell save dc
     stat_checker(wisdomModifier + 2, "form195_3"); // spell attack bonus
@@ -4548,7 +4549,7 @@ function generate_character(version) {
   document.getElementById("form95_1").value = race; // race text field
   document.getElementById("form68_1").value = gold; // gold
   document.getElementById("form104_1").value = equipment.join('\r\n'); // equipment section
-  document.getElementById("form94_1").value = classlevel; // class and level text field
+  document.getElementById("form94_1").value = classAndLevel; // class and level text field
   document.getElementById("form105_1").value = proficienciesAndLanguages.join('\r'); // proficiencies and languages
   document.getElementById("form106_1").value = features.join('\r\n'); // features & traits
   document.getElementById("form16_2").value = additionalFeatures.join('\r\n'); // additional features, pg. 2
