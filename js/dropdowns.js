@@ -95,19 +95,22 @@ function on_subrace_dropdown_option_click(e){
   let targets_ul = document.getElementById(e.target.parentElement.parentElement.id);
   let targets_list = targets_ul.children;
   let targets_list_array = Array.from(targets_list);
+  let unchecked_boxes = 0;
   for (i = 0; i < targets_list.length; i++) {
     let test = targets_list[i].childNodes[0].childNodes[0];
-    if (test.checked === false) {
-      targets_list_array.splice(i, i+1);
-      if (targets_list_array.length === 1) {
-        if (test = e.target) {
-          e.target.parentElement.parentElement.style.display = 'none';
-          e.target.parentElement.parentElement.classList.remove('visible');
-          e.target.parentElement.parentElement.previousElementSibling.childNodes[0].childNodes[0].checked = false;
-          e.target.childNodes[0].checked = false;
-          on_dropdown_option_click('race_random', 'race_class_2');
-        }
+    if (test === e.target.childNodes[0]) {
+      unchecked_boxes++;
+    } else {
+      if (test.checked === false) {
+        unchecked_boxes++;
       }
+    }
+    if (targets_list_array.length === unchecked_boxes) {
+      e.target.parentElement.parentElement.style.display = 'none';
+      e.target.parentElement.parentElement.classList.remove('visible');
+      e.target.parentElement.parentElement.previousElementSibling.childNodes[0].childNodes[0].checked = false;
+      e.target.childNodes[0].checked = false;
+      on_dropdown_option_click('race_random', 'race_class_2');
     }
   }
 }
