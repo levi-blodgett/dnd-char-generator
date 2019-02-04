@@ -391,12 +391,12 @@ function generate_character(version) {
   };
 
   // Initialize variables
-  let knowledgeLanguage;
-  let knowledgeLanguage2;
   let language;
   let firstLanguage;
   let secondlanguage;
   let extralanguage;
+  let knowledgeLanguage;
+  let knowledgeLanguage2;
   let musicalinstrument;
   let musicalinstrument2;
   let musicalinstrument3;
@@ -432,30 +432,29 @@ function generate_character(version) {
   let randomChance;
   let clericBuild;
   let name;
-  let newlangs;
-  let newweapprofs;
-  let newarmorprofs;
-  let newtoolprofs;
+  let newLangs;
+  let newWeaponProfs;
+  let newArmorProfs;
+  let newToolProfs;
   let firstNumber;
   let secondNumber;
   let finalLanguages;
-  let finalWeaponProficiencies;
-  let finalArmorProficiencies;
-  let finalToolProficiencies;
+  let finalweaponProficiencies;
+  let finalarmorProficiencies;
+  let finaltoolProficiencies;
   let arrayOfAlignment;
   let lengthOfAlignmentArray;
   let AlignmentRandomizerNumber;
   let actualAlignment;
-  let BalMor;
-  let bal;
-  let mor1;
-  let mor;
+  let balanceAndMorality;
+  let balance;
+  let morality;
   let arrayOfBackgrounds;
   let lengthOfBackgroundArray;
   let BackgroundRandomizerNumber;
   let actualBackground;
-  let racenamelower;
-  let racenamelowerstring;
+  let raceNameLower;
+  let raceNameLowerString;
   let arrayOfRaces;
   let lengthOfRaceArray;
   let RaceRandomizerNumber;
@@ -489,7 +488,7 @@ function generate_character(version) {
   let arrayOfCheckedRaces = [];
   let arrayOfCheckedAlignment = [];
   let arrayOfCheckedBackgrounds = [];
-  let listofexoticlanguages = [];
+  let listOfExoticLanguages = [];
   let listOfStandardLanguages = [];
   let martialWeapons = [];
   let simpleWeapons = [];
@@ -504,13 +503,13 @@ function generate_character(version) {
   let bonds = [];
   let flaws = [];
   let proficienciesAndLanguages = [];
+  let armor = {};
   let profsAndLangs = {
     languages: [],
-    armorproficiencies: [],
-    weaponproficiencies: [],
-    toolproficiencies: []
+    armorProficiencies: [],
+    weaponProficiencies: [],
+    toolProficiencies: []
   };
-  let armor = {};
 
   // Personality is from race
   const toughTraits = ["I bend the knee to no man who I deem unworthy.", "I walk my own path, regardless of how others criticize it.", "I love a good insult, even one directed at me.", "I was beaten when I was younger, so I act tough to hide that I'm hurting.", "I watch over those I care for as if they were pups.", "I will crush my enemies, with fury and power.", "I place no stock in wealthy or well-mannered folk.", "Money and manners won't save you from a hungry owlbear.", "I work hard so that I can play hard when the work is done.", "I have a crude sense of humor.", "I am confident and assertive."];
@@ -756,17 +755,17 @@ function generate_character(version) {
   }
 
   // Function to minimize code when assigning race based on user-choice
-  function race_generator(racename) {
-    racenamelower = racename.toLowerCase();
-    racenamelowerstring = '_' + racenamelower.toString();
-    finalFirstName = nameGenerator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
-    finalLastName = nameGenerator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
-    if (racename === "HalfElf") {
+  function race_generator(raceName) {
+    raceNameLower = raceName.toLowerCase();
+    raceNameLowerString = '_' + raceNameLower.toString();
+    finalFirstName = nameGenerator['_races'][raceNameLowerString]['firstName'][firstNameNumber];
+    finalLastName = nameGenerator['_races'][raceNameLowerString]['lastName'][lastNameNumber];
+    if (raceName === "HalfElf") {
       race = "Half-Elf";
-    } else if (racename === "HalfOrc") {
+    } else if (raceName === "HalfOrc") {
       race = "Half-Orc";
     } else {
-      race = racename;
+      race = raceName;
     }
   }
 
@@ -853,25 +852,25 @@ function generate_character(version) {
     }
 
     if (raceSplitter3 === undefined){
-      racenamelower = actualRace.toLowerCase();
-      racenamelowerstring = '_' + racenamelower.toString();
-      finalFirstName = nameGenerator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
-      finalLastName = nameGenerator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
+      raceNameLower = actualRace.toLowerCase();
+      raceNameLowerString = '_' + raceNameLower.toString();
+      finalFirstName = nameGenerator['_races'][raceNameLowerString]['firstName'][firstNameNumber];
+      finalLastName = nameGenerator['_races'][raceNameLowerString]['lastName'][lastNameNumber];
     } else if (raceSplitter1 === "Human") {
-      racenamelower = raceSplitter1.toLowerCase();
-      racenamelowerstring = '_' + racenamelower.toString();
-      finalFirstName = nameGenerator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
-      finalLastName = nameGenerator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
+      raceNameLower = raceSplitter1.toLowerCase();
+      raceNameLowerString = '_' + raceNameLower.toString();
+      finalFirstName = nameGenerator['_races'][raceNameLowerString]['firstName'][firstNameNumber];
+      finalLastName = nameGenerator['_races'][raceNameLowerString]['lastName'][lastNameNumber];
     } else if (raceSplitter3 === "(Drow)") {
-      racenamelower = "Elf";
-      racenamelowerstring = '_' + racenamelower.toString();
-      finalFirstName = nameGenerator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
-      finalLastName = nameGenerator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
+      raceNameLower = "Elf";
+      raceNameLowerString = '_' + raceNameLower.toString();
+      finalFirstName = nameGenerator['_races'][raceNameLowerString]['firstName'][firstNameNumber];
+      finalLastName = nameGenerator['_races'][raceNameLowerString]['lastName'][lastNameNumber];
     } else {
-      racenamelower = raceSplitter3.toLowerCase();
-      racenamelowerstring = '_' + racenamelower.toString();
-      finalFirstName = nameGenerator['_races'][racenamelowerstring]['firstName'][firstNameNumber];
-      finalLastName = nameGenerator['_races'][racenamelowerstring]['lastName'][lastNameNumber];
+      raceNameLower = raceSplitter3.toLowerCase();
+      raceNameLowerString = '_' + raceNameLower.toString();
+      finalFirstName = nameGenerator['_races'][raceNameLowerString]['firstName'][firstNameNumber];
+      finalLastName = nameGenerator['_races'][raceNameLowerString]['lastName'][lastNameNumber];
     }
 
   }
@@ -952,11 +951,11 @@ function generate_character(version) {
   if (document.getElementById('alignment_random').checked) {
 
   } else {
-    BalMor = alignment_dropdown_generator();
-    bal = BalMor.split(' ', 1).toString();
-    mor1 = BalMor.split(' ', 2);
-    mor = mor1[1].toString();
-    alignment_helper(bal, mor);
+    balanceAndMorality = alignment_dropdown_generator();
+    balance = balanceAndMorality.split(' ', 1).toString();
+    morality = balanceAndMorality.split(' ', 2);
+    morality = morality[1].toString();
+    alignment_helper(balance, morality);
   }
   
   // Function to get a random interger between a minimum value and a maximum value
@@ -1010,7 +1009,7 @@ function generate_character(version) {
   listOfStandardLanguages = ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc"];
 
   // Array of exotic languages
-  listofexoticlanguages = ["Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"];
+  listOfExoticLanguages = ["Abyssal", "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"];
 
   // Function to choose a random language, with a small chance for exotic languages
   function random_language() {
@@ -1023,7 +1022,7 @@ function generate_character(version) {
     if (random >= .1) {
       language = listOfStandardLanguages[randomStandardLanguageNumber];
     } else {
-      language = listofexoticlanguages[randomExoticLanguageNumber];
+      language = listOfExoticLanguages[randomExoticLanguageNumber];
     }
     return language;
   }
@@ -1147,10 +1146,10 @@ function generate_character(version) {
   function weapon_adder(weapon) {
     for (i = 0; i < simpleWeapons.length; i++) {
       if (simpleWeapons[i] === weapon) {
-        for (j = 0; j < profsAndLangs.weaponproficiencies.length; j++) {
-          if (profsAndLangs.weaponproficiencies[j] === "simple weapons") {
+        for (j = 0; j < profsAndLangs.weaponProficiencies.length; j++) {
+          if (profsAndLangs.weaponProficiencies[j] === "simple weapons") {
             return;
-          } else if (profsAndLangs.weaponproficiencies[j] === weapon) {
+          } else if (profsAndLangs.weaponProficiencies[j] === weapon) {
             return;
           }
         }
@@ -1158,10 +1157,10 @@ function generate_character(version) {
     }
     for (i = 0; i < martialWeapons.length; i++) {
       if (martialWeapons[i] === weapon) {
-        for (j = 0; j < profsAndLangs.weaponproficiencies.length; j++) {
-          if (profsAndLangs.weaponproficiencies[j] === "martial weapons") {
+        for (j = 0; j < profsAndLangs.weaponProficiencies.length; j++) {
+          if (profsAndLangs.weaponProficiencies[j] === "martial weapons") {
             return;
-          } else if (profsAndLangs.weaponproficiencies[j] === weapon) {
+          } else if (profsAndLangs.weaponProficiencies[j] === weapon) {
             return;
           }
         }
@@ -1173,14 +1172,14 @@ function generate_character(version) {
   // Function to check weapon_adder()
   function weapon_adder_2(weapon_adder1) {
     if (weapon_adder1 !== undefined) {
-      profsAndLangs.weaponproficiencies.push(weapon_adder1);
+      profsAndLangs.weaponProficiencies.push(weapon_adder1);
     }
   }
 
   // Function to add armor to proficiencies section
   function armor_adder(armorToAddToList) {
-    for (i = 0; i < profsAndLangs.armorproficiencies.length; i++) {
-      if (profsAndLangs.armorproficiencies[i] === armorToAddToList) {
+    for (i = 0; i < profsAndLangs.armorProficiencies.length; i++) {
+      if (profsAndLangs.armorProficiencies[i] === armorToAddToList) {
         return;
       }
     }
@@ -1190,14 +1189,14 @@ function generate_character(version) {
   // Function to check armor_adder()
   function armor_adder_2(armor_adder1) {
     if (armor_adder1 !== undefined) {
-      profsAndLangs.armorproficiencies.push(armor_adder1);
+      profsAndLangs.armorProficiencies.push(armor_adder1);
     }
   }
 
   // Function to add tools to proficiencies section
   function tool_adder(tool) {
-    for (j = 0; j < profsAndLangs.toolproficiencies.length; j++) {
-      if (profsAndLangs.toolproficiencies[j] === tool) {
+    for (j = 0; j < profsAndLangs.toolProficiencies.length; j++) {
+      if (profsAndLangs.toolProficiencies[j] === tool) {
         return;
       }
     }
@@ -1207,7 +1206,7 @@ function generate_character(version) {
   // Function to check tool_adder()
   function tool_adder_2(tool_adder1) {
     if (tool_adder1 !== undefined) {
-      profsAndLangs.toolproficiencies.push(tool_adder1);
+      profsAndLangs.toolProficiencies.push(tool_adder1);
     }
   }
 
@@ -4320,10 +4319,10 @@ function generate_character(version) {
   alliesAndOrganizations.push("Friends? Family? Guild? Crew? Brothers in arms? Priests? Orphans? Good monsters? Lovers? Deities? Rivals? Enemies? Complicated relationships? Party members?");
 
   //Block of arrays that makes new arrays with commas between them
-  newlangs = profsAndLangs.languages.join(', ');
-  newweapprofs = profsAndLangs.weaponproficiencies.join(', ');
-  newarmorprofs = profsAndLangs.armorproficiencies.join(', ');
-  newtoolprofs = profsAndLangs.toolproficiencies.join(', ');
+  newLangs = profsAndLangs.languages.join(', ');
+  newWeaponProfs = profsAndLangs.weaponProficiencies.join(', ');
+  newArmorProfs = profsAndLangs.armorProficiencies.join(', ');
+  newToolProfs = profsAndLangs.toolProficiencies.join(', ');
 
   // Function to determine if an array is empty
   function determine_if_empty(array) {
@@ -4335,16 +4334,16 @@ function generate_character(version) {
   }
 
   //Block of arrays that makes new arrays with the sections at the start
-  finalLanguages = "Languages: " + determine_if_empty(newlangs);
-  finalWeaponProficiencies = "Weapon Proficiencies: " + determine_if_empty(newweapprofs);
-  finalArmorProficiencies = "Armor Proficiencies: " + determine_if_empty(newarmorprofs);
-  finalToolProficiencies = "Tool Proficiencies: " + determine_if_empty(newtoolprofs);
+  finalLanguages = "Languages: " + determine_if_empty(newLangs);
+  finalweaponProficiencies = "Weapon Proficiencies: " + determine_if_empty(newWeaponProfs);
+  finalarmorProficiencies = "Armor Proficiencies: " + determine_if_empty(newArmorProfs);
+  finaltoolProficiencies = "Tool Proficiencies: " + determine_if_empty(newToolProfs);
 
   // Pushes arrays to proficienciesAndLanguages
   proficienciesAndLanguages.push(finalLanguages);
-  proficienciesAndLanguages.push(finalWeaponProficiencies);
-  proficienciesAndLanguages.push(finalArmorProficiencies);
-  proficienciesAndLanguages.push(finalToolProficiencies);
+  proficienciesAndLanguages.push(finalweaponProficiencies);
+  proficienciesAndLanguages.push(finalarmorProficiencies);
+  proficienciesAndLanguages.push(finaltoolProficiencies);
 
   // Determines spells based on class and stats
   if (classAndLevel === "Bard 1") {
