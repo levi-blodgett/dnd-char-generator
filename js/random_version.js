@@ -339,42 +339,16 @@ function generate_character(version) {
         lastName: ["Art", "Carrion", "Chant", "Creed", "Despair", "Fear", "Glory", "Hope", "Ideal", "Music", "Nowhere", "Open", "Poetry", "Quest", "Random", "Reverence", "Sorrow", "Temerity", "Torment", "Weary"]
       }
     },
-    _backgroundsPhysicalMentalDexterous: ["Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Gladiator", "Guild Artisan", "Guild Merchant", "Hermit", "Knight", "Noble", "Outlander", "Pirate", "Sage", "Sailor", "Soldier", "Spy", "Urchin"], // 18 total
-    _backgroundsPhysical: ["Criminal", "Folk Hero", "Gladiator", "Hermit", "Knight", "Outlander", "Pirate", "Sailor", "Soldier"], // 9 total
-    _backgroundsMental: ["Acolyte", "Entertainer", "Folk Hero", "Guild Artisan", "Guild Merchant", "Hermit", "Noble", "Sage"], // 8 total
-    _backgroundsDexterous: ["Charlatan", "Criminal", "Entertainer", "Folk Hero", "Guild Artisan", "Guild Merchant", "Hermit", "Outlander", "Spy", "Urchin"], // 10 total
-    _backgroundsDexterousPhysical: ["Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Gladiator", "Guild Artisan", "Guild Merchant", "Hermit", "Knight", "Outlander", "Pirate", "Sailor", "Soldier", "Spy", "Urchin"], // 16 total
-    _backgroundsDexterousMental: ["Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Guild Artisan", "Guild Merchant", "Hermit", "Noble", "Outlander", "Sage", "Soldier", "Spy", "Urchin"], // 14 total
-    _backgroundsPhysicalMental: ["Acolyte", "Criminal", "Entertainer", "Folk Hero", "Gladiator", "Guild Artisan", "Guild Merchant", "Hermit", "Knight", "Noble", "Outlander", "Pirate", "Sage", "Sailor", "Soldier"], // 15 total
-    _backgroundsNone: ["Entertainer", "Folk Hero", "Guild Artisan", "Guild Merchant", "Hermit", "Noble"], // 6 total
-    _backgroundsCleric: ["Acolyte", "Criminal", "Folk Hero", "Gladiator", "Hermit", "Knight", "Pirate", "Sage", "Sailor", "Soldier"], // 10 total
-    _backgroundsDruid: ["Charlatan", "Folk Hero", "Hermit", "Outlander", "Sage"], // 5 total
-    _backgroundsWarlock: ["Acolyte", "Criminal", "Entertainer", "Guild Artisan", "Guild Merchant", "Hermit", "Noble", "Sage", "Urchin"], // 9 total
+    _backgrounds: ["Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Gladiator", "Guild Artisan", "Guild Merchant", "Hermit", "Knight", "Noble", "Outlander", "Pirate", "Sage", "Sailor", "Soldier", "Spy", "Urchin"], // 18 total
 
     // Function to get a background that fits their stats
     get_new_background: function get_new_background() {
-      if (strength > 11 && constitution > 9 && intelligence > 11 && dexterity > 11) {
-        newBackground2 = this._backgroundsPhysicalMentalDexterous[Math.floor(Math.random() * 18)];
-      } else if (strength > 11 && constitution > 9 && intelligence < 12 && dexterity < 12) {
-        newBackground2 = this._backgroundsPhysical[Math.floor(Math.random() * 9)];
-      } else if ((strength < 12 || constitution < 10) && intelligence > 11 && dexterity < 12) {
-        newBackground2 = this._backgroundsMental[Math.floor(Math.random() * 8)];
-      } else if ((strength < 12 || constitution < 10) && intelligence < 12 && dexterity > 11) {
-        newBackground2 = this._backgroundsDexterous[Math.floor(Math.random() * 9)];
-      } else if (strength > 11 && constitution > 9 && intelligence < 12 && dexterity > 11) {
-        newBackground2 = this._backgroundsDexterousPhysical[Math.floor(Math.random() * 16)];
-      } else if ((strength < 12 || constitution < 10) && intelligence > 11 && dexterity > 11) {
-        newBackground2 = this._backgroundsDexterousMental[Math.floor(Math.random() * 14)];
-      } else if (strength > 11 && constitution > 9 && intelligence > 11 && dexterity < 12) {
-        newBackground2 = this._backgroundsPhysicalMental[Math.floor(Math.random() * 15)];
-      } else if (classAndLevel === "Cleric 1") {
-        newBackground2 = this._backgroundsCleric[Math.floor(Math.random() * 10)];
-      } else if (classAndLevel === "Druid 1") {
-        newBackground2 = this._backgroundsDruid[Math.floor(Math.random() * 5)];
-      } else if (classAndLevel === "Warlock 1") {
-        newBackground2 = this._backgroundsWarlock[Math.floor(Math.random() * 9)];
+      if (1) {
+        newBackground2 = 1;
+      } else if (1) {
+        newBackground2 = 1;
       } else {
-        newBackground2 = this._backgroundsNone[Math.floor(Math.random() * 6)];
+        newBackground2 = 1;
       }
       return newBackground2;
     },
