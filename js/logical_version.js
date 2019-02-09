@@ -1417,8 +1417,6 @@ function generate_character(version) {
         alignment.push("Neutral");
         random_by_length(neutralFlaws, flaws, "form99_1");
       }
-    } else {
-
     }
   }
 

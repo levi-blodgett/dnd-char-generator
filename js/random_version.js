@@ -473,9 +473,9 @@ function generate_character(version) {
   let additionalFeatures = [];
   let personalityTraits = [];
   let alignment = [];
-  let ideals = [];
-  let bonds = [];
-  let flaws = [];
+  let arrayOfIdeals = [];
+  let arrayOfBonds = [];
+  let arrayOfFlaws = [];
   let proficienciesAndLanguages = [];
   let armor = {};
   let profsAndLangs = {
@@ -485,74 +485,52 @@ function generate_character(version) {
     toolProficiencies: []
   };
 
-  // Personality is from race
-  const toughTraits = ["I bend the knee to no man who I deem unworthy.", "I walk my own path, regardless of how others criticize it.", "I love a good insult, even one directed at me.", "I was beaten when I was younger, so I act tough to hide that I'm hurting.", "I watch over those I care for as if they were pups.", "I will crush my enemies, with fury and power.", "I place no stock in wealthy or well-mannered folk.", "Money and manners won't save you from a hungry owlbear.", "I work hard so that I can play hard when the work is done.", "I have a crude sense of humor.", "I am confident and assertive."];
+  const traits = ["I bend the knee to no man who I deem unworthy.", "I walk my own path, regardless of how others criticize it.", "I love a good insult, even one directed at me.", "I was beaten when I was younger, so I act tough to hide that I'm hurting.", "I watch over those I care for as if they were pups.", "I will crush my enemies, with fury and power.", "I place no stock in wealthy or well-mannered folk.", "Money and manners won't save you from a hungry owlbear.", "I work hard so that I can play hard when the work is done.", "I have a crude sense of humor.", "I am confident and assertive.", "There's nothing I like more than a good mystery.", "My friends know they can rely on me, no matter what.", "I face problems head-on. A simple, direct solution is the best path to success.", "I ask a lot of questions.", "I like to walk when I have to think and I HATE being tied up or restrained.", "I'm methodical, calculating, and exacting... unless I've had anything at all to drink.", "I take great pains to always look my best and follow the latest fashions.", "I like meeting new people, I will approach anyone, anytime, anywhere.", "I can find common ground between anyone, even the fiercest enemies", "I see omens in every event and action."];
 
-  const softTraits = ["There's nothing I like more than a good mystery.", "My friends know they can rely on me, no matter what.", "I face problems head-on. A simple, direct solution is the best path to success.", "I ask a lot of questions.", "I like to walk when I have to think and I HATE being tied up or restrained.", "I'm methodical, calculating, and exacting... unless I've had anything at all to drink.", "I take great pains to always look my best and follow the latest fashions.", "I like meeting new people, I will approach anyone, anytime, anywhere.", "I can find common ground between anyone, even the fiercest enemies", "I see omens in every event and action."];
+  const ideals = ["I always try to help those in need, no matter the personal cost.", "I believe beautiful things like art make the world a better place.", "I feel grateful for my life and need it to matter.", "The small and innocent must be cared for and protected.", "I try to help those in need regardless of the cost.", "I must make amends for what people assume I did.", "Every day is a new opportunity to do good in the world.", "Helping others is the most important thing in the world.", "My powers can protect us from all the evils in all the worlds.", "There are all sorts of beings around us; my duty is to prevent them harming good folk.", "Respect those that are different and let all be who they wish.", "There is so much to see and learn.", "All have burdens to bear.", "Everyone deserves to feel safe.", "Eat or be eaten.", "People deserve to be treated by their actions, not by someone else's.", "I must never lose control over myself again, not after last time.", "If I follow my own path I will become who I was meant to be.", "I am obsessively focused on uncovering my past.", "Bettering yourself is essential in life.", "My opinion is the only one that matters and others should reinforce my importance", "The world owes me and I will take what I deserve.", "The only way to overcome adversity is to be powerful.", "I show no mercy to those who oppose me.", "I am a monster that kills monsters.", "I will take what I want or need.", "I will vindicate any wrongdoings against my party or myself.", "If you don't strike first, you die.", "I always have a plan to save myself or my group, regardless of collateral.", "My refined tastes deserve to be catered to."];
 
+  const bonds = ["I owe my guild a great debt for forging me into the person I am today.", "My terrain is my home, and I'll fight to defend it.", "No one else should have to endure the hardships I’ve been through.", "My pipe is my favorite thing in the world. I'll pretty much smoke anything in it. It's so relaxing.", "Alcohol, I use it to numb the pain of my past sins that haunt my thoughts almost always.", "Twins? Pfft, I'm a quintuplet!", "My best friend will never walk again because of a battle I provoked. I choose my fights with much greater care now.", "I heard of a perfect place for me, but I seem to travel in the opposite direction.", "My weapon was given to me to protect my land, and I intend to do so, against any threat.", " I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.", "I owe everything to my mentor—a horrible person who’s probably rotting in jail somewhere.", "A powerful person killed someone I love. Some day soon, I'll have my revenge.", "I will become the greatest thief that ever lived.", "I sponsor an orphanage to keep others from enduring what I was forced to endure.", "I escaped poverty once by robbing an important person, and I'm wanted for it.", "I was resurrected after I died, but whoever did the ritual remains a mystery to me.", "I killed a member of a powerful thieves' guild in a dispute over loot once, and now I'm hunted by them.", "I stole from an extremely powerful noble family and they seek to restore their precious heirloom no matter the cost.", "I did what I had to to get by. I hope to never speak of what I've done again.", "I will do anything to prove myself superior to my hated rival.", "I worked the land, I love the land, and I will protect the land.", "My tools are symbols of my past life, and I carry them so that I will never forget my roots.", "I wish my childhood sweetheart had come with me to pursue my destiny.", "I will face any challenge to win the approval of my family.", "The common folk must see me as a hero of the people.", "It is my duty to provide children to sustain my tribe.", "Someone saved my life on the battlefield. To this day, I will never leave a friend behind.", "Those who fight beside me are those worth dying for.", "A loved one is a werewolf, and I will go to any lengths to protect them and their secret.", "I'm trying to pay off an old debt I owe to a generous benefactor.", "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.", "I work to unearth a library that has been hidden for the past thousand years.", "My life's work is a series of tomes related to a specific field of lore.", "I owe a debt I can never repay to the person who took an interest in me, and more importantly, pity.", "I suffer from an exotic illness which forces me to eat or drink something unusual every day.", "I have been convicted of a crime I did not commit, and am a fugitive from my own land.", "By chance I managed to kill an assassin that targeted me. Now I'm always on the lookout for the next attack.", "I follow the lead of a great idol, whom I style myself and my work after.", "I believe that I may be able to unlock the secrets of magics long lost.", "Something important was taken from me, and I aim to steal it back.", "Nothing is more important than the other members of my family.", "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.", "I sold my soul for power. I hope to do enough deeds to win it back.", "The statue at my home is actually my petrified sister who I've sworn to restore to flesh.", "My father sold his soul to some kind of devil in order to save me from a childhood illness or life threatening event.", "I hate someone, hate them so much it spreads to their family and friends.", "Very distinctive tattoos adorn my arms, and I must keep them covered and hidden lest their secret leads to my death.", "I have a personal vendetta against a very popular person. I only live to see their reputation and fortune torn apart.", "I gave up my most precious possession to secure a deal. I still seek for away to regain it.", "I would die to recover an ancient relic of my faith that was lost long ago.", "I owe my life to the priest who took me in when my parents died.", "I will do anything to protect the temple where I served.", "I seek to preserve a sacred text that my enemies consider heretical and seek to destroy.", "I suffer awful visions of a coming disaster and will do anything to prevent it.", "My uncle is a high ranking member of an important temple, that isn't my deity.", "You may never have heard of my temple, but it is the most precious place on earth.", "My patron brought me from rags to this life, I owe them everything.", "My relic was given to me by a stranger at the lowest point in my life. I draw strength from it.", "My life is a series of signs from my deity.", "Somewhere out there, I have a child who doesn't know me. I'm making the world better for him or her.", "My instrument is my most treasured possession, and it reminds me of someone I love.", "Someone stole my precious instrument, and someday I'll get it back.", "I want to be famous, whatever it takes.", "I would do anything for the other members of my old troupe.", "Something from my childhood made me afraid of the dark. To this day, I struggle to enter a cave or other dark, enclosed space.", "I have no memories beyond a few years ago. Flashes of my past sometimes come... I hunger to know who I was.", "When I go out, I'll never do it without the 'gang'. Together we are the life of the party and without them, everything is bleak.", "I have a responsible sibling, whom I love for getting me out of trouble and whom I hate for always showing me up.", "There was a story I read over and over and I model my entire life on it.", "I can't treat women the same as men, they are too beautiful.", "Everything I do is for the common people.", "I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me.", "A proud noble once gave me a horrible beating, and I will take my revenge on any bully I encounter.", "I protect those who cannot protect themselves.", "I fight for those who cannot fight for themselves.", "One day, I'll proudly wear the tabard of my order again.", "My tattoo signifies my membership in a secret fraternity of knights I presumed had all been killed off except for myself.", "When I nearly died, I had visions of the Nine Hells. Now I seek to atone for sins of my past.", "In his youth, my father ran from a great battle and has lived his life under the insult of 'coward'. I hope to prove this a lie.", "A scoundrel stole my family's most treasured heirloom, and I intend to take it back.", "I pursue wealth to secure someone's love.", "I've been searching my whole life for the answer to a certain question.", "In a harbor town, I have a paramour whose eyes nearly stole me from the world.", "I was cheated out of my fair share of the profits, and I want to get my due.", "I do not know my true name. I go by an alias, but seek to discover the secrets of my own past.", "The birthmark on my forehead marks me as the resolution of an ancient prophecy of my people.", "I am driven by nightly dreams about a mysterious figure who repeats an ominous phrase.", "As a child, my twin sacrificed himself to a devil so that I may live, and now haunts my dreams with a motive I've yet to discern.", "My mother is a witch, reviled and cast-out by our village. I have always felt it my duty to protect her.", "I seek to find my true heritage, ever since I learned of it.", "Someone I loved died because of a mistake I made. That will never happen again.", "Nothing is more important than the other members of my order.", "I'm still seeking the enlightenment I pursued in my seclusion, and it still eludes me.", "I entered seclusion because I loved someone I could not have.", "Should my discovery come to light, it could bring ruin to the world.", "My isolation gave me great insight into a great evil that only I can destroy.", "I work to preserve a monastery.", "I have vivid, repeated visions of someone's death, and though I have never met this person, somehow I know I will.", "In the east, I see a golden light emerging from the heavens at uncertain intervals. No one else seems to be able to see this light.", "During my enlightenment I was told in a dream to find a particular group of people, and follow them to the ends of the world.", "I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.", "Should my discovery come to light, it could bring ruin to the world.", "An injury to the unspoiled wilderness of my home is an injury to me.", "I will bring terrible wrath down on the evildoers who destroyed my homeland.", "I am the last of my tribe, and it is up to me to ensure their names enter legend.", "His pet tarantula 'Karace' that lives in his hair and spins him silk that he uses for making dream catchers.", "My best friend was experimented on by a wizard, and still suffers to this day. I wish to find a way to cure them.", "There is a former friend whom I hurt terribly. I want to make it up , but I don't dare get close in fear of making it worse.", "When I was first learning my druidic powers, I crippled my clan's sacred tree that hosts our deity.", "My druidic focus has been passed down over ten generations, I must protect it, and with it, my people.", "I idolize a hero of the old tales and measure my deeds against that person's.", "I have a family, but I have no idea where they are. One day, I hope to see them again.", "My tribe is the most important thing in my life, even when they are far from me.", "I would still lay down my life for the people I went to war beside.", "My honor is my life.", "I'll never forget the crushing defeat my tribe suffered or the enemies who dealt it.", "My weapon is a family heirloom, it's by far my most precious possession.", "I keep as many weapons on my as I can in case I drop one.", "My ancestor was quite famous, and I wish to overshadow their legacy with my own.", "I was raised as the hostage of an enemy clan, where I befriended the enemy clan's heir."];
 
-  // Ideals are from good/neutral/chaotic
-  const goodIdeals = ["I always try to help those in need, no matter the personal cost.", "I believe beautiful things like art make the world a better place.", "I feel grateful for my life and need it to matter.", "The small and innocent must be cared for and protected.", "I try to help those in need regardless of the cost.", "I must make amends for what people assume I did.", "Every day is a new opportunity to do good in the world.", "Helping others is the most important thing in the world.", "My powers can protect us from all the evils in all the worlds.", "There are all sorts of beings around us; my duty is to prevent them harming good folk."];
-
-  const neutralIdeals = ["Respect those that are different and let all be who they wish.", "There is so much to see and learn.", "All have burdens to bear.", "Everyone deserves to feel safe.", "Eat or be eaten.", "People deserve to be treated by their actions, not by someone else's.", "I must never lose control over myself again, not after last time.", "If I follow my own path I will become who I was meant to be.", "I am obsessively focused on uncovering my past.", "Bettering yourself is essential in life."];
-
-  const evilIdeals = ["My opinion is the only one that matters and others should reinforce my importance", "The world owes me and I will take what I deserve.", "The only way to overcome adversity is to be powerful.", "I show no mercy to those who oppose me.", "I am a monster that kills monsters.", "I will take what I want or need.", "I will vindicate any wrongdoings against my party or myself.", "If you don't strike first, you die.", "I always have a plan to save myself or my group, regardless of collateral.", "My refined tastes deserve to be catered to."];
-
-
-  // Bonds are from class
-  const rangerBonds = ["I owe my guild a great debt for forging me into the person I am today.", "My terrain is my home, and I'll fight to defend it.", "No one else should have to endure the hardships I’ve been through.", "My pipe is my favorite thing in the world. I'll pretty much smoke anything in it. It's so relaxing.", "Alcohol, I use it to numb the pain of my past sins that haunt my thoughts almost always.", "Twins? Pfft, I'm a quintuplet!", "My best friend will never walk again because of a battle I provoked. I choose my fights with much greater care now.", "I heard of a perfect place for me, but I seem to travel in the opposite direction.", "My weapon was given to me to protect my land, and I intend to do so, against any threat."];
-
-  const rogueBonds = [" I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.", "I owe everything to my mentor—a horrible person who’s probably rotting in jail somewhere.", "A powerful person killed someone I love. Some day soon, I'll have my revenge.", "I will become the greatest thief that ever lived.", "I sponsor an orphanage to keep others from enduring what I was forced to endure.", "I escaped poverty once by robbing an important person, and I'm wanted for it.", "I was resurrected after I died, but whoever did the ritual remains a mystery to me.", "I killed a member of a powerful thieves' guild in a dispute over loot once, and now I'm hunted by them.", "I stole from an extremely powerful noble family and they seek to restore their precious heirloom no matter the cost.", "I did what I had to to get by. I hope to never speak of what I've done again."];
-
-  const barbarianBonds = ["I will do anything to prove myself superior to my hated rival.", "I worked the land, I love the land, and I will protect the land.", "My tools are symbols of my past life, and I carry them so that I will never forget my roots.", "I wish my childhood sweetheart had come with me to pursue my destiny.", "I will face any challenge to win the approval of my family.", "The common folk must see me as a hero of the people.", "It is my duty to provide children to sustain my tribe.", "Someone saved my life on the battlefield. To this day, I will never leave a friend behind.", "Those who fight beside me are those worth dying for.", "A loved one is a werewolf, and I will go to any lengths to protect them and their secret."];
-
-  const wizardBonds = ["I'm trying to pay off an old debt I owe to a generous benefactor.", "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.", "I work to unearth a library that has been hidden for the past thousand years.", "My life's work is a series of tomes related to a specific field of lore.", "I owe a debt I can never repay to the person who took an interest in me, and more importantly, pity.", "I suffer from an exotic illness which forces me to eat or drink something unusual every day.", "I have been convicted of a crime I did not commit, and am a fugitive from my own land.", "By chance I managed to kill an assassin that targeted me. Now I'm always on the lookout for the next attack.", "I follow the lead of a great idol, whom I style myself and my work after.", "I believe that I may be able to unlock the secrets of magics long lost."];
-
-  const warlockBonds = ["Something important was taken from me, and I aim to steal it back.", "Nothing is more important than the other members of my family.", "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.", "I sold my soul for power. I hope to do enough deeds to win it back.", "The statue at my home is actually my petrified sister who I've sworn to restore to flesh.", "My father sold his soul to some kind of devil in order to save me from a childhood illness or life threatening event.", "I hate someone, hate them so much it spreads to their family and friends.", "Very distinctive tattoos adorn my arms, and I must keep them covered and hidden lest their secret leads to my death.", "I have a personal vendetta against a very popular person. I only live to see their reputation and fortune torn apart.", "I gave up my most precious possession to secure a deal. I still seek for away to regain it."];
-
-  const clericBonds = ["I would die to recover an ancient relic of my faith that was lost long ago.", "I owe my life to the priest who took me in when my parents died.", "I will do anything to protect the temple where I served.", "I seek to preserve a sacred text that my enemies consider heretical and seek to destroy.", "I suffer awful visions of a coming disaster and will do anything to prevent it.", "My uncle is a high ranking member of an important temple, that isn't my deity.", "You may never have heard of my temple, but it is the most precious place on earth.", "My patron brought me from rags to this life, I owe them everything.", "My relic was given to me by a stranger at the lowest point in my life. I draw strength from it.", "My life is a series of signs from my deity."];
-
-  const bardBonds = ["Somewhere out there, I have a child who doesn't know me. I'm making the world better for him or her.", "My instrument is my most treasured possession, and it reminds me of someone I love.", "Someone stole my precious instrument, and someday I'll get it back.", "I want to be famous, whatever it takes.", "I would do anything for the other members of my old troupe.", "Something from my childhood made me afraid of the dark. To this day, I struggle to enter a cave or other dark, enclosed space.", "I have no memories beyond a few years ago. Flashes of my past sometimes come... I hunger to know who I was.", "When I go out, I'll never do it without the 'gang'. Together we are the life of the party and without them, everything is bleak.", "I have a responsible sibling, whom I love for getting me out of trouble and whom I hate for always showing me up.", "There was a story I read over and over and I model my entire life on it.", "I can't treat women the same as men, they are too beautiful."];
-
-  const paladinBonds = ["Everything I do is for the common people.", "I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me.", "A proud noble once gave me a horrible beating, and I will take my revenge on any bully I encounter.", "I protect those who cannot protect themselves.", "I fight for those who cannot fight for themselves.", "One day, I'll proudly wear the tabard of my order again.", "My tattoo signifies my membership in a secret fraternity of knights I presumed had all been killed off except for myself.", "When I nearly died, I had visions of the Nine Hells. Now I seek to atone for sins of my past.", "In his youth, my father ran from a great battle and has lived his life under the insult of 'coward'. I hope to prove this a lie.", "A scoundrel stole my family's most treasured heirloom, and I intend to take it back."];
-
-  const sorcererBonds = ["I pursue wealth to secure someone's love.", "I've been searching my whole life for the answer to a certain question.", "In a harbor town, I have a paramour whose eyes nearly stole me from the world.", "I was cheated out of my fair share of the profits, and I want to get my due.", "I do not know my true name. I go by an alias, but seek to discover the secrets of my own past.", "The birthmark on my forehead marks me as the resolution of an ancient prophecy of my people.", "I am driven by nightly dreams about a mysterious figure who repeats an ominous phrase.", "As a child, my twin sacrificed himself to a devil so that I may live, and now haunts my dreams with a motive I've yet to discern.", "My mother is a witch, reviled and cast-out by our village. I have always felt it my duty to protect her.", "I seek to find my true heritage, ever since I learned of it."];
-
-  const monkBonds = ["Someone I loved died because of a mistake I made. That will never happen again.", "Nothing is more important than the other members of my order.", "I'm still seeking the enlightenment I pursued in my seclusion, and it still eludes me.", "I entered seclusion because I loved someone I could not have.", "Should my discovery come to light, it could bring ruin to the world.", "My isolation gave me great insight into a great evil that only I can destroy.", "I work to preserve a monastery.", "I have vivid, repeated visions of someone's death, and though I have never met this person, somehow I know I will.", "In the east, I see a golden light emerging from the heavens at uncertain intervals. No one else seems to be able to see this light.", "During my enlightenment I was told in a dream to find a particular group of people, and follow them to the ends of the world."];
-
-  const druidBonds = ["I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.", "Should my discovery come to light, it could bring ruin to the world.", "An injury to the unspoiled wilderness of my home is an injury to me.", "I will bring terrible wrath down on the evildoers who destroyed my homeland.", "I am the last of my tribe, and it is up to me to ensure their names enter legend.", "His pet tarantula 'Karace' that lives in his hair and spins him silk that he uses for making dream catchers.", "My best friend was experimented on by a wizard, and still suffers to this day. I wish to find a way to cure them.", "There is a former friend whom I hurt terribly. I want to make it up , but I don't dare get close in fear of making it worse.", "When I was first learning my druidic powers, I crippled my clan's sacred tree that hosts our deity.", "My druidic focus has been passed down over ten generations, I must protect it, and with it, my people."];
-
-  const fighterBonds = ["I idolize a hero of the old tales and measure my deeds against that person's.", "I have a family, but I have no idea where they are. One day, I hope to see them again.", "My tribe is the most important thing in my life, even when they are far from me.", "I would still lay down my life for the people I went to war beside.", "My honor is my life.", "I'll never forget the crushing defeat my tribe suffered or the enemies who dealt it.", "My weapon is a family heirloom, it's by far my most precious possession.", "I keep as many weapons on my as I can in case I drop one.", "My ancestor was quite famous, and I wish to overshadow their legacy with my own.", "I was raised as the hostage of an enemy clan, where I befriended the enemy clan's heir. "];
-
-
-  // Flaws are from lawful/neutral/chaotic
-  const lawfulFlaws = ["I have a 'tell' that reveals when I'm lying.", "I have trouble keeping my true feelings hidden.", "I'm quick to assume that someone is trying to cheat me.", "No one must ever learn that I once stole money from my people.", "I would kill to acquire a noble title.", "I am slow to trust members of other races.", "I overlook obvious solutions in favor of complicated ones.", "I follow orders, even if I think they're wrong.", "Upon touching a new weapon for the first time, roll a d100. If 100, the weapon bursts into flames and turns to ash.", "Small bladder."];
-
-  const neutralFlaws = ["I'm a sucker for a pretty face.", "I let my need to win arguments overshadow friendships and harmony.", "I like keeping secrets and won't share them with anyone.", "I secretly believe that everyone is beneath me.", "I have an insatiable desire for carnal pleasures.", "I believe every villager and towns person is out to get me.", "I can't keep a secret to save my life, or anyone else's.", "My pride will probably lead to my destruction.", "Color blind.", "I am grandiose, I believe everything is about me in the end, no matter how unrelated."];
-
-  const chaoticFlaws = ["I'd rather kill someone in their sleep then fight fair.", "I can't resist messing with people who are more powerful than me.", "If there's a plan, I'll forget it. If I don't forget it, I'll ignore it.", "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around.", "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat.", "Despite my best efforts, I am unreliable to my friends.", "The tyrant who rules my land will stop at nothing to see me killed.", "I too often hear veiled insults and threats in every word addressed to me, and I'm quick to anger.", "There's no room for caution in a life lived to the fullest.", "Narrates own thoughts."];
+  const flaws = ["I have a 'tell' that reveals when I'm lying.", "I have trouble keeping my true feelings hidden.", "I'm quick to assume that someone is trying to cheat me.", "No one must ever learn that I once stole money from my people.", "I would kill to acquire a noble title.", "I am slow to trust members of other races.", "I overlook obvious solutions in favor of complicated ones.", "I follow orders, even if I think they're wrong.", "Upon touching a new weapon for the first time, roll a d100. If 100, the weapon bursts into flames and turns to ash.", "Small bladder.", "I'm a sucker for a pretty face.", "I let my need to win arguments overshadow friendships and harmony.", "I like keeping secrets and won't share them with anyone.", "I secretly believe that everyone is beneath me.", "I have an insatiable desire for carnal pleasures.", "I believe every villager and towns person is out to get me.", "I can't keep a secret to save my life, or anyone else's.", "My pride will probably lead to my destruction.", "Color blind.", "I am grandiose, I believe everything is about me in the end, no matter how unrelated.", "I'd rather kill someone in their sleep then fight fair.", "I can't resist messing with people who are more powerful than me.", "If there's a plan, I'll forget it. If I don't forget it, I'll ignore it.", "A scandal prevents me from ever going home again. That kind of trouble seems to follow me around.", "I once satirized a noble who still wants my head. It was a mistake that I will likely repeat.", "Despite my best efforts, I am unreliable to my friends.", "The tyrant who rules my land will stop at nothing to see me killed.", "I too often hear veiled insults and threats in every word addressed to me, and I'm quick to anger.", "There's no room for caution in a life lived to the fullest.", "Narrates own thoughts."];
 
   classAndLevel = '';
   randomClassVariable = get_random_number(12);
   randomChance = Math.random();
   clericBuild = '';
 
+  const shuffle = array => {
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
   // Function to assign stats based on the class that was rolled.
-  function assign_stats(strength1, dexterity1, constitution1, intelligence1, wisdom1, charisma1, classtype) {
-    strength += strength1;
-    dexterity += dexterity1;
-    constitution += constitution1;
-    intelligence += intelligence1;
-    wisdom += wisdom1;
-    charisma += charisma1;
+  function assign_stats(stats, classtype) {
+    let statsValuesArray = stats;
+    statsValuesArray = shuffle(statsValuesArray);
+    let statsNames = [strength, dexterity, constitution, intelligence, wisdom, charisma];
+    for (i = 0; i < stats.length; i++) {
+      statsNames[i] += statsValuesArray[i];
+    }
     statTotal = strength1 + dexterity1 + intelligence1 + constitution1 + wisdom1 + charisma1;
     // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
     document.getElementById("form98_1").value = classtype + "(" + statTotal + "): " + strength1 + ", " + dexterity1 + ", " + constitution1 + ", " + intelligence1 + ", " + wisdom1 + ", " + charisma1;
   }
 
   function class_dropdown_generator(){
-    // Needs:
-    // Function to determine which ones are checked and not
     arrayOfClass = document.querySelectorAll('input.class_class');
     arrayOfCheckedClass = [];
     // Length of how many are checked
@@ -883,21 +861,9 @@ function generate_character(version) {
   function alignment_helper(balance, morality) {
     alignmentChecker = true;
     alignment.push(balance);
-    if (balance === "Lawful") {
-      random_by_length(lawfulFlaws, flaws, "form99_1");
-    } else if (balance === "Neutral") {
-      random_by_length(neutralFlaws, flaws, "form99_1");
-    } else if (balance === "Chaotic") {
-      random_by_length(chaoticFlaws, flaws, "form99_1");
-    }
+    random_by_length(flaws, arrayOfFlaws, "form99_1");
+    random_by_length(ideals, arrayOfIdeals, "form100_1");
     alignment.push(morality);
-    if (morality === "Good") {
-      random_by_length(goodIdeals, ideals, "form100_1");
-    } else if (morality === "Neutral") {
-      random_by_length(neutralIdeals, ideals, "form100_1");
-    } else if (morality === "Evil") {
-      random_by_length(evilIdeals, ideals, "form100_1");
-    }
   }
   
   function alignment_dropdown_generator(){
@@ -936,7 +902,7 @@ function generate_character(version) {
   function get_random_int(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min)) + min; // The maximum is exclusive and the minimum is inclusive
   }
 
   // Function to check if a stat needs a plus or not, usually used to add it to ability modifiers or saving throw modifiers
@@ -1213,6 +1179,147 @@ function generate_character(version) {
     document.getElementById("form198_3").value = cantrip;
   }
 
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+  // WORKING HERE
+
   // Race and subrace decider
   if (race === "Dragonborn" || raceSplitter3 === "Dragonborn") {
     racialLanguage1 = "Common";
@@ -1376,23 +1483,18 @@ function generate_character(version) {
   };
 
   // Function for picking balance alignment
-  function generate_balance(higherDecimal, lowerDecimal) {
+  function generate_balance() {
     if (alignmentChecker === false) {
-      if (Math.random() >= higherDecimal) {
+      if (Math.random() >= .666666666) {
         alignment.push("Lawful");
         random_by_length(lawfulFlaws, flaws, "form99_1");
-      } else if (higherDecimal >= Math.random() && lowerDecimal >= Math.random()) {
+      } else if (.666666666 >= Math.random() && Math.random() >= .3333333333) {
         alignment.push("Chaotic");
         random_by_length(chaoticFlaws, flaws, "form99_1");
-      } else if (Math.random() >= lowerDecimal) {
-        alignment.push("Neutral");
-        random_by_length(neutralFlaws, flaws, "form99_1");
       } else {
         alignment.push("Neutral");
         random_by_length(neutralFlaws, flaws, "form99_1");
       }
-    } else {
-
     }
   }
 
