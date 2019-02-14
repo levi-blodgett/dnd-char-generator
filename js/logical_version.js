@@ -2622,23 +2622,23 @@ function generate_character(version) {
       spellcastingSection.push("Lay on Hands (5 hp/lr): As an action you can heal another creature or cure them of disease or poison.");
       if (alignment[0] === "Lawful" && alignment[1] === "Good") {
         equipment.push("Silver bracer - Symbol");
-        alliesAndOrganizations.push("Pholtus - god of light and law, I will protect the good and bright light to such dark times like the present. This is my moment, this is his will.");
+        alliesAndOrganizations.push("Pholtus - God of light and law, I will protect the good and bright light to such dark times like the present. This is my moment, this is his will.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Neutral" && alignment[1] === "Good") {
         equipment.push("Sun tattoo on right palm - Symbol");
-        alliesAndOrganizations.push("Pelor, god of the sun and healing, the sun has been beating on my back my entire life, I have only just begun to appreciate the wonders it has presented me.");
+        alliesAndOrganizations.push("Pelor, God of the sun and healing, the sun has been beating on my back my entire life, I have only just begun to appreciate the wonders it has presented me.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Chaotic" && alignment[1] === "Good") {
         equipment.push("Triangular star ring - Symbol");
-        alliesAndOrganizations.push("Lliira - goddess of joy, I won't let anyone take others happiness away, not even for a second if I can help it.");
+        alliesAndOrganizations.push("Lliira - Goddess of joy, I won't let anyone take others happiness away, not even for a second if I can help it.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Lawful" && alignment[1] === "Neutral") {
         equipment.push("Partially-burnt gauntlet - Symbol");
-        alliesAndOrganizations.push("Helm, god of protection, I will uplift the just, and smite the self-righteous and wicked.");
+        alliesAndOrganizations.push("Helm, God of protection, I will uplift the just, and smite the self-righteous and wicked.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Neutral" && alignment[1] === "Neutral") {
         equipment.push("Fire-glass necklace - Symbol");
-        alliesAndOrganizations.push("Sirrion, god of fire and change, he will guide me through the world, and the chaos amongst it.");
+        alliesAndOrganizations.push("Sirrion, God of fire and change, he will guide me through the world, and the chaos amongst it.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Chaotic" && alignment[1] === "Neutral") {
         equipment.push("Father's fingerbones - Symbol");
@@ -2646,15 +2646,15 @@ function generate_character(version) {
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Lawful" && alignment[1] === "Evil") {
         equipment.push("Black glove - Symbol");
-        alliesAndOrganizations.push("Bane - god of Tyranny, my one true master.");
+        alliesAndOrganizations.push("Bane - God of Tyranny, my one true master.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Neutral" && alignment[1] === "Evil") {
         equipment.push("Dragonshard stone (fang-shaped) - Symbol");
-        alliesAndOrganizations.push("The Keeper, god of greed and death, I will gain everything in this world, I will devour this planet.");
+        alliesAndOrganizations.push("The Keeper, God of greed and death, I will gain everything in this world, I will devour this planet.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Chaotic" && alignment[1] === "Evil") {
         equipment.push("Skull of a wicked man - Symbol");
-        alliesAndOrganizations.push("Iuz - god of pain and oppression, I will worship this man as a vehicle for the pain and suffering that my wife suffered at the hands of those men.");
+        alliesAndOrganizations.push("Iuz - God of pain and oppression, I will worship this man as a vehicle for the pain and suffering that my wife suffered at the hands of those men.");
         alliesAndOrganizations.push(" ");
       }
       if (strength > charisma && strength > constitution) {
@@ -3514,7 +3514,7 @@ function generate_character(version) {
     } else if (random === 7) {
       return "Ancient arrow of elven design";
     } else if (random === 8) {
-      return "Iron holy symbol devoted to an unknown god";
+      return "Iron holy symbol devoted to an unknown God";
     } else if (random === 9) {
       return "Invitation to a party where a murder happened";
     } else if (random === 10) {

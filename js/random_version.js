@@ -517,7 +517,7 @@ function generate_character(version) {
     return array;
   }
 
-  // Function to assign stats based on the class that was rolled.
+  // Function to assign stats randomly
   function assign_stats(stats, classtype) {
     let statsValuesArray = stats;
     statsValuesArray = shuffle(statsValuesArray);
@@ -1179,147 +1179,6 @@ function generate_character(version) {
     document.getElementById("form198_3").value = cantrip;
   }
 
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-  // WORKING HERE
-
   // Race and subrace decider
   if (race === "Dragonborn" || raceSplitter3 === "Dragonborn") {
     racialLanguage1 = "Common";
@@ -1329,7 +1188,7 @@ function generate_character(version) {
     strength += 2;
     charisma += 1;
     document.getElementById("form87_1").value = "30";
-    random_by_length(toughTraits, personalityTraits, "form102_1");
+    random_by_length(traits, personalityTraits, "form102_1");
     if (raceChecker === 0){
       if (ancestry === 1) {
         race = "Black Dragonborn";
@@ -1359,12 +1218,13 @@ function generate_character(version) {
     profsAndLangs.languages.push(racialLanguage1);
     profsAndLangs.languages.push(racialLanguage2);
     constitution += 2;
-    random_by_length(toughTraits, personalityTraits, "form102_1");
+    random_by_length(traits, personalityTraits, "form102_1");
     features.push("Darkvision: 60 feet.");
     features.push("Dwarven Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.");
     document.getElementById("form87_1").value = "25";
     if (raceChecker === 0){
-      if (wisdom >= strength) {
+      ancestry = get_random_number(2);
+      if (ancestry === 1) {
         race = "Hill Dwarf";
       } else {
         race = "Mountain Dwarf";
@@ -1373,27 +1233,16 @@ function generate_character(version) {
   } else if (race === "Elf" || raceSplitter3 === "Elf") {
     dexterity += 2;
     document.getElementById("form87_1").value = "30";
-    random_by_length(softTraits, personalityTraits, "form102_1");
+    random_by_length(traits, personalityTraits, "form102_1");
     additionalFeatures.push("Fey Ancestry: You have advantage on saving throws against being charmed, and magic can’t put you to sleep.");
     additionalFeatures.push("Trance: Elves don’t need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After Resting in this way, you gain the same benefit that a human does from 8 hours of sleep.");
     if (raceChecker === 0){
-      if (intelligence >= wisdom && intelligence >= charisma) {
+      ancestry = get_random_number(3);
+      if (ancestry === 1) {
         race = "High Elf";
-      } else if (wisdom >= intelligence && wisdom >= charisma) {
+      } else if (ancestry === 2) {
         race = "Wood Elf";
-      } else if (charisma >= intelligence && charisma >= wisdom) {
-        race = "Dark Elf (Drow)";
-      } else if (intelligence > wisdom || intelligence > charisma) {
-        race = "High Elf";
-      } else if (wisdom > intelligence || wisdom > charisma) {
-        race = "Wood Elf";
-      } else if (charisma > intelligence || charisma > wisdom) {
-        race = "Dark Elf (Drow)";
-      } else if (intelligence >= wisdom || intelligence >= charisma) {
-        race = "High Elf";
-      } else if (wisdom >= intelligence || wisdom >= charisma) {
-        race = "Wood Elf";
-      } else if (charisma >= intelligence || charisma >= wisdom) {
+      } else {
         race = "Dark Elf (Drow)";
       }
     }
@@ -1404,14 +1253,15 @@ function generate_character(version) {
     profsAndLangs.languages.push(racialLanguage2);
     dexterity += 2;
     document.getElementById("form87_1").value = "25";
-    random_by_length(softTraits, personalityTraits, "form102_1");
+    random_by_length(traits, personalityTraits, "form102_1");
     additionalFeatures.push("Halfling Nimbleness: You can move through the space of any creature that is of a size larger than yours.");
     additionalFeatures.push("Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.");
     features.push("Brave: You have advantage on saving throws against being frightened.");
     if (raceChecker === 0){
-      if (charisma >= constitution) {
+      ancestry = get_random_number(2);
+      if (ancestry === 1) {
         race = "Lightfoot Halfling";
-      } else if (constitution > charisma) {
+      } else {
         race = "Stout Halfling";
       }
     }
@@ -1430,31 +1280,31 @@ function generate_character(version) {
     if (raceChecker === 0){
       if (ancestryHuman === 1) {
         race = "Human (Calishite)";
-        random_by_length(softTraits, personalityTraits, "form102_1");
+        random_by_length(traits, personalityTraits, "form102_1");
       } else if (ancestryHuman === 2) {
         race = "Human (Chondathan)";
-        random_by_length(softTraits, personalityTraits, "form102_1");
+        random_by_length(traits, personalityTraits, "form102_1");
       } else if (ancestryHuman === 3) {
         race = "Human (Damaran)";
-        random_by_length(softTraits, personalityTraits, "form102_1");
+        random_by_length(traits, personalityTraits, "form102_1");
       } else if (ancestryHuman === 4) {
         race = "Human (Illuskan)";
-        random_by_length(softTraits, personalityTraits, "form102_1");
+        random_by_length(traits, personalityTraits, "form102_1");
       } else if (ancestryHuman === 5) {
         race = "Human (Mulan)";
-        random_by_length(softTraits, personalityTraits, "form102_1");
+        random_by_length(traits, personalityTraits, "form102_1");
       } else if (ancestryHuman === 6) {
         race = "Human (Rashemi)";
-        random_by_length(toughTraits, personalityTraits, "form102_1");
+        random_by_length(traits, personalityTraits, "form102_1");
       } else if (ancestryHuman === 7) {
         race = "Human (Shou)";
-        random_by_length(toughTraits, personalityTraits, "form102_1");
+        random_by_length(traits, personalityTraits, "form102_1");
       } else if (ancestryHuman === 8) {
         race = "Human (Tethyrian)";
-        random_by_length(toughTraits, personalityTraits, "form102_1");
+        random_by_length(traits, personalityTraits, "form102_1");
       } else if (ancestryHuman === 9) {
         race = "Human (Turami)";
-        random_by_length(toughTraits, personalityTraits, "form102_1");
+        random_by_length(traits, personalityTraits, "form102_1");
       }
     }
   } else if (race === "Gnome" || raceSplitter3 === "Gnome") {
@@ -1464,11 +1314,12 @@ function generate_character(version) {
     profsAndLangs.languages.push(racialLanguage2);
     intelligence += 2;
     document.getElementById("form87_1").value = "25";
-    random_by_length(softTraits, personalityTraits, "form102_1");
+    random_by_length(traits, personalityTraits, "form102_1");
     features.push("Darkvision: 60 feet.");
     features.push("Gnome Cunning: You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.");
     if (raceChecker === 0){
-      if (dexterity >= constitution) {
+      ancestry = get_random_number(2);
+      if (ancestry === 1) {
         race = "Forest Gnome";
       } else if (constitution > dexterity) {
         race = "Rock Gnome";
@@ -1485,38 +1336,54 @@ function generate_character(version) {
   // Function for picking balance alignment
   function generate_balance() {
     if (alignmentChecker === false) {
+      random_by_length(flaws, arrayOfFlaws, "form99_1");
       if (Math.random() >= .666666666) {
         alignment.push("Lawful");
-        random_by_length(lawfulFlaws, flaws, "form99_1");
       } else if (.666666666 >= Math.random() && Math.random() >= .3333333333) {
         alignment.push("Chaotic");
-        random_by_length(chaoticFlaws, flaws, "form99_1");
       } else {
         alignment.push("Neutral");
-        random_by_length(neutralFlaws, flaws, "form99_1");
       }
     }
   }
 
   // Function for picking morality alignment
-  function generate_morality(higherDecimal, lowerDecimal) {
+  function generate_morality() {
     if (alignmentChecker === false) {
-      if (Math.random() >= higherDecimal) {
+      random_by_length(ideals, arrayOfIdeals, "form100_1");
+      if (Math.random() >= .666666666) {
         alignment.push("Good");
-        random_by_length(goodIdeals, ideals, "form100_1");
-      } else if (higherDecimal >= Math.random() && lowerDecimal >= Math.random()) {
+      } else if (.666666666 >= Math.random() && Math.random() >= .3333333333) {
         alignment.push("Evil");
-        random_by_length(evilIdeals, ideals, "form100_1");
-      } else if (Math.random() >= lowerDecimal) {
-        alignment.push("Neutral");
-        random_by_length(neutralIdeals, ideals, "form100_1");
       } else {
-        alignment.push("Evil");
-        random_by_length(evilIdeals, ideals, "form100_1");
+        alignment.push("Neutral");
       }
     }
   }
 
+  // WILL HAVE TO COME BACK TO THIS!!!!!!!!!!!
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   // Function to become proficient in a random skill if it isn't already proficient
   function skill_adder() {
     random = Math.floor(Math.random() * 17);
@@ -1604,92 +1471,43 @@ function generate_character(version) {
   }
 
   // Racial features adder
+  generate_balance();
+  generate_morality();
   if (race === "Black Dragonborn") {
     features.push("Draconic Ancestry: Black Dragons.");
     features.push("Damage Resistance: Acid.");
-    generate_balance(.55, .4);
-    generate_morality(.8, .55);
   } else if (race === "Blue Dragonborn") {
     features.push("Draconic Ancestry: Blue Dragons.");
     features.push("Damage Resistance: Lightning.");
-    generate_balance(.55, .4);
-    generate_morality(.8, .55);
   } else if (race === "Brass Dragonborn") {
     features.push("Draconic Ancestry: Brass Dragons.");
     features.push("Damage Resistance: Fire.");
-    generate_balance(.55, .4);
-    generate_morality(.6, .25);
   } else if (race === "Bronze Dragonborn") {
     features.push("Draconic Ancestry: Bronze Dragons.");
     features.push("Damage Resistance: Lightning.");
-    generate_balance(.55, .4);
-    generate_morality(.6, .25);
   } else if (race === "Copper Dragonborn") {
     features.push("Draconic Ancestry: Copper Dragons.");
     features.push("Damage Resistance: Acid.");
-    generate_balance(.55, .4);
-    generate_morality(.6, .25);
   } else if (race === "Gold Dragonborn") {
     features.push("Draconic Ancestry: Gold Dragons.");
     features.push("Damage Resistance: Fire.");
-    generate_balance(.55, .4);
-    generate_morality(.6, .25);
   } else if (race === "Green Dragonborn") {
     features.push("Draconic Ancestry: Green Dragons.");
     features.push("Damage Resistance: Poison.");
-    generate_balance(.55, .4);
-    generate_morality(.75, .4);
   } else if (race === "Red Dragonborn") {
     features.push("Draconic Ancestry: Red Dragons.");
     features.push("Damage Resistance: Fire.");
-    generate_balance(.55, .4);
-    generate_morality(.75, .4);
   } else if (race === "Silver Dragonborn") {
     features.push("Draconic Ancestry: Silver Dragons.");
     features.push("Damage Resistance: Cold.");
-    generate_balance(.55, .4);
-    generate_morality(.6, .25);
   } else if (race === "White Dragonborn") {
     features.push("Draconic Ancestry: White Dragons.");
     features.push("Damage Resistance: Cold.");
-    generate_balance(.55, .4);
-    generate_morality(.75, .4);
   } else if (race === "Hill Dwarf") {
     wisdom += 1;
     features.push("Dwarven Toughness: Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.");
-    generate_balance(.3, .1);
-    generate_morality(.5, .2);
   } else if (race === "Mountain Dwarf") {
     strength += 2;
-    generate_balance(.3, .1);
-    generate_morality(.5, .2);
-  } else if (race === "Human (Calishite)") {
-    generate_balance(.6, .2);
-    generate_morality(.66, .3);
-  } else if (race === "Human (Chondathan)") {
-    generate_balance(.6, .2);
-    generate_morality(.66, .3);
-  } else if (race === "Human (Damaran)") {
-    generate_balance(.6, .2);
-    generate_morality(.66, .3);
-  } else if (race === "Human (Illuskan)") {
-    generate_balance(.6, .2);
-    generate_morality(.66, .3);
-  } else if (race === "Human (Mulan)") {
-    generate_balance(.6, .2);
-    generate_morality(.66, .3);
-  } else if (race === "Human (Rashemi)") {
-    generate_balance(.6, .2);
-    generate_morality(.66, .3);
-  } else if (race === "Human (Shou)") {
-    generate_balance(.6, .2);
-    generate_morality(.66, .3);
-  } else if (race === "Human (Tethyrian)") {
-    generate_balance(.6, .2);
-    generate_morality(.66, .3);
-  } else if (race === "Human (Turami)") {
-    generate_balance(.6, .2);
-    generate_morality(.66, .3);
   } else if (race === "High Elf") {
     features.push("Darkvision: 60 feet.");
     racialLanguage1 = "Common";
@@ -1705,8 +1523,6 @@ function generate_character(version) {
     features.push("High Elf Cantrip: You know one cantrip (prestidigitation) from your High Elven heritage, intelligence is your spellcasting ability for it.");
     add_race_cantrip("Prestidigitation");
     intelligence += 1;
-    generate_balance(.9, .7);
-    generate_morality(.7, .2);
   } else if (race === "Wood Elf") {
     features.push("Darkvision: 60 feet.");
     racialLanguage1 = "Common";
@@ -1720,8 +1536,6 @@ function generate_character(version) {
     wisdom += 1;
     document.getElementById("form87_1").value = "35";
     features.push("Mask of the Wild: You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.");
-    generate_balance(.9, .7);
-    generate_morality(.6, .2);
   } else if (race === "Dark Elf (Drow)") {
     racialLanguage1 = "Common";
     racialLanguage2 = "Elvish";
@@ -1735,32 +1549,22 @@ function generate_character(version) {
     charisma += 1;
     features.push("Superior Darkvision: 120 feet.");
     additionalFeatures.push("Sunlight Sensitivity: You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.");
-    generate_balance(.9, .7);
-    generate_morality(.8, .4);
   } else if (race === "Lightfoot Halfling") {
     charisma += 1;
     features.push("Naturally Stealthy: You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.");
-    generate_balance(.2, .1);
-    generate_morality(.4, .2);
   } else if (race === "Stout Halfling") {
     constitution += 1;
     features.push("Stout Resilience: You have advantage on saving throws against poison, and you have resistance against poison damage.");
-    generate_balance(.2, .1);
-    generate_morality(.4, .2);
   } else if (race === "Forest Gnome") {
     constitution += 1;
     additionalFeatures.push("Speak with Small Beasts: Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts. Forest gnomes love animals and often keep squirrels, badgers, rabbits, moles, woodpeckers, and other creatures as beloved pets.");
     features.push("Natural Illusionist: You know the 'minor illusion' cantrip, intelligence is your spellcasting ability for it.");
     add_race_cantrip("Minor Illusion");
-    generate_balance(.6, .4);
-    generate_morality(.5, .2);
   } else if (race === "Rock Gnome") {
     constitution += 1;
     tool_adder_2(tool_adder("tinker's tools"));
     features.push("Artificer’s Lore: Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply.");
     additionalFeatures.push("Tinker: Using tinker's tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC 5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time. When you create a device, choose one of the following options:\rClockwork Toy: This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction. It makes noises as appropriate to the creature it represents.\rFire Starter: The device produces a miniature flame, which you can use to light a Candle, torch, or campfire. Using the device requires your action.\rMusic Box: When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song’s end or when it is closed.");
-    generate_balance(.6, .4);
-    generate_morality(.5, .2);
   } else if (race === "Half-Elf") {
     racialLanguage1 = "Common";
     racialLanguage2 = "Elvish";
@@ -1769,7 +1573,7 @@ function generate_character(version) {
     profsAndLangs.languages.push(racialLanguage2);
     profsAndLangs.languages.push(extralanguage);
     charisma += 2;
-    random_by_length(softTraits, personalityTraits, "form102_1");
+    random_by_length(traits, personalityTraits, "form102_1");
     firstNumber = Math.floor(Math.random() * 4);
     secondNumber = Math.floor(Math.random() * 4);
     while (firstNumber === secondNumber) {
@@ -1801,8 +1605,6 @@ function generate_character(version) {
     document.getElementById("form87_1").value = "30";
     features.push("Darkvision: 60 feet.");
     features.push("Fey Ancestry: You have advantage on saving throws against being charmed, and magic can’t put you to sleep.");;
-    generate_balance(.8, .6);
-    generate_morality(.6, .3);
   } else if (race === "Half-Orc") {
     racialLanguage1 = "Common";
     racialLanguage2 = "Orc";
@@ -1811,12 +1613,10 @@ function generate_character(version) {
     strength += 2;
     constitution += 1;
     document.getElementById("form87_1").value = "30";
-    random_by_length(toughTraits, personalityTraits, "form102_1");
+    random_by_length(traits, personalityTraits, "form102_1");
     features.push("Darkvision: 60 feet.");
     features.push("Relentless Endurance: When you are reduced to 0 hit points but not killed outright, you can drop to 1 hitpoint instead. You can't use this feature again until you finish a long rest.");
     additionalFeatures.push("Savage Attacks: When you score a critical hit with a melee weapon attack, you can roll one of the weapon’s damage dice one additional time and add it to the extra damage of the critical hit.");
-    generate_balance(.8, .6);
-    generate_morality(.7, .4);
   } else if (race === "Tiefling") {
     racialLanguage1 = "Common";
     racialLanguage2 = "Infernal";
@@ -1827,11 +1627,9 @@ function generate_character(version) {
     charisma += 2;
     intelligence += 1;
     document.getElementById("form87_1").value = "30";
-    random_by_length(softTraits, personalityTraits, "form102_1");
+    random_by_length(traits, personalityTraits, "form102_1");
     features.push("Darkvision: 60 feet.");
     features.push("Hellish Resistance. You have resistance to fire damage.");
-    generate_balance(.8, .6);
-    generate_morality(.7, .4);
   };
 
   // Creating modifiers for each stat
@@ -1934,30 +1732,54 @@ function generate_character(version) {
 
   // Function to choose a random musical instrument
   function random_musical_instrument() {
-    random = Math.floor(Math.random() * 10);
-    if (random === 0) {
+    random = get_random_number(10);
+    if (random === 1) {
       return "Bagpipes";
-    } else if (random === 1) {
-      return "Drum";
     } else if (random === 2) {
-      return "Dulcimer";
+      return "Drum";
     } else if (random === 3) {
-      return "Flute";
+      return "Dulcimer";
     } else if (random === 4) {
-      return "Lute";
+      return "Flute";
     } else if (random === 5) {
-      return "Lyre";
+      return "Lute";
     } else if (random === 6) {
-      return "Horn";
+      return "Lyre";
     } else if (random === 7) {
-      return "Pan Flute";
+      return "Horn";
     } else if (random === 8) {
-      return "Shawm";
+      return "Pan Flute";
     } else if (random === 9) {
+      return "Shawm";
+    } else if (random === 10) {
       return "Viola";
     }
   }
 
+  // WILL HAVE TO COME BACK TO THIS
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   // Function to determine what equipment/spells/features you should have based on your class
   function equipment_chooser(classAndLevel) {
     random = Math.random();
@@ -2700,23 +2522,23 @@ function generate_character(version) {
       spellcastingSection.push("Lay on Hands (5 hp/lr): As an action you can heal another creature or cure them of disease or poison.");
       if (alignment[0] === "Lawful" && alignment[1] === "Good") {
         equipment.push("Silver bracer - Symbol");
-        alliesAndOrganizations.push("Pholtus - god of light and law, I will protect the good and bright light to such dark times like the present. This is my moment, this is his will.");
+        alliesAndOrganizations.push("Pholtus - God of light and law, I will protect the good and bright light to such dark times like the present. This is my moment, this is his will.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Neutral" && alignment[1] === "Good") {
         equipment.push("Sun tattoo on right palm - Symbol");
-        alliesAndOrganizations.push("Pelor, god of the sun and healing, the sun has been beating on my back my entire life, I have only just begun to appreciate the wonders it has presented me.");
+        alliesAndOrganizations.push("Pelor, God of the sun and healing, the sun has been beating on my back my entire life, I have only just begun to appreciate the wonders it has presented me.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Chaotic" && alignment[1] === "Good") {
         equipment.push("Triangular star ring - Symbol");
-        alliesAndOrganizations.push("Lliira - goddess of joy, I won't let anyone take others happiness away, not even for a second if I can help it.");
+        alliesAndOrganizations.push("Lliira - Goddess of joy, I won't let anyone take others happiness away, not even for a second if I can help it.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Lawful" && alignment[1] === "Neutral") {
         equipment.push("Partially-burnt gauntlet - Symbol");
-        alliesAndOrganizations.push("Helm, god of protection, I will uplift the just, and smite the self-righteous and wicked.");
+        alliesAndOrganizations.push("Helm, God of protection, I will uplift the just, and smite the self-righteous and wicked.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Neutral" && alignment[1] === "Neutral") {
         equipment.push("Fire-glass necklace - Symbol");
-        alliesAndOrganizations.push("Sirrion, god of fire and change, he will guide me through the world, and the chaos amongst it.");
+        alliesAndOrganizations.push("Sirrion, God of fire and change, he will guide me through the world, and the chaos amongst it.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Chaotic" && alignment[1] === "Neutral") {
         equipment.push("Father's fingerbones - Symbol");
@@ -2724,15 +2546,15 @@ function generate_character(version) {
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Lawful" && alignment[1] === "Evil") {
         equipment.push("Black glove - Symbol");
-        alliesAndOrganizations.push("Bane - god of Tyranny, my one true master.");
+        alliesAndOrganizations.push("Bane - God of Tyranny, my one true master.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Neutral" && alignment[1] === "Evil") {
         equipment.push("Dragonshard stone (fang-shaped) - Symbol");
-        alliesAndOrganizations.push("The Keeper, god of greed and death, I will gain everything in this world, I will devour this planet.");
+        alliesAndOrganizations.push("The Keeper, God of greed and death, I will gain everything in this world, I will devour this planet.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Chaotic" && alignment[1] === "Evil") {
         equipment.push("Skull of a wicked man - Symbol");
-        alliesAndOrganizations.push("Iuz - god of pain and oppression, I will worship this man as a vehicle for the pain and suffering that my wife suffered at the hands of those men.");
+        alliesAndOrganizations.push("Iuz - God of pain and oppression, I will worship this man as a vehicle for the pain and suffering that my wife suffered at the hands of those men.");
         alliesAndOrganizations.push(" ");
       }
       if (strength > charisma && strength > constitution) {
@@ -3592,7 +3414,7 @@ function generate_character(version) {
     } else if (random === 7) {
       return "Ancient arrow of elven design";
     } else if (random === 8) {
-      return "Iron holy symbol devoted to an unknown god";
+      return "Iron holy symbol devoted to an unknown God";
     } else if (random === 9) {
       return "Invitation to a party where a murder happened";
     } else if (random === 10) {
@@ -3738,7 +3560,9 @@ function generate_character(version) {
       equipment.push("Sling");
     } else if (variable === "Whip already added") {
       equipment.push("Whip");
-    } else {}
+    } else {
+
+    }
   }
 
   // Function to determine a random animal trophy for the outlander background
@@ -4058,12 +3882,79 @@ function generate_character(version) {
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become an urchin?\rDid someone wrong you?\rAre you an orphan?\rDid your family's jobs fall through?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from urchin to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r";
   }
 
+  // WILL HAVE TO COME BACK AND FIX
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   // Block to give a Half-Elf two random skills based on the most useful
   if (race === "Half-Elf") {
     skill_adder();
     skill_adder();
   }
 
+
+  // WILL HAVE TO COME BACK AND FIX
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   // Function to determine what proficiencies a character gets based on their class and their proficiencies they already have
   function class_proficiencies() {
     if (classAndLevel === "Barbarian 1") {
@@ -4394,7 +4285,7 @@ function generate_character(version) {
   // Pushes string to alliesAndOrganizations as a writing prompt
   alliesAndOrganizations.push("Friends? Family? Guild? Crew? Brothers in arms? Priests? Orphans? Good monsters? Lovers? Deities? Rivals? Enemies? Complicated relationships? Party members?");
 
-  //Block of arrays that makes new arrays with commas between them
+  // Block of arrays that makes new arrays with commas between them
   newLangs = profsAndLangs.languages.join(', ');
   newWeaponProfs = profsAndLangs.weaponProficiencies.join(', ');
   newArmorProfs = profsAndLangs.armorProficiencies.join(', ');
@@ -4421,6 +4312,41 @@ function generate_character(version) {
   proficienciesAndLanguages.push(finalarmorProficiencies);
   proficienciesAndLanguages.push(finaltoolProficiencies);
 
+  
+
+  // WILL HAVE TO COME BACK AND FIX
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
   // Determines spells based on class and stats
   if (classAndLevel === "Bard 1") {
     document.getElementById("form214_3").value = className; // spellcasting class
