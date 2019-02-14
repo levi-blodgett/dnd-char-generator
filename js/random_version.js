@@ -502,17 +502,17 @@ function generate_character(version) {
     let currentIndex = array.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
+    // while (0 !== currentIndex) {
 
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
+    //   // Pick a remaining element...
+    //   randomIndex = Math.floor(Math.random() * currentIndex);
+    //   currentIndex -= 1;
 
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
+    //   // And swap it with the current element.
+    //   temporaryValue = array[currentIndex];
+    //   array[currentIndex] = array[randomIndex];
+    //   array[randomIndex] = temporaryValue;
+    // }
 
     return array;
   }
@@ -525,9 +525,10 @@ function generate_character(version) {
     for (i = 0; i < stats.length; i++) {
       statsNames[i] += statsValuesArray[i];
     }
-    statTotal = strength1 + dexterity1 + intelligence1 + constitution1 + wisdom1 + charisma1;
+    statTotal = statsNames[0] + statsNames[1] + statsNames[2] + statsNames[3] + statsNames[4] + statsNames[5];
     // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
-    document.getElementById("form98_1").value = classtype + "(" + statTotal + "): " + strength1 + ", " + dexterity1 + ", " + constitution1 + ", " + intelligence1 + ", " + wisdom1 + ", " + charisma1;
+    document.getElementById("form98_1").value = classtype + "(" + statTotal + "): " + statsNames[0] + ", " + statsNames[1] + ", " + statsNames[2] + ", " + statsNames[3] + ", " + statsNames[4] + ", " + statsNames[5];
+    
   }
 
   function class_dropdown_generator(){
@@ -583,86 +584,29 @@ function generate_character(version) {
 
   // Code block that assigns the stats to the class that was chosen
   if (classAndLevel === "Barbarian 1") {
-    if (randomChance > .5) {
-      assign_stats(stat1, stat3, stat2, stat6, stat4, stat5, "Barbarian");
-    } else {
-      assign_stats(stat3, stat2, stat1, stat6, stat4, stat5, "Barbarian");
-    }
+    assign_stats(stats, "Barbarian");
   } else if (classAndLevel === "Bard 1") {
-    if (randomChance > .5) {
-      assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Bard");
-    } else {
-      assign_stats(stat2, stat4, stat3, stat5, stat6, stat1, "Bard");
-    }
+    assign_stats(stats, "Bard");
   } else if (classAndLevel === "Cleric 1") {
-    if (randomChance > .66) {
-      assign_stats(stat4, stat2, stat3, stat5, stat1, stat6, "Cleric");
-      clericBuild = 'DEX';
-    } else if (randomChance > .33) {
-      assign_stats(stat2, stat4, stat3, stat6, stat1, stat5, "Cleric");
-      clericBuild = 'STR';
-    } else {
-      assign_stats(stat5, stat3, stat2, stat4, stat1, stat6, "Cleric");
-      clericBuild = 'WIS';
-    }
+    assign_stats(stats, "Cleric");
   } else if (classAndLevel === "Druid 1") {
-    if (randomChance > .5) {
-      assign_stats(stat6, stat3, stat2, stat5, stat1, stat4, "Druid");
-    } else {
-      assign_stats(stat6, stat3, stat2, stat4, stat1, stat5, "Druid");
-    }
+    assign_stats(stats, "Druid");
   } else if (classAndLevel === "Fighter 1") {
-    if (randomChance > .66) {
-      assign_stats(stat6, stat1, stat2, stat4, stat3, stat5, "Fighter");
-    } else if (randomChance > .33) {
-      assign_stats(stat1, stat4, stat2, stat5, stat3, stat6, "Fighter");
-    } else {
-      assign_stats(stat1, stat4, stat3, stat2, stat5, stat6, "Fighter");
-    }
+    assign_stats(stats, "Fighter");
   } else if (classAndLevel === "Monk 1") {
-    if (randomChance > .5) {
-      assign_stats(stat4, stat1, stat3, stat6, stat2, stat5, "Monk");
-    } else {
-      assign_stats(stat5, stat1, stat3, stat6, stat2, stat4, "Monk");
-    }
+    assign_stats(stats, "Monk");
   } else if (classAndLevel === "Paladin 1") {
-    if (randomChance > .5) {
-      assign_stats(stat5, stat1, stat3, stat6, stat4, stat2, "Paladin");
-    } else {
-      assign_stats(stat1, stat5, stat3, stat6, stat4, stat2, "Paladin");
-    }
+    assign_stats(stats, "Paladin");
   } else if (classAndLevel === "Ranger 1") {
-    if (randomChance > .5) {
-      assign_stats(stat5, stat1, stat2, stat4, stat3, stat6, "Ranger");
-    } else {
-      assign_stats(stat1, stat2, stat3, stat5, stat4, stat6, "Ranger");
-    }
+    assign_stats(stats, "Ranger");
   } else if (classAndLevel === "Rogue 1") {
-    if (randomChance > .66) {
-      assign_stats(stat6, stat1, stat2, stat5, stat3, stat4, "Rogue");
-    } else if (randomChance > .33) {
-      assign_stats(stat6, stat1, stat2, stat5, stat4, stat3, "Rogue");
-    } else {
-      assign_stats(stat6, stat1, stat3, stat2, stat4, stat5, "Rogue");
-    }
+    assign_stats(stats, "Rogue");
   } else if (classAndLevel === "Sorcerer 1") {
-    if (randomChance > .5) {
-      assign_stats(stat6, stat3, stat2, stat5, stat4, stat1, "Sorcerer");
-    } else {
-      assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Sorcerer");
-    }
+    assign_stats(stats, "Sorcerer");
   } else if (classAndLevel === "Warlock 1") {
-    if (randomChance > .5) {
-      assign_stats(stat6, stat2, stat3, stat4, stat5, stat1, "Warlock");
-    } else {
-      assign_stats(stat6, stat3, stat2, stat5, stat4, stat1, "Warlock");
-    }
+    assign_stats(stats, "Warlock");
   } else if (classAndLevel === "Wizard 1") {
-    if (randomChance > .5) {
-      assign_stats(stat6, stat2, stat3, stat1, stat4, stat5, "Wizard");
-    } else {
-      assign_stats(stat5, stat3, stat2, stat1, stat4, stat6, "Wizard");
-    }
+    assign_stats(stats, "Wizard");
   }
   // Create variables for the name generator to use
   firstNameNumber = Math.floor(Math.random() * 20);
@@ -2866,6 +2810,7 @@ function generate_character(version) {
   }
 
   // Block that adds weapon proficiencies by class
+  random_by_length(bonds, arrayOfBonds, "form101_1");
   if (classAndLevel === "Barbarian 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     weapon_adder_2(weapon_adder("martial weapons"));
@@ -2875,7 +2820,6 @@ function generate_character(version) {
     armorClass += 10 + dexterityModifier + constitutionModifier; // armor class
     equipment.push("Four javelins");
     equipment.push("Explorer's pack");
-    random_by_length(barbarianBonds, bonds, "form101_1");
   } else if (classAndLevel === "Fighter 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     weapon_adder_2(weapon_adder("martial weapons"));
@@ -2883,7 +2827,6 @@ function generate_character(version) {
     armor_adder_2(armor_adder("medium armor"));
     armor_adder_2(armor_adder("heavy armor"));
     armor_adder_2(armor_adder("shield"));
-    random_by_length(fighterBonds, bonds, "form101_1");
   } else if (classAndLevel === "Bard 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     armor_adder_2(armor_adder("light armor"));
@@ -2891,27 +2834,23 @@ function generate_character(version) {
     weapon_adder_2(weapon_adder("longsword"));
     weapon_adder_2(weapon_adder("rapier"));
     weapon_adder_2(weapon_adder("shortsword"));
-    random_by_length(bardBonds, bonds, "form101_1");
   } else if (classAndLevel === "Cleric 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     armor_adder_2(armor_adder("light armor"));
     armor_adder_2(armor_adder("medium armor"));
     armor_adder_2(armor_adder("shield"));
-    random_by_length(clericBonds, bonds, "form101_1");
   } else if (classAndLevel === "Sorcerer 1") {
     weapon_adder_2(weapon_adder("dagger"));
     weapon_adder_2(weapon_adder("dart"));
     weapon_adder_2(weapon_adder("quarterstaff"));
     weapon_adder_2(weapon_adder("sling"));
     weapon_adder_2(weapon_adder("light crossbow"));
-    random_by_length(sorcererBonds, bonds, "form101_1");
   } else if (classAndLevel === "Wizard 1") {
     weapon_adder_2(weapon_adder("dagger"));
     weapon_adder_2(weapon_adder("dart"));
     weapon_adder_2(weapon_adder("quarterstaff"));
     weapon_adder_2(weapon_adder("sling"));
     weapon_adder_2(weapon_adder("light crossbow"));
-    random_by_length(wizardBonds, bonds, "form101_1");
   } else if (classAndLevel === "Druid 1") {
     armor_adder_2(armor_adder("light armor"));
     armor_adder_2(armor_adder("medium armor"));
@@ -2927,7 +2866,6 @@ function generate_character(version) {
     weapon_adder_2(weapon_adder("sickle"));
     weapon_adder_2(weapon_adder("sling"));
     weapon_adder_2(weapon_adder("spear"));
-    random_by_length(druidBonds, bonds, "form101_1");
   } else if (classAndLevel === "Rogue 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     armor_adder_2(armor_adder("light armor"));
@@ -2935,18 +2873,15 @@ function generate_character(version) {
     weapon_adder_2(weapon_adder("longsword"));
     weapon_adder_2(weapon_adder("rapier"));
     weapon_adder_2(weapon_adder("shortsword"));
-    random_by_length(rogueBonds, bonds, "form101_1");
   } else if (classAndLevel === "Warlock 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     armor_adder_2(armor_adder("light armor"));
-    random_by_length(warlockBonds, bonds, "form101_1");
   } else if (classAndLevel === "Ranger 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     weapon_adder_2(weapon_adder("martial weapons"));
     armor_adder_2(armor_adder("light armor"));
     armor_adder_2(armor_adder("medium armor"));
     armor_adder_2(armor_adder("shield"));
-    random_by_length(rangerBonds, bonds, "form101_1");
   } else if (classAndLevel === "Paladin 1") {
     weapon_adder_2(weapon_adder("simple weapons"));
     weapon_adder_2(weapon_adder("martial weapons"));
@@ -2954,12 +2889,10 @@ function generate_character(version) {
     armor_adder_2(armor_adder("medium armor"));
     armor_adder_2(armor_adder("heavy armor"));
     armor_adder_2(armor_adder("shield"));
-    random_by_length(paladinBonds, bonds, "form101_1");
   } else if (classAndLevel === "Monk 1") {
     armorClass += 10 + dexterityModifier + wisdomModifier; // armor class
     weapon_adder_2(weapon_adder("simple weapons"));
     weapon_adder_2(weapon_adder("shortsword"));
-    random_by_length(monkBonds, bonds, "form101_1");
   };
 
   // Randomize skin based on parameters
