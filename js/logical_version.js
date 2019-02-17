@@ -297,7 +297,7 @@ function pointbuy_version() {
 
 
 // Function used to generate a new character
-function generate_character(version) {
+function generate_character() {
 
   // Name generator object that contains all names
   nameGenerator = {
@@ -4585,12 +4585,12 @@ function remove_click(j) {
 // Function to generate a new character by clearing all forms and checkboxes and then generating a character again
 function generate_initial_character(version) {
   version();
-  generate_character(version);
+  generate_character();
 }
 
 // Function to generate a new character by clearing all forms and checkboxes and then generating a character again
 function generate_new_character(version) {
   clear_All();
   version();
-  generate_character(version);
+  generate_character();
 }

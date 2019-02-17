@@ -1,3 +1,9 @@
+// TO DO
+// 1. BIASED SKILL PICKER (skill_adder(), ~1302)
+// 2. BIASED EQUIPMENT CHOOSER (equipment_chooser(classAndLevel), ~1694)
+// 3. BIASED CLASS PROFICIENCES (class_proficiencies(), ~3824)
+// 4. CLASS BUILD FIX, CLERIC BUILD FIX AS WELL (Determines spells based, ~4216)
+
 // Initialize stats and stats array
 let stats = [];
 let strength = 0;
@@ -55,6 +61,25 @@ function stat_modifier_generator(stat) {
   }
   return statModifier;
 };
+
+function shuffle(array) {
+  let currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 
 // Initialize length of all arrays
 let lengthOfCheckedRaceArray = 0;
@@ -118,6 +143,8 @@ function standard_version() {
   // Assign individual stats to an array named stats
   stats = [stat1, stat2, stat3, stat4, stat5, stat6];
 
+  stats = shuffle(stats);
+
   // 1 means standard
   versionForChecking = 1;
 
@@ -150,14 +177,6 @@ function roll_version() {
     return sum;
   };
 
-  // Function to organize numbers in ascending order
-  function order_stats(array) {
-    array.sort(function(a, b) {
-      return b - a
-    });
-    return array;
-  }
-
   // Block of arrays that are assigned a random stat each
   firstStat = get_random_stat();
   secondStat = get_random_stat();
@@ -176,23 +195,14 @@ function roll_version() {
 
   // Assign individual stats to an array named stats
   statspt1 = [temporaryStatHolder1, temporaryStatHolder2, temporaryStatHolder3, temporaryStatHolder4, temporaryStatHolder5, temporaryStatHolder6];
-
-  // Assign the ordered stats array to a global variable
-  stats = order_stats(statspt1);
-
-  // Stat array in right order
-  stat1 = stats[0];
-  stat2 = stats[1];
-  stat3 = stats[2];
-  stat4 = stats[3];
-  stat5 = stats[4];
-  stat6 = stats[5];
+  
+  stats = shuffle(statspt1);
 
   // 2 means roll
   versionForChecking = 2;
 
   // Return stats array
-  return 1;
+  return stats;
 }
 
 function pointbuy_version() {
@@ -288,6 +298,8 @@ function pointbuy_version() {
   // Assign individual stats to an array named stats
   stats = [stat1, stat2, stat3, stat4, stat5, stat6];
 
+  stats = shuffle(stats);
+
   // 3 means pointbuy
   versionForChecking = 3;
 
@@ -297,7 +309,7 @@ function pointbuy_version() {
 
 
 // Function used to generate a new character
-function generate_character(version) {
+function generate_character() {
 
   // Name generator object that contains all names
   nameGenerator = {
@@ -343,13 +355,7 @@ function generate_character(version) {
 
     // Function to get a background that fits their stats
     get_new_background: function get_new_background() {
-      if (1) {
-        newBackground2 = 1;
-      } else if (1) {
-        newBackground2 = 1;
-      } else {
-        newBackground2 = 1;
-      }
+      newBackground2 = this._backgrounds[Math.floor(Math.random() * 18)];
       return newBackground2;
     },
     // Create a name pulling from the name object
@@ -498,37 +504,21 @@ function generate_character(version) {
   randomChance = Math.random();
   clericBuild = '';
 
-  const shuffle = array => {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    // while (0 !== currentIndex) {
-
-    //   // Pick a remaining element...
-    //   randomIndex = Math.floor(Math.random() * currentIndex);
-    //   currentIndex -= 1;
-
-    //   // And swap it with the current element.
-    //   temporaryValue = array[currentIndex];
-    //   array[currentIndex] = array[randomIndex];
-    //   array[randomIndex] = temporaryValue;
-    // }
-
-    return array;
-  }
-
   // Function to assign stats randomly
   function assign_stats(stats, classtype) {
     let statsValuesArray = stats;
     statsValuesArray = shuffle(statsValuesArray);
-    let statsNames = [strength, dexterity, constitution, intelligence, wisdom, charisma];
-    for (i = 0; i < stats.length; i++) {
-      statsNames[i] += statsValuesArray[i];
-    }
-    statTotal = statsNames[0] + statsNames[1] + statsNames[2] + statsNames[3] + statsNames[4] + statsNames[5];
+    ///
+    strength += statsValuesArray[0];
+    dexterity += statsValuesArray[1];
+    constitution += statsValuesArray[2];
+    intelligence += statsValuesArray[3];
+    wisdom += statsValuesArray[4];
+    charisma += statsValuesArray[5];
+    statTotal = strength + dexterity + intelligence + constitution + wisdom + charisma;
+    ///
     // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
-    document.getElementById("form98_1").value = classtype + "(" + statTotal + "): " + statsNames[0] + ", " + statsNames[1] + ", " + statsNames[2] + ", " + statsNames[3] + ", " + statsNames[4] + ", " + statsNames[5];
-    
+    document.getElementById("form98_1").value = classtype + "(" + statTotal + "): " + strength + ", " + dexterity + ", " + statsValuesArray[2] + ", " + constitution + ", " + intelligence + ", " + charisma;
   }
 
   function class_dropdown_generator(){
@@ -582,32 +572,12 @@ function generate_character(version) {
     classAndLevel = class_dropdown_generator() + " 1";
   }
 
+  // Variable that holds the value of just the class, not the level
+  className = classAndLevel.split(" ")[0];
+
   // Code block that assigns the stats to the class that was chosen
-  if (classAndLevel === "Barbarian 1") {
-    assign_stats(stats, "Barbarian");
-  } else if (classAndLevel === "Bard 1") {
-    assign_stats(stats, "Bard");
-  } else if (classAndLevel === "Cleric 1") {
-    assign_stats(stats, "Cleric");
-  } else if (classAndLevel === "Druid 1") {
-    assign_stats(stats, "Druid");
-  } else if (classAndLevel === "Fighter 1") {
-    assign_stats(stats, "Fighter");
-  } else if (classAndLevel === "Monk 1") {
-    assign_stats(stats, "Monk");
-  } else if (classAndLevel === "Paladin 1") {
-    assign_stats(stats, "Paladin");
-  } else if (classAndLevel === "Ranger 1") {
-    assign_stats(stats, "Ranger");
-  } else if (classAndLevel === "Rogue 1") {
-    assign_stats(stats, "Rogue");
-  } else if (classAndLevel === "Sorcerer 1") {
-    assign_stats(stats, "Sorcerer");
-  } else if (classAndLevel === "Warlock 1") {
-    assign_stats(stats, "Warlock");
-  } else if (classAndLevel === "Wizard 1") {
-    assign_stats(stats, "Wizard");
-  }
+  assign_stats(stats, className);
+
   // Create variables for the name generator to use
   firstNameNumber = Math.floor(Math.random() * 20);
   lastNameNumber = Math.floor(Math.random() * 20);
@@ -1265,7 +1235,7 @@ function generate_character(version) {
       ancestry = get_random_number(2);
       if (ancestry === 1) {
         race = "Forest Gnome";
-      } else if (constitution > dexterity) {
+      } else {
         race = "Rock Gnome";
       }
    }
@@ -1604,10 +1574,6 @@ function generate_character(version) {
   stat_checker(dexterityModifier, "form46_1"); // sleight of hand
   stat_checker(dexterityModifier, "form32_1"); // stealth
   stat_checker(wisdomModifier, "form47_1"); // survival
-
-  // Variable that holds the value of just the class, not the level
-  className = classAndLevel.split(" ")[0];
-  
 
   // Block that determines the right saving throws by class
   if (classAndLevel === "Barbarian 1" || classAndLevel === "Fighter 1" || classAndLevel === "Monk 1" || classAndLevel === "Ranger 1") {
@@ -3814,40 +3780,6 @@ function generate_character(version) {
     features.push("City Secrets: You know the secret patterns and flow to cities and can find passages through the urban sprawl that others would miss. When you are not in combat, you (and companions you lead) can travel between any two locations in the city twice as fast as your speed would normally allow.");
     document.getElementById("form15_2").value = "What made you start adventuring?\rWhat were the circumstances of your birth?\rWhat caused you to become an urchin?\rDid someone wrong you?\rAre you an orphan?\rDid your family's jobs fall through?\rWhy are you a " + className.toLowerCase() + "?\r" + "How did you go from urchin to " + className.toLowerCase() + "?\r" + "What does being a " + race + " mean to you?\r";
   }
-
-  // WILL HAVE TO COME BACK AND FIX
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
   // Block to give a Half-Elf two random skills based on the most useful
   if (race === "Half-Elf") {
     skill_adder();
@@ -4522,12 +4454,12 @@ function remove_click(j) {
 // Function to generate a new character by clearing all forms and checkboxes and then generating a character again
 function generate_initial_character(version) {
   version();
-  generate_character(version);
+  generate_character();
 }
 
 // Function to generate a new character by clearing all forms and checkboxes and then generating a character again
 function generate_new_character(version) {
   clear_All();
   version();
-  generate_character(version);
+  generate_character();
 }
