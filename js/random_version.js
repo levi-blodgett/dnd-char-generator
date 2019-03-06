@@ -1,5 +1,4 @@
 // TO DO
-// 1. BIASED SKILL PICKER (skill_adder(), ~1302)
 // 2. BIASED EQUIPMENT CHOOSER (equipment_chooser(classAndLevel), ~1694)
 // 3. BIASED CLASS PROFICIENCES (class_proficiencies(), ~3824)
 // 4. CLASS BUILD FIX, CLERIC BUILD FIX AS WELL (Determines spells based, ~4216)
@@ -1275,36 +1274,9 @@ function generate_character() {
     }
   }
 
-  // WILL HAVE TO COME BACK TO THIS!!!!!!!!!!!
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  // Function to become proficient in a random skill if it isn't already proficient
   function skill_adder() {
     random = Math.floor(Math.random() * 17);
-    if (document.getElementById("form7_1").checked === undefined) {
-      add_click(7);
-      stat_checker(wisdomModifier + 2, "form43_1"); // perception
-    } else if (random === 0 && document.getElementById("form19_1").checked === undefined) {
+    if (random === 0 && document.getElementById("form19_1").checked === undefined) {
       add_click(19);
       stat_checker(dexterityModifier + 2, "form38_1"); // acrobatics
     } else if (random === 1 && document.getElementById("form8_1").checked === undefined) {
@@ -1355,32 +1327,11 @@ function generate_character() {
     } else if (random === 16 && document.getElementById("form12_1").checked === undefined) {
       add_click(12);
       stat_checker(wisdomModifier + 2, "form47_1"); // survival
+    } else if (random === 17 && document.getElementById("form7_1").checked === undefined) {
+      add_click(7);
+      stat_checker(wisdomModifier + 2, "form43_1"); // perception
     } else {
-      if (document.getElementById("form7_1").checked === undefined) {
-        add_click(7);
-        stat_checker(wisdomModifier + 2, "form43_1"); // perception
-      } else if (document.getElementById("form23_1").checked === undefined) {
-        add_click(23);
-        stat_checker(dexterityModifier + 2, "form32_1"); // stealth
-      } else if (document.getElementById("form2_1").checked === undefined) {
-        add_click(2);
-        stat_checker(strengthModifier + 2, "form49_1"); // athletics
-      } else if (document.getElementById("form17_1").checked === undefined) {
-        add_click(17);
-        stat_checker(charismaModifier + 2, "form36_1"); // deception
-      } else if (document.getElementById("form13_1").checked === undefined) {
-        add_click(13);
-        stat_checker(wisdomModifier + 2, "form35_1"); // insight
-      } else if (document.getElementById("form24_1").checked === undefined) {
-        add_click(24);
-        stat_checker(charismaModifier + 2, "form44_1"); // intimidation
-      } else if (document.getElementById("form14_1").checked === undefined) {
-        add_click(14);
-        stat_checker(intelligenceModifier + 2, "form31_1"); // investigation
-      } else if (document.getElementById("form1_1").checked === undefined) {
-        add_click(1);
-        stat_checker(charismaModifier + 2, "form45_1"); // persuasion
-      }
+      skill_adder();
     }
   }
 
