@@ -388,7 +388,7 @@ p {
 
 #last_page {
   font-family: 'Lato', sans-serif;
-  display: none;
+  display: hidden;
 }
 
 #footer {
