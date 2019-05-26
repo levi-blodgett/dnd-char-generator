@@ -380,12 +380,12 @@ p {
   font-size: 15px;
 }
 
-#lastPage, .no-print {
+#last_page, .no-print {
   background: #fff;
   color: #333;
 }
 
-#lastPage {
+#last_page {
   text-align: center;
   font-family: 'Lato', sans-serif;
   display: none;
@@ -2918,42 +2918,42 @@ body textarea {
 
 @font-face {
   font-family: ScalaSansOffc-Bold_1wk;
-  src: url("../fonts/ScalaSansOffc-Bold_1wk.woff") format("woff");
+  src: url("fonts/ScalaSansOffc-Bold_1wk.woff") format("woff");
 }
 
 @font-face {
   font-family: ScalaSansOffc_1wi;
-  src: url("../fonts/ScalaSansOffc_1wi.woff") format("woff");
+  src: url("fonts/ScalaSansOffc_1wi.woff") format("woff");
 }
 
 @font-face {
   font-family: Interstate-Light_1wn;
-  src: url("../fonts/Interstate-Light_1wn.woff") format("woff");
+  src: url("fonts/Interstate-Light_1wn.woff") format("woff");
 }
 
 @font-face {
   font-family: ScalaSansOffc-Bold_9u;
-  src: url("../fonts/ScalaSansOffc-Bold_9u.woff") format("woff");
+  src: url("fonts/ScalaSansOffc-Bold_9u.woff") format("woff");
 }
 
 @font-face {
   font-family: ScalaSansOffc_9v;
-  src: url("../fonts/ScalaSansOffc_9v.woff") format("woff");
+  src: url("fonts/ScalaSansOffc_9v.woff") format("woff");
 }
 
 @font-face {
   font-family: Interstate-Light_9g;
-  src: url("../fonts/Interstate-Light_9g.woff") format("woff");
+  src: url("fonts/Interstate-Light_9g.woff") format("woff");
 }
 
 @font-face {
   font-family: ScalaSansOffc_ew;
-  src: url("../fonts/ScalaSansOffc_ew.woff") format("woff");
+  src: url("fonts/ScalaSansOffc_ew.woff") format("woff");
 }
 
 @font-face {
   font-family: ScalaSansOffc-Bold_ex;
-  src: url("../fonts/ScalaSansOffc-Bold_ex.woff") format("woff");
+  src: url("fonts/ScalaSansOffc-Bold_ex.woff") format("woff");
 }
 
 #t1_3 {
@@ -6226,7 +6226,7 @@ body textarea {
   text-align: left;
   background: transparent;
   border: none;
-  font: normal 13px Arial, Helvetica, sans-serif;
+  font: normal 15px Arial, Helvetica, sans-serif;
 }
 
 #form214_3 {
