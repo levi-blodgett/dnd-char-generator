@@ -383,10 +383,10 @@ p {
 #last_page, .no-print {
   background: #fff;
   color: #333;
+  text-align: center;
 }
 
 #last_page {
-  text-align: center;
   font-family: 'Lato', sans-serif;
   display: none;
 }
