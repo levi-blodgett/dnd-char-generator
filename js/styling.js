@@ -19,8 +19,32 @@ const addButtonClickEvent = (list, mouseEvent, color) => {
   }
 }
 
+// Function that shows/hides whichever section isn't active (either the character page or the information page)
+function show_or_hide_pages() {
+  lastPage = document.getElementById("lastPage");
+  dndPage = document.getElementById("dnd");
+  if (lastPage.style.display === "none") {
+    lastPage.style.display = "block";
+    dndPage.style.display = "none";
+  } else if (lastPage.style.display === "block") {
+    lastPage.style.display = "none";
+    dndPage.style.display = "block";
+  } else {
+    lastPage.style.display = "block";
+    dndPage.style.display = "none";
+  }
+  if (document.getElementById("top_button").innerHTML === "Show Information Page") {
+    document.getElementById("top_button").innerHTML = "Show Character Page";
+  } else {
+    document.getElementById("top_button").innerHTML = "Show Information Page";
+  }
+}
+
 // Making nodelist of buttons to be styled
 const UI_topButtons = document.querySelectorAll('.top_buttons');
 
 // Calling function to style the buttons in the node list
 buttonStyling(UI_topButtons);
+
+// Calling function to hide last page on load
+show_or_hide_pages();

@@ -65,39 +65,6 @@ let lengthOfCheckedAlignmentArray = 0;
 // To determine which version is being used this variable will be assigned a value at the end of each version's ()
 let versionForChecking = 0;
 
-// Function that shows/hides whichever section isn't active (either the character page or the information page)
-function show_or_hide_pages() {
-  lastPage = document.getElementById("lastPage");
-  dndPage = document.getElementById("dnd");
-  if (lastPage.style.display === "none") {
-    lastPage.style.display = "block";
-    dndPage.style.display = "none";
-  } else if (lastPage.style.display === "block") {
-    lastPage.style.display = "none";
-    dndPage.style.display = "block";
-  } else {
-    lastPage.style.display = "block";
-    dndPage.style.display = "none";
-  }
-  if (document.getElementById("top_button").innerHTML === "Show Information Page") {
-    document.getElementById("top_button").innerHTML = "Show Character Page";
-  } else {
-    document.getElementById("top_button").innerHTML = "Show Information Page";
-  }
-}
-
-function show_func() {
-  lastPage = document.getElementById("lastPage");
-  dndPage = document.getElementById("dnd");
-  if (lastPage.style.display === "block" || null) {
-    lastPage.style.display = "none";
-    dndPage.style.display = "block";
-  }
-  if (document.getElementById("top_button").innerHTML === "Show Character Page") {
-    document.getElementById("top_button").innerHTML = "Show Information Page";
-  }
-}
-
 function standard_version() {
   // STANDARD ARRAY STAT BLOCK
 
