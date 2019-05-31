@@ -17,11 +17,12 @@
 		<textarea id="no-show"></textarea>
 			<div id="testing"></div>
 			<div class="center">
-				<button class="top_buttons no_select" onclick="show_or_hide_pages()" id="top_button">Show Information Page</button>
+				<button class="top_buttons no_select" onclick="show_or_hide_pages(); return false;" id="top_button">Show Information Page</button>
 			</div>
 				<div class="center">
-					<button class="top_buttons no_select" onclick="generate_new_character(roll_version), show_func()">New stat roller character</button>
-					<button class="top_buttons no_select" onclick="generate_new_character(standard_version), show_func()">New standard array character</button><button class="top_buttons" id="last_button" onclick="generate_new_character(pointbuy_version), show_func()">New point buy character</button>
+					<button class="top_buttons no_select" onclick="generate_new_character(roll_version); return false; show_func();">New stat roller character</button>
+					<button class="top_buttons no_select" onclick="generate_new_character(standard_version); return false; show_func();">New standard array character</button>
+					<button class="top_buttons" id="last_button" onclick="generate_new_character(pointbuy_version); return false; show_func();">New point buy character</button>
 				</div>
 	</div>
 
@@ -427,10 +428,6 @@
 				<input id="form6_2" type="text" tabindex="5" value="" data-objref="387 0 R" data-field-name="Eyes" />
 				<input id="form7_2" type="text" tabindex="11" value="" data-objref="383 0 R" data-field-name="FactionName" />
 				<input id="form8_2" type="text" tabindex="1" value="" data-objref="390 0 R" data-field-name="CharacterName 2" />
-				<input id="form9_2" type="button" tabindex="9" data-objref="381 0 R" data-field-name="Faction Symbol Image" onclick="// Prompt user to select file to display in this button event.target.buttonImportIcon();" />
-				<input id="form10_2" type="button" tabindex="15" data-objref="377 0 R" data-field-name="CHARACTER IMAGE" onclick="// Prompt user to select file to display in this button event.target.buttonImportIcon();" />
-				<input id="form11_2" type="button" tabindex="16" data-objref="378 0 R" data-field-name="CHARACTER IMAGE" onclick="// Prompt user to select file to display in this button event.target.buttonImportIcon();" />
-				<input id="form12_2" type="button" tabindex="8" data-objref="380 0 R" data-field-name="CHARACTER IMAGE" onclick="// Prompt user to select file to display in this button event.target.buttonImportIcon();" />
 				<textarea id="form13_2" tabindex="10" data-objref="382 0 R" data-field-name="Allies"></textarea>
 				<textarea id="form14_2" tabindex="14" data-objref="376 0 R" data-field-name="Treasure"></textarea>
 				<textarea id="form15_2" tabindex="12" data-objref="374 0 R" data-field-name="Backstory"></textarea>
