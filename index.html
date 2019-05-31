@@ -17,11 +17,11 @@
 		<textarea id="no-show"></textarea>
 			<div id="testing"></div>
 			<div class="center">
-				<button class="top_buttons" onclick="show_or_hide_pages()" id="top_button">Show Information Page</button>
+				<button class="top_buttons no_select" onclick="show_or_hide_pages()" id="top_button">Show Information Page</button>
 			</div>
 				<div class="center">
-					<button class="top_buttons" onclick="generate_new_character(roll_version), show_func()">New stat roller character</button>
-					<button class="top_buttons" onclick="generate_new_character(standard_version), show_func()">New standard array character</button><button class="top_buttons" id="last_button" onclick="generate_new_character(pointbuy_version), show_func()">New point buy character</button>
+					<button class="top_buttons no_select" onclick="generate_new_character(roll_version), show_func()">New stat roller character</button>
+					<button class="top_buttons no_select" onclick="generate_new_character(standard_version), show_func()">New standard array character</button><button class="top_buttons" id="last_button" onclick="generate_new_character(pointbuy_version), show_func()">New point buy character</button>
 				</div>
 	</div>
 
@@ -708,21 +708,6 @@
 
 			</form>
 			<!-- End Form Data -->
-
-			<!--- Functions created by the PDF to HTML5 converter, to handle checkboxes -->
-			<script src="js/checkboxes.js"></script>
-
-			<!--- Main script that edits the HTML data -->
-			<script src="js/logical_version.js"></script>
-
-			<!-- Script used for extra sylings for CSS -->
-			<script src="js/styling.js"></script>
-
-			<!-- Script used for dropdown functionality -->
-			<script src="js/dropdowns.js"></script>
-
-			<!-- Script used for testing purposes -->
-			<!-- <script src="js/testing.js"></script> -->
 		</div>
 	</div>
 
@@ -828,9 +813,24 @@
 		</div>
 	</div>
 	<div id="footer" class="no-print">
-		<a href="#top"><button class="bottom_button"><img id="arrow" src="img/up-arrow.png"></button></a>
-		<br>
+		<a href="#top"><button class="bottom bottom_button no_select"><img id="arrow no_select" src="img/up-arrow.png"></button></a>
+		<p class="bottom bottom_text">Programmed by <br> <a href="https://leviblodgett.com">Levi Blodgett</a></p>
 	</div>
+
+	<!--- Functions created by the PDF to HTML5 converter, to handle checkboxes -->
+	<script src="js/checkboxes.js"></script>
+
+	<!--- Main script that edits the HTML data -->
+	<script src="js/logical_version.js"></script>
+
+	<!-- Script used for extra sylings for CSS -->
+	<script src="js/styling.js"></script>
+
+	<!-- Script used for dropdown functionality -->
+	<script src="js/dropdowns.js"></script>
+
+	<!-- Script used for testing purposes -->
+	<!-- <script src="js/testing.js"></script> -->
 </body>
 
 </html>

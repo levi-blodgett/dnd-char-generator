@@ -273,7 +273,7 @@ a:active {
 }
 
 div.text_below {
-  overflow: scroll;
+  overflow: hidden;
 }
 
 #top_button {
@@ -319,16 +319,27 @@ div.text_below {
   grid-template-columns: 33.33% 33.33% 33.34%;
 }
 
-.bottom_button {
-  padding: 12px 4px 6px 4px;
+.bottom {
   position: fixed;
-  bottom: 12px;
-  right: 12px;
-  border-width: 2px;
   z-index: 999;
 }
 
-.bottom_button, #arrow, .top_buttons, #copyright {
+.bottom_button {
+  bottom: 12px;
+  right: 12px;
+  padding: 12px 4px 6px 4px;
+  border-width: 2px;
+}
+
+.bottom_text {
+  bottom: -4px;
+  right: 56px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.no_select {
   outline: none;
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
@@ -337,14 +348,9 @@ div.text_below {
    user-select: none;
 }
 
-#copyright {
-  font-size: 16px;
-}
-
 .text_below {
   border: #222 solid 4px;
   border-right: none;
-  margin-bottom: 20px;
 }
 
 @media (max-width: 1200px) {
@@ -388,15 +394,15 @@ p {
   font-size: 15px;
 }
 
-#last_page, .no-print {
+#lastPage, .no-print {
   background: #fff;
   color: #333;
   text-align: center;
 }
 
-#last_page {
+#lastPage {
   font-family: 'Lato', sans-serif;
-  display: none !important;
+  display: none;
 }
 
 #footer {

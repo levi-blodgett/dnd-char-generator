@@ -40,11 +40,21 @@ function show_or_hide_pages() {
   }
 }
 
+// Function for showing the generator instead of FAQ if they generate while looking at FAQ
+function show_func() {
+  lastPage = document.getElementById("lastPage");
+  dndPage = document.getElementById("dnd");
+  if (lastPage.style.display === "block" || null) {
+    lastPage.style.display = "none";
+    dndPage.style.display = "block";
+  }
+  if (document.getElementById("top_button").innerHTML === "Show Character Page") {
+    document.getElementById("top_button").innerHTML = "Show Information Page";
+  }
+}
+
 // Making nodelist of buttons to be styled
 const UI_topButtons = document.querySelectorAll('.top_buttons');
 
 // Calling function to style the buttons in the node list
 buttonStyling(UI_topButtons);
-
-// Calling function to hide last page on load
-show_or_hide_pages();
