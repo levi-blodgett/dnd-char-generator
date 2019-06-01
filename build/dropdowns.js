@@ -138,9 +138,9 @@ function on_dropdown_option_click(_id, _class) {
   if (document.getElementById(ID).checked) {
     document.getElementById(ID).checked = false;
   } else if (isCheckboxChecked_1 === false) {
-    lengthOfArray = document.querySelectorAll('input.' + input_class).length;
-    arrayItself = document.querySelectorAll('input.' + input_class);
-    arrayOfCheckedCheckboxes = [];
+    var lengthOfArray = document.querySelectorAll('input.' + input_class).length;
+    var arrayItself = document.querySelectorAll('input.' + input_class);
+    var arrayOfCheckedCheckboxes = [];
     for (var i = 0; i < lengthOfArray; i++) {
       if (arrayItself[i].checked === true) {
         arrayOfCheckedCheckboxes.push(arrayItself[i]);
