@@ -8,6 +8,36 @@
 
 /* Background CSS */
 
+html {
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@-moz-document url-prefix() {
+  html,body{overflow: hidden !important;}
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  margin: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+body input {
+  color: black;
+}
+ 
+body textarea {
+  color: black;
+}
+
 #p1 {
   overflow: hidden;
   position: relative;
@@ -19,10 +49,6 @@
   z-index: 1;
 }
 
-#pg1 {
-  -webkit-user-select: none;
-}
-
 #pg1Overlay {
   width:100%;
   height:100%;
@@ -32,6 +58,11 @@
   -webkit-user-select: none;
 }
 
+#pg1 {
+  -webkit-user-select: none;
+  z-index: 1;
+}
+
 #pdf1 {
   width:935px;
   height:1210px;
@@ -39,6 +70,7 @@
   transform:scale(1);
   -moz-transform:scale(1);
   z-index: 1;
+  background: transparent;
 }
 
 #p2 {
@@ -105,11 +137,6 @@
   transform:scale(1);
   -moz-transform:scale(1);
   z-index: 1;
-}
-
-
-html {
-  scroll-behavior: smooth;
 }
 
 .race_class, .race_class_2, #race_random {
@@ -255,10 +282,6 @@ ul .huge_margins {
   overflow: hidden;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 a:link {
   color: #3A27FF;
 }
@@ -291,7 +314,6 @@ a:active {
 
 .dropdowns {
   height: 45px;
-  z-index: 2;
 }
 
 .dropdown_section {
@@ -316,7 +338,6 @@ a:active {
   -ms-grid-columns: 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   text-align: center;
-  z-index: 2;
 }
 
 .cell_A {
@@ -475,21 +496,6 @@ button:focus {
 #last_p {
   margin-bottom: 0;
   padding-bottom: 35px;
-}
-
-body {
-  padding: 0px;
-  margin: 0px;
-  margin: 0;
-  background-color: rgb(255, 255, 255);
-}
-
-body input {
-  color: black;
-}
- 
-body textarea {
-  color: black;
 }
 
 #FDFXFA_Menu {
