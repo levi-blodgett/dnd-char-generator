@@ -16,6 +16,7 @@
   margin-top:20px;
   margin-left:auto;
   margin-right:auto;
+  z-index: 1;
 }
 
 #pg1 {
@@ -37,7 +38,7 @@
   background-color:white;
   transform:scale(1);
   -moz-transform:scale(1);
-  z-index: 0;
+  z-index: 1;
 }
 
 #p2 {
@@ -48,6 +49,7 @@
   margin-top:20px;
   margin-left:auto;
   margin-right:auto;
+  z-index: 1;
 }
 
 #pg2 {
@@ -69,7 +71,7 @@
   background-color:white;
   transform:scale(1);
   -moz-transform:scale(1);
-  z-index: 0;
+  z-index: 1;
 }
 
 #p3 {
@@ -80,6 +82,7 @@
   margin-top:20px;
   margin-left:auto;
   margin-right:auto;
+  z-index: 1;
 }
 
 #pg3 {
@@ -101,7 +104,7 @@
   background-color:white;
   transform:scale(1);
   -moz-transform:scale(1);
-  z-index: 0;
+  z-index: 1;
 }
 
 
@@ -272,10 +275,6 @@ a:active {
   color: #712AFF;
 }
 
-div.text_below {
-  overflow: hidden;
-}
-
 #top_button {
   margin-bottom: 0px;
 }
@@ -292,7 +291,7 @@ div.text_below {
 
 .dropdowns {
   height: 45px;
-  z-index: 999;
+  z-index: 2;
 }
 
 .dropdown_section {
@@ -304,14 +303,6 @@ div.text_below {
   font-family: 'Lato', sans-serif;
 }
 
-#center_dropdowns {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  text-align: center;
-}
-
 #row {
   display: -ms-grid;
   display: grid;
@@ -319,19 +310,45 @@ div.text_below {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.row1 {
+#center_dropdowns {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+  z-index: 2;
+}
+
+.cell_A {
+  -ms-grid-column: 1;
   grid-column: 1;
+  -ms-grid-row: 1;
   grid-row: 1;
+  z-index: 2;
 }
 
-.row2 {
+.cell_B {
+  -ms-grid-column: 2;
   grid-column: 2;
+  -ms-grid-row: 1;
   grid-row: 1;
+  z-index: 2;
 }
 
-.row3 {
+.cell_C {
+  -ms-grid-column: 3;
   grid-column: 3;
+  -ms-grid-row: 1;
   grid-row: 1;
+  z-index: 2;
+}
+
+.cell_D {
+  -ms-grid-column: 4;
+  grid-column: 4;
+  -ms-grid-row: 1;
+  grid-row: 1;
+  z-index: 2;
 }
 
 #last_button {
@@ -340,7 +357,7 @@ div.text_below {
 
 .bottom {
   position: fixed;
-  z-index: 999;
+  z-index: 2;
 }
 
 .bottom_button {
