@@ -54,23 +54,13 @@ body textarea {
   height:100%;
   position:absolute;
   z-index:1;
-  background-color:rgba(255, 255, 255, 0);
   -webkit-user-select: none;
+  background-image: url(1/1.svg);
 }
 
 #pg1 {
   -webkit-user-select: none;
   z-index: 1;
-}
-
-#pdf1 {
-  width:935px;
-  height:1210px;
-  background-color:white;
-  transform:scale(1);
-  -moz-transform:scale(1);
-  z-index: 1;
-  background: transparent;
 }
 
 #p2 {
@@ -93,17 +83,8 @@ body textarea {
   height:100%;
   position:absolute;
   z-index:1;
-  background-color:rgba(255, 255, 255, 0);
   -webkit-user-select: none;
-}
-
-#pdf2 {
-  width:935px;
-  height:1210px;
-  background-color:white;
-  transform:scale(1);
-  -moz-transform:scale(1);
-  z-index: 1;
+  background-image: url(2/2.svg);
 }
 
 #p3 {
@@ -126,17 +107,8 @@ body textarea {
   height:100%;
   position:absolute;
   z-index:1;
-  background-color:rgba(255, 255, 255, 0);
   -webkit-user-select: none;
-}
-
-#pdf3 {
-  width:935px;
-  height:1210px;
-  background-color:white;
-  transform:scale(1);
-  -moz-transform:scale(1);
-  z-index: 1;
+  background-image: url(3/3.svg);
 }
 
 .race_class, .race_class_2, #race_random {
