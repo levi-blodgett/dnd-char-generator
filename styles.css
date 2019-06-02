@@ -54,7 +54,6 @@ body textarea {
   height:100%;
   position:absolute;
   -webkit-user-select: none;
-  background-image: url(svg/1st_page.svg);
 }
 
 #pg1 {
@@ -81,7 +80,6 @@ body textarea {
   height:100%;
   position:absolute;
   -webkit-user-select: none;
-  background-image: url(svg/2nd_page.svg);
 }
 
 #p3 {
@@ -104,7 +102,6 @@ body textarea {
   height:100%;
   position:absolute;
   -webkit-user-select: none;
-  background-image: url(svg/3rd_page.svg);
 }
 
 .race_class, .race_class_2, #race_random {
