@@ -38,7 +38,7 @@ body textarea {
   color: black;
 }
 
-#p1 {
+#p1, #p2, #p3 {
   overflow: hidden;
   position: relative;
   width: 935px;
@@ -46,61 +46,18 @@ body textarea {
   margin-top:20px;
   margin-left:auto;
   margin-right:auto;
+  background-color:rgba(255, 255, 255, 0);
   z-index: 1;
 }
 
-#pg1Overlay {
+#pg1Overlay, #pg2Overlay, #pg3Overlay {
   width:100%;
   height:100%;
   position:absolute;
   -webkit-user-select: none;
 }
 
-#pg1 {
-  -webkit-user-select: none;
-}
-
-#p2 {
-  overflow: hidden;
-  position: relative;
-  width: 935px;
-  height: 1210px;
-  margin-top:20px;
-  margin-left:auto;
-  margin-right:auto;
-  z-index: 1;
-}
-
-#pg2 {
-  -webkit-user-select: none;
-}
-
-#pg2Overlay {
-  width:100%;
-  height:100%;
-  position:absolute;
-  -webkit-user-select: none;
-}
-
-#p3 {
-  overflow: hidden;
-  position: relative;
-  width: 935px;
-  height: 1210px;
-  margin-top:20px;
-  margin-left:auto;
-  margin-right:auto;
-  z-index: 1;
-}
-
-#pg3 {
-  -webkit-user-select: none;
-}
-
-#pg3Overlay {
-  width:100%;
-  height:100%;
-  position:absolute;
+#pg1, #pg2, #pg3 {
   -webkit-user-select: none;
 }
 
