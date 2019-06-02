@@ -1654,7 +1654,6 @@ function generate_character() {
   intelligenceModifier = stat_modifier_generator(intelligence);
   wisdomModifier = stat_modifier_generator(wisdom);
   charismaModifier = stat_modifier_generator(charisma);
-  var hitDiceModifier = stat_modifier_generator(constitution);
 
   // Filling in all skills before proficiencies are put in
   stat_checker(dexterityModifier, "form38_1"); // acrobatics
