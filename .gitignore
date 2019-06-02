@@ -1,2 +1,4 @@
-testing.js
 node_modules
+js/*
+build/testing.js
+build/random_version.js
