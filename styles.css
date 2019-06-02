@@ -13,6 +13,7 @@ html {
   overflow: -moz-scrollbars-none;
   overflow: auto;
   scroll-behavior: smooth;
+  scrollbar-width: none;
 }
 
 ::-webkit-scrollbar {
@@ -20,7 +21,6 @@ html {
 }
 
 @-moz-document url-prefix() {
-  html,body{overflow: hidden !important;}
 }
 
 body {
