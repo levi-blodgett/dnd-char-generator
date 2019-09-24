@@ -1,5 +1,3 @@
-'use strict';
-
 // Global variables that can be used by ALL the functions on this page.
 var is64 = void 0;
 var inputs = void 0;

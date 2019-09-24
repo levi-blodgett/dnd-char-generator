@@ -1,5 +1,3 @@
-'use strict';
-
 // Format and style the initial dropdowns
 function format_initial_dropdowns(list, listItems) {
   var checkList = document.getElementById(list);
@@ -33,8 +31,8 @@ function format_secondary_dropdowns(list, listItems, checkbox) {
       items.classList.add('visible');
       items.style.display = "block";
       raceCheckbox.checked = true;
-      for (var i = 0; i < listOfSubracesInDropdown.length; i++) {
-        listOfSubracesInDropdown[i].checked = true;
+      for (var _i = 0; _i < listOfSubracesInDropdown.length; _i++) {
+        listOfSubracesInDropdown[_i].checked = true;
       }
     }
   }, true);
@@ -68,21 +66,21 @@ function on_click_decider(_id, _class) {
       var arrayItself_2 = document.querySelectorAll('input.' + input_class + '_2');
       var dropdownIDs = ['dragonborn_dropdown', 'dwarf_dropdown', 'elf_dropdown', 'gnome_dropdown', 'halfling_dropdown', 'human_dropdown'];
       var dropdown = void 0;
-      for (var i = 0; i < format_initial_dropdowns.length; i++) {
-        dropdown = document.getElementById(dropdownIDs[i]);
+      for (var _i2 = 0; _i2 < format_initial_dropdowns.length; _i2++) {
+        dropdown = document.getElementById(dropdownIDs[_i2]);
         hide_dropdowns(dropdown);
       }
-      for (var i = 0; i < lengthOfArray_2; i++) {
-        arrayItself_2[i].checked = false;
+      for (var _i3 = 0; _i3 < lengthOfArray_2; _i3++) {
+        arrayItself_2[_i3].checked = false;
       }
     }
   } else if (isCheckboxChecked === false) {
     lengthOfArray = document.querySelectorAll('input.' + input_class).length;
     arrayItself = document.querySelectorAll('input.' + input_class);
     arrayOfCheckedCheckboxes = [];
-    for (var i = 0; i < lengthOfArray; i++) {
-      if (arrayItself[i].checked === true) {
-        arrayOfCheckedCheckboxes.push(arrayItself[i]);
+    for (var _i4 = 0; _i4 < lengthOfArray; _i4++) {
+      if (arrayItself[_i4].checked === true) {
+        arrayOfCheckedCheckboxes.push(arrayItself[_i4]);
       }
     }
     if (arrayOfCheckedCheckboxes.length === 0) {

@@ -1,5 +1,3 @@
-"use strict";
-
 // This function adds styling to each of the top buttons so they feel better when being clicked
 var buttonStyling = function buttonStyling(list) {
   // While clicking, background changes to darker color

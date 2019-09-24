@@ -1,5 +1,3 @@
-"use strict";
-
 // Initialize stats and stats array
 var stats = [];
 var size = '';
@@ -116,7 +114,7 @@ function roll_version() {
 
   // Function to get the sum of the 4d6 drop lowest that was rolled by get_random_stat()
   function get_sum(stat) {
-    for (var i = 0, sum = 0; i < stat.length; sum += stat[i++]) {}
+    for (var i = 0, _sum = 0; i < stat.length; _sum += stat[i++]) {}
     return sum;
   };
 
@@ -484,9 +482,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfClassArray = arrayOfClass.length;
     // If statement to choose based on the choices given
-    for (var i = 0; i < lengthOfClassArray; i++) {
-      if (arrayOfClass[i].checked) {
-        arrayOfCheckedClass.push(arrayOfClass[i].value);
+    for (var _i = 0; _i < lengthOfClassArray; _i++) {
+      if (arrayOfClass[_i].checked) {
+        arrayOfCheckedClass.push(arrayOfClass[_i].value);
       }
     }
     // Length of how many are checked
@@ -677,8 +675,8 @@ function generate_character() {
   }
 
   function subrace_picker(thearray) {
-    for (var i = 0; i < thearray.length; i++) {
-      subraceSplitter = thearray[i];
+    for (var _i2 = 0; _i2 < thearray.length; _i2++) {
+      subraceSplitter = thearray[_i2];
       if (subraceSplitter === "HalfElf" || subraceSplitter === "HalfOrc" || subraceSplitter === "Tiefling") {
         leftoverArray.push(subraceSplitter);
       } else {
@@ -717,9 +715,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfRaceArray = arrayOfRaces.length;
     // If statement to choose based on the choices given
-    for (var i = 0; i < lengthOfRaceArray; i++) {
-      if (arrayOfRaces[i].checked) {
-        arrayOfCheckedRaces.push(arrayOfRaces[i].value);
+    for (var _i3 = 0; _i3 < lengthOfRaceArray; _i3++) {
+      if (arrayOfRaces[_i3].checked) {
+        arrayOfCheckedRaces.push(arrayOfRaces[_i3].value);
       }
     }
     arrayOfCheckedRaces = subrace_picker(arrayOfCheckedRaces);
@@ -777,9 +775,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfBackgroundArray = arrayOfBackgrounds.length;
     // If statement to choose based on the choices given
-    for (var i = 0; i < lengthOfBackgroundArray; i++) {
-      if (arrayOfBackgrounds[i].checked) {
-        arrayOfCheckedBackgrounds.push(arrayOfBackgrounds[i].value);
+    for (var _i4 = 0; _i4 < lengthOfBackgroundArray; _i4++) {
+      if (arrayOfBackgrounds[_i4].checked) {
+        arrayOfCheckedBackgrounds.push(arrayOfBackgrounds[_i4].value);
       }
     }
     // Length of how many are checked
@@ -828,9 +826,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfAlignmentArray = arrayOfAlignment.length;
     // If statement to choose based on the choices given
-    for (var i = 0; i < lengthOfAlignmentArray; i++) {
-      if (arrayOfAlignment[i].checked) {
-        arrayOfCheckedAlignment.push(arrayOfAlignment[i].value);
+    for (var _i5 = 0; _i5 < lengthOfAlignmentArray; _i5++) {
+      if (arrayOfAlignment[_i5].checked) {
+        arrayOfCheckedAlignment.push(arrayOfAlignment[_i5].value);
       }
     }
     // Length of how many are checked
@@ -1036,8 +1034,8 @@ function generate_character() {
 
   // Function to add weapons to proficiencies section
   function weapon_adder(weapon) {
-    for (var i = 0; i < simpleWeapons.length; i++) {
-      if (simpleWeapons[i] === weapon) {
+    for (var _i6 = 0; _i6 < simpleWeapons.length; _i6++) {
+      if (simpleWeapons[_i6] === weapon) {
         for (j = 0; j < profsAndLangs.weaponProficiencies.length; j++) {
           if (profsAndLangs.weaponProficiencies[j] === "simple weapons") {
             return;
@@ -1047,8 +1045,8 @@ function generate_character() {
         }
       }
     }
-    for (var i = 0; i < martialWeapons.length; i++) {
-      if (martialWeapons[i] === weapon) {
+    for (var _i7 = 0; _i7 < martialWeapons.length; _i7++) {
+      if (martialWeapons[_i7] === weapon) {
         for (j = 0; j < profsAndLangs.weaponProficiencies.length; j++) {
           if (profsAndLangs.weaponProficiencies[j] === "martial weapons") {
             return;
@@ -1070,8 +1068,8 @@ function generate_character() {
 
   // Function to add armor to proficiencies section
   function armor_adder(armorToAddToList) {
-    for (var i = 0; i < profsAndLangs.armorProficiencies.length; i++) {
-      if (profsAndLangs.armorProficiencies[i] === armorToAddToList) {
+    for (var _i8 = 0; _i8 < profsAndLangs.armorProficiencies.length; _i8++) {
+      if (profsAndLangs.armorProficiencies[_i8] === armorToAddToList) {
         return;
       }
     }
@@ -2211,7 +2209,7 @@ function generate_character() {
           profsAndLangs.languages.push(knowledgeLanguage2);
           document.getElementById("form193_3").value = "Command";
           document.getElementById("form159_3").value = "Identify";
-          for (var i = 0; i < 2; i++) {
+          for (var _i9 = 0; _i9 < 2; _i9++) {
             if (document.getElementById("form20_1").checked === undefined) {
               add_click(20);
               stat_checker(intelligenceModifier + 4, "form33_1"); // religion
@@ -3877,7 +3875,7 @@ function generate_character() {
   // Function to determine what proficiencies a character gets based on their class and their proficiencies they already have
   function class_proficiencies() {
     if (classAndLevel === "Barbarian 1") {
-      for (var i = 0; i < 2; i++) {
+      for (var _i10 = 0; _i10 < 2; _i10++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -3899,7 +3897,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Fighter 1") {
-      for (var i = 0; i < 2; i++) {
+      for (var _i11 = 0; _i11 < 2; _i11++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -3941,7 +3939,7 @@ function generate_character() {
       }
       skill_adder();
     } else if (classAndLevel === "Cleric 1") {
-      for (var i = 0; i < 2; i++) {
+      for (var _i12 = 0; _i12 < 2; _i12++) {
         if (document.getElementById("form13_1").checked === undefined) {
           add_click(13);
           stat_checker(wisdomModifier + 2, "form35_1"); // insight
@@ -3960,7 +3958,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Sorcerer 1") {
-      for (var i = 0; i < 2; i++) {
+      for (var _i13 = 0; _i13 < 2; _i13++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
           stat_checker(intelligenceModifier + 2, "form40_1"); // arcana
@@ -3982,7 +3980,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Wizard 1") {
-      for (var i = 0; i < 2; i++) {
+      for (var _i14 = 0; _i14 < 2; _i14++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
           stat_checker(intelligenceModifier + 2, "form40_1"); // arcana
@@ -4004,7 +4002,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Druid 1") {
-      for (var i = 0; i < 2; i++) {
+      for (var _i15 = 0; _i15 < 2; _i15++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -4032,7 +4030,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Rogue 1") {
-      for (var i = 0; i < 4; i++) {
+      for (var _i16 = 0; _i16 < 4; _i16++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -4069,7 +4067,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Warlock 1") {
-      for (var i = 0; i < 2; i++) {
+      for (var _i17 = 0; _i17 < 2; _i17++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
           stat_checker(intelligenceModifier + 2, "form40_1"); // arcana
@@ -4094,7 +4092,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Ranger 1") {
-      for (var i = 0; i < 3; i++) {
+      for (var _i18 = 0; _i18 < 3; _i18++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -4122,7 +4120,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Paladin 1") {
-      for (var i = 0; i < 2; i++) {
+      for (var _i19 = 0; _i19 < 2; _i19++) {
         if (document.getElementById("form20_1").checked === undefined) {
           add_click(20);
           stat_checker(intelligenceModifier + 2, "form33_1"); // religion
@@ -4144,7 +4142,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Monk 1") {
-      for (var i = 0; i < 2; i++) {
+      for (var _i20 = 0; _i20 < 2; _i20++) {
         if (document.getElementById("form20_1").checked === undefined) {
           add_click(20);
           stat_checker(intelligenceModifier + 2, "form33_1"); // religion
@@ -4377,32 +4375,32 @@ function generate_character() {
   }
 
   // For loop that searches your inventory and determines armor class based on what armor you have
-  for (var i = 0; i < equipment.length; i++) {
-    if (equipment[i] === armor.lightArmor.padded.armorname) {
+  for (var _i21 = 0; _i21 < equipment.length; _i21++) {
+    if (equipment[_i21] === armor.lightArmor.padded.armorname) {
       armorClass += 11 + dexterityModifier;
-    } else if (equipment[i] === armor.lightArmor.leather.armorname) {
+    } else if (equipment[_i21] === armor.lightArmor.leather.armorname) {
       armorClass += 11 + dexterityModifier;
-    } else if (equipment[i] === armor.lightArmor.studdedleather.armorname) {
+    } else if (equipment[_i21] === armor.lightArmor.studdedleather.armorname) {
       armorClass += 12 + dexterityModifier;
-    } else if (equipment[i] === armor.mediumArmor.hide.armorname) {
+    } else if (equipment[_i21] === armor.mediumArmor.hide.armorname) {
       armorClass += 12 + dexterityModifier;
-    } else if (equipment[i] === armor.mediumArmor.chainshirt.armorname) {
+    } else if (equipment[_i21] === armor.mediumArmor.chainshirt.armorname) {
       armorClass += 13 + dexterityModifier;
-    } else if (equipment[i] === armor.mediumArmor.scalemail.armorname) {
+    } else if (equipment[_i21] === armor.mediumArmor.scalemail.armorname) {
       armorClass += 14 + dexterityModifier;
       features.push("Scale Mail: Disadvantage on stealth rolls from medium armor.");
-    } else if (equipment[i] === armor.heavyArmor.ringmail.armorname) {
+    } else if (equipment[_i21] === armor.heavyArmor.ringmail.armorname) {
       armorClass += 14;
       features.push("Ring Mail: Disadvantage on stealth rolls from heavy armor.");
-    } else if (equipment[i] === armor.heavyArmor.chainmail.armorname) {
+    } else if (equipment[_i21] === armor.heavyArmor.chainmail.armorname) {
       armorClass += 16;
       features.push("Chain Mail: Disadvantage on stealth rolls from heavy armor.");
     }
   }
 
   // For loop that searches your inventory and adds +2 armor class if you have a shield
-  for (var i = 0; i < equipment.length; i++) {
-    if (equipment[i] === "Shield" || equipment[i] === "Shield - Focus" || equipment[i] === "Wooden shield") {
+  for (var _i22 = 0; _i22 < equipment.length; _i22++) {
+    if (equipment[_i22] === "Shield" || equipment[_i22] === "Shield - Focus" || equipment[_i22] === "Wooden shield") {
       armorClass += 2;
     } else {}
   }
