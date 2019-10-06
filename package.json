@@ -2,11 +2,11 @@
   "name": "dnd_character_generator",
   "version": "1.2.0",
   "description": "Application to generate 5th edition D&D character sheets",
-  "main": "logical_version.js",
+  "main": "random_version.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open --hot",
-    "build": "webpack --mode production --progress",
+    "build": "webpack --mode production --progress --watch",
     "buildBabel": "babel js -d build"
   },
   "author": "Levi Blodgett",
