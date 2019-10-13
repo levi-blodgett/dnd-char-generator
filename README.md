@@ -39,27 +39,22 @@ To print:
 
 **FAQ**
 
-1. Why isn't it completely random?
-
-I didn't want it to be, I thought it had less utility.
-I will eventually put a dropdown with different levels of randomness and a description of each I believe, but until then I believe most people will get more use out of one that actually works together.
-
-2. Why isn't there more supplemental content?
+1. Why isn't there more supplemental content?
 
 It is hard to add content to this, as scaling with just one person is always going to be difficult, but there is also the functionality of letting the user choose which ones they want included.
 Eventually I will probably add the option in the dropdowns to let the user checkmark each option they would like included, so if they hate dwarves or something, they don't need to just reroll them manually everytime or something.
 
-3. Why aren't there more character levels past level one?
+2. Why aren't there more character levels past level one?
 
 Hard to add functionality, and there isn't much space on the character sheet really.
 It would be something I'd like to add in the future but it is hard to decide which order of things I should add first.
 
-4. What feature are you adding next?
+3. What feature are you adding next?
 
 I'd check my [Twitter](https://twitter.com/LeviBlodgett), also @me if you have any questions yourself as well.
 I try to add whatever will be the best option in terms of best functionality with least effort, as I can't devote my time to this like I could a job.
 
-5. Why did you create this?
+4. Why did you create this?
 
 For fun, I love programming and I love Dungeons and Dragons.
 I thought the world needed a real, practical DnD generator for characters, I felt it was WAY too lacking in this kind of area.

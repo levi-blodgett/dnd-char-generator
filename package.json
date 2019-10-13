@@ -1,6 +1,6 @@
 {
   "name": "dnd_character_generator",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Application to generate 5th edition D&D character sheets",
   "main": "logical_version.js",
   "scripts": {
