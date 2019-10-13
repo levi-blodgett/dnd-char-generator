@@ -105,7 +105,7 @@ function roll_version() {
   // Get a random stat for an ability score
   function get_random_stat() {
     randomStatArray = [];
-    for (var i = 0; i < 4; i++) {
+    for (var _i = 0; _i < 4; _i++) {
       randomStatArray.push(get_random_number(6));
     }
     remove_smallest_number(randomStatArray);
@@ -114,7 +114,9 @@ function roll_version() {
 
   // Function to get the sum of the 4d6 drop lowest that was rolled by get_random_stat()
   function get_sum(stat) {
-    for (var i = 0, _sum = 0; i < stat.length; _sum += stat[i++]) {}
+    for (i = 0, sum = 0; i < stat.length; sum += stat[i++]) {
+      console.log(stat);
+    }
     return sum;
   };
 
@@ -199,7 +201,6 @@ function pointbuy_version() {
 
 // Function used to generate a new character
 function generate_character() {
-
   // Name generator object that contains all names
   nameGenerator = {
     _races: {
@@ -482,9 +483,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfClassArray = arrayOfClass.length;
     // If statement to choose based on the choices given
-    for (var _i = 0; _i < lengthOfClassArray; _i++) {
-      if (arrayOfClass[_i].checked) {
-        arrayOfCheckedClass.push(arrayOfClass[_i].value);
+    for (var _i2 = 0; _i2 < lengthOfClassArray; _i2++) {
+      if (arrayOfClass[_i2].checked) {
+        arrayOfCheckedClass.push(arrayOfClass[_i2].value);
       }
     }
     // Length of how many are checked
@@ -675,8 +676,8 @@ function generate_character() {
   }
 
   function subrace_picker(thearray) {
-    for (var _i2 = 0; _i2 < thearray.length; _i2++) {
-      subraceSplitter = thearray[_i2];
+    for (var _i3 = 0; _i3 < thearray.length; _i3++) {
+      subraceSplitter = thearray[_i3];
       if (subraceSplitter === "HalfElf" || subraceSplitter === "HalfOrc" || subraceSplitter === "Tiefling") {
         leftoverArray.push(subraceSplitter);
       } else {
@@ -715,9 +716,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfRaceArray = arrayOfRaces.length;
     // If statement to choose based on the choices given
-    for (var _i3 = 0; _i3 < lengthOfRaceArray; _i3++) {
-      if (arrayOfRaces[_i3].checked) {
-        arrayOfCheckedRaces.push(arrayOfRaces[_i3].value);
+    for (var _i4 = 0; _i4 < lengthOfRaceArray; _i4++) {
+      if (arrayOfRaces[_i4].checked) {
+        arrayOfCheckedRaces.push(arrayOfRaces[_i4].value);
       }
     }
     arrayOfCheckedRaces = subrace_picker(arrayOfCheckedRaces);
@@ -775,9 +776,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfBackgroundArray = arrayOfBackgrounds.length;
     // If statement to choose based on the choices given
-    for (var _i4 = 0; _i4 < lengthOfBackgroundArray; _i4++) {
-      if (arrayOfBackgrounds[_i4].checked) {
-        arrayOfCheckedBackgrounds.push(arrayOfBackgrounds[_i4].value);
+    for (var _i5 = 0; _i5 < lengthOfBackgroundArray; _i5++) {
+      if (arrayOfBackgrounds[_i5].checked) {
+        arrayOfCheckedBackgrounds.push(arrayOfBackgrounds[_i5].value);
       }
     }
     // Length of how many are checked
@@ -826,9 +827,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfAlignmentArray = arrayOfAlignment.length;
     // If statement to choose based on the choices given
-    for (var _i5 = 0; _i5 < lengthOfAlignmentArray; _i5++) {
-      if (arrayOfAlignment[_i5].checked) {
-        arrayOfCheckedAlignment.push(arrayOfAlignment[_i5].value);
+    for (var _i6 = 0; _i6 < lengthOfAlignmentArray; _i6++) {
+      if (arrayOfAlignment[_i6].checked) {
+        arrayOfCheckedAlignment.push(arrayOfAlignment[_i6].value);
       }
     }
     // Length of how many are checked
@@ -1030,12 +1031,12 @@ function generate_character() {
   simpleWeapons = ["club", "dagger", "greatclub", "handaxe", "light hammer", "dart", "light crossbow", "mace", "javelin", "quarterstaff", "shortbow", "sickle", "sling", "spear", "unarmed strike"];
 
   // Array that contains list of martial weapons
-  martialWeapons = ["battleaxe", "flail", "glaive", "greataxe", "greatsword", "halberd", "lance", "longsword", "maul", "morningstar", "pike", "rapier", "scimitar", "shortsword", "trident", "war pick", "warhammer", "whip", "blowgun", "hand crossbow", "heavy crossbow", "longbow"];
+  martialWeapons = ["battleaxe", "flail", "glaive", "greataxe", "greatsword", "halberd", "lance", "longsword", "maul", "morningstar", "pike", "rapier", "scimitar", "shortsword", "trident", "war pick", "warhammer", "whip", "blowgun", "hand crossbow", "Heavy CB", "longbow"];
 
   // Function to add weapons to proficiencies section
   function weapon_adder(weapon) {
-    for (var _i6 = 0; _i6 < simpleWeapons.length; _i6++) {
-      if (simpleWeapons[_i6] === weapon) {
+    for (var _i7 = 0; _i7 < simpleWeapons.length; _i7++) {
+      if (simpleWeapons[_i7] === weapon) {
         for (j = 0; j < profsAndLangs.weaponProficiencies.length; j++) {
           if (profsAndLangs.weaponProficiencies[j] === "simple weapons") {
             return;
@@ -1045,8 +1046,8 @@ function generate_character() {
         }
       }
     }
-    for (var _i7 = 0; _i7 < martialWeapons.length; _i7++) {
-      if (martialWeapons[_i7] === weapon) {
+    for (var _i8 = 0; _i8 < martialWeapons.length; _i8++) {
+      if (martialWeapons[_i8] === weapon) {
         for (j = 0; j < profsAndLangs.weaponProficiencies.length; j++) {
           if (profsAndLangs.weaponProficiencies[j] === "martial weapons") {
             return;
@@ -1068,8 +1069,8 @@ function generate_character() {
 
   // Function to add armor to proficiencies section
   function armor_adder(armorToAddToList) {
-    for (var _i8 = 0; _i8 < profsAndLangs.armorProficiencies.length; _i8++) {
-      if (profsAndLangs.armorProficiencies[_i8] === armorToAddToList) {
+    for (var _i9 = 0; _i9 < profsAndLangs.armorProficiencies.length; _i9++) {
+      if (profsAndLangs.armorProficiencies[_i9] === armorToAddToList) {
         return;
       }
     }
@@ -1782,8 +1783,8 @@ function generate_character() {
           stat_checker(dexterityModifier + 2, "form64_1"); // 1st weapon 2nd section
           stat_checker_3(dexterityModifier, "form76_1", "1d6/8", "P"); // 1st weapon 3rd section
 
-          equipment.push("Heavy crossbow");
-          document.getElementById("form78_1").value = "H Crossbow"; // 2nd weapon 1st section
+          equipment.push("Heavy Crossbow");
+          document.getElementById("form78_1").value = "Heavy CB"; // 2nd weapon 1st section
           stat_checker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
           stat_checker_3(dexterityModifier, "form74_1", "1d10", "P"); // 2nd weapon 3rd section
         } else {
@@ -2022,7 +2023,7 @@ function generate_character() {
         }
       } else if (clericBuild === 'DEX') {
         equipment.push("Light crossbow w/ 20 bolts");
-        document.getElementById("form78_1").value = "L Crossbow"; // 2nd weapon 1st section
+        document.getElementById("form78_1").value = "Light CB"; // 2nd weapon 1st section
         stat_checker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
         stat_checker_3(dexterityModifier, "form74_1", "1d8", "P"); // 2nd weapon 3rd section
         if (random > .66) {
@@ -2164,7 +2165,7 @@ function generate_character() {
         stat_checker(strengthModifier + 2, "form64_1"); // 1st weapon 2nd section
         stat_checker_3(strengthModifier, "form76_1", "1d6", "B"); // 1st weapon 3rd section
         equipment.push("Light crossbow w/ 20 bolts");
-        document.getElementById("form78_1").value = "L Crossbow"; // 2nd weapon 1st section
+        document.getElementById("form78_1").value = "Light CB"; // 2nd weapon 1st section
         stat_checker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
         stat_checker_3(dexterityModifier, "form74_1", "1d8", "P"); // 2nd weapon 3rd section
         if (random > .66) {
@@ -2209,7 +2210,7 @@ function generate_character() {
           profsAndLangs.languages.push(knowledgeLanguage2);
           document.getElementById("form193_3").value = "Command";
           document.getElementById("form159_3").value = "Identify";
-          for (var _i9 = 0; _i9 < 2; _i9++) {
+          for (var _i10 = 0; _i10 < 2; _i10++) {
             if (document.getElementById("form20_1").checked === undefined) {
               add_click(20);
               stat_checker(intelligenceModifier + 4, "form33_1"); // religion
@@ -2441,7 +2442,7 @@ function generate_character() {
           stat_checker(dexterityModifier + 2, "form64_1"); // 1st weapon 2nd section
           stat_checker_3(dexterityModifier, "form76_1", "1d6", "P"); // 1st weapon 3rd section
           equipment.push("Light crossbow w/ 20 bolts");
-          document.getElementById("form77_1").value = "L Crossbow"; // 1st weapon 1st section
+          document.getElementById("form77_1").value = "Light CB"; // 1st weapon 1st section
           stat_checker(dexterityModifier + 2, "form66_1"); // 1st weapon 2nd section
           stat_checker_3(dexterityModifier, "form75_1", "1d8", "P"); // 1st weapon 3rd section
           equipment.push("Dungeoneer's pack");
@@ -2451,11 +2452,11 @@ function generate_character() {
           spellcastingSection.push(" ");
           spellcastingSection.push("Shortsword  " + stat_checker_no_id(dexterityModifier + 2) + "  1d8" + stat_checker_no_id(dexterityModifier) + " P");
           equipment.push("Hand crossbow");
-          document.getElementById("form79_1").value = "H Crossbow"; // 1st weapon 1st section
+          document.getElementById("form79_1").value = "Hand CB"; // 1st weapon 1st section
           stat_checker(dexterityModifier + 4, "form64_1"); // 1st weapon 2nd section
           stat_checker_3(dexterityModifier, "form76_1", "1d6", "P"); // 1st weapon 3rd section
           equipment.push("Light crossbow w/ 20 bolts");
-          document.getElementById("form77_1").value = "L Crossbow"; // 3rd weapon 1st section
+          document.getElementById("form77_1").value = "Light CB"; // 3rd weapon 1st section
           stat_checker(dexterityModifier + 4, "form66_1"); // 3rd weapon 2nd section
           stat_checker_3(dexterityModifier, "form75_1", "1d8", "P"); // 3rd weapon 3rd section
           equipment.push("Shortsword");
@@ -2706,7 +2707,7 @@ function generate_character() {
       stat_checker(dexterityModifier + 2, "form64_1"); // 1st weapon 2nd section
       stat_checker_3(dexterityModifier, "form76_1", "1d4", "P"); // 1st weapon 3rd section
       equipment.push("Light crossbow w/ 20 bolts");
-      document.getElementById("form78_1").value = "L Crossbow"; // 2nd weapon 1st section
+      document.getElementById("form78_1").value = "Light CB"; // 2nd weapon 1st section
       stat_checker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
       stat_checker_3(dexterityModifier, "form74_1", "1d8", "P"); // 2nd weapon 3rd section
       equipment.push("Component pouch");
@@ -2796,7 +2797,7 @@ function generate_character() {
         stat_checker(dexterityModifier + 2, "form66_1"); // 3rd weapon 2nd section
         stat_checker_3(dexterityModifier, "form75_1", "1d4", "P"); // 3rd weapon 3rd section
         equipment.push("Light crossbow w/ 20 bolts");
-        document.getElementById("form78_1").value = "L Crossbow"; // 2nd weapon 1st section
+        document.getElementById("form78_1").value = "Light CB"; // 2nd weapon 1st section
         stat_checker(dexterityModifier + 2, "form65_1"); // 2nd weapon 2nd section
         stat_checker_3(dexterityModifier, "form74_1", "1d8", "P"); // 2nd weapon 3rd section
       }
@@ -3875,7 +3876,7 @@ function generate_character() {
   // Function to determine what proficiencies a character gets based on their class and their proficiencies they already have
   function class_proficiencies() {
     if (classAndLevel === "Barbarian 1") {
-      for (var _i10 = 0; _i10 < 2; _i10++) {
+      for (var _i11 = 0; _i11 < 2; _i11++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -3897,7 +3898,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Fighter 1") {
-      for (var _i11 = 0; _i11 < 2; _i11++) {
+      for (var _i12 = 0; _i12 < 2; _i12++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -3939,7 +3940,7 @@ function generate_character() {
       }
       skill_adder();
     } else if (classAndLevel === "Cleric 1") {
-      for (var _i12 = 0; _i12 < 2; _i12++) {
+      for (var _i13 = 0; _i13 < 2; _i13++) {
         if (document.getElementById("form13_1").checked === undefined) {
           add_click(13);
           stat_checker(wisdomModifier + 2, "form35_1"); // insight
@@ -3958,7 +3959,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Sorcerer 1") {
-      for (var _i13 = 0; _i13 < 2; _i13++) {
+      for (var _i14 = 0; _i14 < 2; _i14++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
           stat_checker(intelligenceModifier + 2, "form40_1"); // arcana
@@ -3980,7 +3981,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Wizard 1") {
-      for (var _i14 = 0; _i14 < 2; _i14++) {
+      for (var _i15 = 0; _i15 < 2; _i15++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
           stat_checker(intelligenceModifier + 2, "form40_1"); // arcana
@@ -4002,7 +4003,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Druid 1") {
-      for (var _i15 = 0; _i15 < 2; _i15++) {
+      for (var _i16 = 0; _i16 < 2; _i16++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -4030,7 +4031,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Rogue 1") {
-      for (var _i16 = 0; _i16 < 4; _i16++) {
+      for (var _i17 = 0; _i17 < 4; _i17++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -4067,7 +4068,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Warlock 1") {
-      for (var _i17 = 0; _i17 < 2; _i17++) {
+      for (var _i18 = 0; _i18 < 2; _i18++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
           stat_checker(intelligenceModifier + 2, "form40_1"); // arcana
@@ -4092,7 +4093,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Ranger 1") {
-      for (var _i18 = 0; _i18 < 3; _i18++) {
+      for (var _i19 = 0; _i19 < 3; _i19++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -4120,7 +4121,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Paladin 1") {
-      for (var _i19 = 0; _i19 < 2; _i19++) {
+      for (var _i20 = 0; _i20 < 2; _i20++) {
         if (document.getElementById("form20_1").checked === undefined) {
           add_click(20);
           stat_checker(intelligenceModifier + 2, "form33_1"); // religion
@@ -4142,7 +4143,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Monk 1") {
-      for (var _i20 = 0; _i20 < 2; _i20++) {
+      for (var _i21 = 0; _i21 < 2; _i21++) {
         if (document.getElementById("form20_1").checked === undefined) {
           add_click(20);
           stat_checker(intelligenceModifier + 2, "form33_1"); // religion
@@ -4375,32 +4376,32 @@ function generate_character() {
   }
 
   // For loop that searches your inventory and determines armor class based on what armor you have
-  for (var _i21 = 0; _i21 < equipment.length; _i21++) {
-    if (equipment[_i21] === armor.lightArmor.padded.armorname) {
+  for (var _i22 = 0; _i22 < equipment.length; _i22++) {
+    if (equipment[_i22] === armor.lightArmor.padded.armorname) {
       armorClass += 11 + dexterityModifier;
-    } else if (equipment[_i21] === armor.lightArmor.leather.armorname) {
+    } else if (equipment[_i22] === armor.lightArmor.leather.armorname) {
       armorClass += 11 + dexterityModifier;
-    } else if (equipment[_i21] === armor.lightArmor.studdedleather.armorname) {
+    } else if (equipment[_i22] === armor.lightArmor.studdedleather.armorname) {
       armorClass += 12 + dexterityModifier;
-    } else if (equipment[_i21] === armor.mediumArmor.hide.armorname) {
+    } else if (equipment[_i22] === armor.mediumArmor.hide.armorname) {
       armorClass += 12 + dexterityModifier;
-    } else if (equipment[_i21] === armor.mediumArmor.chainshirt.armorname) {
+    } else if (equipment[_i22] === armor.mediumArmor.chainshirt.armorname) {
       armorClass += 13 + dexterityModifier;
-    } else if (equipment[_i21] === armor.mediumArmor.scalemail.armorname) {
+    } else if (equipment[_i22] === armor.mediumArmor.scalemail.armorname) {
       armorClass += 14 + dexterityModifier;
       features.push("Scale Mail: Disadvantage on stealth rolls from medium armor.");
-    } else if (equipment[_i21] === armor.heavyArmor.ringmail.armorname) {
+    } else if (equipment[_i22] === armor.heavyArmor.ringmail.armorname) {
       armorClass += 14;
       features.push("Ring Mail: Disadvantage on stealth rolls from heavy armor.");
-    } else if (equipment[_i21] === armor.heavyArmor.chainmail.armorname) {
+    } else if (equipment[_i22] === armor.heavyArmor.chainmail.armorname) {
       armorClass += 16;
       features.push("Chain Mail: Disadvantage on stealth rolls from heavy armor.");
     }
   }
 
   // For loop that searches your inventory and adds +2 armor class if you have a shield
-  for (var _i22 = 0; _i22 < equipment.length; _i22++) {
-    if (equipment[_i22] === "Shield" || equipment[_i22] === "Shield - Focus" || equipment[_i22] === "Wooden shield") {
+  for (var _i23 = 0; _i23 < equipment.length; _i23++) {
+    if (equipment[_i23] === "Shield" || equipment[_i23] === "Shield - Focus" || equipment[_i23] === "Wooden shield") {
       armorClass += 2;
     } else {}
   }
@@ -4470,6 +4471,7 @@ function remove_click(j) {
 
 // Function to generate a new character by clearing all forms and checkboxes and then generating a character again
 function generate_initial_character(version) {
+  clear_All();
   version();
   generate_character();
 }

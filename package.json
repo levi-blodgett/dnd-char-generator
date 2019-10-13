@@ -1,8 +1,8 @@
 {
   "name": "dnd_character_generator",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Application to generate 5th edition D&D character sheets",
-  "main": "random_version.js",
+  "main": "logical_version.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open --hot",

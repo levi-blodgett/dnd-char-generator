@@ -23,27 +23,6 @@ var addButtonClickEvent = function addButtonClickEvent(list, mouseEvent, color) 
   }
 };
 
-// Function that shows/hides whichever section isn't active (either the character page or the information page)
-function show_or_hide_pages() {
-  var lastPage = document.getElementById("lastPage");
-  var dndPage = document.getElementById("dnd");
-  if (lastPage.style.display === "none") {
-    lastPage.style.display = "block";
-    dndPage.style.display = "none";
-  } else if (lastPage.style.display === "block") {
-    lastPage.style.display = "none";
-    dndPage.style.display = "block";
-  } else {
-    lastPage.style.display = "block";
-    dndPage.style.display = "none";
-  }
-  if (document.getElementById("top_button").innerHTML === "Show Information Page") {
-    document.getElementById("top_button").innerHTML = "Show Character Page";
-  } else {
-    document.getElementById("top_button").innerHTML = "Show Information Page";
-  }
-}
-
 // Function for showing the generator instead of FAQ if they generate while looking at FAQ
 function show_func() {
   var lastPage = document.getElementById("lastPage");

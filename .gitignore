@@ -8,7 +8,6 @@
 node_modules
 js
 build/testing.js
-build/random_version.js
 
 # VS Code files
 .vscode/*
