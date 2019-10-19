@@ -1987,6 +1987,11 @@ function generate_character() {
         document.getElementById(firstWeaponFirstSectionId).value = "Mace"; // 1st weapon 1st section
         statChecker(strengthModifier + 2, firstWeaponSecondSectionId); // 1st weapon 2nd section
         statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d6", "B"); // 1st weapon 3rd section
+        if (random4 > .500) {
+          equipment.push("Scale mail");
+        } else {
+          equipment.push("Leather armor");
+        }
       } else if (random2 > .445) {
         features.push("Cleric Domain: Tempest.");
         armorAdder2(armorAdder("heavy armor"));
