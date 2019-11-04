@@ -10,7 +10,7 @@
     "buildBabel": "babel js -d build"
   },
   "author": "Levi Blodgett",
-  "license": "TBD",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/polyfill": "^7.4.3",
