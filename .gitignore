@@ -7,7 +7,6 @@
 # Project files
 node_modules
 js
-build/testing.js
 
 # VS Code files
 .vscode/*
