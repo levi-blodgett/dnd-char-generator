@@ -10,6 +10,9 @@
   },
   "author": "Levi Blodgett",
   "license": "Apache-2.0",
+  "dependencies": {
+    "eventsource": ">=2.0.2"
+ },
   "devDependencies": {
     "braces": "^2.3.2",
     "webpack": "^4.46.0",
