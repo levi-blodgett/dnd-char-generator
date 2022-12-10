@@ -1,12 +1,12 @@
 {
   "name": "dnd_character_generator",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Application to generate 5th edition D&D character sheets",
-  "main": "logical_version.js",
+  "main": "./index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode production --progress --open --hot",
-    "build": "webpack --output-public-path=/build/ --mode production --progress --watch"
+    "clean": "rm -Rf ./build",
+    "build": "npm run clean; babel ./src --out-dir ./build --ignore './src/testing.js'",
+    "start": "http-server"
   },
   "author": "Levi Blodgett",
   "license": "Apache-2.0",
@@ -14,7 +14,10 @@
     "eventsource": ">=2.0.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "braces": "^2.3.2",
+    "http-server": "^14.1.1",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^4.11.1"

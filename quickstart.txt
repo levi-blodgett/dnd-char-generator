@@ -1,3 +1,6 @@
 git clone git@github.com:levi-blodgett/dnd-char-generator.git
+npm install -g --save-dev babel-cli babel-preset-env http-server
 npm install
+npm run build
 npm start
+http://127.0.0.1:8080

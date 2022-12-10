@@ -1,8 +1,10 @@
+"use strict";
+
 // Format and style the initial dropdowns
 function format_initial_dropdowns(list, listItems) {
-  var checkList = document.getElementById(list);
-  var items = document.getElementById(listItems);
-  checkList.getElementsByClassName("anchor")[0].onclick = function () {
+  let checkList = document.getElementById(list);
+  let items = document.getElementById(listItems);
+  checkList.getElementsByClassName("anchor")[0].onclick = () => {
     if (items.classList.contains("visible")) {
       items.classList.remove("visible");
       items.style.display = "none";
@@ -15,33 +17,27 @@ function format_initial_dropdowns(list, listItems) {
 
 // Format and style the initial dropdowns inside of the race dropdown
 function format_secondary_dropdowns(list, listItems, checkbox) {
-  var checkList = document.getElementById(list);
-  var items = document.getElementById(listItems);
-  var raceCheckbox = document.getElementById(checkbox);
-  var listOfSubracesInDropdown = document.querySelectorAll(
-    "ul#" + listItems + " input.race_class"
-  );
-  checkList.getElementsByClassName("chain")[0].addEventListener(
-    "click",
-    function () {
-      if (items.classList.contains("visible")) {
-        items.classList.remove("visible");
-        items.style.display = "none";
-        raceCheckbox.checked = false;
-        for (var i = 0; i < listOfSubracesInDropdown.length; i++) {
-          listOfSubracesInDropdown[i].checked = false;
-        }
-      } else {
-        items.classList.add("visible");
-        items.style.display = "block";
-        raceCheckbox.checked = true;
-        for (var _i = 0; _i < listOfSubracesInDropdown.length; _i++) {
-          listOfSubracesInDropdown[_i].checked = true;
-        }
+  let checkList = document.getElementById(list);
+  let items = document.getElementById(listItems);
+  let raceCheckbox = document.getElementById(checkbox);
+  let listOfSubracesInDropdown = document.querySelectorAll(`ul#${listItems} input.race_class`);
+  checkList.getElementsByClassName("chain")[0].addEventListener("click", function () {
+    if (items.classList.contains("visible")) {
+      items.classList.remove("visible");
+      items.style.display = "none";
+      raceCheckbox.checked = false;
+      for (let i = 0; i < listOfSubracesInDropdown.length; i++) {
+        listOfSubracesInDropdown[i].checked = false;
       }
-    },
-    true
-  );
+    } else {
+      items.classList.add("visible");
+      items.style.display = "block";
+      raceCheckbox.checked = true;
+      for (let i = 0; i < listOfSubracesInDropdown.length; i++) {
+        listOfSubracesInDropdown[i].checked = true;
+      }
+    }
+  }, true);
   items.addEventListener("blur", function () {
     items.classList.remove("visible");
   });
@@ -55,49 +51,38 @@ function hide_dropdowns(dropdownValue) {
 
 // This () decides whether or not to hide any dropdowns passed through
 function on_click_decider(_id, _class) {
-  var isCheckboxChecked = document.getElementById(_id).checked;
-  var input_class = _class;
-  var ID = _id;
-  var lengthOfArray = void 0;
-  var arrayItself = void 0;
-  var arrayOfCheckedCheckboxes = void 0;
+  let isCheckboxChecked = document.getElementById(_id).checked;
+  let input_class = _class;
+  let ID = _id;
+  let lengthOfArray;
+  let arrayItself;
+  let arrayOfCheckedCheckboxes;
   if (isCheckboxChecked) {
-    lengthOfArray = document.querySelectorAll("input." + input_class).length;
-    arrayItself = document.querySelectorAll("input." + input_class);
-    for (var i = 0; i < lengthOfArray; i++) {
+    lengthOfArray = document.querySelectorAll(`input.${input_class}`).length;
+    arrayItself = document.querySelectorAll(`input.${input_class}`);
+    for (let i = 0; i < lengthOfArray; i++) {
       arrayItself[i].checked = false;
     }
     if (input_class === "race_class") {
-      var lengthOfArray_2 = document.querySelectorAll(
-        "input." + input_class + "_2"
-      ).length;
-      var arrayItself_2 = document.querySelectorAll(
-        "input." + input_class + "_2"
-      );
-      var dropdownIDs = [
-        "dragonborn_dropdown",
-        "dwarf_dropdown",
-        "elf_dropdown",
-        "gnome_dropdown",
-        "halfling_dropdown",
-        "human_dropdown",
-      ];
-      var dropdown = void 0;
-      for (var _i2 = 0; _i2 < format_initial_dropdowns.length; _i2++) {
-        dropdown = document.getElementById(dropdownIDs[_i2]);
+      let lengthOfArray_2 = document.querySelectorAll(`input.${input_class}_2`).length;
+      let arrayItself_2 = document.querySelectorAll(`input.${input_class}_2`);
+      let dropdownIDs = ["dragonborn_dropdown", "dwarf_dropdown", "elf_dropdown", "gnome_dropdown", "halfling_dropdown", "human_dropdown"];
+      let dropdown;
+      for (let i = 0; i < format_initial_dropdowns.length; i++) {
+        dropdown = document.getElementById(dropdownIDs[i]);
         hide_dropdowns(dropdown);
       }
-      for (var _i3 = 0; _i3 < lengthOfArray_2; _i3++) {
-        arrayItself_2[_i3].checked = false;
+      for (let i = 0; i < lengthOfArray_2; i++) {
+        arrayItself_2[i].checked = false;
       }
     }
   } else if (isCheckboxChecked === false) {
-    lengthOfArray = document.querySelectorAll("input." + input_class).length;
-    arrayItself = document.querySelectorAll("input." + input_class);
+    lengthOfArray = document.querySelectorAll(`input.${input_class}`).length;
+    arrayItself = document.querySelectorAll(`input.${input_class}`);
     arrayOfCheckedCheckboxes = [];
-    for (var _i4 = 0; _i4 < lengthOfArray; _i4++) {
-      if (arrayItself[_i4].checked === true) {
-        arrayOfCheckedCheckboxes.push(arrayItself[_i4]);
+    for (let i = 0; i < lengthOfArray; i++) {
+      if (arrayItself[i].checked === true) {
+        arrayOfCheckedCheckboxes.push(arrayItself[i]);
       }
     }
     if (arrayOfCheckedCheckboxes.length === 0) {
@@ -108,25 +93,24 @@ function on_click_decider(_id, _class) {
 
 // () created for an event listener click, to decide whether or not to hide the secondary dropdown parent element that is being clicked and click random option if no subrace is clicked
 function on_subrace_dropdown_option_click(e) {
-  var targets_ul = document.getElementById(
-    e.target.parentElement.parentElement.id
-  );
-  var targets_list = targets_ul.children;
-  var targets_list_array = Array.from(targets_list);
-  var unchecked_boxes = 0;
-  for (var i = 0; i < targets_list.length; i++) {
-    var test = targets_list[i].childNodes[0].childNodes[0];
-    if (test === e.target.childNodes[0]) {
+  let targets_ul = document.getElementById(e.target.parentElement.parentElement.id);
+  let targets_list = targets_ul.children;
+  let targets_list_array = Array.from(targets_list);
+  let unchecked_boxes = 0;
+  for (let i = 0; i < targets_list.length; i++) {
+    let subclass = targets_list[i].childNodes[0].nextSibling.childNodes[0];
+    if (subclass === e.target.childNodes[0]) {
       unchecked_boxes++;
     } else {
-      if (test.checked === false) {
+      if (subclass.checked === false) {
         unchecked_boxes++;
       }
     }
     if (targets_list_array.length === unchecked_boxes) {
       e.target.parentElement.parentElement.style.display = "none";
       e.target.parentElement.parentElement.classList.remove("visible");
-      e.target.parentElement.parentElement.previousElementSibling.childNodes[0].childNodes[0].checked = false;
+      e.target.parentElement.parentElement.previousElementSibling.childNodes[0].nextSibling.childNodes[0].checked = false;
+      //e.target.parentElement.parentElement.previousElementSibling.childNodes[0].childNodes[0].checked = false;
       e.target.childNodes[0].checked = false;
       on_dropdown_option_click("race_random", "race_class_2");
     }
@@ -134,16 +118,10 @@ function on_subrace_dropdown_option_click(e) {
 }
 
 // () created for adding an event listener based on what is passed through
-var add_events_for_dropdowns = function add_events_for_dropdowns(
-  dropdown_option_checker,
-  _id,
-  _class,
-  mouseAction,
-  _function
-) {
-  var all_dropdowns = document.querySelectorAll(dropdown_option_checker);
-  for (var i = 0; i < all_dropdowns.length; i++) {
-    all_dropdowns[i].addEventListener(mouseAction, function (e) {
+const add_events_for_dropdowns = (dropdown_option_checker, _id, _class, mouseAction, _function) => {
+  let all_dropdowns = document.querySelectorAll(dropdown_option_checker);
+  for (let i = 0; i < all_dropdowns.length; i++) {
+    all_dropdowns[i].addEventListener(mouseAction, e => {
       if (_function === on_subrace_dropdown_option_click) {
         _function(e);
       } else {
@@ -155,18 +133,16 @@ var add_events_for_dropdowns = function add_events_for_dropdowns(
 
 // Event listener function to check if the random checkmark is checked
 function on_dropdown_option_click(_id, _class) {
-  var ID = _id;
-  var input_class = _class;
-  var isCheckboxChecked_1 = document.getElementById(ID).checked;
+  let ID = _id;
+  let input_class = _class;
+  let isCheckboxChecked_1 = document.getElementById(ID).checked;
   if (document.getElementById(ID).checked) {
     document.getElementById(ID).checked = false;
   } else if (isCheckboxChecked_1 === false) {
-    var lengthOfArray = document.querySelectorAll(
-      "input." + input_class
-    ).length;
-    var arrayItself = document.querySelectorAll("input." + input_class);
-    var arrayOfCheckedCheckboxes = [];
-    for (var i = 0; i < lengthOfArray; i++) {
+    let lengthOfArray = document.querySelectorAll(`input.${input_class}`).length;
+    let arrayItself = document.querySelectorAll(`input.${input_class}`);
+    let arrayOfCheckedCheckboxes = [];
+    for (let i = 0; i < lengthOfArray; i++) {
       if (arrayItself[i].checked === true) {
         arrayOfCheckedCheckboxes.push(arrayItself[i]);
       }
@@ -181,19 +157,15 @@ function on_dropdown_option_click(_id, _class) {
 document.getElementById("race_random").addEventListener("click", function () {
   on_click_decider("race_random", "race_class");
 });
-document
-  .getElementById("background_random")
-  .addEventListener("click", function () {
-    on_click_decider("background_random", "background_class");
-  });
+document.getElementById("background_random").addEventListener("click", function () {
+  on_click_decider("background_random", "background_class");
+});
 document.getElementById("class_random").addEventListener("click", function () {
   on_click_decider("class_random", "class_class");
 });
-document
-  .getElementById("alignment_random")
-  .addEventListener("click", function () {
-    on_click_decider("alignment_random", "alignment_class");
-  });
+document.getElementById("alignment_random").addEventListener("click", function () {
+  on_click_decider("alignment_random", "alignment_class");
+});
 
 // Section to initially format all dropdowns
 format_initial_dropdowns("race_list", "race_dropdown");
@@ -202,54 +174,16 @@ format_initial_dropdowns("class_list", "class_dropdown", "class_class");
 format_initial_dropdowns("alignment_list", "alignment_dropdown");
 
 // Section to format the secondary dropdowns
-format_secondary_dropdowns(
-  "dragonborn_list",
-  "dragonborn_dropdown",
-  "dragonborn_checkbox"
-);
+format_secondary_dropdowns("dragonborn_list", "dragonborn_dropdown", "dragonborn_checkbox");
 format_secondary_dropdowns("dwarf_list", "dwarf_dropdown", "dwarf_checkbox");
 format_secondary_dropdowns("elf_list", "elf_dropdown", "elf_checkbox");
 format_secondary_dropdowns("gnome_list", "gnome_dropdown", "gnome_checkbox");
-format_secondary_dropdowns(
-  "halfling_list",
-  "halfling_dropdown",
-  "halfling_checkbox"
-);
+format_secondary_dropdowns("halfling_list", "halfling_dropdown", "halfling_checkbox");
 format_secondary_dropdowns("human_list", "human_dropdown", "human_checkbox");
 
 // Section that adds all the clicking events for all dropdowns
-add_events_for_dropdowns(
-  ".alignment_dropdown_option_checker",
-  "alignment_random",
-  "alignment_class",
-  "click",
-  on_dropdown_option_click
-);
-add_events_for_dropdowns(
-  ".class_dropdown_option_checker",
-  "class_random",
-  "class_class",
-  "click",
-  on_dropdown_option_click
-);
-add_events_for_dropdowns(
-  ".background_dropdown_option_checker",
-  "background_random",
-  "background_class",
-  "click",
-  on_dropdown_option_click
-);
-add_events_for_dropdowns(
-  ".race_dropdown_option_checker",
-  "race_random",
-  "race_class",
-  "click",
-  on_dropdown_option_click
-);
-add_events_for_dropdowns(
-  ".subrace_dropdown_option_checker",
-  "race_random",
-  "race_class",
-  "mousedown",
-  on_subrace_dropdown_option_click
-);
+add_events_for_dropdowns(".alignment_dropdown_option_checker", "alignment_random", "alignment_class", "click", on_dropdown_option_click);
+add_events_for_dropdowns(".class_dropdown_option_checker", "class_random", "class_class", "click", on_dropdown_option_click);
+add_events_for_dropdowns(".background_dropdown_option_checker", "background_random", "background_class", "click", on_dropdown_option_click);
+add_events_for_dropdowns(".race_dropdown_option_checker", "race_random", "race_class", "click", on_dropdown_option_click);
+add_events_for_dropdowns(".subrace_dropdown_option_checker", "race_random", "race_class", "mousedown", on_subrace_dropdown_option_click);

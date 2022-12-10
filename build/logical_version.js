@@ -1,30 +1,32 @@
+"use strict";
+
 // Initialize stats and stats array
-var stats = [];
-var size = "";
-var strength = 0;
-var dexterity = 0;
-var constitution = 0;
-var intelligence = 0;
-var wisdom = 0;
-var charisma = 0;
-var min = 0;
-var max = 0;
-var racialLanguage1 = void 0;
-var racialLanguage2 = void 0;
-var randomStatArray = [];
-var stat1 = stats[0];
-var stat2 = stats[1];
-var stat3 = stats[2];
-var stat4 = stats[3];
-var stat5 = stats[4];
-var stat6 = stats[5];
-var newBackground1 = "";
-var newBackground2 = 0;
-var currentName = void 0;
-var bardModifier = void 0;
-var charName = void 0;
-var statModifier = void 0;
-var nameGenerator = {};
+let stats = [];
+let size = "";
+let strength = 0;
+let dexterity = 0;
+let constitution = 0;
+let intelligence = 0;
+let wisdom = 0;
+let charisma = 0;
+let min = 0;
+let max = 0;
+let racialLanguage1;
+let racialLanguage2;
+let randomStatArray = [];
+let stat1 = stats[0];
+let stat2 = stats[1];
+let stat3 = stats[2];
+let stat4 = stats[3];
+let stat5 = stats[4];
+let stat6 = stats[5];
+let newBackground1 = "";
+let newBackground2 = 0;
+let currentName;
+let bardModifier;
+let charName;
+let statModifier;
+let nameGenerator = {};
 
 // Function to get random number depending on int
 function get_random_number(int) {
@@ -58,22 +60,22 @@ function stat_modifier_generator(stat) {
 }
 
 // Initialize length of all arrays
-var lengthOfCheckedRaceArray = 0;
-var lengthOfCheckedBackgroundArray = 0;
-var lengthOfCheckedClassArray = 0;
-var lengthOfCheckedAlignmentArray = 0;
+let lengthOfCheckedRaceArray = 0;
+let lengthOfCheckedBackgroundArray = 0;
+let lengthOfCheckedClassArray = 0;
+let lengthOfCheckedAlignmentArray = 0;
 
 // To determine which version is being used this variable will be assigned a value at the end of each version's ()
-var versionForChecking = 0;
+let versionForChecking = 0;
 
 function standard_version() {
   // STANDARD ARRAY STAT BLOCK
 
   // Standard array used for stats
-  var standard_array = [15, 14, 13, 12, 10, 8];
+  const standard_array = [15, 14, 13, 12, 10, 8];
 
   // Assign the standard array to a different variable
-  var final_stat_array1 = standard_array;
+  let final_stat_array1 = standard_array;
 
   // Assign the shuffled array into individual variables
   stat1 = final_stat_array1[0];
@@ -105,7 +107,7 @@ function roll_version() {
   // Get a random stat for an ability score
   function get_random_stat() {
     randomStatArray = [];
-    for (var _i = 0; _i < 4; _i++) {
+    for (let i = 0; i < 4; i++) {
       randomStatArray.push(get_random_number(6));
     }
     remove_smallest_number(randomStatArray);
@@ -114,9 +116,8 @@ function roll_version() {
 
   // Function to get the sum of the 4d6 drop lowest that was rolled by get_random_stat()
   function get_sum(stat) {
-    for (i = 0, sum = 0; i < stat.length; sum += stat[i++]) {
-      console.log(stat);
-    }
+    var i = 0;
+    for (i = 0, sum = 0; i < stat.length; sum += stat[i++]) {}
     return sum;
   }
 
@@ -129,23 +130,23 @@ function roll_version() {
   }
 
   // Block of arrays that are assigned a random stat each
-  var firstStat = get_random_stat();
-  var secondStat = get_random_stat();
-  var thirdStat = get_random_stat();
-  var fourthStat = get_random_stat();
-  var fifthStat = get_random_stat();
-  var sixthStat = get_random_stat();
+  let firstStat = get_random_stat();
+  let secondStat = get_random_stat();
+  let thirdStat = get_random_stat();
+  let fourthStat = get_random_stat();
+  let fifthStat = get_random_stat();
+  let sixthStat = get_random_stat();
 
   // Block of variables that had arrays that were summed up to equal a single number
-  var temporaryStatHolder1 = get_sum(firstStat);
-  var temporaryStatHolder2 = get_sum(secondStat);
-  var temporaryStatHolder3 = get_sum(thirdStat);
-  var temporaryStatHolder4 = get_sum(fourthStat);
-  var temporaryStatHolder5 = get_sum(fifthStat);
-  var temporaryStatHolder6 = get_sum(sixthStat);
+  let temporaryStatHolder1 = get_sum(firstStat);
+  let temporaryStatHolder2 = get_sum(secondStat);
+  let temporaryStatHolder3 = get_sum(thirdStat);
+  let temporaryStatHolder4 = get_sum(fourthStat);
+  let temporaryStatHolder5 = get_sum(fifthStat);
+  let temporaryStatHolder6 = get_sum(sixthStat);
 
   // Assign individual stats to an array named stats
-  var statspt1 = [
+  let statspt1 = [
     temporaryStatHolder1,
     temporaryStatHolder2,
     temporaryStatHolder3,
@@ -176,7 +177,7 @@ function pointbuy_version() {
   // POINT BUY STAT BLOCK
 
   // Array of all possible combinations of the point buy system
-  var array_of_stat_combos = [
+  let array_of_stat_combos = [
     [15, 15, 15, 8, 8, 8],
     [15, 15, 14, 10, 8, 8],
     [15, 15, 14, 9, 9, 8],
@@ -246,13 +247,13 @@ function pointbuy_version() {
 
   // Function to shuffle all the numbers in a random point buy combination into random order and return it
   function random_array() {
-    var number = Math.floor(Math.random() * 65);
-    var array = array_of_stat_combos[number];
+    let number = Math.floor(Math.random() * 65);
+    let array = array_of_stat_combos[number];
     return array;
   }
 
   // Final array of the random point buy combination
-  var final_stat_array2 = random_array();
+  let final_stat_array2 = random_array();
 
   // Block of variables that are assigned a random stat each
   stat1 = final_stat_array2[0];
@@ -933,120 +934,120 @@ function generate_character() {
   };
 
   // Initialize variables
-  var language = void 0;
-  var firstLanguage = void 0;
-  var secondlanguage = void 0;
-  var extralanguage = void 0;
-  var knowledgeLanguage = void 0;
-  var knowledgeLanguage2 = void 0;
-  var musicalinstrument = void 0;
-  var musicalinstrument2 = void 0;
-  var musicalinstrument3 = void 0;
-  var artisantool = void 0;
-  var randomAritsanTool = void 0;
-  var soldierGamingSet = void 0;
-  var gladiatorWeapon = void 0;
-  var beefiness = void 0;
-  var individualDiscrepancy = void 0;
-  var randomValue = void 0;
-  var lightGo = void 0;
-  var finalFirstName = void 0;
-  var finalLastName = void 0;
-  var race = void 0;
-  var ancestry = void 0;
-  var ancestryHuman = void 0;
-  var statTotal = void 0;
-  var raceSplitter = void 0;
-  var raceSplitter1 = void 0;
-  var raceSplitter2 = void 0;
-  var raceSplitter3 = void 0;
-  var subraceSplitter = void 0;
-  var subraceSplitter1 = void 0;
-  var subraceSplitter2 = void 0;
-  var subraceSplitter3 = void 0;
-  var i = void 0;
-  var j = void 0;
-  var random = void 0;
-  var random2 = void 0;
-  var className = void 0;
-  var classAndLevel = void 0;
-  var randomClassVariable = void 0;
-  var randomChance = void 0;
-  var clericBuild = void 0;
-  var name = void 0;
-  var newLangs = void 0;
-  var newWeaponProfs = void 0;
-  var newArmorProfs = void 0;
-  var newToolProfs = void 0;
-  var firstNumber = void 0;
-  var secondNumber = void 0;
-  var finalLanguages = void 0;
-  var finalweaponProficiencies = void 0;
-  var finalarmorProficiencies = void 0;
-  var finaltoolProficiencies = void 0;
-  var arrayOfAlignment = void 0;
-  var lengthOfAlignmentArray = void 0;
-  var AlignmentRandomizerNumber = void 0;
-  var actualAlignment = void 0;
-  var balanceAndMorality = void 0;
-  var balance = void 0;
-  var morality = void 0;
-  var arrayOfBackgrounds = void 0;
-  var lengthOfBackgroundArray = void 0;
-  var BackgroundRandomizerNumber = void 0;
-  var actualBackground = void 0;
-  var raceNameLower = void 0;
-  var raceNameLowerString = void 0;
-  var arrayOfRaces = void 0;
-  var lengthOfRaceArray = void 0;
-  var RaceRandomizerNumber = void 0;
-  var actualRace = void 0;
-  var strengthModifier = void 0;
-  var dexterityModifier = void 0;
-  var constitutionModifier = void 0;
-  var intelligenceModifier = void 0;
-  var wisdomModifier = void 0;
-  var charismaModifier = void 0;
-  var firstNameNumber = void 0;
-  var lastNameNumber = void 0;
-  var number = void 0;
-  var raceChecker = void 0;
-  var arrayOfClass = void 0;
-  var lengthOfClassArray = void 0;
-  var ClassRandomizerNumber = void 0;
-  var actualClass = void 0;
-  var alignmentChecker = false;
-  var hp = 0;
-  var gold = 0;
-  var armorClass = 0;
-  var arrayOfCheckedClass = [];
-  var dwarves = [];
-  var dragonborn = [];
-  var elves = [];
-  var gnomes = [];
-  var halflings = [];
-  var humans = [];
-  var leftoverArray = [];
-  var arrayOfCheckedRaces = [];
-  var arrayOfCheckedAlignment = [];
-  var arrayOfCheckedBackgrounds = [];
-  var listOfExoticLanguages = [];
-  var listOfStandardLanguages = [];
-  var martialWeapons = [];
-  var simpleWeapons = [];
-  var equipment = [];
-  var spellcastingSection = [];
-  var alliesAndOrganizations = [];
-  var features = [];
-  var additionalFeatures = [];
-  var personalityTraits = [];
-  var alignment = [];
-  var ideals = [];
-  var bonds = [];
-  var flaws = [];
-  var proficienciesAndLanguages = [];
-  var armor = {};
-  var profsAndLangs = {
+  let language;
+  let firstLanguage;
+  let secondlanguage;
+  let extralanguage;
+  let knowledgeLanguage;
+  let knowledgeLanguage2;
+  let musicalinstrument;
+  let musicalinstrument2;
+  let musicalinstrument3;
+  let artisantool;
+  let randomAritsanTool;
+  let soldierGamingSet;
+  let gladiatorWeapon;
+  let beefiness;
+  let individualDiscrepancy;
+  let randomValue;
+  let lightGo;
+  let finalFirstName;
+  let finalLastName;
+  let race;
+  let ancestry;
+  let ancestryHuman;
+  let statTotal;
+  let raceSplitter;
+  let raceSplitter1;
+  let raceSplitter2;
+  let raceSplitter3;
+  let subraceSplitter;
+  let subraceSplitter1;
+  let subraceSplitter2;
+  let subraceSplitter3;
+  let i;
+  let j;
+  let random;
+  let random2;
+  let className;
+  let classAndLevel;
+  let randomClassVariable;
+  let randomChance;
+  let clericBuild;
+  let name;
+  let newLangs;
+  let newWeaponProfs;
+  let newArmorProfs;
+  let newToolProfs;
+  let firstNumber;
+  let secondNumber;
+  let finalLanguages;
+  let finalweaponProficiencies;
+  let finalarmorProficiencies;
+  let finaltoolProficiencies;
+  let arrayOfAlignment;
+  let lengthOfAlignmentArray;
+  let AlignmentRandomizerNumber;
+  let actualAlignment;
+  let balanceAndMorality;
+  let balance;
+  let morality;
+  let arrayOfBackgrounds;
+  let lengthOfBackgroundArray;
+  let BackgroundRandomizerNumber;
+  let actualBackground;
+  let raceNameLower;
+  let raceNameLowerString;
+  let arrayOfRaces;
+  let lengthOfRaceArray;
+  let RaceRandomizerNumber;
+  let actualRace;
+  let strengthModifier;
+  let dexterityModifier;
+  let constitutionModifier;
+  let intelligenceModifier;
+  let wisdomModifier;
+  let charismaModifier;
+  let firstNameNumber;
+  let lastNameNumber;
+  let number;
+  let raceChecker;
+  let arrayOfClass;
+  let lengthOfClassArray;
+  let ClassRandomizerNumber;
+  let actualClass;
+  let alignmentChecker = false;
+  let hp = 0;
+  let gold = 0;
+  let armorClass = 0;
+  let arrayOfCheckedClass = [];
+  let dwarves = [];
+  let dragonborn = [];
+  let elves = [];
+  let gnomes = [];
+  let halflings = [];
+  let humans = [];
+  let leftoverArray = [];
+  let arrayOfCheckedRaces = [];
+  let arrayOfCheckedAlignment = [];
+  let arrayOfCheckedBackgrounds = [];
+  let listOfExoticLanguages = [];
+  let listOfStandardLanguages = [];
+  let martialWeapons = [];
+  let simpleWeapons = [];
+  let equipment = [];
+  let spellcastingSection = [];
+  let alliesAndOrganizations = [];
+  let features = [];
+  let additionalFeatures = [];
+  let personalityTraits = [];
+  let alignment = [];
+  let ideals = [];
+  let bonds = [];
+  let flaws = [];
+  let proficienciesAndLanguages = [];
+  let armor = {};
+  let profsAndLangs = {
     languages: [],
     armorProficiencies: [],
     weaponProficiencies: [],
@@ -1054,7 +1055,7 @@ function generate_character() {
   };
 
   // Personality is from race
-  var toughTraits = [
+  const toughTraits = [
     "I bend the knee to no man who I deem unworthy.",
     "I walk my own path, regardless of how others criticize it.",
     "I love a good insult, even one directed at me.",
@@ -1068,7 +1069,7 @@ function generate_character() {
     "I am confident and assertive.",
   ];
 
-  var softTraits = [
+  const softTraits = [
     "There's nothing I like more than a good mystery.",
     "My friends know they can rely on me, no matter what.",
     "I face problems head-on. A simple, direct solution is the best path to success.",
@@ -1082,7 +1083,7 @@ function generate_character() {
   ];
 
   // Ideals are from good/neutral/chaotic
-  var goodIdeals = [
+  const goodIdeals = [
     "I always try to help those in need, no matter the personal cost.",
     "I believe beautiful things like art make the world a better place.",
     "I feel grateful for my life and need it to matter.",
@@ -1095,7 +1096,7 @@ function generate_character() {
     "There are all sorts of beings around us; my duty is to prevent them harming good folk.",
   ];
 
-  var neutralIdeals = [
+  const neutralIdeals = [
     "Respect those that are different and let all be who they wish.",
     "There is so much to see and learn.",
     "All have burdens to bear.",
@@ -1108,7 +1109,7 @@ function generate_character() {
     "Bettering yourself is essential in life.",
   ];
 
-  var evilIdeals = [
+  const evilIdeals = [
     "My opinion is the only one that matters and others should reinforce my importance",
     "The world owes me and I will take what I deserve.",
     "The only way to overcome adversity is to be powerful.",
@@ -1122,7 +1123,7 @@ function generate_character() {
   ];
 
   // Bonds are from class
-  var rangerBonds = [
+  const rangerBonds = [
     "I owe my guild a great debt for forging me into the person I am today.",
     "My terrain is my home, and I'll fight to defend it.",
     "No one else should have to endure the hardships I’ve been through.",
@@ -1134,7 +1135,7 @@ function generate_character() {
     "My weapon was given to me to protect my land, and I intend to do so, against any threat.",
   ];
 
-  var rogueBonds = [
+  const rogueBonds = [
     " I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.",
     "I owe everything to my mentor—a horrible person who’s probably rotting in jail somewhere.",
     "A powerful person killed someone I love. Some day soon, I'll have my revenge.",
@@ -1147,7 +1148,7 @@ function generate_character() {
     "I did what I had to to get by. I hope to never speak of what I've done again.",
   ];
 
-  var barbarianBonds = [
+  const barbarianBonds = [
     "I will do anything to prove myself superior to my hated rival.",
     "I worked the land, I love the land, and I will protect the land.",
     "My tools are symbols of my past life, and I carry them so that I will never forget my roots.",
@@ -1160,7 +1161,7 @@ function generate_character() {
     "A loved one is a werewolf, and I will go to any lengths to protect them and their secret.",
   ];
 
-  var wizardBonds = [
+  const wizardBonds = [
     "I'm trying to pay off an old debt I owe to a generous benefactor.",
     "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.",
     "I work to unearth a library that has been hidden for the past thousand years.",
@@ -1173,7 +1174,7 @@ function generate_character() {
     "I believe that I may be able to unlock the secrets of magics long lost.",
   ];
 
-  var warlockBonds = [
+  const warlockBonds = [
     "Something important was taken from me, and I aim to steal it back.",
     "Nothing is more important than the other members of my family.",
     "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.",
@@ -1186,7 +1187,7 @@ function generate_character() {
     "I gave up my most precious possession to secure a deal. I still seek for away to regain it.",
   ];
 
-  var clericBonds = [
+  const clericBonds = [
     "I would die to recover an ancient relic of my faith that was lost long ago.",
     "I owe my life to the priest who took me in when my parents died.",
     "I will do anything to protect the temple where I served.",
@@ -1199,7 +1200,7 @@ function generate_character() {
     "My life is a series of signs from my deity.",
   ];
 
-  var bardBonds = [
+  const bardBonds = [
     "Somewhere out there, I have a child who doesn't know me. I'm making the world better for him or her.",
     "My instrument is my most treasured possession, and it reminds me of someone I love.",
     "Someone stole my precious instrument, and someday I'll get it back.",
@@ -1213,7 +1214,7 @@ function generate_character() {
     "I can't treat women the same as men, they are too beautiful.",
   ];
 
-  var paladinBonds = [
+  const paladinBonds = [
     "Everything I do is for the common people.",
     "I come from a noble family, and one day I'll reclaim my lands and title from those who stole them from me.",
     "A proud noble once gave me a horrible beating, and I will take my revenge on any bully I encounter.",
@@ -1226,7 +1227,7 @@ function generate_character() {
     "A scoundrel stole my family's most treasured heirloom, and I intend to take it back.",
   ];
 
-  var sorcererBonds = [
+  const sorcererBonds = [
     "I pursue wealth to secure someone's love.",
     "I've been searching my whole life for the answer to a certain question.",
     "In a harbor town, I have a paramour whose eyes nearly stole me from the world.",
@@ -1239,7 +1240,7 @@ function generate_character() {
     "I seek to find my true heritage, ever since I learned of it.",
   ];
 
-  var monkBonds = [
+  const monkBonds = [
     "Someone I loved died because of a mistake I made. That will never happen again.",
     "Nothing is more important than the other members of my order.",
     "I'm still seeking the enlightenment I pursued in my seclusion, and it still eludes me.",
@@ -1252,7 +1253,7 @@ function generate_character() {
     "During my enlightenment I was told in a dream to find a particular group of people, and follow them to the ends of the world.",
   ];
 
-  var druidBonds = [
+  const druidBonds = [
     "I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.",
     "Should my discovery come to light, it could bring ruin to the world.",
     "An injury to the unspoiled wilderness of my home is an injury to me.",
@@ -1265,7 +1266,7 @@ function generate_character() {
     "My druidic focus has been passed down over ten generations, I must protect it, and with it, my people.",
   ];
 
-  var fighterBonds = [
+  const fighterBonds = [
     "I idolize a hero of the old tales and measure my deeds against that person's.",
     "I have a family, but I have no idea where they are. One day, I hope to see them again.",
     "My tribe is the most important thing in my life, even when they are far from me.",
@@ -1279,7 +1280,7 @@ function generate_character() {
   ];
 
   // Flaws are from lawful/neutral/chaotic
-  var lawfulFlaws = [
+  const lawfulFlaws = [
     "I have a 'tell' that reveals when I'm lying.",
     "I have trouble keeping my true feelings hidden.",
     "I'm quick to assume that someone is trying to cheat me.",
@@ -1292,7 +1293,7 @@ function generate_character() {
     "Small bladder.",
   ];
 
-  var neutralFlaws = [
+  const neutralFlaws = [
     "I'm a sucker for a pretty face.",
     "I let my need to win arguments overshadow friendships and harmony.",
     "I like keeping secrets and won't share them with anyone.",
@@ -1305,7 +1306,7 @@ function generate_character() {
     "I am grandiose, I believe everything is about me in the end, no matter how unrelated.",
   ];
 
-  var chaoticFlaws = [
+  const chaoticFlaws = [
     "I'd rather kill someone in their sleep then fight fair.",
     "I can't resist messing with people who are more powerful than me.",
     "If there's a plan, I'll forget it. If I don't forget it, I'll ignore it.",
@@ -1373,9 +1374,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfClassArray = arrayOfClass.length;
     // If statement to choose based on the choices given
-    for (var _i2 = 0; _i2 < lengthOfClassArray; _i2++) {
-      if (arrayOfClass[_i2].checked) {
-        arrayOfCheckedClass.push(arrayOfClass[_i2].value);
+    for (let i = 0; i < lengthOfClassArray; i++) {
+      if (arrayOfClass[i].checked) {
+        arrayOfCheckedClass.push(arrayOfClass[i].value);
       }
     }
     // Length of how many are checked
@@ -1573,8 +1574,8 @@ function generate_character() {
   }
 
   function subrace_picker(thearray) {
-    for (var _i3 = 0; _i3 < thearray.length; _i3++) {
-      subraceSplitter = thearray[_i3];
+    for (let i = 0; i < thearray.length; i++) {
+      subraceSplitter = thearray[i];
       if (
         subraceSplitter === "HalfElf" ||
         subraceSplitter === "HalfOrc" ||
@@ -1620,9 +1621,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfRaceArray = arrayOfRaces.length;
     // If statement to choose based on the choices given
-    for (var _i4 = 0; _i4 < lengthOfRaceArray; _i4++) {
-      if (arrayOfRaces[_i4].checked) {
-        arrayOfCheckedRaces.push(arrayOfRaces[_i4].value);
+    for (let i = 0; i < lengthOfRaceArray; i++) {
+      if (arrayOfRaces[i].checked) {
+        arrayOfCheckedRaces.push(arrayOfRaces[i].value);
       }
     }
     arrayOfCheckedRaces = subrace_picker(arrayOfCheckedRaces);
@@ -1709,9 +1710,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfBackgroundArray = arrayOfBackgrounds.length;
     // If statement to choose based on the choices given
-    for (var _i5 = 0; _i5 < lengthOfBackgroundArray; _i5++) {
-      if (arrayOfBackgrounds[_i5].checked) {
-        arrayOfCheckedBackgrounds.push(arrayOfBackgrounds[_i5].value);
+    for (let i = 0; i < lengthOfBackgroundArray; i++) {
+      if (arrayOfBackgrounds[i].checked) {
+        arrayOfCheckedBackgrounds.push(arrayOfBackgrounds[i].value);
       }
     }
     // Length of how many are checked
@@ -1762,9 +1763,9 @@ function generate_character() {
     // Length of how many are checked
     lengthOfAlignmentArray = arrayOfAlignment.length;
     // If statement to choose based on the choices given
-    for (var _i6 = 0; _i6 < lengthOfAlignmentArray; _i6++) {
-      if (arrayOfAlignment[_i6].checked) {
-        arrayOfCheckedAlignment.push(arrayOfAlignment[_i6].value);
+    for (let i = 0; i < lengthOfAlignmentArray; i++) {
+      if (arrayOfAlignment[i].checked) {
+        arrayOfCheckedAlignment.push(arrayOfAlignment[i].value);
       }
     }
     // Length of how many are checked
@@ -1861,9 +1862,9 @@ function generate_character() {
 
   // Function to choose a random language, with a small chance for exotic languages
   function random_language() {
-    var random = Math.random();
-    var randomStandardLanguageNumber = Math.floor(Math.random() * 7);
-    var randomExoticLanguageNumber = Math.floor(Math.random() * 8);
+    let random = Math.random();
+    let randomStandardLanguageNumber = Math.floor(Math.random() * 7);
+    let randomExoticLanguageNumber = Math.floor(Math.random() * 8);
     while (
       listOfStandardLanguages[randomStandardLanguageNumber] === racialLanguage2
     ) {
@@ -2081,8 +2082,8 @@ function generate_character() {
 
   // Function to add weapons to proficiencies section
   function weapon_adder(weapon) {
-    for (var _i7 = 0; _i7 < simpleWeapons.length; _i7++) {
-      if (simpleWeapons[_i7] === weapon) {
+    for (let i = 0; i < simpleWeapons.length; i++) {
+      if (simpleWeapons[i] === weapon) {
         for (j = 0; j < profsAndLangs.weaponProficiencies.length; j++) {
           if (profsAndLangs.weaponProficiencies[j] === "simple weapons") {
             return;
@@ -2092,8 +2093,8 @@ function generate_character() {
         }
       }
     }
-    for (var _i8 = 0; _i8 < martialWeapons.length; _i8++) {
-      if (martialWeapons[_i8] === weapon) {
+    for (let i = 0; i < martialWeapons.length; i++) {
+      if (martialWeapons[i] === weapon) {
         for (j = 0; j < profsAndLangs.weaponProficiencies.length; j++) {
           if (profsAndLangs.weaponProficiencies[j] === "martial weapons") {
             return;
@@ -2115,8 +2116,8 @@ function generate_character() {
 
   // Function to add armor to proficiencies section
   function armor_adder(armorToAddToList) {
-    for (var _i9 = 0; _i9 < profsAndLangs.armorProficiencies.length; _i9++) {
-      if (profsAndLangs.armorProficiencies[_i9] === armorToAddToList) {
+    for (let i = 0; i < profsAndLangs.armorProficiencies.length; i++) {
+      if (profsAndLangs.armorProficiencies[i] === armorToAddToList) {
         return;
       }
     }
@@ -3445,7 +3446,7 @@ function generate_character() {
           profsAndLangs.languages.push(knowledgeLanguage2);
           document.getElementById("form193_3").value = "Command";
           document.getElementById("form159_3").value = "Identify";
-          for (var _i10 = 0; _i10 < 2; _i10++) {
+          for (let i = 0; i < 2; i++) {
             if (document.getElementById("form20_1").checked === undefined) {
               add_click(20);
               stat_checker(intelligenceModifier + 4, "form33_1"); // religion
@@ -5762,7 +5763,7 @@ function generate_character() {
   // Function to determine what proficiencies a character gets based on their class and their proficiencies they already have
   function class_proficiencies() {
     if (classAndLevel === "Barbarian 1") {
-      for (var _i11 = 0; _i11 < 2; _i11++) {
+      for (let i = 0; i < 2; i++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -5784,7 +5785,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Fighter 1") {
-      for (var _i12 = 0; _i12 < 2; _i12++) {
+      for (let i = 0; i < 2; i++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -5832,7 +5833,7 @@ function generate_character() {
       }
       skill_adder();
     } else if (classAndLevel === "Cleric 1") {
-      for (var _i13 = 0; _i13 < 2; _i13++) {
+      for (let i = 0; i < 2; i++) {
         if (document.getElementById("form13_1").checked === undefined) {
           add_click(13);
           stat_checker(wisdomModifier + 2, "form35_1"); // insight
@@ -5851,7 +5852,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Sorcerer 1") {
-      for (var _i14 = 0; _i14 < 2; _i14++) {
+      for (let i = 0; i < 2; i++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
           stat_checker(intelligenceModifier + 2, "form40_1"); // arcana
@@ -5873,7 +5874,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Wizard 1") {
-      for (var _i15 = 0; _i15 < 2; _i15++) {
+      for (let i = 0; i < 2; i++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
           stat_checker(intelligenceModifier + 2, "form40_1"); // arcana
@@ -5895,7 +5896,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Druid 1") {
-      for (var _i16 = 0; _i16 < 2; _i16++) {
+      for (let i = 0; i < 2; i++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -5923,7 +5924,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Rogue 1") {
-      for (var _i17 = 0; _i17 < 4; _i17++) {
+      for (let i = 0; i < 4; i++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -5966,7 +5967,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Warlock 1") {
-      for (var _i18 = 0; _i18 < 2; _i18++) {
+      for (let i = 0; i < 2; i++) {
         if (document.getElementById("form21_1").checked === undefined) {
           add_click(21);
           stat_checker(intelligenceModifier + 2, "form40_1"); // arcana
@@ -5991,7 +5992,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Ranger 1") {
-      for (var _i19 = 0; _i19 < 3; _i19++) {
+      for (let i = 0; i < 3; i++) {
         if (document.getElementById("form7_1").checked === undefined) {
           add_click(7);
           stat_checker(wisdomModifier + 2, "form43_1"); // perception
@@ -6019,7 +6020,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Paladin 1") {
-      for (var _i20 = 0; _i20 < 2; _i20++) {
+      for (let i = 0; i < 2; i++) {
         if (document.getElementById("form20_1").checked === undefined) {
           add_click(20);
           stat_checker(intelligenceModifier + 2, "form33_1"); // religion
@@ -6041,7 +6042,7 @@ function generate_character() {
         }
       }
     } else if (classAndLevel === "Monk 1") {
-      for (var _i21 = 0; _i21 < 2; _i21++) {
+      for (let i = 0; i < 2; i++) {
         if (document.getElementById("form20_1").checked === undefined) {
           add_click(20);
           stat_checker(intelligenceModifier + 2, "form33_1"); // religion
@@ -6287,28 +6288,28 @@ function generate_character() {
   }
 
   // For loop that searches your inventory and determines armor class based on what armor you have
-  for (var _i22 = 0; _i22 < equipment.length; _i22++) {
-    if (equipment[_i22] === armor.lightArmor.padded.armorname) {
+  for (let i = 0; i < equipment.length; i++) {
+    if (equipment[i] === armor.lightArmor.padded.armorname) {
       armorClass += 11 + dexterityModifier;
-    } else if (equipment[_i22] === armor.lightArmor.leather.armorname) {
+    } else if (equipment[i] === armor.lightArmor.leather.armorname) {
       armorClass += 11 + dexterityModifier;
-    } else if (equipment[_i22] === armor.lightArmor.studdedleather.armorname) {
+    } else if (equipment[i] === armor.lightArmor.studdedleather.armorname) {
       armorClass += 12 + dexterityModifier;
-    } else if (equipment[_i22] === armor.mediumArmor.hide.armorname) {
+    } else if (equipment[i] === armor.mediumArmor.hide.armorname) {
       armorClass += 12 + dexterityModifier;
-    } else if (equipment[_i22] === armor.mediumArmor.chainshirt.armorname) {
+    } else if (equipment[i] === armor.mediumArmor.chainshirt.armorname) {
       armorClass += 13 + dexterityModifier;
-    } else if (equipment[_i22] === armor.mediumArmor.scalemail.armorname) {
+    } else if (equipment[i] === armor.mediumArmor.scalemail.armorname) {
       armorClass += 14 + dexterityModifier;
       features.push(
         "Scale Mail: Disadvantage on stealth rolls from medium armor."
       );
-    } else if (equipment[_i22] === armor.heavyArmor.ringmail.armorname) {
+    } else if (equipment[i] === armor.heavyArmor.ringmail.armorname) {
       armorClass += 14;
       features.push(
         "Ring Mail: Disadvantage on stealth rolls from heavy armor."
       );
-    } else if (equipment[_i22] === armor.heavyArmor.chainmail.armorname) {
+    } else if (equipment[i] === armor.heavyArmor.chainmail.armorname) {
       armorClass += 16;
       features.push(
         "Chain Mail: Disadvantage on stealth rolls from heavy armor."
@@ -6317,11 +6318,11 @@ function generate_character() {
   }
 
   // For loop that searches your inventory and adds +2 armor class if you have a shield
-  for (var _i23 = 0; _i23 < equipment.length; _i23++) {
+  for (let i = 0; i < equipment.length; i++) {
     if (
-      equipment[_i23] === "Shield" ||
-      equipment[_i23] === "Shield - Focus" ||
-      equipment[_i23] === "Wooden shield"
+      equipment[i] === "Shield" ||
+      equipment[i] === "Shield - Focus" ||
+      equipment[i] === "Wooden shield"
     ) {
       armorClass += 2;
     } else {
@@ -6381,7 +6382,7 @@ generate_initial_character(standard_version);
 
 // Function to make a skill proficient and checked
 function add_click(j) {
-  var i = j.toString();
+  let i = j.toString();
   document.getElementById("form" + i + "_1").checked = "checked";
   click_on(i - 1);
 }
