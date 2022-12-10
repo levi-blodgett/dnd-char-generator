@@ -3632,7 +3632,6 @@ function generate_character() {
         );
       }
       if (random > 0.5) {
-        console.log("test");
         equipment.push("Chain mail");
       } else {
         if (
@@ -3641,7 +3640,6 @@ function generate_character() {
           document.getElementById(secondWeaponFirstSectionId).value === null ||
           document.getElementById(secondWeaponFirstSectionId).value === ""
         ) {
-          console.log("test2");
           equipment.push("Leather armor");
           equipment.push("Longbow w/ quiver of 20 arrows");
           document.getElementById(secondWeaponFirstSectionId).value = "Longbow"; // 2nd weapon 1st section
@@ -3653,7 +3651,6 @@ function generate_character() {
             "P"
           ); // 2nd weapon 3rd section
         } else {
-          console.log("test3");
           equipment.push("Leather armor");
           equipment.push("Longbow w/ quiver of 20 arrows");
           document.getElementById(thirdWeaponFirstSectionId).value = "Longbow";
