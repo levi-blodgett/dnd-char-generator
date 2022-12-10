@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -Rf ./build",
     "build": "npm run clean; babel ./src --out-dir ./build --ignore './src/testing.js'",
-    "start": "http-server"
+    "start": "live-server"
   },
   "author": "Levi Blodgett",
   "license": "Apache-2.0",

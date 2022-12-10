@@ -38,6 +38,7 @@ let currentName;
 let bardModifier;
 let charName;
 let statModifier;
+let size;
 let nameGenerator = {};
 let bardCantrips = [
   "Dancing Lights",
@@ -347,10 +348,10 @@ function standard_version() {
   // STANDARD ARRAY STAT BLOCK
 
   // Standard array used for stats
-  standard_array = [15, 14, 13, 12, 10, 8];
+  let standard_array = [15, 14, 13, 12, 10, 8];
 
   // Assign the standard array to a different variable
-  final_stat_array1 = standard_array;
+  let final_stat_array1 = standard_array;
 
   // Assign the shuffled array into individual variables
   stat1 = final_stat_array1[0];
@@ -384,7 +385,7 @@ function roll_version() {
   // Get a random stat for an ability score
   function get_random_stat() {
     randomStatArray = [];
-    for (i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
       randomStatArray.push(getRandomNumber(6));
     }
     remove_smallest_number(randomStatArray);
@@ -393,28 +394,30 @@ function roll_version() {
 
   // Function to get the sum of the 4d6 drop lowest that was rolled by get_random_stat()
   function get_sum(stat) {
+    let sum = 0;
+    let i = 0;
     for (i = 0, sum = 0; i < stat.length; sum += stat[i++]) {}
     return sum;
   }
 
   // Block of arrays that are assigned a random stat each
-  firstStat = get_random_stat();
-  secondStat = get_random_stat();
-  thirdStat = get_random_stat();
-  fourthStat = get_random_stat();
-  fifthStat = get_random_stat();
-  sixthStat = get_random_stat();
+  let firstStat = get_random_stat();
+  let secondStat = get_random_stat();
+  let thirdStat = get_random_stat();
+  let fourthStat = get_random_stat();
+  let fifthStat = get_random_stat();
+  let sixthStat = get_random_stat();
 
   // Block of variables that had arrays that were summed up to equal a single number
-  temporaryStatHolder1 = get_sum(firstStat);
-  temporaryStatHolder2 = get_sum(secondStat);
-  temporaryStatHolder3 = get_sum(thirdStat);
-  temporaryStatHolder4 = get_sum(fourthStat);
-  temporaryStatHolder5 = get_sum(fifthStat);
-  temporaryStatHolder6 = get_sum(sixthStat);
+  let temporaryStatHolder1 = get_sum(firstStat);
+  let temporaryStatHolder2 = get_sum(secondStat);
+  let temporaryStatHolder3 = get_sum(thirdStat);
+  let temporaryStatHolder4 = get_sum(fourthStat);
+  let temporaryStatHolder5 = get_sum(fifthStat);
+  let temporaryStatHolder6 = get_sum(sixthStat);
 
   // Assign individual stats to an array named stats
-  statspt1 = [
+  let statspt1 = [
     temporaryStatHolder1,
     temporaryStatHolder2,
     temporaryStatHolder3,
@@ -423,7 +426,7 @@ function roll_version() {
     temporaryStatHolder6,
   ];
 
-  stats = shuffle(statspt1);
+  let stats = shuffle(statspt1);
 
   // 2 means roll
   versionForChecking = 2;
@@ -436,7 +439,7 @@ function pointbuy_version() {
   // POINT BUY STAT BLOCK
 
   // Array of all possible combinations of the point buy system
-  array_of_stat_combos = [
+  let array_of_stat_combos = [
     [15, 15, 15, 8, 8, 8],
     [15, 15, 14, 10, 8, 8],
     [15, 15, 14, 9, 9, 8],
@@ -506,13 +509,13 @@ function pointbuy_version() {
 
   // Function to shuffle all the numbers in a random point buy combination into random order and return it
   function random_array() {
-    number = Math.floor(Math.random() * 65);
-    array = array_of_stat_combos[number];
+    let number = Math.floor(Math.random() * 65);
+    let array = array_of_stat_combos[number];
     return array;
   }
 
   // Final array of the random point buy combination
-  final_stat_array2 = random_array();
+  let final_stat_array2 = random_array();
 
   // Block of variables that are assigned a random stat each
   stat1 = final_stat_array2[0];
@@ -1052,6 +1055,8 @@ function generate_character() {
   let classAndLevel;
   let randomClassVariable;
   let randomChance;
+  let randomStandardLanguageNumber;
+  let randomExoticLanguageNumber;
   let clericBuild;
   let name;
   let newLangs;
@@ -1087,6 +1092,7 @@ function generate_character() {
   let intelligenceModifier;
   let wisdomModifier;
   let charismaModifier;
+  let hitDiceModifier;
   let firstNameNumber;
   let lastNameNumber;
   let number;
@@ -2649,269 +2655,244 @@ function generate_character() {
   charismaModifier = stat_modifier_generator(charisma);
   hitDiceModifier = stat_modifier_generator(constitution);
 
+  function weapon(weaponName, inventoryName, damageDie, damageType, modifier) {
+    this.weaponName = weaponName;
+    this.inventoryName = inventoryName;
+    this.damageDie = damageDie;
+    this.damageType = damageType;
+    this.modifier = modifier;
+  }
+
+  let club = new weapon("Club", "Club", "1d4", "B", strengthModifier);
+  let dagger = new weapon(
+    "Dagger",
+    "Dagger",
+    "1d4",
+    "P",
+    biggerWeaponStatDecider(dexterityModifier, strengthModifier)
+  );
+  let greatclub = new weapon(
+    "Greatclub",
+    "Greatclub",
+    "1d8",
+    "B",
+    biggerWeaponStatDecider(dexterityModifier, strengthModifier)
+  );
+  let handaxe = new weapon("Handaxe", "Handaxe", "1d6", "S", strengthModifier);
+  let javelin = new weapon(
+    "Javelin",
+    "5 Javelins",
+    "1d6",
+    "P",
+    strengthModifier
+  );
+  let lighthammer = new weapon(
+    "L Hammer",
+    "Light Hammer",
+    "1d4",
+    "B",
+    strengthModifier
+  );
+  let mace = new weapon("Mace", "Mace", "1d6", "B", strengthModifier);
+  let quarterstaff = new weapon(
+    "Quarterstaff",
+    "Quarterstaff",
+    "1d6",
+    "B",
+    strengthModifier
+  );
+  let sickle = new weapon("Sickle", "Sickle", "1d4", "S", strengthModifier);
+  let spear = new weapon("Spear", "Spear", "1d6", "P", strengthModifier);
+  let lightcrossbow = new weapon(
+    "Light CB",
+    "Light crossbow w/ quiver of 20 bolts",
+    "1d8",
+    "P",
+    dexterityModifier
+  );
+  let dart = new weapon(
+    "Dart",
+    "Ten darts",
+    "1d4",
+    "P",
+    biggerWeaponStatDecider(dexterityModifier, strengthModifier)
+  );
+  let shortbow = new weapon(
+    "Shortbow",
+    "Shortbow w/ quiver of 20 arrows",
+    "1d6",
+    "P",
+    dexterityModifier
+  );
+  let sling = new weapon(
+    "Sling",
+    "Sling w/ bag of 20 rocks",
+    "1d4",
+    "B",
+    dexterityModifier
+  );
+
   simpleWeaponsArray = [
-    (club = {
-      weaponName: "Club",
-      inventoryName: "Club",
-      damageDie: "1d4",
-      damageType: "B",
-      modifier: strengthModifier,
-    }),
-    (dagger = {
-      weaponName: "Dagger",
-      inventoryName: "Dagger",
-      damageDie: "1d4",
-      damageType: "P",
-      modifier: biggerWeaponStatDecider(dexterityModifier, strengthModifier),
-    }),
-    (greatclub = {
-      weaponName: "Greatclub",
-      inventoryName: "Greatclub",
-      damageDie: "1d8",
-      damageType: "B",
-      modifier: biggerWeaponStatDecider(dexterityModifier, strengthModifier),
-    }),
-    (handaxe = {
-      weaponName: "Handaxe",
-      inventoryName: "Handaxe",
-      damageDie: "1d6",
-      damageType: "S",
-      modifier: strengthModifier,
-    }),
-    (javelin = {
-      weaponName: "Javelin",
-      inventoryName: "5 Javelins",
-      damageDie: "1d6",
-      damageType: "P",
-      modifier: strengthModifier,
-    }),
-    (lighthammer = {
-      weaponName: "L Hammer",
-      inventoryName: "Light Hammer",
-      damageDie: "1d4",
-      damageType: "B",
-      modifier: strengthModifier,
-    }),
-    (mace = {
-      weaponName: "Mace",
-      inventoryName: "Mace",
-      damageDie: "1d6",
-      damageType: "B",
-      modifier: strengthModifier,
-    }),
-    (quarterstaff = {
-      weaponName: "Quarterstaff",
-      inventoryName: "Quarterstaff",
-      damageDie: "1d6",
-      damageType: "B",
-      modifier: strengthModifier,
-    }),
-    (sickle = {
-      weaponName: "Sickle",
-      inventoryName: "Sickle",
-      damageDie: "1d4",
-      damageType: "S",
-      modifier: strengthModifier,
-    }),
-    (spear = {
-      weaponName: "Spear",
-      inventoryName: "Spear",
-      damageDie: "1d6",
-      damageType: "P",
-      modifier: strengthModifier,
-    }),
-    (lightcrossbow = {
-      weaponName: "Light CB",
-      inventoryName: "Light crossbow w/ quiver of 20 bolts",
-      damageDie: "1d8",
-      damageType: "P",
-      modifier: dexterityModifier,
-    }),
-    (dart = {
-      weaponName: "Dart",
-      inventoryName: "Ten darts",
-      damageDie: "1d4",
-      damageType: "P",
-      modifier: biggerWeaponStatDecider(dexterityModifier, strengthModifier),
-    }),
-    (shortbow = {
-      weaponName: "Shortbow",
-      inventoryName: "Shortbow w/ quiver of 20 arrows",
-      damageDie: "1d6",
-      damageType: "P",
-      modifier: dexterityModifier,
-    }),
-    (sling = {
-      weaponName: "Sling",
-      inventoryName: "Sling w/ bag of 20 rocks",
-      damageDie: "1d4",
-      damageType: "B",
-      modifier: dexterityModifier,
-    }),
+    club,
+    dagger,
+    greatclub,
+    handaxe,
+    javelin,
+    lighthammer,
+    mace,
+    quarterstaff,
+    sickle,
+    spear,
+    lightcrossbow,
+    dart,
+    shortbow,
+    sling,
   ];
 
+  let battleaxe = new weapon(
+    "Battleaxe",
+    "Battleaxe",
+    "1d8",
+    "S",
+    strengthModifier
+  );
+  let flail = new weapon("Flail", "Flail", "1d8", "B", strengthModifier);
+  let glaive = new weapon("Glaive", "Glaive", "1d10", "S", strengthModifier);
+  let greataxe = new weapon(
+    "Greataxe",
+    "Greataxe",
+    "1d12",
+    "S",
+    strengthModifier
+  );
+  let greatsword = new weapon(
+    "Greatsword",
+    "Greatsword",
+    "2d6",
+    "S",
+    strengthModifier
+  );
+  let halberd = new weapon("Halberd", "Halberd", "1d10", "P", strengthModifier);
+  let lance = new weapon("Lance", "Lance", "1d10", "P", strengthModifier);
+  let longsword = new weapon(
+    "Longsword",
+    "Longsword",
+    "1d8",
+    "S",
+    strengthModifier
+  );
+  let maul = new weapon("Maul", "Maul", "2d6", "B", strengthModifier);
+  let morningstar = new weapon(
+    "Morningstar",
+    "Morningstar",
+    "1d8",
+    "P",
+    strengthModifier
+  );
+  let pike = new weapon("Pike", "Pike", "1d10", "P", strengthModifier);
+  let rapier = new weapon(
+    "Rapier",
+    "Rapier",
+    "1d8",
+    "P",
+    biggerWeaponStatDecider(dexterityModifier, strengthModifier)
+  );
+  let scimitar = new weapon(
+    "Scimitar",
+    "Scimitar",
+    "1d6",
+    "S",
+    biggerWeaponStatDecider(dexterityModifier, strengthModifier)
+  );
+  let shortsword = new weapon(
+    "Shortsword",
+    "Shortsword",
+    "1d6",
+    "S",
+    biggerWeaponStatDecider(dexterityModifier, strengthModifier)
+  );
+  let trident = new weapon("Trident", "Trident", "1d6", "P", strengthModifier);
+  let warpick = new weapon(
+    "War Pick",
+    "War Pick",
+    "1d8",
+    "P",
+    strengthModifier
+  );
+  let warhammer = new weapon(
+    "Warhammer",
+    "Warhammer",
+    "1d8",
+    "B",
+    strengthModifier
+  );
+  let whip = new weapon(
+    "Whip",
+    "Whip",
+    "1d4",
+    "S",
+    biggerWeaponStatDecider(dexterityModifier, strengthModifier)
+  );
+  let blowgun = new weapon(
+    "Blowgun",
+    "Blowgun w/ 50 needles",
+    "1",
+    "P",
+    dexterityModifier
+  );
+  let handcrossbow = new weapon(
+    "Hand CB",
+    "Hand crossbow w/ quiver of 20 bolts",
+    "1d6",
+    "P",
+    dexterityModifier
+  );
+  let heavycrossbow = new weapon(
+    "Heavy CB",
+    "Heavy crossbow w/ quiver of 20 bolts",
+    "1d10",
+    "P",
+    dexterityModifier
+  );
+  let longbow = new weapon(
+    "Longbow",
+    "Longbow w/ quiver of 20 arrows",
+    "1d10",
+    "P",
+    dexterityModifier
+  );
+  let net = new weapon(
+    "Net",
+    "Net",
+    "",
+    "",
+    biggerWeaponStatDecider(dexterityModifier, strengthModifier)
+  );
+
   martialWeaponsArray = [
-    (battleaxe = {
-      weaponName: "Battleaxe",
-      inventoryName: "Battleaxe",
-      damageDie: "1d8",
-      damageType: "S",
-      modifier: strengthModifier,
-    }),
-    (flail = {
-      weaponName: "Flail",
-      inventoryName: "Flail",
-      damageDie: "1d8",
-      damageType: "B",
-      modifier: strengthModifier,
-    }),
-    (glaive = {
-      weaponName: "Glaive",
-      inventoryName: "Glaive",
-      damageDie: "1d10",
-      damageType: "S",
-      modifier: strengthModifier,
-    }),
-    (greataxe = {
-      weaponName: "Greataxe",
-      inventoryName: "Greataxe",
-      damageDie: "1d12",
-      damageType: "S",
-      modifier: strengthModifier,
-    }),
-    (greatsword = {
-      weaponName: "Greatsword",
-      inventoryName: "Greatsword",
-      damageDie: "2d6",
-      damageType: "S",
-      modifier: strengthModifier,
-    }),
-    (halberd = {
-      weaponName: "Halberd",
-      inventoryName: "Halberd",
-      damageDie: "1d10",
-      damageType: "P",
-      modifier: strengthModifier,
-    }),
-    (lance = {
-      weaponName: "Lance",
-      inventoryName: "Lance",
-      damageDie: "1d10",
-      damageType: "P",
-      modifier: strengthModifier,
-    }),
-    (longsword = {
-      weaponName: "Longsword",
-      inventoryName: "Longsword",
-      damageDie: "1d8",
-      damageType: "S",
-      modifier: strengthModifier,
-    }),
-    (maul = {
-      weaponName: "Maul",
-      inventoryName: "Maul",
-      damageDie: "2d6",
-      damageType: "B",
-      modifier: strengthModifier,
-    }),
-    (morningstar = {
-      weaponName: "Morningstar",
-      inventoryName: "Morningstar",
-      damageDie: "1d8",
-      damageType: "P",
-      modifier: strengthModifier,
-    }),
-    (pike = {
-      weaponName: "Pike",
-      inventoryName: "Pike",
-      damageDie: "1d10",
-      damageType: "P",
-      modifier: strengthModifier,
-    }),
-    (rapier = {
-      weaponName: "Rapier",
-      inventoryName: "Rapier",
-      damageDie: "1d8",
-      damageType: "P",
-      modifier: biggerWeaponStatDecider(dexterityModifier, strengthModifier),
-    }),
-    (scimitar = {
-      weaponName: "Scimitar",
-      inventoryName: "Scimitar",
-      damageDie: "1d6",
-      damageType: "S",
-      modifier: biggerWeaponStatDecider(dexterityModifier, strengthModifier),
-    }),
-    (shortsword = {
-      weaponName: "Shortsword",
-      inventoryName: "Shortsword",
-      damageDie: "1d6",
-      damageType: "S",
-      modifier: biggerWeaponStatDecider(dexterityModifier, strengthModifier),
-    }),
-    (trident = {
-      weaponName: "Trident",
-      inventoryName: "Trident",
-      damageDie: "1d6",
-      damageType: "P",
-      modifier: strengthModifier,
-    }),
-    (warpick = {
-      weaponName: "War Pick",
-      inventoryName: "War Pick",
-      damageDie: "1d8",
-      damageType: "P",
-      modifier: strengthModifier,
-    }),
-    (warhammer = {
-      weaponName: "Warhammer",
-      inventoryName: "Warhammer",
-      damageDie: "1d8",
-      damageType: "B",
-      modifier: strengthModifier,
-    }),
-    (whip = {
-      weaponName: "Whip",
-      inventoryName: "Whip",
-      damageDie: "1d4",
-      damageType: "S",
-      modifier: biggerWeaponStatDecider(dexterityModifier, strengthModifier),
-    }),
-    (blowgun = {
-      weaponName: "Blowgun",
-      inventoryName: "Blowgun w/ 50 needles",
-      damageDie: "1",
-      damageType: "P",
-      modifier: dexterityModifier,
-    }),
-    (handcrossbow = {
-      weaponName: "Hand CB",
-      inventoryName: "Hand crossbow w/ quiver of 20 bolts",
-      damageDie: "1d6",
-      damageType: "P",
-      modifier: dexterityModifier,
-    }),
-    (heavycrossbow = {
-      weaponName: "Heavy CB",
-      inventoryName: "Heavy crossbow w/ quiver of 20 bolts",
-      damageDie: "1d10",
-      damageType: "P",
-      modifier: dexterityModifier,
-    }),
-    (longbow = {
-      weaponName: "Longbow",
-      inventoryName: "Longbow w/ quiver of 20 arrows",
-      damageDie: "1d10",
-      damageType: "P",
-      modifier: dexterityModifier,
-    }),
-    (net = {
-      weaponName: "Net",
-      inventoryName: "Net",
-      damageDie: "",
-      damageType: "",
-      modifier: biggerWeaponStatDecider(dexterityModifier, strengthModifier),
-    }),
+    battleaxe,
+    flail,
+    glaive,
+    greataxe,
+    greatsword,
+    halberd,
+    lance,
+    longsword,
+    maul,
+    morningstar,
+    pike,
+    rapier,
+    scimitar,
+    shortsword,
+    trident,
+    warpick,
+    warhammer,
+    whip,
+    blowgun,
+    handcrossbow,
+    heavycrossbow,
+    longbow,
+    net,
   ];
 
   // Filling in all skills before proficiencies are put in
@@ -3632,7 +3613,6 @@ function generate_character() {
         );
       }
       if (random > 0.5) {
-        console.log("test");
         equipment.push("Chain mail");
       } else {
         if (
@@ -3641,7 +3621,6 @@ function generate_character() {
           document.getElementById(secondWeaponFirstSectionId).value === null ||
           document.getElementById(secondWeaponFirstSectionId).value === ""
         ) {
-          console.log("test2");
           equipment.push("Leather armor");
           equipment.push("Longbow w/ quiver of 20 arrows");
           document.getElementById(secondWeaponFirstSectionId).value = "Longbow"; // 2nd weapon 1st section
@@ -3653,7 +3632,6 @@ function generate_character() {
             "P"
           ); // 2nd weapon 3rd section
         } else {
-          console.log("test3");
           equipment.push("Leather armor");
           equipment.push("Longbow w/ quiver of 20 arrows");
           document.getElementById(thirdWeaponFirstSectionId).value = "Longbow";
@@ -7101,7 +7079,7 @@ generate_initial_character(standard_version);
 
 // Function to make a skill proficient and checked
 function addClick(j) {
-  i = j.toString();
+  let i = j.toString();
   document.getElementById("form" + i + "_1").checked = "checked";
   click_on(i - 1);
 }

@@ -114,7 +114,9 @@ function roll_version() {
 
   // Function to get the sum of the 4d6 drop lowest that was rolled by get_random_stat()
   function get_sum(stat) {
-    for (let i = 0, sum = 0; i < stat.length; sum += stat[i++]) {}
+    let sum = 0;
+    let i = 0;
+    for (i = 0; i < stat.length; sum += stat[i++]) {}
     return sum;
   }
 
