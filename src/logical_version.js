@@ -792,12 +792,12 @@ function generate_character() {
       }
     }
     arrayOfCheckedRaces = subrace_picker(arrayOfCheckedRaces);
-    
+
     // Length of how many are checked
     lengthOfCheckedRaceArray = arrayOfCheckedRaces.length;
     // Equation to randomize based on length
     RaceRandomizerNumber = Math.floor(Math.random() * lengthOfCheckedRaceArray);
-    
+
     // Find race value
     actualRace = arrayOfCheckedRaces[RaceRandomizerNumber];
     if (actualRace === "HalfElf") {
@@ -809,7 +809,7 @@ function generate_character() {
     }
 
     raceSplitter = race;
-  
+
     if (raceSplitter === "HalfElf" || raceSplitter === "HalfOrc" || raceSplitter === "(Drow)"){
 
     } else {
@@ -858,7 +858,7 @@ function generate_character() {
     lengthOfCheckedBackgroundArray = arrayOfCheckedBackgrounds.length;
     // Equation to randomize based on length
     BackgroundRandomizerNumber = Math.floor(Math.random() * lengthOfCheckedBackgroundArray);
-    
+
     // Find Background value
     actualBackground = arrayOfCheckedBackgrounds[BackgroundRandomizerNumber];
     newBackground1 = actualBackground;
@@ -892,7 +892,7 @@ function generate_character() {
       random_by_length(evilIdeals, ideals, "form100_1");
     }
   }
-  
+
   function alignment_dropdown_generator(){
     // Needs:
     // Function to determine which ones are checked and not
@@ -924,7 +924,7 @@ function generate_character() {
     morality = morality[1].toString();
     alignment_helper(balance, morality);
   }
-  
+
   // Function to get a random interger between a minimum value and a maximum value
   function get_random_int(min, max) {
     min = Math.ceil(min);
@@ -1753,7 +1753,7 @@ function generate_character() {
 
   // Variable that holds the value of just the class, not the level
   className = classAndLevel.split(" ")[0];
-  
+
 
   // Block that determines the right saving throws by class
   if (classAndLevel === "Barbarian 1" || classAndLevel === "Fighter 1" || classAndLevel === "Monk 1" || classAndLevel === "Ranger 1") {

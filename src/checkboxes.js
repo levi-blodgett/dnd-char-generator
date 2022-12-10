@@ -1,13 +1,30 @@
 // Global variables that can be used by ALL the functions on this page.
 let is64;
 let inputs;
-let states = ['On.png', 'Off.png', 'DownOn.png', 'DownOff.png', 'RollOn.png', 'RollOff.png'];
-let states64 = ['imageOn', 'imageOff', 'imageDownOn', 'imageDownOff', 'imageRollOn', 'imageRollOff'];
+let states = [
+  "On.png",
+  "Off.png",
+  "DownOn.png",
+  "DownOff.png",
+  "RollOn.png",
+  "RollOff.png",
+];
+let states64 = [
+  "imageOn",
+  "imageOff",
+  "imageDownOn",
+  "imageDownOff",
+  "imageRollOn",
+  "imageRollOff",
+];
 
 // Set the image, replacing the checkbox from standard HTML
 function setImage(input, state) {
-  if (inputs[input].getAttribute('images').charAt(state) === '1') {
-    document.getElementById(inputs[input].getAttribute('id')).src = getSrc(input, state);
+  if (inputs[input].getAttribute("images").charAt(state) === "1") {
+    document.getElementById(inputs[input].getAttribute("id")).src = getSrc(
+      input,
+      state
+    );
   }
 }
 
@@ -17,49 +34,50 @@ function getSrc(input, state) {
   if (is64) {
     src = inputs[input].getAttribute(states64[state]);
   } else {
-    src = inputs[input].getAttribute('imageName') + states[state];
+    src = inputs[input].getAttribute("imageName") + states[state];
   }
   return src;
 }
 
 // Main () to replace all checkmarks to the new image and what to replace them to when clicked
 function replaceChecks(isBase64) {
-
   is64 = isBase64; // Get all the input fields on the page
-  inputs = document.querySelectorAll('form input.i');
+  inputs = document.querySelectorAll("form input.i");
 
   // Cycle through the input fields
   for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].hasAttribute('images'))
-
-      // Check if the input is a checkbox
-      if (inputs[i].getAttribute('class') != 'idr-hidden' && inputs[i].getAttribute('data-imageAdded') !== 'true' && (
-          inputs[i].getAttribute('type') == 'checkbox' || inputs[i].getAttribute('type') == 'radio')) {
-
+    if (inputs[i].hasAttribute("images"))
+      if (
+        inputs[i].getAttribute("class") != "idr-hidden" &&
+        inputs[i].getAttribute("data-imageAdded") !== "true" &&
+        (inputs[i].getAttribute("type") == "checkbox" ||
+          inputs[i].getAttribute("type") == "radio")
+      ) {
+        // Check if the input is a checkbox
         // Create a new image
-        let img = document.createElement('img');
+        let img = document.createElement("img");
 
         // Check if the checkbox is checked
         if (inputs[i].checked) {
-          if (inputs[i].getAttribute('images').charAt(0) == '1')
+          if (inputs[i].getAttribute("images").charAt(0) == "1")
             img.src = getSrc(i, 0);
         } else {
-          if (inputs[i].getAttribute('images').charAt(1) == '1')
+          if (inputs[i].getAttribute("images").charAt(1) == "1")
             img.src = getSrc(i, 1);
         }
 
         // Set image ID
-        img.id = inputs[i].getAttribute('id');
+        img.id = inputs[i].getAttribute("id");
 
         // Set action associations
-        img.onclick = new Function('checkClick(' + i + ')');
+        img.onclick = new Function("checkClick(" + i + ")");
 
         // Place image in front of the checkbox
         inputs[i].parentNode.insertBefore(img, inputs[i]);
-        inputs[i].setAttribute('data-imageAdded', 'true');
+        inputs[i].setAttribute("data-imageAdded", "true");
 
         // Hide the checkbox
-        inputs[i].style.display = 'none';
+        inputs[i].style.display = "none";
       }
   }
 }
@@ -67,15 +85,18 @@ function replaceChecks(isBase64) {
 // Change the checkbox status and set the replacement image
 function checkClick(i) {
   if (inputs[i].checked) {
-    inputs[i].checked = '';
+    inputs[i].checked = "";
     setImage(i, 1);
   } else {
-    inputs[i].checked = 'checked';
+    inputs[i].checked = "checked";
     setImage(i, 0);
-    if (inputs[i].getAttribute('name') != null) {
+    if (inputs[i].getAttribute("name") != null) {
       for (let index = 0; index < inputs.length; index++) {
-        if (index != i && inputs[index].getAttribute('name') == inputs[i].getAttribute('name')) {
-          inputs[index].checked = '';
+        if (
+          index != i &&
+          inputs[index].getAttribute("name") == inputs[i].getAttribute("name")
+        ) {
+          inputs[index].checked = "";
           setImage(index, 1);
         }
       }
@@ -91,17 +112,26 @@ function clear_All() {
   // For all forms, check and see if they need to be cleared or not
   for (let i = 1; i < 250; i++) {
     let j = i.toString();
-    if (document.getElementById("form" + j + "_1") === null) {} else {
-      if (document.getElementById("form" + j + "_1").checked === true) {} else {
-        document.getElementById("form" + j + "_1").value = '';}
+    if (document.getElementById("form" + j + "_1") === null) {
+    } else {
+      if (document.getElementById("form" + j + "_1").checked === true) {
+      } else {
+        document.getElementById("form" + j + "_1").value = "";
+      }
     }
-    if (document.getElementById("form" + j + "_2") === null) {} else {
-      if (document.getElementById("form" + j + "_2").checked === true) {} else {
-        document.getElementById("form" + j + "_2").value = '';}
+    if (document.getElementById("form" + j + "_2") === null) {
+    } else {
+      if (document.getElementById("form" + j + "_2").checked === true) {
+      } else {
+        document.getElementById("form" + j + "_2").value = "";
+      }
     }
-    if (document.getElementById("form" + j + "_3") === null) {} else {
-      if (document.getElementById("form" + j + "_3").checked === true) {} else {
-        document.getElementById("form" + j + "_3").value = '';}
+    if (document.getElementById("form" + j + "_3") === null) {
+    } else {
+      if (document.getElementById("form" + j + "_3").checked === true) {
+      } else {
+        document.getElementById("form" + j + "_3").value = "";
+      }
     }
   }
   // For all checkboxes on the first page, clear them for the next character
@@ -128,6 +158,6 @@ function click_off(i) {
 
 // Function to check a checkbox
 function click_on(i) {
-  inputs[i].checked = 'checked';
+  inputs[i].checked = "checked";
   setImage(i, 0);
 }
