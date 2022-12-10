@@ -48,29 +48,29 @@ function generate_100000_characters_counter(classlevelvalue, alignmentvalue) {
   } else if (classlevelvalue === "Bard 1") {
     bard_counter++;
   }
-  if (alignmentvalue === "Lawful Good"){
+  if (alignmentvalue === "Lawful Good") {
     lawful_good_counter++;
-  } else if (alignmentvalue === "Neutral Good"){
+  } else if (alignmentvalue === "Neutral Good") {
     neutral_good_counter++;
-  } else if (alignmentvalue === "Chaotic Good"){
+  } else if (alignmentvalue === "Chaotic Good") {
     chaotic_good_counter++;
-  } else if (alignmentvalue === "Lawful Neutral"){
+  } else if (alignmentvalue === "Lawful Neutral") {
     lawful_neutral_counter++;
-  } else if (alignmentvalue === "True Neutral"){
+  } else if (alignmentvalue === "True Neutral") {
     true_neutral_counter++;
-  } else if (alignmentvalue === "Chaotic Neutral"){
+  } else if (alignmentvalue === "Chaotic Neutral") {
     chaotic_neutral_counter++;
-  } else if (alignmentvalue === "Lawful Evil"){
+  } else if (alignmentvalue === "Lawful Evil") {
     lawful_evil_counter++;
-  } else if (alignmentvalue === "Neutral Evil"){
+  } else if (alignmentvalue === "Neutral Evil") {
     neutral_evil_counter++;
-  } else if (alignmentvalue === "Chaotic Evil"){
+  } else if (alignmentvalue === "Chaotic Evil") {
     chaotic_evil_counter++;
   }
 }
 
 // Function to print for 100000_char_gen
-function generate_100000_characters_printer(){
+function generate_100000_characters_printer() {
   console.log("Version ran through 100000 iterations: " + version_for_checking);
   console.log("Barbarian count: " + barbarian_counter);
   console.log("Rogue count: " + rogue_counter);
@@ -98,17 +98,20 @@ function generate_100000_characters_printer(){
 
 // Function to generate 100000 characters to make sure there are no errors and classes are thoroughly tested
 function generate_100000_characters(version) {
-  console.time('generate_100000_characters');
+  console.time("generate_100000_characters");
   for (j = 0; j < 100000; j++) {
     clear_All();
     version();
     generate_character(version);
-    generate_100000_characters_counter(document.getElementById('form94_1').value, document.getElementById('form92_1').value);
+    generate_100000_characters_counter(
+      document.getElementById("form94_1").value,
+      document.getElementById("form92_1").value
+    );
   }
   generate_100000_characters_printer();
-  console.timeEnd('generate_100000_characters');
+  console.timeEnd("generate_100000_characters");
 }
 
-const testing = document.getElementById('testing');
+const testing = document.getElementById("testing");
 
 testing.innerHTML = `<button class="top_buttons" onclick="generate_100000_characters(roll_version)" id="top_buttoneroni">100000 CHARACTERS</button>`;
