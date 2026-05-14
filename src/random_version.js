@@ -2,6 +2,8 @@
 // 1. Fix Cleric (flow of domains and equipment) and Rogue (expertise function) logic (~2227)
 // 2. Test thoroughly
 
+import { clear_All, click_on, click_off, add_click } from "./checkboxes.js";
+
 // Initialize stats and stats array
 let stats = [];
 let strength = 0;
@@ -223,22 +225,8 @@ let wizardSpells = [
   "Thunderwave",
   "Unseen Servant",
 ];
-let spellForms = [
-  "form193_3",
-  "form159_3",
-  "form137_3",
-  "form136_3",
-  "form135_3",
-  "form133_3",
-];
-let cantripForms = [
-  "form213_3",
-  "form204_3",
-  "form203_3",
-  "form202_3",
-  "form201_3",
-  "form200_3",
-];
+let spellForms = ["form193_3", "form159_3", "form137_3", "form136_3", "form135_3", "form133_3"];
+let cantripForms = ["form213_3", "form204_3", "form203_3", "form202_3", "form201_3", "form200_3"];
 let bardCantripCount = 2;
 let clericCantripCount = 3;
 let druidCantripCount = 2;
@@ -305,11 +293,21 @@ let lengthOfCheckedAlignmentArray = 0;
 
 // To determine which version is being used this variable will be assigned a value at the end of each version's ()
 let versionForChecking = 0;
+let size;
+let hitDiceModifier;
+let randomStandardLanguageNumber;
+let randomExoticLanguageNumber;
+// Weapon object variables — assigned when building simpleWeaponsArray / martialWeaponsArray
+let club, dagger, greatclub, handaxe, javelin, lighthammer, mace, quarterstaff, sickle, spear;
+let lightcrossbow, dart, shortbow, sling;
+let battleaxe, flail, glaive, greataxe, greatsword, halberd, lance, longsword, maul, morningstar;
+let pike, rapier, scimitar, shortsword, trident, warpick, warhammer, whip;
+let blowgun, handcrossbow, heavycrossbow, longbow, net;
 
 // Function that shows/hides whichever section isn't active (either the character page or the information page)
 function show_or_hide_pages() {
-  lastPage = document.getElementById("lastPage");
-  dndPage = document.getElementById("dnd");
+  let lastPage = document.getElementById("lastPage");
+  let dndPage = document.getElementById("dnd");
   if (lastPage.style.display === "none") {
     lastPage.style.display = "block";
     dndPage.style.display = "none";
@@ -320,9 +318,7 @@ function show_or_hide_pages() {
     lastPage.style.display = "block";
     dndPage.style.display = "none";
   }
-  if (
-    document.getElementById("top_button").innerHTML === "Show Information Page"
-  ) {
+  if (document.getElementById("top_button").innerHTML === "Show Information Page") {
     document.getElementById("top_button").innerHTML = "Show Character Page";
   } else {
     document.getElementById("top_button").innerHTML = "Show Information Page";
@@ -330,27 +326,25 @@ function show_or_hide_pages() {
 }
 
 function show_func() {
-  lastPage = document.getElementById("lastPage");
-  dndPage = document.getElementById("dnd");
+  let lastPage = document.getElementById("lastPage");
+  let dndPage = document.getElementById("dnd");
   if (lastPage.style.display === "block" || null) {
     lastPage.style.display = "none";
     dndPage.style.display = "block";
   }
-  if (
-    document.getElementById("top_button").innerHTML === "Show Character Page"
-  ) {
+  if (document.getElementById("top_button").innerHTML === "Show Character Page") {
     document.getElementById("top_button").innerHTML = "Show Information Page";
   }
 }
 
-function standard_version() {
+export function standard_version() {
   // STANDARD ARRAY STAT BLOCK
 
   // Standard array used for stats
-  standard_array = [15, 14, 13, 12, 10, 8];
+  const standard_array = [15, 14, 13, 12, 10, 8];
 
   // Assign the standard array to a different variable
-  final_stat_array1 = standard_array;
+  const final_stat_array1 = standard_array;
 
   // Assign the shuffled array into individual variables
   stat1 = final_stat_array1[0];
@@ -372,7 +366,7 @@ function standard_version() {
   return stats;
 }
 
-function roll_version() {
+export function roll_version() {
   // ROLL STATS STAT BLOCK
 
   // Function to remove the smallest number from an array, this is used in get_random_stat() to drop 4d6 to 3d6
@@ -384,7 +378,7 @@ function roll_version() {
   // Get a random stat for an ability score
   function get_random_stat() {
     randomStatArray = [];
-    for (i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
       randomStatArray.push(getRandomNumber(6));
     }
     remove_smallest_number(randomStatArray);
@@ -393,28 +387,29 @@ function roll_version() {
 
   // Function to get the sum of the 4d6 drop lowest that was rolled by get_random_stat()
   function get_sum(stat) {
-    for (i = 0, sum = 0; i < stat.length; sum += stat[i++]) {}
-    return sum;
+    let total = 0;
+    for (let i = 0; i < stat.length; i++) total += stat[i];
+    return total;
   }
 
   // Block of arrays that are assigned a random stat each
-  firstStat = get_random_stat();
-  secondStat = get_random_stat();
-  thirdStat = get_random_stat();
-  fourthStat = get_random_stat();
-  fifthStat = get_random_stat();
-  sixthStat = get_random_stat();
+  const firstStat = get_random_stat();
+  const secondStat = get_random_stat();
+  const thirdStat = get_random_stat();
+  const fourthStat = get_random_stat();
+  const fifthStat = get_random_stat();
+  const sixthStat = get_random_stat();
 
   // Block of variables that had arrays that were summed up to equal a single number
-  temporaryStatHolder1 = get_sum(firstStat);
-  temporaryStatHolder2 = get_sum(secondStat);
-  temporaryStatHolder3 = get_sum(thirdStat);
-  temporaryStatHolder4 = get_sum(fourthStat);
-  temporaryStatHolder5 = get_sum(fifthStat);
-  temporaryStatHolder6 = get_sum(sixthStat);
+  const temporaryStatHolder1 = get_sum(firstStat);
+  const temporaryStatHolder2 = get_sum(secondStat);
+  const temporaryStatHolder3 = get_sum(thirdStat);
+  const temporaryStatHolder4 = get_sum(fourthStat);
+  const temporaryStatHolder5 = get_sum(fifthStat);
+  const temporaryStatHolder6 = get_sum(sixthStat);
 
   // Assign individual stats to an array named stats
-  statspt1 = [
+  const statspt1 = [
     temporaryStatHolder1,
     temporaryStatHolder2,
     temporaryStatHolder3,
@@ -432,11 +427,11 @@ function roll_version() {
   return stats;
 }
 
-function pointbuy_version() {
+export function pointbuy_version() {
   // POINT BUY STAT BLOCK
 
   // Array of all possible combinations of the point buy system
-  array_of_stat_combos = [
+  const array_of_stat_combos = [
     [15, 15, 15, 8, 8, 8],
     [15, 15, 14, 10, 8, 8],
     [15, 15, 14, 9, 9, 8],
@@ -506,13 +501,13 @@ function pointbuy_version() {
 
   // Function to shuffle all the numbers in a random point buy combination into random order and return it
   function random_array() {
-    number = Math.floor(Math.random() * 65);
-    array = array_of_stat_combos[number];
+    const number = Math.floor(Math.random() * 65);
+    const array = array_of_stat_combos[number];
     return array;
   }
 
   // Final array of the random point buy combination
-  final_stat_array2 = random_array();
+  const final_stat_array2 = random_array();
 
   // Block of variables that are assigned a random stat each
   stat1 = final_stat_array2[0];
@@ -535,7 +530,7 @@ function pointbuy_version() {
 }
 
 // Function used to generate a new character
-function generate_character() {
+export function generate_character() {
   // Name generator object that contains all names
   nameGenerator = {
     _races: {
@@ -1128,7 +1123,7 @@ function generate_character() {
   let proficienciesAndLanguages = [];
   let simpleWeaponsArray = [];
   let martialWeaponsArray = [];
-  let armor = {};
+  let armor;
   let profsAndLangs = {
     languages: [],
     armorProficiencies: [],
@@ -1374,8 +1369,7 @@ function generate_character() {
     intelligence += statsValuesArray[3];
     wisdom += statsValuesArray[4];
     charisma += statsValuesArray[5];
-    statTotal =
-      strength + dexterity + intelligence + constitution + wisdom + charisma;
+    statTotal = strength + dexterity + intelligence + constitution + wisdom + charisma;
     ///
     // Change the value of the temp hit points section to tell the user what the total stats are, and each individual stat in order.
     document.getElementById("form98_1").value =
@@ -1410,9 +1404,7 @@ function generate_character() {
     // Length of how many are checked
     lengthOfCheckedClassArray = arrayOfCheckedClass.length;
     // Equation to randomize based on length
-    ClassRandomizerNumber = Math.floor(
-      Math.random() * lengthOfCheckedClassArray
-    );
+    ClassRandomizerNumber = Math.floor(Math.random() * lengthOfCheckedClassArray);
     // Find Class value
     actualClass = arrayOfCheckedClass[ClassRandomizerNumber];
     return actualClass;
@@ -1501,12 +1493,8 @@ function generate_character() {
   function race_generator(raceName) {
     raceNameLower = raceName.toLowerCase();
     raceNameLowerString = "_" + raceNameLower.toString();
-    finalFirstName =
-      nameGenerator["_races"][raceNameLowerString]["firstName"][
-        firstNameNumber
-      ];
-    finalLastName =
-      nameGenerator["_races"][raceNameLowerString]["lastName"][lastNameNumber];
+    finalFirstName = nameGenerator["_races"][raceNameLowerString]["firstName"][firstNameNumber];
+    finalLastName = nameGenerator["_races"][raceNameLowerString]["lastName"][lastNameNumber];
     if (raceName === "HalfElf") {
       race = "Half-Elf";
     } else if (raceName === "HalfOrc") {
@@ -1518,8 +1506,7 @@ function generate_character() {
 
   function sub_subrace_picker(race, arrayYouWantToAddTo) {
     randomValue = Math.floor(Math.random() * race.length);
-    if (race.length === 0) {
-    } else {
+    if (race.length > 0) {
       arrayYouWantToAddTo.push(race[randomValue]);
     }
   }
@@ -1542,10 +1529,7 @@ function generate_character() {
         dragonborn.push(subraceSplitter);
       } else if (subraceSplitter3 === "Dwarf") {
         dwarves.push(subraceSplitter);
-      } else if (
-        subraceSplitter3 === "Elf" ||
-        subraceSplitter === "Dark Elf (Drow)"
-      ) {
+      } else if (subraceSplitter3 === "Elf" || subraceSplitter === "Dark Elf (Drow)") {
         elves.push(subraceSplitter);
       } else if (subraceSplitter3 === "Gnome") {
         gnomes.push(subraceSplitter);
@@ -1596,12 +1580,7 @@ function generate_character() {
 
     raceSplitter = race;
 
-    if (
-      raceSplitter === "HalfElf" ||
-      raceSplitter === "HalfOrc" ||
-      raceSplitter === "(Drow)"
-    ) {
-    } else {
+    if (raceSplitter !== "HalfElf" && raceSplitter !== "HalfOrc" && raceSplitter !== "(Drow)") {
       raceSplitter1 = raceSplitter.split(" ", 1).toString();
       raceSplitter2 = raceSplitter.split(" ", 2);
       raceSplitter3 = raceSplitter2[1];
@@ -1610,47 +1589,23 @@ function generate_character() {
     if (raceSplitter3 === undefined) {
       raceNameLower = actualRace.toLowerCase();
       raceNameLowerString = "_" + raceNameLower.toString();
-      finalFirstName =
-        nameGenerator["_races"][raceNameLowerString]["firstName"][
-          firstNameNumber
-        ];
-      finalLastName =
-        nameGenerator["_races"][raceNameLowerString]["lastName"][
-          lastNameNumber
-        ];
+      finalFirstName = nameGenerator["_races"][raceNameLowerString]["firstName"][firstNameNumber];
+      finalLastName = nameGenerator["_races"][raceNameLowerString]["lastName"][lastNameNumber];
     } else if (raceSplitter1 === "Human") {
       raceNameLower = raceSplitter1.toLowerCase();
       raceNameLowerString = "_" + raceNameLower.toString();
-      finalFirstName =
-        nameGenerator["_races"][raceNameLowerString]["firstName"][
-          firstNameNumber
-        ];
-      finalLastName =
-        nameGenerator["_races"][raceNameLowerString]["lastName"][
-          lastNameNumber
-        ];
+      finalFirstName = nameGenerator["_races"][raceNameLowerString]["firstName"][firstNameNumber];
+      finalLastName = nameGenerator["_races"][raceNameLowerString]["lastName"][lastNameNumber];
     } else if (raceSplitter3 === "(Drow)") {
       raceNameLower = "Elf";
       raceNameLowerString = "_" + raceNameLower.toString();
-      finalFirstName =
-        nameGenerator["_races"][raceNameLowerString]["firstName"][
-          firstNameNumber
-        ];
-      finalLastName =
-        nameGenerator["_races"][raceNameLowerString]["lastName"][
-          lastNameNumber
-        ];
+      finalFirstName = nameGenerator["_races"][raceNameLowerString]["firstName"][firstNameNumber];
+      finalLastName = nameGenerator["_races"][raceNameLowerString]["lastName"][lastNameNumber];
     } else {
       raceNameLower = raceSplitter3.toLowerCase();
       raceNameLowerString = "_" + raceNameLower.toString();
-      finalFirstName =
-        nameGenerator["_races"][raceNameLowerString]["firstName"][
-          firstNameNumber
-        ];
-      finalLastName =
-        nameGenerator["_races"][raceNameLowerString]["lastName"][
-          lastNameNumber
-        ];
+      finalFirstName = nameGenerator["_races"][raceNameLowerString]["firstName"][firstNameNumber];
+      finalLastName = nameGenerator["_races"][raceNameLowerString]["lastName"][lastNameNumber];
     }
   }
 
@@ -1669,9 +1624,7 @@ function generate_character() {
     // Length of how many are checked
     lengthOfCheckedBackgroundArray = arrayOfCheckedBackgrounds.length;
     // Equation to randomize based on length
-    BackgroundRandomizerNumber = Math.floor(
-      Math.random() * lengthOfCheckedBackgroundArray
-    );
+    BackgroundRandomizerNumber = Math.floor(Math.random() * lengthOfCheckedBackgroundArray);
 
     // Find Background value
     actualBackground = arrayOfCheckedBackgrounds[BackgroundRandomizerNumber];
@@ -1710,17 +1663,14 @@ function generate_character() {
     // Length of how many are checked
     lengthOfCheckedAlignmentArray = arrayOfCheckedAlignment.length;
     // Equation to randomize based on length
-    AlignmentRandomizerNumber = Math.floor(
-      Math.random() * lengthOfCheckedAlignmentArray
-    );
+    AlignmentRandomizerNumber = Math.floor(Math.random() * lengthOfCheckedAlignmentArray);
     // Find Alignment value
     actualAlignment = arrayOfCheckedAlignment[AlignmentRandomizerNumber];
     return actualAlignment;
   }
 
   // Generates alignment based on the users input
-  if (document.getElementById("alignment_random").checked) {
-  } else {
+  if (!document.getElementById("alignment_random").checked) {
     balanceAndMorality = alignment_dropdown_generator();
     balance = balanceAndMorality.split(" ", 1).toString();
     morality = balanceAndMorality.split(" ", 2);
@@ -1762,8 +1712,7 @@ function generate_character() {
     } else if (stat === 0) {
       document.getElementById(id).value = dieType + " " + damagetype;
     } else if (stat > 0) {
-      document.getElementById(id).value =
-        dieType + "+" + stat + " " + damagetype;
+      document.getElementById(id).value = dieType + "+" + stat + " " + damagetype;
     }
   }
 
@@ -1777,15 +1726,7 @@ function generate_character() {
   }
 
   // Array of standard languages
-  listOfStandardLanguages = [
-    "Dwarvish",
-    "Elvish",
-    "Giant",
-    "Gnomish",
-    "Goblin",
-    "Halfling",
-    "Orc",
-  ];
+  listOfStandardLanguages = ["Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc"];
 
   // Array of exotic languages
   listOfExoticLanguages = [
@@ -1804,9 +1745,7 @@ function generate_character() {
     random = Math.random();
     randomStandardLanguageNumber = Math.floor(Math.random() * 7);
     randomExoticLanguageNumber = Math.floor(Math.random() * 8);
-    while (
-      listOfStandardLanguages[randomStandardLanguageNumber] === racialLanguage2
-    ) {
+    while (listOfStandardLanguages[randomStandardLanguageNumber] === racialLanguage2) {
       randomStandardLanguageNumber = Math.floor(Math.random() * 7);
     }
     if (random >= 0.1) {
@@ -2027,12 +1966,7 @@ function generate_character() {
     equipment.push(weaponObject.inventoryName);
     document.getElementById(form1).value = weaponObject.weaponName;
     statChecker(dexterityModifier + 2, form2);
-    statChecker3(
-      weaponObject.modifier,
-      form3,
-      weaponObject.damageDie,
-      weaponObject.damageType
-    );
+    statChecker3(weaponObject.modifier, form3, weaponObject.damageDie, weaponObject.damageType);
   }
 
   // Function to add weapons to proficiencies section
@@ -2218,9 +2152,7 @@ function generate_character() {
     additionalFeatures.push(
       "Lucky: When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll."
     );
-    features.push(
-      "Brave: You have advantage on saving throws against being frightened."
-    );
+    features.push("Brave: You have advantage on saving throws against being frightened.");
     if (raceChecker === 0) {
       ancestry = getRandomNumber(2);
       if (ancestry === 1) {
@@ -2305,10 +2237,7 @@ function generate_character() {
       randomByLength(flaws, arrayOfFlaws, "form99_1");
       if (Math.random() >= 0.666666666) {
         alignment.push("Lawful");
-      } else if (
-        0.666666666 >= Math.random() &&
-        Math.random() >= 0.3333333333
-      ) {
+      } else if (0.666666666 >= Math.random() && Math.random() >= 0.3333333333) {
         alignment.push("Chaotic");
       } else {
         alignment.push("Neutral");
@@ -2322,10 +2251,7 @@ function generate_character() {
       randomByLength(ideals, arrayOfIdeals, "form100_1");
       if (Math.random() >= 0.666666666) {
         alignment.push("Good");
-      } else if (
-        0.666666666 >= Math.random() &&
-        Math.random() >= 0.3333333333
-      ) {
+      } else if (0.666666666 >= Math.random() && Math.random() >= 0.3333333333) {
         alignment.push("Evil");
       } else {
         alignment.push("Neutral");
@@ -2335,113 +2261,59 @@ function generate_character() {
 
   function skill_adder() {
     random = Math.floor(Math.random() * 17);
-    if (
-      random === 0 &&
-      document.getElementById("form19_1").checked === undefined
-    ) {
-      addClick(19);
+    if (random === 0 && document.getElementById("form19_1").checked === undefined) {
+      add_click(19);
       statChecker(dexterityModifier + 2, "form38_1"); // acrobatics
-    } else if (
-      random === 1 &&
-      document.getElementById("form8_1").checked === undefined
-    ) {
-      addClick(8);
+    } else if (random === 1 && document.getElementById("form8_1").checked === undefined) {
+      add_click(8);
       statChecker(wisdomModifier + 2, "form50_1"); // animal handling
-    } else if (
-      random === 2 &&
-      document.getElementById("form21_1").checked === undefined
-    ) {
-      addClick(21);
+    } else if (random === 2 && document.getElementById("form21_1").checked === undefined) {
+      add_click(21);
       statChecker(intelligenceModifier + 2, "form40_1"); // arcana
-    } else if (
-      random === 3 &&
-      document.getElementById("form2_1").checked === undefined
-    ) {
-      addClick(2);
+    } else if (random === 3 && document.getElementById("form2_1").checked === undefined) {
+      add_click(2);
       statChecker(strengthModifier + 2, "form49_1"); // athletics
-    } else if (
-      random === 4 &&
-      document.getElementById("form17_1").checked === undefined
-    ) {
-      addClick(17);
+    } else if (random === 4 && document.getElementById("form17_1").checked === undefined) {
+      add_click(17);
       statChecker(charismaModifier + 2, "form36_1"); // deception
-    } else if (
-      random === 5 &&
-      document.getElementById("form9_1").checked === undefined
-    ) {
-      addClick(9);
+    } else if (random === 5 && document.getElementById("form9_1").checked === undefined) {
+      add_click(9);
       statChecker(intelligenceModifier + 2, "form48_1"); // history
-    } else if (
-      random === 6 &&
-      document.getElementById("form13_1").checked === undefined
-    ) {
-      addClick(13);
+    } else if (random === 6 && document.getElementById("form13_1").checked === undefined) {
+      add_click(13);
       statChecker(wisdomModifier + 2, "form35_1"); // insight
-    } else if (
-      random === 7 &&
-      document.getElementById("form24_1").checked === undefined
-    ) {
-      addClick(24);
+    } else if (random === 7 && document.getElementById("form24_1").checked === undefined) {
+      add_click(24);
       statChecker(charismaModifier + 2, "form44_1"); // intimidation
-    } else if (
-      random === 8 &&
-      document.getElementById("form14_1").checked === undefined
-    ) {
-      addClick(14);
+    } else if (random === 8 && document.getElementById("form14_1").checked === undefined) {
+      add_click(14);
       statChecker(intelligenceModifier + 2, "form31_1"); // investigation
-    } else if (
-      random === 9 &&
-      document.getElementById("form5_1").checked === undefined
-    ) {
-      addClick(5);
+    } else if (random === 9 && document.getElementById("form5_1").checked === undefined) {
+      add_click(5);
       statChecker(wisdomModifier + 2, "form53_1"); // medicine
-    } else if (
-      random === 10 &&
-      document.getElementById("form11_1").checked === undefined
-    ) {
-      addClick(11);
+    } else if (random === 10 && document.getElementById("form11_1").checked === undefined) {
+      add_click(11);
       statChecker(intelligenceModifier + 2, "form37_1"); // nature
-    } else if (
-      random === 11 &&
-      document.getElementById("form16_1").checked === undefined
-    ) {
-      addClick(16);
+    } else if (random === 11 && document.getElementById("form16_1").checked === undefined) {
+      add_click(16);
       statChecker(charismaModifier + 2, "form34_1"); // performance
-    } else if (
-      random === 12 &&
-      document.getElementById("form1_1").checked === undefined
-    ) {
-      addClick(1);
+    } else if (random === 12 && document.getElementById("form1_1").checked === undefined) {
+      add_click(1);
       statChecker(charismaModifier + 2, "form45_1"); // persuasion
-    } else if (
-      random === 13 &&
-      document.getElementById("form20_1").checked === undefined
-    ) {
-      addClick(20);
+    } else if (random === 13 && document.getElementById("form20_1").checked === undefined) {
+      add_click(20);
       statChecker(intelligenceModifier + 2, "form33_1"); // religion
-    } else if (
-      random === 14 &&
-      document.getElementById("form4_1").checked === undefined
-    ) {
-      addClick(4);
+    } else if (random === 14 && document.getElementById("form4_1").checked === undefined) {
+      add_click(4);
       statChecker(dexterityModifier + 2, "form46_1"); // sleight of hand
-    } else if (
-      random === 15 &&
-      document.getElementById("form23_1").checked === undefined
-    ) {
-      addClick(23);
+    } else if (random === 15 && document.getElementById("form23_1").checked === undefined) {
+      add_click(23);
       statChecker(dexterityModifier + 2, "form32_1"); // stealth
-    } else if (
-      random === 16 &&
-      document.getElementById("form12_1").checked === undefined
-    ) {
-      addClick(12);
+    } else if (random === 16 && document.getElementById("form12_1").checked === undefined) {
+      add_click(12);
       statChecker(wisdomModifier + 2, "form47_1"); // survival
-    } else if (
-      random === 17 &&
-      document.getElementById("form7_1").checked === undefined
-    ) {
-      addClick(7);
+    } else if (random === 17 && document.getElementById("form7_1").checked === undefined) {
+      add_click(7);
       statChecker(wisdomModifier + 2, "form43_1"); // perception
     } else {
       skill_adder();
@@ -2942,7 +2814,7 @@ function generate_character() {
     classAndLevel === "Ranger 1"
   ) {
     statChecker(strengthModifier + 2, "form42_1");
-    addClick(15);
+    add_click(15);
   } else {
     statChecker(strengthModifier, "form42_1");
   }
@@ -2953,7 +2825,7 @@ function generate_character() {
     classAndLevel === "Monk 1"
   ) {
     statChecker(dexterityModifier + 2, "form54_1");
-    addClick(18);
+    add_click(18);
   } else {
     statChecker(dexterityModifier, "form54_1");
   }
@@ -2963,17 +2835,13 @@ function generate_character() {
     classAndLevel === "Sorcerer 1"
   ) {
     statChecker(constitutionModifier + 2, "form41_1");
-    addClick(22);
+    add_click(22);
   } else {
     statChecker(constitutionModifier, "form41_1");
   }
-  if (
-    classAndLevel === "Druid 1" ||
-    classAndLevel === "Rogue 1" ||
-    classAndLevel === "Wizard 1"
-  ) {
+  if (classAndLevel === "Druid 1" || classAndLevel === "Rogue 1" || classAndLevel === "Wizard 1") {
     statChecker(intelligenceModifier + 2, "form52_1");
-    addClick(6);
+    add_click(6);
   } else {
     statChecker(intelligenceModifier, "form52_1");
   }
@@ -2985,7 +2853,7 @@ function generate_character() {
     classAndLevel === "Warlock 1"
   ) {
     statChecker(wisdomModifier + 2, "form39_1");
-    addClick(10);
+    add_click(10);
   } else {
     statChecker(wisdomModifier, "form39_1");
   }
@@ -2997,7 +2865,7 @@ function generate_character() {
     classAndLevel === "Warlock 1"
   ) {
     statChecker(charismaModifier + 2, "form51_1");
-    addClick(3);
+    add_click(3);
   } else {
     statChecker(charismaModifier, "form51_1");
   }
@@ -3029,18 +2897,14 @@ function generate_character() {
   }
 
   // Block that adds proficiency in perception if you are an Elf
-  if (
-    race === "High Elf" ||
-    race === "Dark Elf (Drow)" ||
-    race === "Wood Elf"
-  ) {
-    addClick(7);
+  if (race === "High Elf" || race === "Dark Elf (Drow)" || race === "Wood Elf") {
+    add_click(7);
     statChecker(wisdomModifier + 2, "form43_1");
   }
 
   // Block that adds proficiency in intimidation if you are a Half-Orc
   if (race === "Half-Orc") {
-    addClick(24);
+    add_click(24);
     statChecker(charismaModifier + 2, "form44_1");
   }
 
@@ -3229,8 +3093,7 @@ function generate_character() {
           statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d6", "B"); // 1st weapon 3rd section
         } else {
           equipment.push("Warhammer");
-          document.getElementById(firstWeaponFirstSectionId).value =
-            "Warhammer"; // 1st weapon 1st section
+          document.getElementById(firstWeaponFirstSectionId).value = "Warhammer"; // 1st weapon 1st section
           statChecker(strengthModifier + 2, firstWeaponSecondSectionId); // 1st weapon 2nd section
           statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d8", "B"); // 1st weapon 3rd section
         }
@@ -3260,26 +3123,17 @@ function generate_character() {
         document.getElementById(firstWeaponFirstSectionId).value = "Mace"; // 1st weapon 1st section
         statChecker(strengthModifier + 2, firstWeaponSecondSectionId); // 1st weapon 2nd section
         statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d6", "B"); // 1st weapon 3rd section
-        if (
-          random4 > 0.75 &&
-          document.getElementById("form8_1").checked === undefined
-        ) {
-          addClick(8);
+        if (random4 > 0.75 && document.getElementById("form8_1").checked === undefined) {
+          add_click(8);
           statChecker(wisdomModifier + 2, "form50_1"); // animal handling
-        } else if (
-          random4 > 0.5 &&
-          document.getElementById("form11_1").checked === undefined
-        ) {
-          addClick(11);
+        } else if (random4 > 0.5 && document.getElementById("form11_1").checked === undefined) {
+          add_click(11);
           statChecker(intelligenceModifier + 2, "form37_1"); // nature
-        } else if (
-          random4 > 0.25 &&
-          document.getElementById("form12_1").checked === undefined
-        ) {
-          addClick(12);
+        } else if (random4 > 0.25 && document.getElementById("form12_1").checked === undefined) {
+          add_click(12);
           statChecker(wisdomModifier + 2, "form47_1"); // survival
         } else {
-          addClick(11);
+          add_click(11);
           statChecker(intelligenceModifier + 2, "form37_1"); // nature
         }
         if (random5 > 0.666) {
@@ -3314,8 +3168,7 @@ function generate_character() {
           statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d6", "B"); // 1st weapon 3rd section
         } else {
           equipment.push("Warhammer");
-          document.getElementById(firstWeaponFirstSectionId).value =
-            "Warhammer"; // 1st weapon 1st section
+          document.getElementById(firstWeaponFirstSectionId).value = "Warhammer"; // 1st weapon 1st section
           statChecker(strengthModifier + 2, firstWeaponSecondSectionId); // 1st weapon 2nd section
           statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d8", "B"); // 1st weapon 3rd section
         }
@@ -3348,8 +3201,7 @@ function generate_character() {
           statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d6", "B"); // 1st weapon 3rd section
         } else {
           equipment.push("Warhammer");
-          document.getElementById(firstWeaponFirstSectionId).value =
-            "Warhammer"; // 1st weapon 1st section
+          document.getElementById(firstWeaponFirstSectionId).value = "Warhammer"; // 1st weapon 1st section
           statChecker(strengthModifier + 2, firstWeaponSecondSectionId); // 1st weapon 2nd section
           statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d8", "B"); // 1st weapon 3rd section
         }
@@ -3381,36 +3233,24 @@ function generate_character() {
         statChecker(strengthModifier + 2, firstWeaponSecondSectionId); // 1st weapon 2nd section
         statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d6", "B"); // 1st weapon 3rd section
         for (i = 0; i < 2; i++) {
-          if (
-            random5 > 0.5 &&
-            document.getElementById("form20_1").checked === undefined
-          ) {
-            addClick(20);
+          if (random5 > 0.5 && document.getElementById("form20_1").checked === undefined) {
+            add_click(20);
             statChecker(intelligenceModifier + 4, "form33_1"); // religion
             features.push("Knowledge Double Proficiency: Religion.");
-          } else if (
-            random5 < 0.5 &&
-            document.getElementById("form9_1").checked === undefined
-          ) {
-            addClick(9);
+          } else if (random5 < 0.5 && document.getElementById("form9_1").checked === undefined) {
+            add_click(9);
             statChecker(intelligenceModifier + 4, "form48_1"); // history
             features.push("Knowledge Double Proficiency: History.");
-          } else if (
-            random4 > 0.5 &&
-            document.getElementById("form21_1").checked === undefined
-          ) {
-            addClick(21);
+          } else if (random4 > 0.5 && document.getElementById("form21_1").checked === undefined) {
+            add_click(21);
             statChecker(intelligenceModifier + 4, "form40_1"); // arcana
             features.push("Knowledge Double Proficiency: Arcana.");
-          } else if (
-            random4 < 0.5 &&
-            document.getElementById("form11_1").checked === undefined
-          ) {
-            addClick(11);
+          } else if (random4 < 0.5 && document.getElementById("form11_1").checked === undefined) {
+            add_click(11);
             statChecker(intelligenceModifier + 4, "form37_1"); // nature
             features.push("Knowledge Double Proficiency: Nature.");
           } else {
-            addClick(11);
+            add_click(11);
             statChecker(intelligenceModifier + 4, "form37_1"); // nature
             features.push("Knowledge Double Proficiency: Nature.");
           }
@@ -3451,7 +3291,7 @@ function generate_character() {
         document.getElementById(firstWeaponFirstSectionId).value = "Mace"; // 1st weapon 1st section
         statChecker(strengthModifier + 2, firstWeaponSecondSectionId); // 1st weapon 2nd section
         statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d6", "B"); // 1st weapon 3rd section
-        addClick(21);
+        add_click(21);
         statChecker(intelligenceModifier + 4, "form40_1"); // arcana
         if (random4 > 0.5) {
           equipment.push("Scale mail");
@@ -3477,9 +3317,7 @@ function generate_character() {
         ) {
           equipment.pop();
           equipment.pop();
-          equipment.push(
-            "Two " + document.getElementById(firstWeaponFirstSectionId).value
-          );
+          equipment.push("Two " + document.getElementById(firstWeaponFirstSectionId).value);
           document.getElementById(secondWeaponFirstSectionId).value = "";
           document.getElementById(secondWeaponSecondSectionId).value = "";
           document.getElementById(secondWeaponThirdSectionId).value = "";
@@ -3503,15 +3341,9 @@ function generate_character() {
       }
       if (random2 > 0.8) {
         equipment.push("Quarterstaff");
-        document.getElementById(firstWeaponFirstSectionId).value =
-          "Quarterstaff"; // 1st weapon 1st section
+        document.getElementById(firstWeaponFirstSectionId).value = "Quarterstaff"; // 1st weapon 1st section
         statChecker(strengthModifier + 2, firstWeaponSecondSectionId); // 1st weapon 2nd section
-        statChecker3(
-          strengthModifier,
-          firstWeaponThirdSectionId,
-          "1d6/10",
-          "B"
-        ); // 1st weapon 3rd section
+        statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d6/10", "B"); // 1st weapon 3rd section
         equipment.push("Petrified bear heart - Focus");
       } else if (random2 > 0.6) {
         equipment.push("Scimitar");
@@ -3558,9 +3390,7 @@ function generate_character() {
       features.push(
         "Second Wind (1/r): On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level."
       );
-      spellcastingSection.push(
-        "Second Wind (1/r): Use a bonus action to gain 1d10 + 1 hp."
-      );
+      spellcastingSection.push("Second Wind (1/r): Use a bonus action to gain 1d10 + 1 hp.");
       spellcastingSection.push(" ");
       if (random2 > 0.5) {
         equipment.push("Dungeoneer's pack");
@@ -3636,8 +3466,7 @@ function generate_character() {
         equipment.push("Chain mail");
       } else {
         if (
-          document.getElementById(secondWeaponFirstSectionId).value ===
-            undefined ||
+          document.getElementById(secondWeaponFirstSectionId).value === undefined ||
           document.getElementById(secondWeaponFirstSectionId).value === null ||
           document.getElementById(secondWeaponFirstSectionId).value === ""
         ) {
@@ -3646,24 +3475,14 @@ function generate_character() {
           equipment.push("Longbow w/ quiver of 20 arrows");
           document.getElementById(secondWeaponFirstSectionId).value = "Longbow"; // 2nd weapon 1st section
           statChecker(dexterityModifier + 2, secondWeaponSecondSectionId); // 2nd weapon 2nd section
-          statChecker3(
-            dexterityModifier,
-            secondWeaponThirdSectionId,
-            "1d8",
-            "P"
-          ); // 2nd weapon 3rd section
+          statChecker3(dexterityModifier, secondWeaponThirdSectionId, "1d8", "P"); // 2nd weapon 3rd section
         } else {
           console.log("test3");
           equipment.push("Leather armor");
           equipment.push("Longbow w/ quiver of 20 arrows");
           document.getElementById(thirdWeaponFirstSectionId).value = "Longbow";
           statChecker(dexterityModifier + 2, thirdWeaponSecondSectionId);
-          statChecker3(
-            dexterityModifier,
-            thirdWeaponThirdSectionId,
-            "1d8",
-            "P"
-          );
+          statChecker3(dexterityModifier, thirdWeaponThirdSectionId, "1d8", "P");
         }
       }
       if (
@@ -3675,25 +3494,16 @@ function generate_character() {
         equipment.pop();
         equipment.pop();
         equipment.push("Leather armor");
-        equipment.push(
-          "Two " +
-            document.getElementById(secondWeaponFirstSectionId).value +
-            "s"
-        );
+        equipment.push("Two " + document.getElementById(secondWeaponFirstSectionId).value + "s");
         if (
-          document.getElementById(secondWeaponFirstSectionId).value ===
-            "Longbow" ||
-          document.getElementById(secondWeaponFirstSectionId).value ===
-            "Shortbow"
+          document.getElementById(secondWeaponFirstSectionId).value === "Longbow" ||
+          document.getElementById(secondWeaponFirstSectionId).value === "Shortbow"
         ) {
           equipment.push("Quiver of 40 arrows");
         } else if (
-          document.getElementById(secondWeaponFirstSectionId).value ===
-            "Light CB" ||
-          document.getElementById(secondWeaponFirstSectionId).value ===
-            "Heavy CB" ||
-          document.getElementById(secondWeaponFirstSectionId).value ===
-            "Hand CB"
+          document.getElementById(secondWeaponFirstSectionId).value === "Light CB" ||
+          document.getElementById(secondWeaponFirstSectionId).value === "Heavy CB" ||
+          document.getElementById(secondWeaponFirstSectionId).value === "Hand CB"
         ) {
           equipment.push("Quiver of 40 bolts");
         }
@@ -3708,47 +3518,30 @@ function generate_character() {
       ) {
         equipment.pop();
         equipment.pop();
-        equipment.push(
-          "Two " +
-            document.getElementById(firstWeaponFirstSectionId).value +
-            "s"
-        );
+        equipment.push("Two " + document.getElementById(firstWeaponFirstSectionId).value + "s");
         document.getElementById(secondWeaponFirstSectionId).value = "";
         document.getElementById(secondWeaponSecondSectionId).value = "";
         document.getElementById(secondWeaponThirdSectionId).value = "";
       }
       if (
-        document.getElementById(secondWeaponFirstSectionId).value ===
-          undefined ||
+        document.getElementById(secondWeaponFirstSectionId).value === undefined ||
         document.getElementById(secondWeaponFirstSectionId).value === null ||
         document.getElementById(secondWeaponFirstSectionId).value === ""
       ) {
         if (random5 > 0.5) {
           equipment.push("Light crossbow w/ quiver of 20 bolts");
-          document.getElementById(secondWeaponFirstSectionId).value =
-            "Light CB"; // 1st weapon 1st section
+          document.getElementById(secondWeaponFirstSectionId).value = "Light CB"; // 1st weapon 1st section
           statChecker(dexterityModifier + 2, secondWeaponSecondSectionId); // 1st weapon 2nd section
-          statChecker3(
-            dexterityModifier,
-            secondWeaponThirdSectionId,
-            "1d8",
-            "P"
-          ); // 1st weapon 3rd section
+          statChecker3(dexterityModifier, secondWeaponThirdSectionId, "1d8", "P"); // 1st weapon 3rd section
         } else {
           equipment.push("Two handaxes");
           document.getElementById(secondWeaponFirstSectionId).value = "Handaxe"; // 2nd weapon 1st section
           statChecker(strengthModifier + 2, secondWeaponSecondSectionId); // 2nd weapon 2nd section
 
-          statChecker3(
-            strengthModifier,
-            secondWeaponThirdSectionId,
-            "1d6",
-            "S"
-          ); // 2nd weapon 3rd section
+          statChecker3(strengthModifier, secondWeaponThirdSectionId, "1d6", "S"); // 2nd weapon 3rd section
         }
       } else if (
-        document.getElementById(thirdWeaponFirstSectionId).value ===
-          undefined ||
+        document.getElementById(thirdWeaponFirstSectionId).value === undefined ||
         document.getElementById(thirdWeaponFirstSectionId).value === null ||
         document.getElementById(thirdWeaponFirstSectionId).value === ""
       ) {
@@ -3756,12 +3549,7 @@ function generate_character() {
           equipment.push("Light crossbow w/ quiver of 20 bolts");
           document.getElementById(thirdWeaponFirstSectionId).value = "Light CB"; // 1st weapon 1st section
           statChecker(dexterityModifier + 2, thirdWeaponSecondSectionId); // 1st weapon 2nd section
-          statChecker3(
-            dexterityModifier,
-            thirdWeaponThirdSectionId,
-            "1d8",
-            "P"
-          ); // 1st weapon 3rd section
+          statChecker3(dexterityModifier, thirdWeaponThirdSectionId, "1d8", "P"); // 1st weapon 3rd section
         } else {
           equipment.push("Two handaxes");
           document.getElementById(thirdWeaponFirstSectionId).value = "Handaxe"; // 2nd weapon 1st section
@@ -3772,20 +3560,12 @@ function generate_character() {
         if (random5 > 0.5) {
           equipment.push("Light crossbow w/ quiver of 20 bolts");
           spellcastingSection.push(
-            "Light CB  +" +
-              (dexterityModifier + 2) +
-              "  1d8+" +
-              dexterityModifier +
-              " P"
+            "Light CB  +" + (dexterityModifier + 2) + "  1d8+" + dexterityModifier + " P"
           );
         } else {
           equipment.push("Two handaxes");
           spellcastingSection.push(
-            "Handaxe  +" +
-              (strengthModifier + 2) +
-              "  1d6+" +
-              strengthModifier +
-              " P"
+            "Handaxe  +" + (strengthModifier + 2) + "  1d6+" + strengthModifier + " P"
           );
         }
       }
@@ -3860,8 +3640,7 @@ function generate_character() {
         ); // 1st weapon 3rd section
       } else {
         equipment.push("Quarterstaff");
-        document.getElementById(firstWeaponFirstSectionId).value =
-          "Quarterstaff"; // 1st weapon 1st section
+        document.getElementById(firstWeaponFirstSectionId).value = "Quarterstaff"; // 1st weapon 1st section
         statChecker(
           biggerWeaponStatDecider(dexterityModifier, strengthModifier) + 2,
           firstWeaponSecondSectionId
@@ -3924,9 +3703,7 @@ function generate_character() {
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Lawful" && alignment[1] === "Evil") {
         equipment.push("Black glove - Symbol");
-        alliesAndOrganizations.push(
-          "Bane - God of Tyranny, my one true master."
-        );
+        alliesAndOrganizations.push("Bane - God of Tyranny, my one true master.");
         alliesAndOrganizations.push(" ");
       } else if (alignment[0] === "Neutral" && alignment[1] === "Evil") {
         equipment.push("Dragonshard stone (fang-shaped) - Symbol");
@@ -3982,11 +3759,7 @@ function generate_character() {
       ) {
         equipment.pop();
         equipment.pop();
-        equipment.push(
-          "Two " +
-            document.getElementById(firstWeaponFirstSectionId).value +
-            "s"
-        );
+        equipment.push("Two " + document.getElementById(firstWeaponFirstSectionId).value + "s");
         document.getElementById(thirdWeaponFirstSectionId).value = "";
         document.getElementById(thirdWeaponSecondSectionId).value = "";
         document.getElementById(thirdWeaponThirdSectionId).value = "";
@@ -4080,8 +3853,7 @@ function generate_character() {
       }
       if (random5 > 0.5) {
         equipment.push("Two shortswords");
-        document.getElementById(secondWeaponFirstSectionId).value =
-          "Shortsword"; // 2nd weapon 1st section
+        document.getElementById(secondWeaponFirstSectionId).value = "Shortsword"; // 2nd weapon 1st section
         statChecker(
           biggerWeaponStatDecider(dexterityModifier, strengthModifier) + 2,
           secondWeaponSecondSectionId
@@ -4111,23 +3883,16 @@ function generate_character() {
         ) {
           equipment.pop();
           equipment.pop();
-          equipment.push(
-            "Two " + document.getElementById(secondWeaponFirstSectionId).value
-          );
+          equipment.push("Two " + document.getElementById(secondWeaponFirstSectionId).value);
           if (
-            document.getElementById(secondWeaponFirstSectionId).value ===
-              "Longbow" ||
-            document.getElementById(secondWeaponFirstSectionId).value ===
-              "Shortbow"
+            document.getElementById(secondWeaponFirstSectionId).value === "Longbow" ||
+            document.getElementById(secondWeaponFirstSectionId).value === "Shortbow"
           ) {
             equipment.push("Quiver of 40 arrows");
           } else if (
-            document.getElementById(secondWeaponFirstSectionId).value ===
-              "Light CB" ||
-            document.getElementById(secondWeaponFirstSectionId).value ===
-              "Heavy CB" ||
-            document.getElementById(secondWeaponFirstSectionId).value ===
-              "Hand CB"
+            document.getElementById(secondWeaponFirstSectionId).value === "Light CB" ||
+            document.getElementById(secondWeaponFirstSectionId).value === "Heavy CB" ||
+            document.getElementById(secondWeaponFirstSectionId).value === "Hand CB"
           ) {
             equipment.push("Quiver of 40 bolts");
           }
@@ -4204,8 +3969,7 @@ function generate_character() {
         ); // 1st weapon 3rd section
       } else {
         equipment.push("Shortsword");
-        document.getElementById(secondWeaponFirstSectionId).value =
-          "Shortsword"; // 1st weapon 1st section
+        document.getElementById(secondWeaponFirstSectionId).value = "Shortsword"; // 1st weapon 1st section
         statChecker(
           biggerWeaponStatDecider(dexterityModifier, strengthModifier) + 2,
           secondWeaponSecondSectionId
@@ -4242,9 +4006,7 @@ function generate_character() {
       ) {
         equipment.pop();
         equipment.pop();
-        equipment.push(
-          "Two " + document.getElementById(secondWeaponFirstSectionId).value
-        );
+        equipment.push("Two " + document.getElementById(secondWeaponFirstSectionId).value);
         document.getElementById(thirdWeaponFirstSectionId).value = "";
         document.getElementById(thirdWeaponSecondSectionId).value = "";
         document.getElementById(thirdWeaponThirdSectionId).value = "";
@@ -4288,9 +4050,7 @@ function generate_character() {
       ) {
         equipment.pop();
         equipment.pop();
-        if (
-          document.getElementById(secondWeaponFirstSectionId).value === "Dagger"
-        ) {
+        if (document.getElementById(secondWeaponFirstSectionId).value === "Dagger") {
           equipment.push("Three daggers");
         }
         document.getElementById(secondWeaponFirstSectionId).value = "";
@@ -4471,13 +4231,8 @@ function generate_character() {
         ) {
           equipment.pop();
           equipment.pop();
-          if (
-            document.getElementById(secondWeaponFirstSectionId).value !=
-            "Dagger"
-          ) {
-            equipment.push(
-              "Two " + document.getElementById(secondWeaponFirstSectionId).value
-            );
+          if (document.getElementById(secondWeaponFirstSectionId).value != "Dagger") {
+            equipment.push("Two " + document.getElementById(secondWeaponFirstSectionId).value);
           }
           document.getElementById(thirdWeaponFirstSectionId).value = "";
           document.getElementById(thirdWeaponSecondSectionId).value = "";
@@ -4557,8 +4312,7 @@ function generate_character() {
       );
       if (random > 0.5) {
         equipment.push("Quarterstaff");
-        document.getElementById(firstWeaponFirstSectionId).value =
-          "Quarterstaff"; // 1st weapon 1st section
+        document.getElementById(firstWeaponFirstSectionId).value = "Quarterstaff"; // 1st weapon 1st section
         statChecker(strengthModifier + 2, firstWeaponSecondSectionId); // 1st weapon 2nd section
         statChecker3(strengthModifier, firstWeaponThirdSectionId, "1d6", "B"); // 1st weapon 3rd section
       } else {
@@ -4582,9 +4336,7 @@ function generate_character() {
         equipment.push("Various colorful tattoos - Spellbook");
         equipment.push("Crystal with pink water inside - Focus");
       } else if (random2 > 0.4) {
-        equipment.push(
-          "Leather-bound tome with suspiciously red ink - Spellbook"
-        );
+        equipment.push("Leather-bound tome with suspiciously red ink - Spellbook");
         equipment.push("Metallic rod with amber stone on top - Focus");
       } else if (random2 > 0.2) {
         equipment.push(
@@ -4594,9 +4346,7 @@ function generate_character() {
         );
         equipment.push("Specially carved, gnarled, wooden staff - Focus");
       } else {
-        equipment.push(
-          "Light leather book with gem-encrusted spine - Spellbook"
-        );
+        equipment.push("Light leather book with gem-encrusted spine - Spellbook");
         equipment.push("Partially petrified willow wand - Focus");
       }
       if (random3 > 0.5) {
@@ -4700,7 +4450,7 @@ function generate_character() {
       document.getElementById("form2_2").value = skin3;
     } else if (random === 3) {
       document.getElementById("form2_2").value = skin4;
-    } else if ((random = 4)) {
+    } else if (random === 4) {
       document.getElementById("form2_2").value = skin5;
     }
   }
@@ -4755,23 +4505,17 @@ function generate_character() {
       individualDiscrepancy = Math.floor(Math.random() * 5);
     }
     if (beefiness < 14) {
-      document.getElementById("form4_2").value =
-        lowestWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = lowestWeight + individualDiscrepancy;
     } else if (beefiness < 20) {
-      document.getElementById("form4_2").value =
-        lowerWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = lowerWeight + individualDiscrepancy;
     } else if (beefiness < 24) {
-      document.getElementById("form4_2").value =
-        mediumWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = mediumWeight + individualDiscrepancy;
     } else if (beefiness < 32) {
-      document.getElementById("form4_2").value =
-        highWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = highWeight + individualDiscrepancy;
     } else if (beefiness < 36) {
-      document.getElementById("form4_2").value =
-        higherWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = higherWeight + individualDiscrepancy;
     } else {
-      document.getElementById("form4_2").value =
-        highestWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = highestWeight + individualDiscrepancy;
     }
   }
 
@@ -4797,23 +4541,17 @@ function generate_character() {
       individualDiscrepancy = Math.floor(Math.random() * 2);
     }
     if (beefiness < 14) {
-      document.getElementById("form4_2").value =
-        lowestWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = lowestWeight + individualDiscrepancy;
     } else if (beefiness < 20) {
-      document.getElementById("form4_2").value =
-        lowerWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = lowerWeight + individualDiscrepancy;
     } else if (beefiness < 24) {
-      document.getElementById("form4_2").value =
-        mediumWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = mediumWeight + individualDiscrepancy;
     } else if (beefiness < 32) {
-      document.getElementById("form4_2").value =
-        highWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = highWeight + individualDiscrepancy;
     } else if (beefiness < 36) {
-      document.getElementById("form4_2").value =
-        higherWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = higherWeight + individualDiscrepancy;
     } else {
-      document.getElementById("form4_2").value =
-        highestWeight + individualDiscrepancy;
+      document.getElementById("form4_2").value = highestWeight + individualDiscrepancy;
     }
   }
 
@@ -4863,13 +4601,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Ivory Black",
-      "Onyx Black",
-      "Carbon Black",
-      "Pearlescent Black",
-      "Black"
-    ); // skin
+    skinRandomizer("Ivory Black", "Onyx Black", "Carbon Black", "Pearlescent Black", "Black"); // skin
     hair_randomizer("", "", "", ""); // hair
     weightRandomizer(constitution, strength, 200, 225, 250, 275, 310, 340); // weight
     eye_randomizer("Violet", "Blue", "Red", "Purple"); // eyes
@@ -4895,13 +4627,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Brass",
-      "Rusty Brass",
-      "Copper & Brass",
-      "Fiery Brass",
-      "Brass"
-    ); // skin
+    skinRandomizer("Brass", "Rusty Brass", "Copper & Brass", "Fiery Brass", "Brass"); // skin
     hair_randomizer("", "", "", ""); // hair
     weightRandomizer(constitution, strength, 200, 225, 250, 275, 310, 340); // weight
     eye_randomizer("Yellow", "Green", "Red", "Blue"); // eyes
@@ -4914,13 +4640,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Bronze",
-      "Old Gold",
-      "Dark Bronze",
-      "Sandy Bronze",
-      "Bronze"
-    ); // skin
+    skinRandomizer("Bronze", "Old Gold", "Dark Bronze", "Sandy Bronze", "Bronze"); // skin
     hair_randomizer("", "", "", ""); // hair
     weightRandomizer(constitution, strength, 200, 225, 250, 275, 310, 340); // weight
     eye_randomizer("Yellow", "Green", "Red", "Blue"); // eyes
@@ -4933,13 +4653,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Copper",
-      "Bronze & Copper",
-      "Rusty Copper",
-      "Fiery Copper",
-      "Copper"
-    ); // skin
+    skinRandomizer("Copper", "Bronze & Copper", "Rusty Copper", "Fiery Copper", "Copper"); // skin
     hair_randomizer("", "", "", ""); // hair
     weightRandomizer(constitution, strength, 200, 225, 250, 275, 310, 340); // weight
     eye_randomizer("Yellow", "Green", "Red", "Blue"); // eyes
@@ -4952,13 +4666,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Golden Yellow",
-      "Gold",
-      "Golden Rod",
-      "Nugget Gold",
-      "Gold"
-    ); // skin
+    skinRandomizer("Golden Yellow", "Gold", "Golden Rod", "Nugget Gold", "Gold"); // skin
     hair_randomizer("", "", "", ""); // hair
     weightRandomizer(constitution, strength, 200, 225, 250, 275, 310, 340); // weight
     eye_randomizer("Yellow", "Green", "Red", "Blue"); // eyes
@@ -4997,13 +4705,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Ice Silver",
-      "Liquid Silver",
-      "Lunar Silver",
-      "Silver",
-      "Silver"
-    ); // skin
+    skinRandomizer("Ice Silver", "Liquid Silver", "Lunar Silver", "Silver", "Silver"); // skin
     hair_randomizer("", "", "", ""); // hair
     weightRandomizer(constitution, strength, 200, 225, 250, 275, 310, 340); // weight
     eye_randomizer("Violet", "Blue", "Red", "Purple"); // eyes
@@ -5016,13 +4718,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Snow",
-      "Ghost White",
-      "White Smoke",
-      "Frost White",
-      "White"
-    ); // skin
+    skinRandomizer("Snow", "Ghost White", "White Smoke", "Frost White", "White"); // skin
     hair_randomizer("", "", "", ""); // hair
     weightRandomizer(constitution, strength, 200, 225, 250, 275, 310, 340); // weight
     eye_randomizer("Violet", "Blue", "Red", "Purple"); // eyes
@@ -5035,13 +4731,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Pale Reddish",
-      "Light Brown",
-      "Deep Brown",
-      "Deep Tan",
-      "Tan"
-    ); // skin
+    skinRandomizer("Pale Reddish", "Light Brown", "Deep Brown", "Deep Tan", "Tan"); // skin
     hair_randomizer("Gray", "Black", "Brown", "Red"); // hair
     weightRandomizer(constitution, strength, 110, 130, 150, 170, 190, 215); // weight
     eye_randomizer("Black", "Brown", "Green", "Blue"); // eyes
@@ -5058,13 +4748,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Pale Reddish",
-      "Light Brown",
-      "Deep Brown",
-      "Deep Tan",
-      "Tan"
-    ); // skin
+    skinRandomizer("Pale Reddish", "Light Brown", "Deep Brown", "Deep Tan", "Tan"); // skin
     hair_randomizer("Gray", "Black", "Brown", "Red"); // hair
     weightRandomizer(constitution, strength, 110, 130, 150, 170, 190, 215); // weight
     eye_randomizer("Black", "Brown", "Green", "Blue"); // eyes
@@ -5082,13 +4766,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Dusky Brown",
-      "Brown",
-      "Light Brown",
-      "Tan",
-      "Light Copper"
-    ); // skin
+    skinRandomizer("Dusky Brown", "Brown", "Light Brown", "Tan", "Light Copper"); // skin
     hair_randomizer("Dusky Brown", "Brown", "Light Brown", "Black", "Auburn"); // hair
     weightRandomizer(constitution, strength, 140, 160, 180, 200, 225, 240); // weight
     eye_randomizer("Light Brown", "Dark Brown", "Black", "Brown"); // eyes
@@ -5122,13 +4800,7 @@ function generate_character() {
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
     skinRandomizer("Pale", "Fair", "Light Tan", "Fair", "Light"); // skin
-    hair_randomizer(
-      "Raven-black",
-      "Red",
-      "Light Brown",
-      "Blond",
-      "Raven-black"
-    ); // hair
+    hair_randomizer("Raven-black", "Red", "Light Brown", "Blond", "Raven-black"); // hair
     weightRandomizer(constitution, strength, 150, 165, 185, 205, 230, 250); // weight
     eye_randomizer("Blue", "Steel", "Gray", "Dark Bluish-Gray"); // eyes
   } else if (race === "Human (Mulan)") {
@@ -5160,13 +4832,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Yellowish",
-      "Bronze",
-      "Copper",
-      "Yellowish-Bronze",
-      "Light Copper"
-    ); // skin
+    skinRandomizer("Yellowish", "Bronze", "Copper", "Yellowish-Bronze", "Light Copper"); // skin
     hair_randomizer("Black", "Brown", "Black", "Black", "Dark Brown"); // hair
     weightRandomizer(constitution, strength, 140, 160, 180, 200, 225, 245); // weight
     eye_randomizer("Dark Auburn", "Dark Brown", "Black", "Brown"); // eyes
@@ -5188,13 +4854,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Dark Mahogany",
-      "Mahogany",
-      "Dark Brown",
-      "Brown",
-      "Dark Amber"
-    ); // skin
+    skinRandomizer("Dark Mahogany", "Mahogany", "Dark Brown", "Brown", "Dark Amber"); // skin
     hair_randomizer("Black", "Black", "Dark Brown", "Dark Aurburn", "Black"); // hair
     weightRandomizer(constitution, strength, 155, 170, 185, 205, 230, 250); // weight
     eye_randomizer("Dark Brown", "Brown", "Black", "Dark Hazel"); // eyes
@@ -5205,13 +4865,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Copper",
-      "Bronze",
-      "Pale Bluish-White",
-      "Bluish-White",
-      "Light Copper"
-    ); // skin
+    skinRandomizer("Copper", "Bronze", "Pale Bluish-White", "Bluish-White", "Light Copper"); // skin
     hair_randomizer("Green", "Blue", "Turquoise", "Silver-White"); // hair
     weightRandomizer(constitution, strength, 110, 115, 130, 140, 155, 165); // weight
     eye_randomizer("Gold", "Silver", "Black", "Green"); // eyes
@@ -5222,13 +4876,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Copper",
-      "Bronze",
-      "Copper-Hazel",
-      "Dark Tan",
-      "Light Copper"
-    ); // skin
+    skinRandomizer("Copper", "Bronze", "Copper-Hazel", "Dark Tan", "Light Copper"); // skin
     hair_randomizer("Brown", "Black", "Copper", "Blond"); // hair
     weightRandomizer(constitution, strength, 110, 115, 130, 140, 155, 165); // weight
     eye_randomizer("Green", "Brown", "Hazel", "Amber"); // eyes
@@ -5269,13 +4917,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Pale",
-      "Light Tan",
-      "Pale & Ruddy",
-      "Light",
-      "Fair & Ruddy"
-    ); // skin
+    skinRandomizer("Pale", "Light Tan", "Pale & Ruddy", "Light", "Fair & Ruddy"); // skin
     hair_randomizer("Brown", "Sandy Brown", "Dark Brown", "Auburn"); // hair
     size = "small";
     weightRandomizerSmall(constitution, strength, 37, 41, 44, 46, 49, 52); // weight
@@ -5312,12 +4954,7 @@ function generate_character() {
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
     skinRandomizer("Copper", "Fair", "Pale", "Dark Tan", "Light Copper"); // skin
-    hair_randomizer(
-      "Brownish Green",
-      "Bluish Black",
-      "Reddish White",
-      "Silvery Blond"
-    ); // hair
+    hair_randomizer("Brownish Green", "Bluish Black", "Reddish White", "Silvery Blond"); // hair
     weightRandomizer(constitution, strength, 120, 130, 145, 165, 180, 205); // weight
     eye_randomizer("Gold", "Pink", "Lilac", "Green"); // eyes
   } else if (race === "Half-Orc") {
@@ -5327,13 +4964,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Grayish",
-      "Grayish Green",
-      "Gray",
-      "Tannish Gray",
-      "Grayish"
-    ); // skin
+    skinRandomizer("Grayish", "Grayish Green", "Gray", "Tannish Gray", "Grayish"); // skin
     hair_randomizer("Light Brown", "Black", "Auburn", "Dark Brown"); // hair
     weightRandomizer(constitution, strength, 170, 190, 210, 230, 250, 265); // weight
     eye_randomizer("Green", "Blue", "Brown", "Black"); // eyes
@@ -5344,13 +4975,7 @@ function generate_character() {
       Math.floor(document.getElementById("form1_2").value / 12) +
       "'" +
       (document.getElementById("form1_2").value % 12); //height converter
-    skinRandomizer(
-      "Brick Red",
-      "Reddish Tan",
-      "Maroon",
-      "Blood Red",
-      "Tawny Red"
-    ); // skin
+    skinRandomizer("Brick Red", "Reddish Tan", "Maroon", "Blood Red", "Tawny Red"); // skin
     hair_randomizer("Dark Purple", "Black", "Dark Red", "Dark Blue"); // hair
     weightRandomizer(constitution, strength, 140, 160, 180, 200, 225, 245); // weight
     eye_randomizer("White", "Black", "Red", "Silver"); // eyes
@@ -5550,7 +5175,6 @@ function generate_character() {
       equipment.push("Sling");
     } else if (variable === "Whip already added") {
       equipment.push("Whip");
-    } else {
     }
   }
 
@@ -5578,15 +5202,13 @@ function generate_character() {
 
   // Block that determines what equipment/languages/proficiencies/features you get for your background, and adds writing prompts to pg. 2
   if (newBackground1 === "Acolyte") {
-    firstLanguage = random_language();
     firstLanguage = right_language();
     profsAndLangs.languages.push(firstLanguage);
-    secondlanguage = random_language();
     secondlanguage = right_language();
     profsAndLangs.languages.push(secondlanguage);
-    addClick(13);
+    add_click(13);
     statChecker(wisdomModifier + 2, "form35_1");
-    addClick(20);
+    add_click(20);
     statChecker(intelligenceModifier + 2, "form33_1");
     equipment.push("A holy symbol");
     equipment.push("Prayer Book");
@@ -5611,9 +5233,9 @@ function generate_character() {
   } else if (newBackground1 === "Charlatan") {
     toolAdder2(toolAdder("disguise kit"));
     toolAdder2(toolAdder("forgery kit"));
-    addClick(17);
+    add_click(17);
     statChecker(charismaModifier + 2, "form36_1");
-    addClick(4);
+    add_click(4);
     statChecker(dexterityModifier + 2, "form46_1");
     equipment.push("Disguise kit");
     equipment.push(random_con());
@@ -5637,9 +5259,9 @@ function generate_character() {
   } else if (newBackground1 === "Criminal") {
     toolAdder2(toolAdder("thieves' tools"));
     toolAdder2(toolAdder(random_gaming_set_capitalize().toLowerCase()));
-    addClick(17);
+    add_click(17);
     statChecker(charismaModifier + 2, "form36_1");
-    addClick(23);
+    add_click(23);
     statChecker(dexterityModifier + 2, "form32_1");
     equipment.push("Crowbar");
     equipment.push("Set of dark common clothes with a hood");
@@ -5663,9 +5285,9 @@ function generate_character() {
     musicalinstrument = randomMusicalInstrument();
     toolAdder2(toolAdder(musicalinstrument.toLowerCase()));
     toolAdder2(toolAdder("disguise kit"));
-    addClick(19);
+    add_click(19);
     statChecker(dexterityModifier + 2, "form38_1");
-    addClick(16);
+    add_click(16);
     statChecker(charismaModifier + 2, "form34_1");
     equipment.push(musicalinstrument);
     equipment.push("Costume");
@@ -5689,9 +5311,9 @@ function generate_character() {
     artisantool = random_artisan_tool();
     toolAdder2(toolAdder(artisantool.toLowerCase()));
     toolAdder2(toolAdder("land vehicles"));
-    addClick(8);
+    add_click(8);
     statChecker(wisdomModifier + 2, "form50_1");
-    addClick(12);
+    add_click(12);
     statChecker(wisdomModifier + 2, "form47_1");
     equipment.push(artisantool);
     equipment.push("Shovel");
@@ -5716,9 +5338,9 @@ function generate_character() {
     gladiatorWeapon = random_gladiator_weapon();
     random_gladiator_weapon_checker(gladiatorWeapon);
     toolAdder2(toolAdder("disguise kit"));
-    addClick(19);
+    add_click(19);
     statChecker(dexterityModifier + 2, "form38_1");
-    addClick(16);
+    add_click(16);
     statChecker(charismaModifier + 2, "form34_1");
     equipment.push("Costume");
     equipment.push("Belt Pouch");
@@ -5742,9 +5364,9 @@ function generate_character() {
     profsAndLangs.languages.push(firstLanguage);
     artisantool = random_artisan_tool();
     toolAdder2(toolAdder(artisantool.toLowerCase()));
-    addClick(13);
+    add_click(13);
     statChecker(wisdomModifier + 2, "form35_1");
-    addClick(1);
+    add_click(1);
     statChecker(charismaModifier + 2, "form45_1");
     equipment.push(artisantool);
     equipment.push("Guild introduction letter");
@@ -5765,15 +5387,13 @@ function generate_character() {
       race +
       " mean to you?";
   } else if (newBackground1 === "Guild Merchant") {
-    firstLanguage = random_language();
     firstLanguage = right_language();
     profsAndLangs.languages.push(firstLanguage);
-    secondlanguage = random_language();
     secondlanguage = right_language();
     profsAndLangs.languages.push(secondlanguage);
-    addClick(13);
+    add_click(13);
     statChecker(wisdomModifier + 2, "form35_1");
-    addClick(1);
+    add_click(1);
     statChecker(charismaModifier + 2, "form45_1");
     equipment.push("Guild introduction letter");
     equipment.push("Set of traveler's clothes");
@@ -5799,9 +5419,9 @@ function generate_character() {
     firstLanguage = right_language();
     profsAndLangs.languages.push(firstLanguage);
     toolAdder2(toolAdder("herbalism kit"));
-    addClick(5);
+    add_click(5);
     statChecker(wisdomModifier + 2, "form53_1");
-    addClick(20);
+    add_click(20);
     statChecker(intelligenceModifier + 2, "form33_1");
     equipment.push("Scroll case stuffed full of notes from your studies");
     equipment.push("Winter blanket");
@@ -5826,9 +5446,9 @@ function generate_character() {
     firstLanguage = right_language();
     profsAndLangs.languages.push(firstLanguage);
     toolAdder2(toolAdder(random_gaming_set_capitalize().toLowerCase()));
-    addClick(9);
+    add_click(9);
     statChecker(intelligenceModifier + 2, "form48_1");
-    addClick(1);
+    add_click(1);
     statChecker(charismaModifier + 2, "form45_1");
     bonds.splice(0, 1);
     bonds.push("I have an emblem of chivalry and chastity from a noble lady.");
@@ -5856,9 +5476,9 @@ function generate_character() {
     firstLanguage = right_language();
     profsAndLangs.languages.push(firstLanguage);
     toolAdder2(toolAdder(random_gaming_set_capitalize().toLowerCase()));
-    addClick(9);
+    add_click(9);
     statChecker(intelligenceModifier + 2, "form48_1");
-    addClick(1);
+    add_click(1);
     statChecker(charismaModifier + 2, "form45_1");
     equipment.push("Signet ring");
     equipment.push("Scroll of pedigree");
@@ -5881,9 +5501,9 @@ function generate_character() {
   } else if (newBackground1 === "Outlander") {
     musicalinstrument = randomMusicalInstrument();
     toolAdder2(toolAdder(musicalinstrument.toLowerCase()));
-    addClick(2);
+    add_click(2);
     statChecker(strengthModifier + 2, "form49_1");
-    addClick(12);
+    add_click(12);
     statChecker(wisdomModifier + 2, "form47_1");
     equipment.push("Staff");
     equipment.push("Hunting Trap");
@@ -5907,9 +5527,9 @@ function generate_character() {
   } else if (newBackground1 === "Pirate") {
     toolAdder2(toolAdder("navigator's tools"));
     toolAdder2(toolAdder("water vehicles"));
-    addClick(2);
+    add_click(2);
     statChecker(strengthModifier + 2, "form49_1");
-    addClick(7);
+    add_click(7);
     statChecker(wisdomModifier + 2, "form43_1");
     equipment.push("Club");
     equipment.push("50 feet of silk rope");
@@ -5932,15 +5552,13 @@ function generate_character() {
       " mean to you?\r" +
       "Why aren't you a pirate still?";
   } else if (newBackground1 === "Sage") {
-    firstLanguage = random_language();
     firstLanguage = right_language();
     profsAndLangs.languages.push(firstLanguage);
-    secondlanguage = random_language();
     secondlanguage = right_language();
     profsAndLangs.languages.push(secondlanguage);
-    addClick(21);
+    add_click(21);
     statChecker(intelligenceModifier + 2, "form40_1");
-    addClick(9);
+    add_click(9);
     statChecker(intelligenceModifier + 2, "form48_1");
     equipment.push("Bottle of black ink");
     equipment.push("Quill");
@@ -5965,9 +5583,9 @@ function generate_character() {
   } else if (newBackground1 === "Sailor") {
     toolAdder2(toolAdder("navigator's tools"));
     toolAdder2(toolAdder("water vehicles"));
-    addClick(2);
+    add_click(2);
     statChecker(strengthModifier + 2, "form49_1");
-    addClick(7);
+    add_click(7);
     statChecker(wisdomModifier + 2, "form43_1");
     equipment.push("Club");
     equipment.push("50 feet of silk rope");
@@ -5992,9 +5610,9 @@ function generate_character() {
     soldierGamingSet = random_gaming_set_soldier();
     toolAdder2(toolAdder(soldierGamingSet.toLowerCase()));
     toolAdder2(toolAdder("land vehicles"));
-    addClick(2);
+    add_click(2);
     statChecker(strengthModifier + 2, "form49_1");
-    addClick(24);
+    add_click(24);
     statChecker(charismaModifier + 2, "form44_1");
     equipment.push("Insignia of rank");
     document.getElementById("form14_2").value = random_trophy();
@@ -6022,9 +5640,9 @@ function generate_character() {
   } else if (newBackground1 === "Spy") {
     toolAdder2(toolAdder("thieves' tools"));
     toolAdder2(toolAdder(random_gaming_set_capitalize().toLowerCase()));
-    addClick(17);
+    add_click(17);
     statChecker(charismaModifier + 2, "form36_1");
-    addClick(23);
+    add_click(23);
     statChecker(dexterityModifier + 2, "form32_1");
     equipment.push("Crowbar");
     equipment.push("Set of dark common clothes with a hood");
@@ -6047,15 +5665,14 @@ function generate_character() {
   } else if (newBackground1 === "Urchin") {
     toolAdder2(toolAdder("disguise kit"));
     toolAdder2(toolAdder("thieves' tools"));
-    addClick(4);
+    add_click(4);
     statChecker(dexterityModifier + 2, "form46_1");
-    addClick(23);
+    add_click(23);
     statChecker(dexterityModifier + 2, "form32_1");
     equipment.push("Small knife");
     equipment.push("Map of hometown");
     equipment.push("Pet mouse");
-    document.getElementById("form14_2").value =
-      random_trinket() + " from parents";
+    document.getElementById("form14_2").value = random_trinket() + " from parents";
     equipment.push("Set of common clothes");
     equipment.push("Belt Pouch");
     gold += 10;
@@ -6084,46 +5701,28 @@ function generate_character() {
     if (classAndLevel === "Barbarian 1") {
       while (classCounter < 2) {
         random = Math.floor(Math.random() * 6);
-        if (
-          random === 0 &&
-          document.getElementById("form7_1").checked === undefined
-        ) {
-          addClick(7);
+        if (random === 0 && document.getElementById("form7_1").checked === undefined) {
+          add_click(7);
           statChecker(wisdomModifier + 2, "form43_1"); // perception
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form2_1").checked === undefined
-        ) {
-          addClick(2);
+        } else if (random === 1 && document.getElementById("form2_1").checked === undefined) {
+          add_click(2);
           statChecker(strengthModifier + 2, "form49_1"); // athletics
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form12_1").checked === undefined
-        ) {
-          addClick(12);
+        } else if (random === 2 && document.getElementById("form12_1").checked === undefined) {
+          add_click(12);
           statChecker(wisdomModifier + 2, "form47_1"); // survival
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form24_1").checked === undefined
-        ) {
-          addClick(24);
+        } else if (random === 3 && document.getElementById("form24_1").checked === undefined) {
+          add_click(24);
           statChecker(charismaModifier + 2, "form44_1"); // intimidation
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form8_1").checked === undefined
-        ) {
-          addClick(8);
+        } else if (random === 4 && document.getElementById("form8_1").checked === undefined) {
+          add_click(8);
           statChecker(wisdomModifier + 2, "form50_1"); // animal handling
           classCounter++;
-        } else if (
-          random === 5 &&
-          document.getElementById("form11_1").checked === undefined
-        ) {
-          addClick(11);
+        } else if (random === 5 && document.getElementById("form11_1").checked === undefined) {
+          add_click(11);
           statChecker(intelligenceModifier + 2, "form37_1"); // nature
           classCounter++;
         }
@@ -6131,60 +5730,36 @@ function generate_character() {
     } else if (classAndLevel === "Fighter 1") {
       while (classCounter < 2) {
         random = Math.floor(Math.random() * 8);
-        if (
-          random === 0 &&
-          document.getElementById("form7_1").checked === undefined
-        ) {
-          addClick(7);
+        if (random === 0 && document.getElementById("form7_1").checked === undefined) {
+          add_click(7);
           statChecker(wisdomModifier + 2, "form43_1"); // perception
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form2_1").checked === undefined
-        ) {
-          addClick(2);
+        } else if (random === 1 && document.getElementById("form2_1").checked === undefined) {
+          add_click(2);
           statChecker(strengthModifier + 2, "form49_1"); // athletics
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form12_1").checked === undefined
-        ) {
-          addClick(12);
+        } else if (random === 2 && document.getElementById("form12_1").checked === undefined) {
+          add_click(12);
           statChecker(wisdomModifier + 2, "form47_1"); // survival
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form24_1").checked === undefined
-        ) {
-          addClick(24);
+        } else if (random === 3 && document.getElementById("form24_1").checked === undefined) {
+          add_click(24);
           statChecker(charismaModifier + 2, "form44_1"); // intimidation
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form9_1").checked === undefined
-        ) {
-          addClick(9);
+        } else if (random === 4 && document.getElementById("form9_1").checked === undefined) {
+          add_click(9);
           statChecker(intelligenceModifier + 2, "form48_1"); // history
           classCounter++;
-        } else if (
-          random === 5 &&
-          document.getElementById("form8_1").checked === undefined
-        ) {
-          addClick(8);
+        } else if (random === 5 && document.getElementById("form8_1").checked === undefined) {
+          add_click(8);
           statChecker(wisdomModifier + 2, "form50_1"); // animal handling
           classCounter++;
-        } else if (
-          random === 6 &&
-          document.getElementById("form13_1").checked === undefined
-        ) {
-          addClick(13);
+        } else if (random === 6 && document.getElementById("form13_1").checked === undefined) {
+          add_click(13);
           statChecker(wisdomModifier + 2, "form35_1"); // insight
           classCounter++;
-        } else if (
-          random === 7 &&
-          document.getElementById("form19_1").checked === undefined
-        ) {
-          addClick(19);
+        } else if (random === 7 && document.getElementById("form19_1").checked === undefined) {
+          add_click(19);
           statChecker(dexterityModifier + 2, "form38_1"); // acrobatics
           classCounter++;
         }
@@ -6196,39 +5771,24 @@ function generate_character() {
     } else if (classAndLevel === "Cleric 1") {
       while (classCounter < 2) {
         random = Math.floor(Math.random() * 5);
-        if (
-          random === 0 &&
-          document.getElementById("form5_1").checked === undefined
-        ) {
-          addClick(5);
+        if (random === 0 && document.getElementById("form5_1").checked === undefined) {
+          add_click(5);
           statChecker(wisdomModifier + 2, "form53_1"); // medicine
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form9_1").checked === undefined
-        ) {
-          addClick(9);
+        } else if (random === 1 && document.getElementById("form9_1").checked === undefined) {
+          add_click(9);
           statChecker(intelligenceModifier + 2, "form48_1"); // history
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form20_1").checked === undefined
-        ) {
-          addClick(20);
+        } else if (random === 2 && document.getElementById("form20_1").checked === undefined) {
+          add_click(20);
           statChecker(intelligenceModifier + 2, "form33_1"); // religion
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form13_1").checked === undefined
-        ) {
-          addClick(13);
+        } else if (random === 3 && document.getElementById("form13_1").checked === undefined) {
+          add_click(13);
           statChecker(wisdomModifier + 2, "form35_1"); // insight
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form1_1").checked === undefined
-        ) {
-          addClick(1);
+        } else if (random === 4 && document.getElementById("form1_1").checked === undefined) {
+          add_click(1);
           statChecker(charismaModifier + 2, "form45_1"); // persuasion
           classCounter++;
         }
@@ -6236,46 +5796,28 @@ function generate_character() {
     } else if (classAndLevel === "Sorcerer 1") {
       while (classCounter < 2) {
         random = Math.floor(Math.random() * 6);
-        if (
-          random === 0 &&
-          document.getElementById("form21_1").checked === undefined
-        ) {
-          addClick(21);
+        if (random === 0 && document.getElementById("form21_1").checked === undefined) {
+          add_click(21);
           statChecker(intelligenceModifier + 2, "form40_1"); // arcana
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form24_1").checked === undefined
-        ) {
-          addClick(24);
+        } else if (random === 1 && document.getElementById("form24_1").checked === undefined) {
+          add_click(24);
           statChecker(charismaModifier + 2, "form44_1"); // intimidation
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form20_1").checked === undefined
-        ) {
-          addClick(20);
+        } else if (random === 2 && document.getElementById("form20_1").checked === undefined) {
+          add_click(20);
           statChecker(intelligenceModifier + 2, "form33_1"); // religion
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form13_1").checked === undefined
-        ) {
-          addClick(13);
+        } else if (random === 3 && document.getElementById("form13_1").checked === undefined) {
+          add_click(13);
           statChecker(wisdomModifier + 2, "form35_1"); // insight
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form1_1").checked === undefined
-        ) {
-          addClick(1);
+        } else if (random === 4 && document.getElementById("form1_1").checked === undefined) {
+          add_click(1);
           statChecker(charismaModifier + 2, "form45_1"); // persuasion
           classCounter++;
-        } else if (
-          random === 5 &&
-          document.getElementById("form17_1").checked === undefined
-        ) {
-          addClick(17);
+        } else if (random === 5 && document.getElementById("form17_1").checked === undefined) {
+          add_click(17);
           statChecker(charismaModifier + 2, "form36_1"); // deception
           classCounter++;
         }
@@ -6283,46 +5825,28 @@ function generate_character() {
     } else if (classAndLevel === "Wizard 1") {
       while (classCounter < 2) {
         random = Math.floor(Math.random() * 6);
-        if (
-          random === 0 &&
-          document.getElementById("form21_1").checked === undefined
-        ) {
-          addClick(21);
+        if (random === 0 && document.getElementById("form21_1").checked === undefined) {
+          add_click(21);
           statChecker(intelligenceModifier + 2, "form40_1"); // arcana
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form14_1").checked === undefined
-        ) {
-          addClick(14);
+        } else if (random === 1 && document.getElementById("form14_1").checked === undefined) {
+          add_click(14);
           statChecker(intelligenceModifier + 2, "form31_1"); // investigation
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form20_1").checked === undefined
-        ) {
-          addClick(20);
+        } else if (random === 2 && document.getElementById("form20_1").checked === undefined) {
+          add_click(20);
           statChecker(intelligenceModifier + 2, "form33_1"); // religion
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form13_1").checked === undefined
-        ) {
-          addClick(13);
+        } else if (random === 3 && document.getElementById("form13_1").checked === undefined) {
+          add_click(13);
           statChecker(wisdomModifier + 2, "form35_1"); // insight
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form1_1").checked === undefined
-        ) {
-          addClick(1);
+        } else if (random === 4 && document.getElementById("form1_1").checked === undefined) {
+          add_click(1);
           statChecker(charismaModifier + 2, "form45_1"); // persuasion
           classCounter++;
-        } else if (
-          random === 5 &&
-          document.getElementById("form5_1").checked === undefined
-        ) {
-          addClick(5);
+        } else if (random === 5 && document.getElementById("form5_1").checked === undefined) {
+          add_click(5);
           statChecker(wisdomModifier + 2, "form53_1"); // medicine
           classCounter++;
         }
@@ -6330,60 +5854,36 @@ function generate_character() {
     } else if (classAndLevel === "Druid 1") {
       while (classCounter < 2) {
         random = Math.floor(Math.random() * 8);
-        if (
-          random === 0 &&
-          document.getElementById("form21_1").checked === undefined
-        ) {
-          addClick(21);
+        if (random === 0 && document.getElementById("form21_1").checked === undefined) {
+          add_click(21);
           statChecker(intelligenceModifier + 2, "form40_1"); // arcana
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form14_1").checked === undefined
-        ) {
-          addClick(14);
+        } else if (random === 1 && document.getElementById("form14_1").checked === undefined) {
+          add_click(14);
           statChecker(intelligenceModifier + 2, "form31_1"); // investigation
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form20_1").checked === undefined
-        ) {
-          addClick(20);
+        } else if (random === 2 && document.getElementById("form20_1").checked === undefined) {
+          add_click(20);
           statChecker(intelligenceModifier + 2, "form33_1"); // religion
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form13_1").checked === undefined
-        ) {
-          addClick(13);
+        } else if (random === 3 && document.getElementById("form13_1").checked === undefined) {
+          add_click(13);
           statChecker(wisdomModifier + 2, "form35_1"); // insight
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form7_1").checked === undefined
-        ) {
-          addClick(7);
+        } else if (random === 4 && document.getElementById("form7_1").checked === undefined) {
+          add_click(7);
           statChecker(wisdomModifier + 2, "form43_1"); // perception
           classCounter++;
-        } else if (
-          random === 5 &&
-          document.getElementById("form5_1").checked === undefined
-        ) {
-          addClick(5);
+        } else if (random === 5 && document.getElementById("form5_1").checked === undefined) {
+          add_click(5);
           statChecker(wisdomModifier + 2, "form53_1"); // medicine
           classCounter++;
-        } else if (
-          random === 6 &&
-          document.getElementById("form11_1").checked === undefined
-        ) {
-          addClick(11);
+        } else if (random === 6 && document.getElementById("form11_1").checked === undefined) {
+          add_click(11);
           statChecker(intelligenceModifier + 2, "form37_1"); // nature
           classCounter++;
-        } else if (
-          random === 7 &&
-          document.getElementById("form12_1").checked === undefined
-        ) {
-          addClick(12);
+        } else if (random === 7 && document.getElementById("form12_1").checked === undefined) {
+          add_click(12);
           statChecker(wisdomModifier + 2, "form47_1"); // survival
           classCounter++;
         }
@@ -6391,81 +5891,48 @@ function generate_character() {
     } else if (classAndLevel === "Rogue 1") {
       while (classCounter < 4) {
         random = Math.floor(Math.random() * 11);
-        if (
-          random === 0 &&
-          document.getElementById("form7_1").checked === undefined
-        ) {
-          addClick(7);
+        if (random === 0 && document.getElementById("form7_1").checked === undefined) {
+          add_click(7);
           statChecker(wisdomModifier + 2, "form43_1"); // perception
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form23_1").checked === undefined
-        ) {
-          addClick(23);
+        } else if (random === 1 && document.getElementById("form23_1").checked === undefined) {
+          add_click(23);
           statChecker(dexterityModifier + 2, "form32_1"); // stealth
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form2_1").checked === undefined
-        ) {
-          addClick(2);
+        } else if (random === 2 && document.getElementById("form2_1").checked === undefined) {
+          add_click(2);
           statChecker(strengthModifier + 2, "form49_1"); // athletics
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form19_1").checked === undefined
-        ) {
-          addClick(19);
+        } else if (random === 3 && document.getElementById("form19_1").checked === undefined) {
+          add_click(19);
           statChecker(dexterityModifier + 2, "form38_1"); // acrobatics
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form17_1").checked === undefined
-        ) {
-          addClick(17);
+        } else if (random === 4 && document.getElementById("form17_1").checked === undefined) {
+          add_click(17);
           statChecker(charismaModifier + 2, "form36_1"); // deception
           classCounter++;
-        } else if (
-          random === 5 &&
-          document.getElementById("form4_1").checked === undefined
-        ) {
-          addClick(4);
+        } else if (random === 5 && document.getElementById("form4_1").checked === undefined) {
+          add_click(4);
           statChecker(dexterityModifier + 2, "form46_1"); // sleight of hand
           classCounter++;
-        } else if (
-          random === 6 &&
-          document.getElementById("form14_1").checked === undefined
-        ) {
-          addClick(14);
+        } else if (random === 6 && document.getElementById("form14_1").checked === undefined) {
+          add_click(14);
           statChecker(intelligenceModifier + 2, "form31_1"); // investigation
           classCounter++;
-        } else if (
-          random === 7 &&
-          document.getElementById("form1_1").checked === undefined
-        ) {
-          addClick(1);
+        } else if (random === 7 && document.getElementById("form1_1").checked === undefined) {
+          add_click(1);
           statChecker(charismaModifier + 2, "form45_1"); // persuasion
           classCounter++;
-        } else if (
-          random === 8 &&
-          document.getElementById("form16_1").checked === undefined
-        ) {
-          addClick(16);
+        } else if (random === 8 && document.getElementById("form16_1").checked === undefined) {
+          add_click(16);
           statChecker(charismaModifier + 2, "form34_1"); // performance
           classCounter++;
-        } else if (
-          random === 9 &&
-          document.getElementById("form12_1").checked === undefined
-        ) {
-          addClick(12);
+        } else if (random === 9 && document.getElementById("form12_1").checked === undefined) {
+          add_click(12);
           statChecker(wisdomModifier + 2, "form47_1"); // survival
           classCounter++;
-        } else if (
-          random === 10 &&
-          document.getElementById("form13_1").checked === undefined
-        ) {
-          addClick(13);
+        } else if (random === 10 && document.getElementById("form13_1").checked === undefined) {
+          add_click(13);
           statChecker(wisdomModifier + 2, "form35_1"); // insight
           classCounter++;
         }
@@ -6473,53 +5940,32 @@ function generate_character() {
     } else if (classAndLevel === "Warlock 1") {
       while (classCounter < 2) {
         random = Math.floor(Math.random() * 7);
-        if (
-          random === 0 &&
-          document.getElementById("form21_1").checked === undefined
-        ) {
-          addClick(21);
+        if (random === 0 && document.getElementById("form21_1").checked === undefined) {
+          add_click(21);
           statChecker(intelligenceModifier + 2, "form40_1"); // arcana
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form24_1").checked === undefined
-        ) {
-          addClick(24);
+        } else if (random === 1 && document.getElementById("form24_1").checked === undefined) {
+          add_click(24);
           statChecker(charismaModifier + 2, "form44_1"); // intimidation
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form20_1").checked === undefined
-        ) {
-          addClick(20);
+        } else if (random === 2 && document.getElementById("form20_1").checked === undefined) {
+          add_click(20);
           statChecker(intelligenceModifier + 2, "form33_1"); // religion
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form11_1").checked === undefined
-        ) {
-          addClick(11);
+        } else if (random === 3 && document.getElementById("form11_1").checked === undefined) {
+          add_click(11);
           statChecker(intelligenceModifier + 2, "form37_1"); // nature
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form17_1").checked === undefined
-        ) {
-          addClick(17);
+        } else if (random === 4 && document.getElementById("form17_1").checked === undefined) {
+          add_click(17);
           statChecker(charismaModifier + 2, "form36_1"); // deception
           classCounter++;
-        } else if (
-          random === 5 &&
-          document.getElementById("form14_1").checked === undefined
-        ) {
-          addClick(14);
+        } else if (random === 5 && document.getElementById("form14_1").checked === undefined) {
+          add_click(14);
           statChecker(intelligenceModifier + 2, "form31_1"); // investigation
           classCounter++;
-        } else if (
-          random === 6 &&
-          document.getElementById("form9_1").checked === undefined
-        ) {
-          addClick(9);
+        } else if (random === 6 && document.getElementById("form9_1").checked === undefined) {
+          add_click(9);
           statChecker(intelligenceModifier + 2, "form48_1"); // history
           classCounter++;
         }
@@ -6527,60 +5973,36 @@ function generate_character() {
     } else if (classAndLevel === "Ranger 1") {
       while (classCounter < 3) {
         random = Math.floor(Math.random() * 8);
-        if (
-          random === 0 &&
-          document.getElementById("form7_1").checked === undefined
-        ) {
-          addClick(7);
+        if (random === 0 && document.getElementById("form7_1").checked === undefined) {
+          add_click(7);
           statChecker(wisdomModifier + 2, "form43_1"); // perception
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form13_1").checked === undefined
-        ) {
-          addClick(13);
+        } else if (random === 1 && document.getElementById("form13_1").checked === undefined) {
+          add_click(13);
           statChecker(wisdomModifier + 2, "form35_1"); // insight
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form2_1").checked === undefined
-        ) {
-          addClick(2);
+        } else if (random === 2 && document.getElementById("form2_1").checked === undefined) {
+          add_click(2);
           statChecker(strengthModifier + 2, "form49_1"); // athletics
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form11_1").checked === undefined
-        ) {
-          addClick(11);
+        } else if (random === 3 && document.getElementById("form11_1").checked === undefined) {
+          add_click(11);
           statChecker(intelligenceModifier + 2, "form37_1"); // nature
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form23_1").checked === undefined
-        ) {
-          addClick(23);
+        } else if (random === 4 && document.getElementById("form23_1").checked === undefined) {
+          add_click(23);
           statChecker(dexterityModifier + 2, "form32_1"); // stealth
           classCounter++;
-        } else if (
-          random === 5 &&
-          document.getElementById("form14_1").checked === undefined
-        ) {
-          addClick(14);
+        } else if (random === 5 && document.getElementById("form14_1").checked === undefined) {
+          add_click(14);
           statChecker(intelligenceModifier + 2, "form31_1"); // investigation
           classCounter++;
-        } else if (
-          random === 6 &&
-          document.getElementById("form12_1").checked === undefined
-        ) {
-          addClick(12);
+        } else if (random === 6 && document.getElementById("form12_1").checked === undefined) {
+          add_click(12);
           statChecker(wisdomModifier + 2, "form47_1"); // survival
           classCounter++;
-        } else if (
-          random === 7 &&
-          document.getElementById("form8_1").checked === undefined
-        ) {
-          addClick(8);
+        } else if (random === 7 && document.getElementById("form8_1").checked === undefined) {
+          add_click(8);
           statChecker(wisdomModifier + 2, "form50_1"); // animal handling
           classCounter++;
         }
@@ -6588,46 +6010,28 @@ function generate_character() {
     } else if (classAndLevel === "Paladin 1") {
       while (classCounter < 2) {
         random = Math.floor(Math.random() * 6);
-        if (
-          random === 0 &&
-          document.getElementById("form20_1").checked === undefined
-        ) {
-          addClick(20);
+        if (random === 0 && document.getElementById("form20_1").checked === undefined) {
+          add_click(20);
           statChecker(intelligenceModifier + 2, "form33_1"); // religion
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form13_1").checked === undefined
-        ) {
-          addClick(13);
+        } else if (random === 1 && document.getElementById("form13_1").checked === undefined) {
+          add_click(13);
           statChecker(wisdomModifier + 2, "form35_1"); // insight
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form2_1").checked === undefined
-        ) {
-          addClick(2);
+        } else if (random === 2 && document.getElementById("form2_1").checked === undefined) {
+          add_click(2);
           statChecker(strengthModifier + 2, "form49_1"); // athletics
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form24_1").checked === undefined
-        ) {
-          addClick(24);
+        } else if (random === 3 && document.getElementById("form24_1").checked === undefined) {
+          add_click(24);
           statChecker(charismaModifier + 2, "form44_1"); // intimidation
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form1_1").checked === undefined
-        ) {
-          addClick(1);
+        } else if (random === 4 && document.getElementById("form1_1").checked === undefined) {
+          add_click(1);
           statChecker(charismaModifier + 2, "form45_1"); // persuasion
           classCounter++;
-        } else if (
-          random === 5 &&
-          document.getElementById("form5_1").checked === undefined
-        ) {
-          addClick(5);
+        } else if (random === 5 && document.getElementById("form5_1").checked === undefined) {
+          add_click(5);
           statChecker(wisdomModifier + 2, "form53_1"); // medicine
           classCounter++;
         }
@@ -6635,46 +6039,28 @@ function generate_character() {
     } else if (classAndLevel === "Monk 1") {
       while (classCounter < 2) {
         random = Math.floor(Math.random() * 6);
-        if (
-          random === 0 &&
-          document.getElementById("form20_1").checked === undefined
-        ) {
-          addClick(20);
+        if (random === 0 && document.getElementById("form20_1").checked === undefined) {
+          add_click(20);
           statChecker(intelligenceModifier + 2, "form33_1"); // religion
           classCounter++;
-        } else if (
-          random === 1 &&
-          document.getElementById("form13_1").checked === undefined
-        ) {
-          addClick(13);
+        } else if (random === 1 && document.getElementById("form13_1").checked === undefined) {
+          add_click(13);
           statChecker(wisdomModifier + 2, "form35_1"); // insight
           classCounter++;
-        } else if (
-          random === 2 &&
-          document.getElementById("form2_1").checked === undefined
-        ) {
-          addClick(2);
+        } else if (random === 2 && document.getElementById("form2_1").checked === undefined) {
+          add_click(2);
           statChecker(strengthModifier + 2, "form49_1"); // athletics
           classCounter++;
-        } else if (
-          random === 3 &&
-          document.getElementById("form19_1").checked === undefined
-        ) {
-          addClick(19);
+        } else if (random === 3 && document.getElementById("form19_1").checked === undefined) {
+          add_click(19);
           statChecker(dexterityModifier + 2, "form38_1"); // acrobatics
           classCounter++;
-        } else if (
-          random === 4 &&
-          document.getElementById("form23_1").checked === undefined
-        ) {
-          addClick(23);
+        } else if (random === 4 && document.getElementById("form23_1").checked === undefined) {
+          add_click(23);
           statChecker(dexterityModifier + 2, "form32_1"); // stealth
           classCounter++;
-        } else if (
-          random === 5 &&
-          document.getElementById("form9_1").checked === undefined
-        ) {
-          addClick(9);
+        } else if (random === 5 && document.getElementById("form9_1").checked === undefined) {
+          add_click(9);
           statChecker(intelligenceModifier + 2, "form48_1"); // history
           classCounter++;
         }
@@ -6713,12 +6099,9 @@ function generate_character() {
 
   //Block of arrays that makes new arrays with the sections at the start
   finalLanguages = "Languages: " + determine_if_empty(newLangs);
-  finalweaponProficiencies =
-    "Weapon Proficiencies: " + determine_if_empty(newWeaponProfs);
-  finalarmorProficiencies =
-    "Armor Proficiencies: " + determine_if_empty(newArmorProfs);
-  finaltoolProficiencies =
-    "Tool Proficiencies: " + determine_if_empty(newToolProfs);
+  finalweaponProficiencies = "Weapon Proficiencies: " + determine_if_empty(newWeaponProfs);
+  finalarmorProficiencies = "Armor Proficiencies: " + determine_if_empty(newArmorProfs);
+  finaltoolProficiencies = "Tool Proficiencies: " + determine_if_empty(newToolProfs);
 
   // Pushes arrays to proficienciesAndLanguages
   proficienciesAndLanguages.push(finalLanguages);
@@ -6729,30 +6112,22 @@ function generate_character() {
   function spellAdder(classSpellArray, modifier) {
     if (modifier < 0) {
       for (let i = classSpellArray.length; i > 1; --i) {
-        classSpellArray.splice(
-          Math.floor(Math.random() * classSpellArray.length),
-          1
-        );
+        classSpellArray.splice(Math.floor(Math.random() * classSpellArray.length), 1);
       }
       for (let i2 = 0; i2 < 1; i2++) {
         if (classSpellArray === clericSpells) {
-          document.getElementById(spellForms[i2 + 2]).value =
-            classSpellArray[i2];
+          document.getElementById(spellForms[i2 + 2]).value = classSpellArray[i2];
         } else {
           document.getElementById(spellForms[i2]).value = classSpellArray[i2];
         }
       }
     } else {
       for (let i = classSpellArray.length; i > modifier + 1; --i) {
-        classSpellArray.splice(
-          Math.floor(Math.random() * classSpellArray.length),
-          1
-        );
+        classSpellArray.splice(Math.floor(Math.random() * classSpellArray.length), 1);
       }
       for (let i2 = 0; i2 < modifier + 1; i2++) {
         if (classSpellArray === clericSpells) {
-          document.getElementById(spellForms[i2 + 2]).value =
-            classSpellArray[i2];
+          document.getElementById(spellForms[i2 + 2]).value = classSpellArray[i2];
         } else {
           document.getElementById(spellForms[i2]).value = classSpellArray[i2];
         }
@@ -6762,10 +6137,7 @@ function generate_character() {
 
   function cantripAdder(classCantripArray, cantripAmount) {
     for (let i3 = classCantripArray.length; i3 > cantripAmount; i3--) {
-      classCantripArray.splice(
-        Math.floor(Math.random() * classCantripArray.length),
-        1
-      );
+      classCantripArray.splice(Math.floor(Math.random() * classCantripArray.length), 1);
     }
     for (let i4 = 0; i4 < cantripAmount; i4++) {
       document.getElementById(cantripForms[i4]).value = classCantripArray[i4];
@@ -7021,19 +6393,13 @@ function generate_character() {
       armorClass += 13 + dexterityModifier;
     } else if (equipment[i] === armor.mediumArmor.scalemail.armorname) {
       armorClass += 14 + dexterityModifier;
-      features.push(
-        "Scale Mail: Disadvantage on stealth rolls from medium armor."
-      );
+      features.push("Scale Mail: Disadvantage on stealth rolls from medium armor.");
     } else if (equipment[i] === armor.heavyArmor.ringmail.armorname) {
       armorClass += 14;
-      features.push(
-        "Ring Mail: Disadvantage on stealth rolls from heavy armor."
-      );
+      features.push("Ring Mail: Disadvantage on stealth rolls from heavy armor.");
     } else if (equipment[i] === armor.heavyArmor.chainmail.armorname) {
       armorClass += 16;
-      features.push(
-        "Chain Mail: Disadvantage on stealth rolls from heavy armor."
-      );
+      features.push("Chain Mail: Disadvantage on stealth rolls from heavy armor.");
     }
   }
 
@@ -7076,8 +6442,7 @@ function generate_character() {
   document.getElementById("form68_1").value = gold; // gold
   document.getElementById("form104_1").value = equipment.join("\r\n"); // equipment section
   document.getElementById("form94_1").value = classAndLevel; // class and level text field
-  document.getElementById("form105_1").value =
-    proficienciesAndLanguages.join("\r"); // proficiencies and languages
+  document.getElementById("form105_1").value = proficienciesAndLanguages.join("\r"); // proficiencies and languages
   document.getElementById("form106_1").value = features.join("\r\n"); // features & traits
   document.getElementById("form16_2").value = additionalFeatures.join("\r\n"); // additional features, pg. 2
   document.getElementById("form92_1").value = alignment.join(" "); // alignment text fielddice
@@ -7096,31 +6461,15 @@ function generate_character() {
     document.getElementById("form92_1").value = "True Neutral";
   }
 }
-// Call the character generator on page load
-generate_initial_character(standard_version);
-
-// Function to make a skill proficient and checked
-function addClick(j) {
-  i = j.toString();
-  document.getElementById("form" + i + "_1").checked = "checked";
-  click_on(i - 1);
-}
-
-// Function to remove skill proficiency and checked status
-function remove_click(j) {
-  document.getElementById("form" + j + "_1").checked = undefined;
-  click_off(j);
-}
-
 // Function to generate a new character by clearing all forms and checkboxes and then generating a character again
-function generate_initial_character(version) {
+export function generate_initial_character(version) {
   clear_All();
   version();
   generate_character();
 }
 
 // Function to generate a new character by clearing all forms and checkboxes and then generating a character again
-function generate_new_character(version) {
+export function generate_new_character(version) {
   clear_All();
   version();
   generate_character();

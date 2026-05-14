@@ -11,13 +11,20 @@
     "smoke": "node src/testing.js",
     "start": "webpack serve --mode development --progress --open --hot",
     "build": "webpack --mode production --progress",
-    "build:watch": "webpack --mode development --progress --watch"
+    "build:watch": "webpack --mode development --progress --watch",
+    "lint": "eslint src/",
+    "format": "prettier --write \"src/**/*.js\""
   },
+  "type": "module",
   "author": "Levi Blodgett",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@testing-library/dom": "^10.4.1",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
     "jsdom": "^29.1.1",
+    "prettier": "^3.8.3",
     "vitest": "^4.1.6",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.10.0",

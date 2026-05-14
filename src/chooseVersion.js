@@ -1,26 +1,42 @@
-// Tracks which version is currently active; avoids fragile DOM-ID string checks.
+import * as logical from "./logical_version.js";
+import * as random from "./random_version.js";
+
+// Tracks which generator is active; true = logical, false = random.
 let _isLogical = true;
 
-function loadJsScript(filename) {
-  // Remove whichever version script is currently in the DOM.
-  ["logical", "logical_versionactiveScript", "random_versionactiveScript"].forEach(
-    (id) => { const el = document.getElementById(id); if (el) el.remove(); }
-  );
-  const fileref = document.createElement("script");
-  fileref.setAttribute("type", "text/javascript");
-  fileref.setAttribute("id", `${filename}activeScript`);
-  fileref.setAttribute("src", `build/${filename}.js`);
-  document.getElementById("scripts").appendChild(fileref);
-}
-
-function switchScripts() {
-  _isLogical = !_isLogical;
-  const button = document.getElementById("top_button");
-  if (_isLogical) {
-    button.innerHTML = "Switch to Random Version";
-    loadJsScript("logical_version");
-  } else {
-    button.innerHTML = "Switch to Logical Version";
-    loadJsScript("random_version");
+// Update window.standard_version / roll_version / pointbuy_version so that
+// the inline onclick handlers in index.html always pass the right generator's
+// stat functions after a version switch.
+function _syncWindowVersions(gen) {
+  if (typeof window !== "undefined") {
+    window.standard_version = gen.standard_version;
+    window.roll_version = gen.roll_version;
+    window.pointbuy_version = gen.pointbuy_version;
   }
 }
+
+export function switchScripts() {
+  _isLogical = !_isLogical;
+  const gen = _isLogical ? logical : random;
+  document.getElementById("top_button").innerHTML = _isLogical
+    ? "Switch to Random Version"
+    : "Switch to Logical Version";
+  _syncWindowVersions(gen);
+}
+
+export function generate_new_character(version) {
+  if (_isLogical) {
+    logical.generate_new_character(version);
+  } else {
+    random.generate_new_character(version);
+  }
+}
+
+// Exported for test isolation — resets module state between test cases.
+export function _resetForTests() {
+  _isLogical = true;
+}
+
+// Re-export both generator namespaces so index.js can access them without a
+// separate import of the generator files.
+export { logical, random };

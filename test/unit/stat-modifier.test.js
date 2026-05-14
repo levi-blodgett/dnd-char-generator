@@ -1,11 +1,5 @@
-import { describe, it, expect, beforeAll } from "vitest";
-import { loadPage } from "../helpers/setup.js";
-
-let win;
-
-beforeAll(() => {
-  ({ window: win } = loadPage());
-});
+import { describe, it, expect } from "vitest";
+import { stat_modifier_generator } from "../../src/logical_version.js";
 
 describe("stat_modifier_generator", () => {
   const cases = [
@@ -22,6 +16,6 @@ describe("stat_modifier_generator", () => {
   ];
 
   it.each(cases)("stat %i → modifier %i", (stat, expected) => {
-    expect(win.stat_modifier_generator(stat)).toBe(expected);
+    expect(stat_modifier_generator(stat)).toBe(expected);
   });
 });

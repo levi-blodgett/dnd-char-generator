@@ -1,10 +1,13 @@
-const path = require("path");
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-module.exports = {
-  entry: "./build/logical_version.js",
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+export default {
+  entry: "./src/index.js",
   devServer: {
     static: {
-      directory: path.join(__dirname),
+      directory: __dirname,
     },
   },
 };
