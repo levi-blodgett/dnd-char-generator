@@ -3,18 +3,18 @@
   "version": "2.0.1",
   "description": "Application to generate 5th edition D&D character sheets",
   "main": "logical_version.js",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode production --progress --open --hot",
-    "build": "webpack --output-public-path=/build/ --mode production --progress --watch"
+    "start": "webpack-dev-server --mode development --progress --open --hot",
+    "build": "webpack --output-public-path=/build/ --mode production --progress",
+    "build:watch": "webpack --output-public-path=/build/ --mode development --progress --watch"
   },
   "author": "Levi Blodgett",
   "license": "Apache-2.0",
-  "dependencies": {
-    "eventsource": ">=2.0.2"
-  },
   "devDependencies": {
-    "braces": "^2.3.2",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^4.11.1"

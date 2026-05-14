@@ -7,6 +7,7 @@
 # Project files
 node_modules
 js
+dist
 
 # VS Code files
 .vscode/*

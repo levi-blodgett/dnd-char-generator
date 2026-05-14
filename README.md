@@ -2,7 +2,9 @@
 
 **DESCRIPTION**
 
-An unofficial character generator for the 5th edition of Dungeons and Dragons.
+An unofficial character generator for the **5th edition of Dungeons and Dragons (2014 ruleset), level 1**.
+
+> **Developer quickstart:** See the [Developer Setup](#developer-setup) section below.
 
 It's supposed to create a random character for DnD, but with some logic behind it to make it all quite cohesive.
 
@@ -61,3 +63,27 @@ I try to add whatever will be the best option in terms of best functionality wit
 For fun, I love programming and I love Dungeons and Dragons.
 I thought the world needed a real, practical DnD generator for characters, I felt it was WAY too lacking in this kind of area.
 This was my first big project with programming so don't roast my code too hard.
+
+---
+
+## Developer Setup
+
+**Prerequisites:** Node.js 22 LTS or higher, npm.
+
+```bash
+# Clone and install
+git clone git@github.com:levi-blodgett/dnd-char-generator.git
+cd dnd-char-generator
+npm install
+
+# Start local dev server (opens browser automatically)
+npm start
+
+# Production bundle (output: dist/main.js)
+npm run build
+
+# Watch mode for development
+npm run build:watch
+```
+
+**Scope:** D&D 5e 2014 ruleset, level 1 characters. Levels 2–3 and supplemental sourcebooks are on the [revival roadmap](.agent/repo-revival/implementation-plan.md).

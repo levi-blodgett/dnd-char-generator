@@ -1,3 +1,5 @@
-git clone git@github.com:levi-blodgett/dnd-char-generator.git
-npm install
-npm start
+See README.md → Developer Setup for up-to-date install, build, and run instructions.
+
+Short version:
+  npm install
+  npm start
