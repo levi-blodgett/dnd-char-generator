@@ -1,20 +1,12 @@
+// Tracks which version is currently active; avoids fragile DOM-ID string checks.
+let _isLogical = true;
+
 function loadJsScript(filename) {
-  if (document.body.contains(document.getElementById("logical"))) {
-    document.getElementById("logical").remove();
-  } else if (
-    document.body.contains(
-      document.getElementById("random_versionactiveScript")
-    )
-  ) {
-    document.getElementById("random_versionactiveScript").remove();
-  } else if (
-    document.body.contains(
-      document.getElementById("logical_versionactiveScript")
-    )
-  ) {
-    document.getElementById("logical_versionactiveScript").remove();
-  }
-  let fileref = document.createElement("script");
+  // Remove whichever version script is currently in the DOM.
+  ["logical", "logical_versionactiveScript", "random_versionactiveScript"].forEach(
+    (id) => { const el = document.getElementById(id); if (el) el.remove(); }
+  );
+  const fileref = document.createElement("script");
   fileref.setAttribute("type", "text/javascript");
   fileref.setAttribute("id", `${filename}activeScript`);
   fileref.setAttribute("src", `build/${filename}.js`);
@@ -22,24 +14,13 @@ function loadJsScript(filename) {
 }
 
 function switchScripts() {
-  if (
-    document.getElementById("top_button").innerHTML ===
-    "Switch to Random Version"
-  ) {
-    document.getElementById("top_button").innerHTML =
-      "Switch to Logical Version";
+  _isLogical = !_isLogical;
+  const button = document.getElementById("top_button");
+  if (_isLogical) {
+    button.innerHTML = "Switch to Random Version";
+    loadJsScript("logical_version");
   } else {
-    document.getElementById("top_button").innerHTML =
-      "Switch to Random Version";
-  }
-  if (
-    document.body.contains(
-      document.getElementById("logical_versionactiveScript")
-    ) ||
-    document.body.contains(document.getElementById("logical"))
-  ) {
-    loadJsScript("random_version"); // dynamically load and add this .js file
-  } else {
-    loadJsScript("logical_version"); // dynamically load and add this .js file
+    button.innerHTML = "Switch to Logical Version";
+    loadJsScript("random_version");
   }
 }

@@ -7,7 +7,8 @@
     "node": ">=22"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
+    "smoke": "node src/testing.js",
     "start": "webpack serve --mode development --progress --open --hot",
     "build": "webpack --mode production --progress",
     "build:watch": "webpack --mode development --progress --watch"
@@ -15,6 +16,9 @@
   "author": "Levi Blodgett",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "jsdom": "^29.1.1",
+    "vitest": "^4.1.6",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"

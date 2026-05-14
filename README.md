@@ -84,6 +84,12 @@ npm run build
 
 # Watch mode for development
 npm run build:watch
+
+# Run the test suite (fast, under 30 s)
+npm test
+
+# Run the 100 k-character smoke/distribution test (slow, opt-in)
+npm run smoke
 ```
 
 **Scope:** D&D 5e 2014 ruleset, level 1 characters. Levels 2–3 and supplemental sourcebooks are on the [revival roadmap](.agent/repo-revival/implementation-plan.md).
