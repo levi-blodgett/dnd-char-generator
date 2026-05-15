@@ -55,8 +55,7 @@ It would be something I'd like to add in the future but it is hard to decide whi
 
 3. What feature are you adding next?
 
-I'd check my [Twitter](https://twitter.com/LeviBlodgett), also @me if you have any questions yourself as well.
-I try to add whatever will be the best option in terms of best functionality with least effort, as I can't devote my time to this like I could a job.
+Check the roadmap in docs/CONTRIBUTING.md.
 
 4. Why did you create this?
 

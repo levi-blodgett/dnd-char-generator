@@ -1,5 +1,0 @@
-See README.md → Developer Setup for up-to-date install, build, and run instructions.
-
-Short version:
-  npm install
-  npm start
