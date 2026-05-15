@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { stat_modifier_generator } from "../../src/logical_version.js";
+import { stat_modifier_generator } from "../../src/logical/index.js";
 
 describe("stat_modifier_generator", () => {
   const cases = [

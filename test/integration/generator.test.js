@@ -4,7 +4,7 @@ import { replaceChecks } from "../../src/checkboxes.js";
 import {
   generate_initial_character,
   standard_version,
-} from "../../src/logical_version.js";
+} from "../../src/logical/index.js";
 
 const VALID_CLASSES = [
   "Barbarian", "Bard", "Cleric", "Druid", "Fighter",

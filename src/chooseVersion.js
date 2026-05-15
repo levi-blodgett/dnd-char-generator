@@ -1,5 +1,5 @@
-import * as logical from "./logical_version.js";
-import * as random from "./random_version.js";
+import * as logical from "./logical/index.js";
+import * as random from "./random/index.js";
 
 // Tracks which generator is active; true = logical, false = random.
 let _isLogical = true;

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { get_random_number } from "../../src/logical_version.js";
+import { get_random_number } from "../../src/logical/index.js";
 
 describe("get_random_number", () => {
   it("always returns an integer in [1, n]", () => {
