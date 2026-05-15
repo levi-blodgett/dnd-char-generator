@@ -182,5 +182,7 @@ This generator targets **D&D 5e 2014 ruleset, level 1**. The active revival road
 
 - Level 2–3 support with a data-driven sourcebook seam
 - UI overhaul (preserving the printable character-sheet layout)
+- Simplified character creation method: "Create <number> <logical/random> <rolling-method> character(s)"
+  - Numerous filters underneath will be available as well
 
 Out of scope: D&D 2024 ruleset, backend/server features, mobile-native app.
