@@ -24,3 +24,5 @@ export const softTraits = [
   "I can find common ground between anyone, even the fiercest enemies",
   "I see omens in every event and action.",
 ];
+
+export const ALL_TRAITS = [...toughTraits, ...softTraits];

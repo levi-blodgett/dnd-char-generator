@@ -29,9 +29,36 @@ src/
   checkboxes.js       ← custom checkbox image system + skill proficiency helpers
   dropdowns.js        ← dropdown wiring and event listeners
   styling.js          ← button hover/click styling
-  logical_version.js  ← "logical" character generator (~4 600 lines)
-  random_version.js   ← "random" character generator (~7 100 lines)
+  logical_version.js  ← re-export shim (delegates to src/logical/)
+  random_version.js   ← re-export shim (delegates to src/random/)
   testing.js          ← standalone 100 k smoke harness (not in bundle)
+
+  logical/            ← logical generator (≤500 lines per file)
+    index.js          ← orchestrator
+    background/       ← per-background logic
+    equipment/        ← per-class equipment
+    race/             ← race + subrace handling
+    proficiencies.js, physical-traits.js, char-selection.js, weapon-profs.js, spells.js
+
+  random/             ← random generator (≤500 lines per file)
+    index.js          ← orchestrator (≤500 lines)
+    selection.js      ← class/race/background/alignment dropdown logic
+    spells.js         ← spellcasting block
+    saving-throws.js  ← saving throws + hit die
+    armor-class.js    ← AC calculation loop
+    output.js         ← write_character (all form writes)
+    background/       ← per-background logic
+    equipment/        ← per-class equipment (dispatch table + 12 class files)
+    race/             ← race + subrace decider
+    proficiencies.js  ← class skill proficiencies + weapon proficiencies
+    physical-traits.js
+    util/             ← shared pure helpers
+      stat-checkers.js, proficiency-adders.js, artisan-tools.js,
+      instruments.js, skill-adder.js, language-helpers.js
+
+  shared/data/        ← data shared between logical + random generators
+    armor.js, bonds.js, flaws.js, ideals.js, languages.js, names.js,
+    personality-traits.js, spells.js, stat-arrays.js, weapons.js
 
 test/
   helpers/setup.js          ← DOM setup helper (injects index.html body into jsdom)
@@ -65,27 +92,40 @@ index.html            ← SPA shell; loads dist/main.js only (99% auto-generated
 | `checkboxes.js` | `replaceChecks`, `checkClick`, `setImage`, `getSrc`, `clear_All`, `click_on`, `click_off`, `add_click`, `remove_click` | Checkbox image system |
 | `dropdowns.js` | `initDropdowns`, `format_initial_dropdowns`, `format_secondary_dropdowns`, `on_click_decider`, `on_dropdown_option_click`, `add_events_for_dropdowns` | Dropdown event wiring |
 | `styling.js` | `buttonStyling`, `addButtonClickEvent`, `show_func` | Button hover style |
-| `logical_version.js` | `generate_character`, `generate_initial_character`, `generate_new_character`, `standard_version`, `roll_version`, `pointbuy_version`, `stat_modifier_generator`, `get_random_number` | Logical generator |
-| `random_version.js` | same public interface as logical | Random generator |
+| `logical_version.js` | re-exports from `src/logical/index.js` | Logical generator shim |
+| `random_version.js` | re-exports from `src/random/index.js` | Random generator shim |
+| `logical/index.js` | `generate_character`, `generate_initial_character`, `generate_new_character`, `standard_version`, `roll_version`, `pointbuy_version` | Logical generator orchestrator |
+| `random/index.js` | same public interface | Random generator orchestrator (≤500 lines) |
+| `random/selection.js` | `make_nameGenerator`, `select_class`, `select_race`, `select_background`, `select_alignment` | DOM-reading selection helpers |
+| `random/spells.js` | `apply_spells` | Per-class spellcasting setup |
+| `random/saving-throws.js` | `apply_saving_throws_and_hp` | Saving throws + HP by class |
+| `random/armor-class.js` | `apply_armor_class` | AC calculation from equipment |
+| `random/output.js` | `write_character` | All final form writes |
+| `random/util/language-helpers.js` | `make_language_helpers` | Language picker factory |
+| `random/util/skill-adder.js` | `make_skill_adder` | Random skill proficiency factory |
+| `random/util/instruments.js` | `randomMusicalInstrument` | Random instrument picker |
+| `random/util/artisan-tools.js` | `random_artisan_tool` | Random artisan tool picker |
+| `shared/data/` | various named exports | Data shared between both generators |
 
 ---
 
 ## Adding a Class, Race, or Background
 
-Both generators contain inline data tables (arrays and conditional blocks) rather than a separate data layer.
-A data-extraction refactor is planned for a future phase; until then, follow the existing pattern.
+Both generators are now split into modules (≤500 lines each). Find the right file before editing.
 
 ### Add a class
 
-Search for an existing class (e.g. `"Barbarian"`) in `logical_version.js` and `random_version.js`.
-Each file has a class-selection block that picks a class from a weighted list and then a large
-conditional block that sets class-specific fields (hit dice, equipment, spells, proficiencies).
-Duplicate the structure for the new class in both files.
+- **Equipment:** add a new `src/random/equipment/<class>.js` (copy an existing one) and register it in `src/random/equipment/index.js` dispatch table. Do the same in `src/logical/equipment/`.
+- **Spell setup:** add a branch in `src/random/spells.js → apply_spells`.
+- **Saving throws / HP:** add a branch in `src/random/saving-throws.js → apply_saving_throws_and_hp`.
+- **Weapon proficiencies:** add a branch in both `src/random/proficiencies.js → apply_weapon_proficiencies` and `src/logical/proficiencies.js`.
+- **Class proficiency skills:** add a branch in `src/random/proficiencies.js → apply_class_proficiencies`.
+- **Class selection list:** update `src/random/selection.js → CLASSES` array.
 
 ### Add a race or background
 
-Same pattern — search for an existing race/background (e.g. `"Dwarf"` or `"Acolyte"`) to find
-the selection and field-assignment blocks. Replicate for the new entry in both generators.
+- **Race:** add to `src/random/race/index.js → apply_race` and `src/logical/race/index.js`. Update `src/random/selection.js → RACE_KEYS` if adding a top-level race.
+- **Background:** add a branch in `src/random/background/index.js → apply_background` and `src/logical/background/` (add a new file or extend `index.js`). Update `src/random/selection.js → BACKGROUNDS`.
 
 ### Add a dropdown option
 

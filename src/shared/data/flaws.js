@@ -37,3 +37,5 @@ export const chaoticFlaws = [
 "There's no room for caution in a life lived to the fullest.",
 "Narrates own thoughts.",
 ];
+
+export const ALL_FLAWS = [...lawfulFlaws, ...neutralFlaws, ...chaoticFlaws];

@@ -42,6 +42,11 @@ export const MARTIAL_WEAPONS = [
 ];
 
 
+export function build_weapon_arrays(strengthModifier, dexterityModifier, biggerWeaponStatDecider) {
+  let club, dagger, greatclub, handaxe, javelin, lighthammer, mace, quarterstaff, sickle, spear, lightcrossbow, dart, shortbow, sling;
+  let battleaxe, flail, glaive, greataxe, greatsword, halberd, lance, longsword, maul, morningstar, pike, rapier, scimitar, shortsword, trident, warpick, warhammer, whip, blowgun, handcrossbow, heavycrossbow, longbow, net;
+  let simpleWeaponsArray, martialWeaponsArray;
+
   simpleWeaponsArray = [
     (club = {
       weaponName: "Club",
@@ -306,3 +311,10 @@ export const MARTIAL_WEAPONS = [
       modifier: biggerWeaponStatDecider(dexterityModifier, strengthModifier),
     }),
   ];
+
+  return {
+    simpleWeaponsArray, martialWeaponsArray,
+    club, dagger, greatclub, handaxe, javelin, lighthammer, mace, quarterstaff, sickle, spear, lightcrossbow, dart, shortbow, sling,
+    battleaxe, flail, glaive, greataxe, greatsword, halberd, lance, longsword, maul, morningstar, pike, rapier, scimitar, shortsword, trident, warpick, warhammer, whip, blowgun, handcrossbow, heavycrossbow, longbow, net,
+  };
+}

@@ -2,7 +2,7 @@ import {
   rangerBonds, rogueBonds, barbarianBonds, wizardBonds, warlockBonds,
   clericBonds, bardBonds, paladinBonds, sorcererBonds, monkBonds,
   druidBonds, fighterBonds,
-} from "./data/bonds.js";
+} from "../shared/data/bonds.js";
 import { random_by_length } from "./util/random-by-length.js";
 
 export function apply_weapon_profs(classAndLevel, ctx) {

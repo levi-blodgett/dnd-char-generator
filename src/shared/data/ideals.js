@@ -36,3 +36,5 @@ export const evilIdeals = [
   "I always have a plan to save myself or my group, regardless of collateral.",
   "My refined tastes deserve to be catered to.",
 ];
+
+export const ALL_IDEALS = [...goodIdeals, ...neutralIdeals, ...evilIdeals];

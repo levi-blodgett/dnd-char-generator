@@ -4,11 +4,11 @@ import {
   stat_modifier_generator,
 } from "../shared/dice.js";
 import { RACE_NAMES } from "../shared/data/names.js";
-import { toughTraits, softTraits } from "./data/personality-traits.js";
+import { toughTraits, softTraits } from "../shared/data/personality-traits.js";
 import { STANDARD_LANGUAGES, EXOTIC_LANGUAGES } from "../shared/data/languages.js";
 import { build_armor_table } from "../shared/data/armor.js";
 import { SIMPLE_WEAPONS, MARTIAL_WEAPONS } from "../shared/data/weapons.js";
-import { lawfulFlaws, neutralFlaws, chaoticFlaws } from "./data/flaws.js";
+import { lawfulFlaws, neutralFlaws, chaoticFlaws } from "../shared/data/flaws.js";
 import { get_random_int } from "./util/random-int.js";
 import {
   stat_checker,

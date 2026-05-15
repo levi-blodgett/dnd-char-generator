@@ -1,6 +1,6 @@
 import { random_by_length } from "../util/random-by-length.js";
-import { toughTraits, softTraits } from "../data/personality-traits.js";
-import { goodIdeals, neutralIdeals, evilIdeals } from "../data/ideals.js";
+import { toughTraits, softTraits } from "../../shared/data/personality-traits.js";
+import { goodIdeals, neutralIdeals, evilIdeals } from "../../shared/data/ideals.js";
 import { random_language } from "../util/language-helpers.js";
 
 function add_race_cantrip(cantrip) {

@@ -1,5 +1,5 @@
 import { random_by_length } from "./util/random-by-length.js";
-import { goodIdeals, neutralIdeals, evilIdeals } from "./data/ideals.js";
+import { goodIdeals, neutralIdeals, evilIdeals } from "../shared/data/ideals.js";
 
 export function pick_background_from_dropdown() {
   const checkboxes = document.querySelectorAll("input.background_class");

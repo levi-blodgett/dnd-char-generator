@@ -153,3 +153,9 @@ export const fighterBonds = [
   "My ancestor was quite famous, and I wish to overshadow their legacy with my own.",
   "I was raised as the hostage of an enemy clan, where I befriended the enemy clan's heir. ",
 ];
+
+export const ALL_BONDS = [
+  ...rangerBonds, ...rogueBonds, ...barbarianBonds, ...wizardBonds, ...warlockBonds,
+  ...clericBonds, ...bardBonds, ...paladinBonds, ...sorcererBonds, ...monkBonds,
+  ...druidBonds, ...fighterBonds,
+];
