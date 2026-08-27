@@ -1,14 +1,7 @@
 // Global variables that can be used by ALL the functions on this page.
 let is64;
 let inputs;
-let states = [
-  "On.png",
-  "Off.png",
-  "DownOn.png",
-  "DownOff.png",
-  "RollOn.png",
-  "RollOff.png",
-];
+let states = ["On.png", "Off.png", "DownOn.png", "DownOff.png", "RollOn.png", "RollOff.png"];
 let states64 = [
   "imageOn",
   "imageOff",
@@ -19,17 +12,15 @@ let states64 = [
 ];
 
 // Set the image, replacing the checkbox from standard HTML
-function setImage(input, state) {
+export function setImage(input, state) {
+  if (!inputs || !inputs[input]) return;
   if (inputs[input].getAttribute("images").charAt(state) === "1") {
-    document.getElementById(inputs[input].getAttribute("id")).src = getSrc(
-      input,
-      state
-    );
+    document.getElementById(inputs[input].getAttribute("id")).src = getSrc(input, state);
   }
 }
 
 // () to determine whether or not the source is in base64 or not
-function getSrc(input, state) {
+export function getSrc(input, state) {
   let src;
   if (is64) {
     src = inputs[input].getAttribute(states64[state]);
@@ -40,7 +31,7 @@ function getSrc(input, state) {
 }
 
 // Main () to replace all checkmarks to the new image and what to replace them to when clicked
-function replaceChecks(isBase64) {
+export function replaceChecks(isBase64) {
   is64 = isBase64; // Get all the input fields on the page
   inputs = document.querySelectorAll("form input.i");
 
@@ -50,8 +41,7 @@ function replaceChecks(isBase64) {
       if (
         inputs[i].getAttribute("class") != "idr-hidden" &&
         inputs[i].getAttribute("data-imageAdded") !== "true" &&
-        (inputs[i].getAttribute("type") == "checkbox" ||
-          inputs[i].getAttribute("type") == "radio")
+        (inputs[i].getAttribute("type") == "checkbox" || inputs[i].getAttribute("type") == "radio")
       ) {
         // Check if the input is a checkbox
         // Create a new image
@@ -59,11 +49,9 @@ function replaceChecks(isBase64) {
 
         // Check if the checkbox is checked
         if (inputs[i].checked) {
-          if (inputs[i].getAttribute("images").charAt(0) == "1")
-            img.src = getSrc(i, 0);
+          if (inputs[i].getAttribute("images").charAt(0) == "1") img.src = getSrc(i, 0);
         } else {
-          if (inputs[i].getAttribute("images").charAt(1) == "1")
-            img.src = getSrc(i, 1);
+          if (inputs[i].getAttribute("images").charAt(1) == "1") img.src = getSrc(i, 1);
         }
 
         // Set image ID
@@ -83,7 +71,7 @@ function replaceChecks(isBase64) {
 }
 
 // Change the checkbox status and set the replacement image
-function checkClick(i) {
+export function checkClick(i) {
   if (inputs[i].checked) {
     inputs[i].checked = "";
     setImage(i, 1);
@@ -92,10 +80,7 @@ function checkClick(i) {
     setImage(i, 0);
     if (inputs[i].getAttribute("name") != null) {
       for (let index = 0; index < inputs.length; index++) {
-        if (
-          index != i &&
-          inputs[index].getAttribute("name") == inputs[i].getAttribute("name")
-        ) {
+        if (index != i && inputs[index].getAttribute("name") == inputs[i].getAttribute("name")) {
           inputs[index].checked = "";
           setImage(index, 1);
         }
@@ -104,35 +89,17 @@ function checkClick(i) {
   }
 }
 
-// Calling function to replace all checkmarks on the page
-replaceChecks(false);
-
 // Function to clear all checkboxes and all forms
-function clear_All() {
+export function clear_All() {
   // For all forms, check and see if they need to be cleared or not
   for (let i = 1; i < 250; i++) {
     let j = i.toString();
-    if (document.getElementById("form" + j + "_1") === null) {
-    } else {
-      if (document.getElementById("form" + j + "_1").checked === true) {
-      } else {
-        document.getElementById("form" + j + "_1").value = "";
-      }
-    }
-    if (document.getElementById("form" + j + "_2") === null) {
-    } else {
-      if (document.getElementById("form" + j + "_2").checked === true) {
-      } else {
-        document.getElementById("form" + j + "_2").value = "";
-      }
-    }
-    if (document.getElementById("form" + j + "_3") === null) {
-    } else {
-      if (document.getElementById("form" + j + "_3").checked === true) {
-      } else {
-        document.getElementById("form" + j + "_3").value = "";
-      }
-    }
+    let el1 = document.getElementById("form" + j + "_1");
+    if (el1 !== null && el1.checked !== true) el1.value = "";
+    let el2 = document.getElementById("form" + j + "_2");
+    if (el2 !== null && el2.checked !== true) el2.value = "";
+    let el3 = document.getElementById("form" + j + "_3");
+    if (el3 !== null && el3.checked !== true) el3.value = "";
   }
   // For all checkboxes on the first page, clear them for the next character
   for (let i = 1; i < 24; i++) {
@@ -141,23 +108,29 @@ function clear_All() {
   }
   // Uncheck persuasion checkbox
   click_off(0);
-  // Put all stats at 0
-  strength = 0;
-  dexterity = 0;
-  constitution = 0;
-  intelligence = 0;
-  wisdom = 0;
-  charisma = 0;
 }
 
 // Function to uncheck a checkbox
-function click_off(i) {
+export function click_off(i) {
   inputs[i].checked = undefined;
   setImage(i, 1);
 }
 
 // Function to check a checkbox
-function click_on(i) {
+export function click_on(i) {
   inputs[i].checked = "checked";
   setImage(i, 0);
+}
+
+// Function to make a skill proficient and checked (moved here from generators)
+export function add_click(j) {
+  let i = j.toString();
+  document.getElementById("form" + i + "_1").checked = "checked";
+  click_on(i - 1);
+}
+
+// Function to remove skill proficiency and checked status (moved here from generators)
+export function remove_click(j) {
+  document.getElementById("form" + j + "_1").checked = undefined;
+  click_off(j);
 }
